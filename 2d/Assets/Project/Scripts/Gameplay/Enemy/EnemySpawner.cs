@@ -26,7 +26,6 @@ public class EnemySpawner : MonoBehaviour
         EnemyAI enemy = enemyManager.GetEnemy();
         Vector2 spawnPos = GetRandomPosition();
         enemy.transform.position = spawnPos;
-        enemy.gameObject.SetActive(true);
     }
 
     Vector2 GetRandomPosition()
