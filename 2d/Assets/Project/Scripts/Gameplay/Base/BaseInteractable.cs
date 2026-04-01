@@ -2,13 +2,9 @@
 using UnityEngine.InputSystem;
 
 // 역할: 플레이어가 범위 안에 들어오고 E키를 누르면 상호작용하는 공통 베이스
-//   - BroadcastMessage 방식 대신 InputAction을 직접 구독하는 방식 사용
-//   - PlayerInput Behavior는 어떤 설정이어도 동작함
-//
-// 유니티 세팅
-//   - 이 스크립트가 붙은 GameObject에 Collider2D (IsTrigger = true) 필수
-//   - Player GameObject Tag → "Player" 설정 필수
-//   - InputControls.inputactions의 Player/Interact 액션에 E키 바인딩 필수
+//   - AnvilInteraction, CampfireInteraction, DungeonDoor가 이 클래스를 상속
+//   - 각 자식 클래스는 HandleInteract()만 구현하면 됨
+
 [RequireComponent(typeof(Collider2D))]
 public abstract class BaseInteractable : MonoBehaviour
 {
@@ -16,32 +12,41 @@ public abstract class BaseInteractable : MonoBehaviour
 
     protected bool isPlayerInRange = false;
 
-    // InputAction을 직접 참조해서 구독
-    private InputAction interactAction;
-
-    void Awake()
-    {
-        // InputControls 에셋에서 Interact 액션 직접 가져오기
-        var inputControls = new InputControls();
-        interactAction = inputControls.Player.Interact;
-    }
+    private static InputControls inputControls;
+    private static int refCount = 0; // 몇 개의 오브젝트가 사용 중인지 추적
 
     void OnEnable()
     {
-        interactAction.Enable();
-        interactAction.performed += OnInteractPerformed;
+        // 첫 번째 오브젝트가 활성화될 때 한 번만 생성
+        if (inputControls == null)
+        {
+            inputControls = new InputControls();
+            inputControls.Player.Enable();
+        }
+        refCount++;
+
+        inputControls.Player.Interact.performed += OnInteractPerformed;
     }
 
     void OnDisable()
     {
-        interactAction.performed -= OnInteractPerformed;
-        interactAction.Disable();
+        inputControls.Player.Interact.performed -= OnInteractPerformed;
+        refCount--;
+
+        // 모든 오브젝트가 비활성화되면 정리
+        if (refCount <= 0)
+        {
+            inputControls.Player.Disable();
+            inputControls.Dispose();
+            inputControls = null;
+            refCount = 0;
+        }
     }
 
     private void OnInteractPerformed(InputAction.CallbackContext ctx)
     {
         // ── 디버그 로그 (테스트 완료 후 삭제) ──
-        Debug.Log($"[OnInteract] E키 감지 / 오브젝트: {gameObject.name} / 범위 안: {isPlayerInRange}");
+        Debug.Log($"[OnInteract] F키 감지 / 오브젝트: {gameObject.name} / 범위 안: {isPlayerInRange}");
 
         if (!isPlayerInRange) return;
         HandleInteract();
