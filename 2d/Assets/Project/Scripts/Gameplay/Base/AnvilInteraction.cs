@@ -10,7 +10,7 @@ public class AnvilInteraction : BaseInteractable
     [Header("모루 UI")]
     [SerializeField] private GameObject anvilUI;
 
-    protected override void OnInteract()
+    protected override void HandleInteract()
     {
         if (anvilUI == null)
         {
@@ -23,3 +23,4 @@ public class AnvilInteraction : BaseInteractable
         anvilUI.SetActive(!isOpen);
     }
 }
+

@@ -34,8 +34,6 @@ public class SceneController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // ── 공개 API ────────────────────────────────────
-
     // 거점으로 이동 (게임오버 후 호출)
     public void LoadBase() => StartCoroutine(LoadSceneRoutine(SceneName.Base));
 

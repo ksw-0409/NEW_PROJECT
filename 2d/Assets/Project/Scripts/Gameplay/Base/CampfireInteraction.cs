@@ -10,7 +10,7 @@ public class CampfireInteraction : BaseInteractable
     [Header("모닥불 UI")]
     [SerializeField] private GameObject campfireUI;
 
-    protected override void OnInteract()
+    protected override void HandleInteract()
     {
         if (campfireUI == null)
         {

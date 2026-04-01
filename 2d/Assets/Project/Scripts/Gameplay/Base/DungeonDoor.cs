@@ -6,7 +6,7 @@
 //   - 문 GameObject에 이 컴포넌트 추가
 public class DungeonDoor : BaseInteractable
 {
-    protected override void OnInteract()
+    protected override void HandleInteract()
     {
         if (SceneController.Instance == null)
         {
