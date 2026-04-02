@@ -256,6 +256,11 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &611033601 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 30316419374980630, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+  m_PrefabInstance: {fileID: 7423140879279617985}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1768684257
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,6 +331,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3039479529909032572, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
   m_PrefabInstance: {fileID: 7423140879279617985}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2026055326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611033601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32591a986534f104e9f65f23c48fd7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillController
 --- !u!1001 &7423140879279617985
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -338,6 +355,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1233890054793212766, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: slashData
+      value: 
+      objectReference: {fileID: 11400000, guid: 04ce3a64b7ffb95418ec1fc201b62fff, type: 2}
+    - target: {fileID: 1233890054793212766, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: slashEffectPrefab
+      value: 
+      objectReference: {fileID: 30316419374980630, guid: b18de5af77bd21d4db6309edb90c4732, type: 3}
     - target: {fileID: 3039479529909032572, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -381,7 +406,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 30316419374980630, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2026055326}
   m_SourcePrefab: {fileID: 100100000, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
