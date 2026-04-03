@@ -23,7 +23,7 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         // 여기서 경험치 보석을 생성하거나 이펙트
-        managedPool.Release(this.GetComponent<EnemyAI>());
+        GetComponent<EnemyAI>().ReturnToPool();
         ItemManager.Instance.DropItem(this.transform.position);
     }
 }

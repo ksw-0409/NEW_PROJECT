@@ -272,6 +272,7 @@ GameObject:
   - component: {fileID: 1768684258}
   - component: {fileID: 1768684260}
   - component: {fileID: 1768684259}
+  - component: {fileID: 1768684261}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -323,9 +324,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
   player: {fileID: 2026055320}
-  enemyPool: []
-  poolSize: 100
   enemyPrefab: {fileID: 1695417322640460754, guid: c1fa2ba47e55ed345871c72ba7e166eb, type: 3}
+--- !u!114 &1768684261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768684257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f7eab8ef9b72274a96fb342dffd0c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemManager
+  itemPrefab: {fileID: 1197457025419246133, guid: 270621d7be9a59949b59b8eda4deacd4, type: 3}
+  player: {fileID: 611033601}
+  activeItems: []
 --- !u!4 &2026055320 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3039479529909032572, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
