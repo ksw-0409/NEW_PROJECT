@@ -13,6 +13,19 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         stats = GetComponent<PlayerStats>();
     }
+    public SlashSkillData slashData;
+    public GameObject slashEffectPrefab;
+
+    void Start()
+    {
+        GetComponent<PlayerSkillController>()
+            .AddSlashSkill(slashData, 6, slashEffectPrefab);
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 2f);
+    }
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();

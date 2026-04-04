@@ -14,8 +14,8 @@ public class SkillTreeCameraControl : MonoBehaviour
     [SerializeField] private float maxZoom = 2f;
 
     [Header("Bounds")]
-    [SerializeField] private Vector2 minPosition = new Vector2(-1000, -1000);
-    [SerializeField] private Vector2 maxPosition = new Vector2(1000, 1000);
+    [SerializeField] private Vector2 minPosition = new Vector2(-10000, -10000);
+    [SerializeField] private Vector2 maxPosition = new Vector2(10000, 10000);
 
     private Vector2 lastMousePos;
     private bool isDragging;

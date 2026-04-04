@@ -3,7 +3,15 @@ using System.Collections.Generic;
 
 public class Pachinko : MonoBehaviour
 {
+    //데이터 저장용 
     public Pachinko_data items;
+    //멈출 숫자 저장용
+    private int[] vlaues=new int[3];
+
+    public GameObject first;
+    public GameObject second;
+    public GameObject third;
+
     //랜덤 당첨
     int GetRandomValue()
     {
@@ -17,14 +25,16 @@ public class Pachinko : MonoBehaviour
                 if (RandomIndex <= p)
                 {
                     value *= items.items[j].itemValue;
-                    // 그 밖에 함수 호출해야지 무? 슬롯 보이게 하는 함수 
+                    vlaues[i] = items.items[j].itemValue;
                     break;
                 } 
             }
         }
         Debug.Log(value);
         return value;
-    }
-    
+    }    
+    void RollingObject()
+    {
 
+    }
 }
