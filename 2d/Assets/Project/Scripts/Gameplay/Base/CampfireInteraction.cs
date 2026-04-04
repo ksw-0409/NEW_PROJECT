@@ -1,24 +1,19 @@
 ﻿using UnityEngine;
 
-// 역할: 모닥불 오브젝트 — E키로 스킬 선택 UI 패널 열기
-//
-// 유니티 세팅
-//   - 모닥불 GameObject에 이 컴포넌트 추가
-//   - campfireUI 슬롯에 스킬 선택 UI 패널 연결
+// 역할: 모닥불 오브젝트 — F키로 SkillPanel Canvas 활성화
+
 public class CampfireInteraction : BaseInteractable
 {
-    [Header("모닥불 UI")]
-    [SerializeField] private GameObject campfireUI;
+    [SerializeField] private GameObject skillPanelCanvas;
 
     protected override void HandleInteract()
     {
-        if (campfireUI == null)
+        if (skillPanelCanvas == null)
         {
-            Debug.LogWarning("[CampfireInteraction] campfireUI가 연결되지 않았습니다.");
+            Debug.LogWarning("[CampfireInteraction] skillPanelCanvas가 연결되지 않았습니다.");
             return;
         }
 
-        bool isOpen = campfireUI.activeSelf;
-        campfireUI.SetActive(!isOpen);
+        skillPanelCanvas.SetActive(true);
     }
 }

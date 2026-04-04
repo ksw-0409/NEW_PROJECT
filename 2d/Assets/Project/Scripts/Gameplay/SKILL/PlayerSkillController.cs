@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerSkillController : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class PlayerSkillController : MonoBehaviour
 
     void Update()
     {
+        if (SceneManager.GetActiveScene().name == SceneController.SceneName.Base)
+                return;
+
         foreach (var skill in skills)
         {
             skill.Tick(transform);

@@ -1,22 +1,19 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
 
-// 역할: 모루 오브젝트 — F키로 Anvil 씬을 Additive 로드
+// 역할: 모루 오브젝트 — F키로 Anvil Canvas 활성화
 
 public class AnvilInteraction : BaseInteractable
 {
+    [SerializeField] private GameObject anvilCanvas;
+
     protected override void HandleInteract()
     {
-        if (SceneController.Instance == null)
+        if (anvilCanvas == null)
         {
-            Debug.LogError("[AnvilInteraction] SceneController가 없습니다.");
+            Debug.LogWarning("[AnvilInteraction] anvilCanvas가 연결되지 않았습니다.");
             return;
         }
-
-        PlayerInput playerInput = FindFirstObjectByType<PlayerInput>();
-        if (playerInput != null) playerInput.DeactivateInput();
-
-        SceneController.Instance.LoadAdditive(SceneController.SceneName.Anvil);
+        anvilCanvas.SetActive(true);
     }
 }
 
