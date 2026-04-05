@@ -1,27 +1,26 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+ 
+// ì—­í• : ìŠ¤í‚¬ íŒ¨ë„ Canvas UI (5x5 ê·¸ë¦¬ë“œ, ìµœëŒ€ 25ì¹¸)
 
-// ¿ªÇÒ: ½ºÅ³ ÆĞ³Î Canvas UI
 
 [System.Serializable]
 public class SkillEntry
 {
-    public Button button;           // ½ºÅ³ ÆĞ³ÎÀÇ ¹öÆ°
-    public GameObject skillTreeCanvas; // ÇØ´ç ½ºÅ³ÀÇ Æ®¸® Canvas
+    public Button button;           // ìŠ¤í‚¬ íŒ¨ë„ì˜ ë²„íŠ¼
+    public GameObject skillTreeCanvas; // í•´ë‹¹ ìŠ¤í‚¬ì˜ íŠ¸ë¦¬ Canvas
 }
-
+ 
 public class SkillPanelCanvasUI : BaseCanvasUI
 {
-    [Header("½ºÅ³ ¸ñ·Ï (¹öÆ° - ½ºÅ³Æ®¸®)")]
+    [Header("ìŠ¤í‚¬ ëª©ë¡ (ë²„íŠ¼ - ìŠ¤í‚¬íŠ¸ë¦¬)")]
     [SerializeField] private List<SkillEntry> skillEntries = new List<SkillEntry>();
 
-    // ÇöÀç ¿­·ÁÀÖ´Â ½ºÅ³ Æ®¸® Canvas
     private GameObject currentSkillTree = null;
-
+ 
     protected override void OnOpen()
     {
-        // ¸ğµç ½ºÅ³ ¹öÆ°¿¡ ¸®½º³Ê µî·Ï
         foreach (var entry in skillEntries)
         {
             if (entry.button == null) continue;
@@ -31,19 +30,18 @@ public class SkillPanelCanvasUI : BaseCanvasUI
 
         CloseCurrentSkillTree();
     }
-
+ 
     protected override void OnClose()
     {
-        // ¸ğµç ¸®½º³Ê ÇØÁ¦
         foreach (var entry in skillEntries)
         {
             if (entry.button != null)
                 entry.button.onClick.RemoveAllListeners();
         }
-
+ 
         CloseCurrentSkillTree();
     }
-
+ 
     protected override bool CanClose()
     {
         if (currentSkillTree != null && currentSkillTree.activeSelf)
@@ -53,22 +51,22 @@ public class SkillPanelCanvasUI : BaseCanvasUI
         }
         return true;
     }
-
+ 
     private void OnClickSkill(GameObject skillTreeCanvas)
     {
         if (skillTreeCanvas == null)
         {
-            Debug.LogWarning("[SkillPanelCanvasUI] skillTreeCanvas°¡ ¿¬°áµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+            Debug.LogWarning("[SkillPanelCanvasUI] skillTreeCanvasê°€ ì—°ê²°ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
             return;
         }
 
         if (currentSkillTree != null && currentSkillTree != skillTreeCanvas)
             CloseCurrentSkillTree();
-
+ 
         currentSkillTree = skillTreeCanvas;
         currentSkillTree.SetActive(true);
     }
-
+ 
     private void CloseCurrentSkillTree()
     {
         if (currentSkillTree != null)
