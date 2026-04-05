@@ -78,7 +78,8 @@ public class SuperEasyLever : MonoBehaviour
         {
             Vector3 targetPos = mainCamera.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, 10f));
             targetPos.z = 0;
-            targetPos.x = startPos.x; 
+            targetPos.x = startPos.x;
+            if (targetPos.y > startPos.y) return;
             draggingObject.transform.position = targetPos;
             shaftObject.transform.position = draggingObject.transform.position - offset;
             // 임계점 도달 체크 (드래그 중에만 체크)

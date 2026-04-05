@@ -63,7 +63,7 @@ public class ItemManager : MonoBehaviour
     {
         if (player == null) return;
 
-        float magnetDistance = 1.0f; // 자석 범위
+        float magnetDistance = 3.0f; // 자석 범위
         float moveSpeed = 10.0f;
 
         for (int i = activeItems.Count - 1; i >= 0; i--)

@@ -3,9 +3,11 @@ using System;
 
 public class PlayerStats : MonoBehaviour
 {
-    public PlayerData data;
+    public PlayerData data; 
+    
+    public event Action OnLevelUp; // 레벨업 이벤트 
 
-    [HideInInspector] public float currentHealth; //HideInInspector는 public 이지만 엔진에서 안보이는
+    public float currentHealth; 
     public float currentLevel = 1;
     public float currentExp=0;
 
@@ -17,6 +19,22 @@ public class PlayerStats : MonoBehaviour
         currentHealth = data.maxHealth;
     }
 
+    public void TakeExp(float exp)
+    {
+        currentExp += exp;
+        Debug.Log(currentExp);
+        if (currentExp >= 2)
+        {
+            LevelUp();
+        }
+    }
+    private void LevelUp()
+    {
+        currentLevel++;
+        currentExp = 0;
+        Debug.Log("Level++" + currentLevel);
+        OnLevelUp?.Invoke();
+    }
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;

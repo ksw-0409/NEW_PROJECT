@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8346fb79975d894eb59f7f27aeaf752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  expAmount: 10
+  expAmount: 1
 --- !u!61 &8510623288870686627
 BoxCollider2D:
   m_ObjectHideFlags: 0
