@@ -4,7 +4,7 @@ using UnityEngine.Pool;
 public class Item : MonoBehaviour
 {
     private IObjectPool<Item> managedPool;
-    public int expAmount = 10;
+    public int expAmount = 1;
 
     public void SetPool(IObjectPool<Item> pool)
     {
@@ -16,6 +16,7 @@ public class Item : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // 플레이어 경험치 증가 로직 호출 
+            other.GetComponent<PlayerStats>().TakeExp(expAmount);
             managedPool.Release(this);
         }
     }

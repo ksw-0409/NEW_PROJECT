@@ -1,5 +1,7 @@
-using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
+using UnityEngine;
 
 public class Pachinko : MonoBehaviour
 {
@@ -8,9 +10,6 @@ public class Pachinko : MonoBehaviour
     //¸ØÃâ ¼ıÀÚ ÀúÀå¿ë
     private int[] vlaues=new int[3];
 
-    public GameObject first;
-    public GameObject second;
-    public GameObject third;
 
     //·£´ı ´çÃ·
     int GetRandomValue()
@@ -32,9 +31,6 @@ public class Pachinko : MonoBehaviour
         }
         Debug.Log(value);
         return value;
-    }    
-    void RollingObject()
-    {
-
     }
+    
 }
