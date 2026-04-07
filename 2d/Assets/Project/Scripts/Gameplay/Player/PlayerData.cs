@@ -1,11 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerData", menuName = "Scriptable Objects/PlayerData")]
+[CreateAssetMenu(menuName = "Player/PlayerData")]
 public class PlayerData : ScriptableObject
 {
-    [Header("Base Stats")]
     public float maxHealth = 100f;
     public float moveSpeed = 5f;
-    public float attackPower = 10f;
 
+    public float physicalDamage = 10f;
+    public float magicDamage = 10f;
 }

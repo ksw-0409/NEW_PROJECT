@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 32591a986534f104e9f65f23c48fd7f9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - slashEffectPrefab: {instanceID: 0}
+  - RotatingSlashPrefab: {instanceID: 0}
+  - fireballPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

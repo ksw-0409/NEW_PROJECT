@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdaa281b99843a64bbbb8d4ba01276c0, type: 3}
+  m_Name: Skill Data
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  skillName: 
+  description: 
+  icon: {fileID: 0}
+  isPassive: 0
+  damages:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  cooldowns:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  maxLevel: 6
+  healthAdd: 0
+  damageAdd: 0

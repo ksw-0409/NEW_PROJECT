@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e0c4caaca745cc4f856231402990a0b, type: 3}
+  m_Name: Sword Wave Data
+  m_EditorClassIdentifier: Assembly-CSharp::SwordWaveData
+  skillName: SwordWave
+  icon: {fileID: 253190235182225360, guid: 82d4cae21ceaf8949b412937c1bf453f, type: 3}
+  description: 
+  levels:
+  - cooldown: 1
+    count: 1
+    damage: 10
+    multiplier: 1
+    range: 6
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  cooldown: 0
+  count: 0
+  damage: 0
+  multiplier: 0
+  range: 0
+  effectPrefab: {fileID: 30316419374980630, guid: c4ef3ee85b73f0e4a90dff44f464aaa0, type: 3}
