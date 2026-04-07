@@ -25,12 +25,12 @@ public class PlayerController : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         shield = GetComponent<ShieldSkill>();
     }
-    public SlashData slashData;
-    public RotatingSlashData rotatingslashData;
-    public FireballData fireballData;
+    //public SlashData slashData;
+    //public RotatingSlashData rotatingslashData;
+    //public FireballData fireballData;
 
-    public GameObject slashEffectPrefab;
-    public GameObject RotatingslashEffectPrefab;
+    //public GameObject slashEffectPrefab;
+    //public GameObject RotatingslashEffectPrefab;
 
     void Start()
     {

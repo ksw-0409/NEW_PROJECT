@@ -1858,7 +1858,7 @@ MonoBehaviour:
   - {fileID: 986174977}
   levelUpUI: {fileID: 1350143454}
   playerStats: {fileID: 2026055332}
-  skillController: {fileID: 2026055331}
+  skillController: {fileID: 2026055337}
 --- !u!1 &1350143454
 GameObject:
   m_ObjectHideFlags: 0
@@ -2352,6 +2352,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
   player: {fileID: 2026055320}
+  enemyPool: []
+  poolSize: 100
   enemyPrefab: {fileID: 1695417322640460754, guid: c1fa2ba47e55ed345871c72ba7e166eb, type: 3}
 --- !u!114 &1768684261
 MonoBehaviour:
@@ -2365,9 +2367,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7eab8ef9b72274a96fb342dffd0c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemManager
-  itemPrefab: {fileID: 1197457025419246133, guid: 270621d7be9a59949b59b8eda4deacd4, type: 3}
-  player: {fileID: 611033601}
-  activeItems: []
 --- !u!1 &1950074554
 GameObject:
   m_ObjectHideFlags: 0
@@ -2448,17 +2447,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3039479529909032572, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
   m_PrefabInstance: {fileID: 7423140879279617985}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2026055331 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
-  m_PrefabInstance: {fileID: 7423140879279617985}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 611033601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32591a986534f104e9f65f23c48fd7f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillController
 --- !u!114 &2026055332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2471,11 +2459,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf83614e0141bb44a1b53cd673c2a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  baseData: {fileID: 11400000, guid: 4a3763b71508d894a8654cc78558c1c3, type: 2}
-  level: 1
-  exp: 0
-  expToNext: 10
-  bonusMoveSpeedPercent: 0
+  data: {fileID: 11400000, guid: 4a3763b71508d894a8654cc78558c1c3, type: 2}
+  currentHealth: 0
+  currentLevel: 1
+  currentExp: 0
+  nextLevelExp: 2
+--- !u!114 &2026055337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611033601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32591a986534f104e9f65f23c48fd7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillController
+  slashEffectPrefab: {fileID: 30316419374980630, guid: b18de5af77bd21d4db6309edb90c4732, type: 3}
+  RotatingSlashPrefab: {fileID: 30316419374980630, guid: a439a7af80a8efd47ac53636913ae096, type: 3}
+  fireballPrefab: {fileID: 2493754749878858455, guid: 5f126f4a1a1c2c7478839eb4c6131b43, type: 3}
+  slamPrefab: {fileID: 30316419374980630, guid: 366d60b83acc7f049862a5f219294a8a, type: 3}
+  shieldPrefab: {fileID: 30316419374980630, guid: bd7353ba3c21c6842a22036481c73f6d, type: 3}
+  SwordWavePrefab: {fileID: 30316419374980630, guid: c4ef3ee85b73f0e4a90dff44f464aaa0, type: 3}
+  equippedSkills: []
 --- !u!1 &2047702095
 GameObject:
   m_ObjectHideFlags: 0
@@ -2580,6 +2587,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 793d561b8eb1f3c4c8a91a828eb94f07, type: 2}
     - target: {fileID: 1233890054793212766, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: slashEffectPrefab
+      value: 
+      objectReference: {fileID: 30316419374980630, guid: b18de5af77bd21d4db6309edb90c4732, type: 3}
+    - target: {fileID: 1233890054793212766, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
       propertyPath: RotatingslashEffectPrefab
       value: 
       objectReference: {fileID: 30316419374980630, guid: a439a7af80a8efd47ac53636913ae096, type: 3}
@@ -2663,6 +2674,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 30316419374980630, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
       insertIndex: 3
       addedObject: {fileID: 2026055332}
+    - targetCorrespondingSourceObject: {fileID: 30316419374980630, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2026055337}
   m_SourcePrefab: {fileID: 100100000, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
