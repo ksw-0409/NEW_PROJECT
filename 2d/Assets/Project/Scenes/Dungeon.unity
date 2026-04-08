@@ -1731,6 +1731,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1669466174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1669466176}
+  - component: {fileID: 1669466175}
+  m_Layer: 0
+  m_Name: StageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1669466175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669466174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 485896e029c7f464fb285988282dd89e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageManager
+  stageData: {fileID: 11400000, guid: c7f262287bcac034ea8ebceea967901a, type: 2}
+  enemySpawner: {fileID: 1768684259}
+  portalPrefab: {fileID: 3424542349691123839, guid: acf6ebc6717f39b408acd6a904d68514, type: 3}
+  player: {fileID: 2026055320}
+  portalSpawnRadius: 3
+--- !u!4 &1669466176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669466174}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.33468, y: -0.80833, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1752730971
 GameObject:
   m_ObjectHideFlags: 0
@@ -2183,3 +2232,4 @@ SceneRoots:
   - {fileID: 1768684258}
   - {fileID: 1197221766}
   - {fileID: 1503151996}
+  - {fileID: 1669466176}

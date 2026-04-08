@@ -2,20 +2,20 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 역할: 씬 전환에도 살아남는 유일한 데이터 관리자
-
+// ■ 역할: 씬 전환에도 살아남는 유일한 데이터 관리자
 public class GameDataManager : MonoBehaviour
 {
     public static GameDataManager Instance { get; private set; }
 
-    public static event Action<int> OnGoldChanged;           // 현재 골드
-    public static event Action<List<string>> OnItemsChanged; // 현재 장비 목록
+    public static event Action<int> OnGoldChanged;
+    public static event Action<List<string>> OnItemsChanged;
+    public static event Action<int> OnFloorChanged;
 
-    
     [SerializeField] private PersistentData persistentData;
 
     public int Gold => persistentData.gold;
     public IReadOnlyList<string> Items => persistentData.equippedItems;
+    public int CurrentFloor => persistentData.currentFloor;
 
     void Awake()
     {
@@ -55,10 +55,28 @@ public class GameDataManager : MonoBehaviour
         OnItemsChanged?.Invoke(persistentData.equippedItems);
     }
 
+    public void SetFloor(int floor)
+    {
+        persistentData.currentFloor = floor;
+        OnFloorChanged?.Invoke(floor);
+        Debug.Log($"[GameDataManager] 현재 층: {floor}");
+    }
+
+    public void NextFloor()
+    {
+        SetFloor(persistentData.currentFloor + 1);
+    }
+
+    public void ResetFloor()
+    {
+        SetFloor(1);
+    }
+
     public void ApplyGameOverPenalty()
     {
         ApplyGoldPenalty();
         ApplyItemPenalty();
+        ResetFloor();
     }
 
     private void ApplyGoldPenalty()
@@ -73,7 +91,6 @@ public class GameDataManager : MonoBehaviour
         if (items.Count == 0) return;
 
         int removeCount = Mathf.CeilToInt(items.Count * 0.5f);
-
         List<int> indices = new List<int>(items.Count);
         for (int i = 0; i < items.Count; i++) indices.Add(i);
 
@@ -86,9 +103,7 @@ public class GameDataManager : MonoBehaviour
         List<int> toRemove = indices.GetRange(0, removeCount);
         toRemove.Sort((a, b) => b.CompareTo(a));
         foreach (int idx in toRemove)
-        {
             items.RemoveAt(idx);
-        }
 
         OnItemsChanged?.Invoke(items);
     }
@@ -97,9 +112,9 @@ public class GameDataManager : MonoBehaviour
     [ContextMenu("게임오버 패널티 테스트")]
     private void TestPenalty()
     {
-        Debug.Log($"[패널티 전] 골드: {Gold}, 장비: {Items.Count}개");
+        Debug.Log($"[패널티 전] 골드: {Gold}, 장비: {Items.Count}개, 층: {CurrentFloor}");
         ApplyGameOverPenalty();
-        Debug.Log($"[패널티 후] 골드: {Gold}, 장비: {Items.Count}개");
+        Debug.Log($"[패널티 후] 골드: {Gold}, 장비: {Items.Count}개, 층: {CurrentFloor}");
     }
 #endif
 }
