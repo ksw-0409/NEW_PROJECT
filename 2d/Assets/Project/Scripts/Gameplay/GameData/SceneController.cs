@@ -31,7 +31,12 @@ public class SceneController : MonoBehaviour
     }
 
     public void LoadBase() => StartCoroutine(LoadSceneRoutine(SceneName.Base));
-    public void LoadDungeon() => StartCoroutine(LoadSceneRoutine(SceneName.Dungeon));
+    public void LoadDungeon()
+    {
+        GameDataManager.Instance.SetFloor(1);
+        StartCoroutine(LoadSceneRoutine(SceneName.Dungeon));
+    }
+    public void LoadScene(string sceneName) => StartCoroutine(LoadSceneRoutine(sceneName));
 
     private IEnumerator LoadSceneRoutine(string sceneName)
     {

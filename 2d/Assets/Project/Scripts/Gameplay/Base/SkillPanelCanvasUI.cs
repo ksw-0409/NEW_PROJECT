@@ -1,49 +1,78 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+ 
+// ì—­í• : ìŠ¤í‚¬ íŒ¨ë„ Canvas UI (5x5 ê·¸ë¦¬ë“œ, ìµœëŒ€ 25ì¹¸)
 
-// ¿ªÇÒ: ½ºÅ³ ÆĞ³Î Canvas UI
 
+[System.Serializable]
+public class SkillEntry
+{
+    public Button button;           // ìŠ¤í‚¬ íŒ¨ë„ì˜ ë²„íŠ¼
+    public GameObject skillTreeCanvas; // í•´ë‹¹ ìŠ¤í‚¬ì˜ íŠ¸ë¦¬ Canvas
+}
+ 
 public class SkillPanelCanvasUI : BaseCanvasUI
 {
-    [Header("½ºÅ³ ¹öÆ°")]
-    [SerializeField] private Button slashSkillButton;
+    [Header("ìŠ¤í‚¬ ëª©ë¡ (ë²„íŠ¼ - ìŠ¤í‚¬íŠ¸ë¦¬)")]
+    [SerializeField] private List<SkillEntry> skillEntries = new List<SkillEntry>();
 
-    [Header("½ºÅ³ Æ®¸® Canvas")]
-    [SerializeField] private GameObject skillTreeCanvas;
-
+    private GameObject currentSkillTree = null;
+ 
     protected override void OnOpen()
     {
-        slashSkillButton.onClick.AddListener(OnClickSlashSkill);
-    }
+        foreach (var entry in skillEntries)
+        {
+            if (entry.button == null) continue;
+            var captured = entry;
+            entry.button.onClick.AddListener(() => OnClickSkill(captured.skillTreeCanvas));
+        }
 
+        CloseCurrentSkillTree();
+    }
+ 
     protected override void OnClose()
     {
-        slashSkillButton.onClick.RemoveListener(OnClickSlashSkill);
-
-        // ½ºÅ³ Æ®¸®°¡ ¿­·ÁÀÖÀ¸¸é °°ÀÌ ´İ±â
-        if (skillTreeCanvas != null && skillTreeCanvas.activeSelf)
-            skillTreeCanvas.SetActive(false);
+        foreach (var entry in skillEntries)
+        {
+            if (entry.button != null)
+                entry.button.onClick.RemoveAllListeners();
+        }
+ 
+        CloseCurrentSkillTree();
     }
-
-    // ½ºÅ³ Æ®¸®°¡ ¿­·ÁÀÖÀ¸¸é ESC´Â ½ºÅ³ Æ®¸®¸¦ ¸ÕÀú ´İ¾Æ¾ß ÇÔ
+ 
     protected override bool CanClose()
     {
-        if (skillTreeCanvas != null && skillTreeCanvas.activeSelf)
+        if (currentSkillTree != null && currentSkillTree.activeSelf)
         {
-            skillTreeCanvas.SetActive(false);
+            CloseCurrentSkillTree();
             return false;
         }
         return true;
     }
-
-    private void OnClickSlashSkill()
+ 
+    private void OnClickSkill(GameObject skillTreeCanvas)
     {
         if (skillTreeCanvas == null)
         {
-            Debug.LogWarning("[SkillPanelCanvasUI] skillTreeCanvas°¡ ¿¬°áµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+            Debug.LogWarning("[SkillPanelCanvasUI] skillTreeCanvasê°€ ì—°ê²°ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
             return;
         }
 
-        skillTreeCanvas.SetActive(true);
+        if (currentSkillTree != null && currentSkillTree != skillTreeCanvas)
+            CloseCurrentSkillTree();
+ 
+        currentSkillTree = skillTreeCanvas;
+        currentSkillTree.SetActive(true);
+    }
+ 
+    private void CloseCurrentSkillTree()
+    {
+        if (currentSkillTree != null)
+        {
+            currentSkillTree.SetActive(false);
+            currentSkillTree = null;
+        }
     }
 }

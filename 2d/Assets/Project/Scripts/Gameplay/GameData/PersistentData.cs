@@ -10,9 +10,13 @@ public class PersistentData : ScriptableObject
     [Header("장비")]
     public List<string> equippedItems = new List<string>();
 
+    [Header("진행")]
+    public int currentFloor = 1;
+
     public void ResetAll()
     {
         gold = 0;
         equippedItems.Clear();
+        currentFloor = 1;
     }
 }
