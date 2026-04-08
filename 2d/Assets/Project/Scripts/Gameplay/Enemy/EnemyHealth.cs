@@ -22,6 +22,9 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
+        EnemyAI ai = GetComponent<EnemyAI>();
+        if (ai == null) return;
+
         // 여기서 경험치 보석을 생성하거나 이펙트
         GetComponent<EnemyAI>().ReturnToPool();
         ItemManager.Instance.DropItem(this.transform.position);

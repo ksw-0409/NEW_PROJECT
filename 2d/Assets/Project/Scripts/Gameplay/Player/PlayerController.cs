@@ -72,6 +72,6 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        rb.linearVelocity = moveInput * stats.CurrentMoveSpeed;
+        rb.linearVelocity = moveInput * stats.MoveSpeed;
     }
 }
