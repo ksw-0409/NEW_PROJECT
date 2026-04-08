@@ -1,6 +1,6 @@
 {
     "version": 1,
-    "name": "PlayerControls",
+    "name": "InputControls",
     "maps": [
         {
             "name": "Player",
@@ -11,6 +11,15 @@
                     "type": "Value",
                     "id": "f34a4f93-c9c7-400e-b366-5dcd8a13888c",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "b1959c0c-ea27-460f-80b2-d45303b76571",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -71,6 +80,65 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "da5ef7e2-dc9e-4926-9579-8edd15543af7",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Pachinko",
+            "id": "80cbeeef-2727-4cda-bf20-2a9520e62df9",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "8e957b27-4745-4918-9044-9b118cce0437",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Point",
+                    "type": "Value",
+                    "id": "30448421-2854-43c1-bd87-438b16e77387",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ee9fbb6b-79b7-483f-b8c6-63e438556ae5",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fac59e84-c9d4-4348-b2fc-8ed3c0ad78c6",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class EnemyHealth : MonoBehaviour
 {
     public EnemyData data;
     private float currentHp;
+    private IObjectPool<EnemyAI> managedPool;
     public void TakeDamage(float amount)
     {
         currentHp -= amount;
@@ -21,6 +23,7 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         // 여기서 경험치 보석을 생성하거나 이펙트
-        gameObject.SetActive(false);
+        GetComponent<EnemyAI>().ReturnToPool();
+        ItemManager.Instance.DropItem(this.transform.position);
     }
 }
