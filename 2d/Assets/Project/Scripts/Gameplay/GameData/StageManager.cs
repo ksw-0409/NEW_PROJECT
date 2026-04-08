@@ -11,6 +11,7 @@ public class StageManager : MonoBehaviour
 
     [Header("연결")]
     [SerializeField] private EnemySpawner enemySpawner;
+    [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private GameObject portalPrefab;
     [SerializeField] private Transform player;
 
@@ -52,9 +53,11 @@ public class StageManager : MonoBehaviour
         Debug.Log($"[StageManager] {floor}층 클리어");
 
         // 적 스폰 중단
-        if (enemySpawner != null)
-            enemySpawner.enabled = false;
-
+        if (enemyManager != null)
+        {
+            enemyManager.gameObject.SetActive(false);
+            Debug.Log("[StageManager] 적 제거 완료");
+        }
         if (skillController != null)
         {
             skillController.enabled = false;

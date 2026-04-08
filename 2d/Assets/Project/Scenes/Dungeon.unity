@@ -1762,6 +1762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
   stageData: {fileID: 11400000, guid: c7f262287bcac034ea8ebceea967901a, type: 2}
   enemySpawner: {fileID: 1768684259}
+  enemyManager: {fileID: 1768684260}
   portalPrefab: {fileID: 3424542349691123839, guid: acf6ebc6717f39b408acd6a904d68514, type: 3}
   player: {fileID: 2026055320}
   portalSpawnRadius: 3
