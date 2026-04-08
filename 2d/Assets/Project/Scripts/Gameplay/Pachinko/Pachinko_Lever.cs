@@ -9,16 +9,26 @@ public class SuperEasyLever : MonoBehaviour
     private Camera mainCamera; //메인카메라 
     public GameObject draggingObject; //드레그 오브젝트 
     public GameObject shaftObject; // 레버 막대  
+    public GameObject smObject; //막대 밑에 
     private Vector2 screenPosition;    // 마우스의 화면 좌표
     private bool isClicked;            // 클릭 상태 여부
     private bool isRolling = false;            // 룰렛 돌리는 여부
-    private Vector3 startPos; //오브젝트 스타트 포지션 
-    private Vector3 offset=new Vector3(0,0.5f,0);
+    private Vector3 startPos; //볼 오브젝트 스타트 포지션 
+    private Vector3 startPos2; //막대 오브젝트 스타트 포지션 
+    private Vector3 startPos3; //막대 밑 오브젝트 스타트 포지션 
+    private Vector3 offset; //볼 - 막대
+    private Vector3 offset2; // 볼 - 막대밑
+    private float upScale;
+    private float followWeight = 0.5f;
 
     void Awake()
     {
         mainCamera = Camera.main;
-        startPos = draggingObject.transform.position;
+        startPos=draggingObject.transform.position;
+        startPos2 = shaftObject.transform.position;
+        startPos3= smObject.transform.position;
+        offset = startPos - startPos2;
+        offset2 = startPos - startPos3;
     }
 
     void OnEnable() {
@@ -59,17 +69,24 @@ public class SuperEasyLever : MonoBehaviour
     {
         float elapsed = 0f;
         float duration = 0.2f; //속도조절 
-        Vector3 startPos = obj.transform.position;
+        Vector3 start = obj.transform.position;
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            obj.transform.position = Vector3.Lerp(startPos, target, elapsed / duration);
-            shaftObject.transform.position = draggingObject.transform.position - offset;
+            obj.transform.position = Vector3.Lerp(start, target, elapsed / duration);
+            Vector3 delta = obj.transform.position - startPos;
+            shaftObject.transform.position = (startPos + (delta * followWeight)) - offset;
+            smObject.transform.position = (startPos + (delta * followWeight)) - offset2;
+            upScale = (startPos.y - draggingObject.transform.position.y) * 0.6f + 1.0f;
+            draggingObject.transform.localScale = new Vector3(upScale, upScale, upScale);
+            shaftObject.transform.localScale = new Vector3(1, 2.0f - upScale, 1);
             yield return null;
         }
 
         obj.transform.position = target; // 마지막에 정확한 위치로 고정
+        draggingObject.transform.localScale = new Vector3(1, 1, 1);
+        shaftObject.transform.localScale = new Vector3(1, 1 , 1);
     }
 
     void Update()
@@ -81,14 +98,19 @@ public class SuperEasyLever : MonoBehaviour
             targetPos.x = startPos.x;
             if (targetPos.y > startPos.y) return;
             draggingObject.transform.position = targetPos;
-            shaftObject.transform.position = draggingObject.transform.position - offset;
+             Vector3 delta = targetPos - startPos;
+            shaftObject.transform.position = (startPos + (delta * followWeight)) - offset;
+            smObject.transform.position = (startPos + (delta * followWeight)) - offset2;
+            upScale = (startPos.y - draggingObject.transform.position.y)*0.6f+1.0f;
+            draggingObject.transform.localScale =new Vector3(upScale,upScale,upScale); 
+            
+            shaftObject.transform.localScale =new Vector3(1, 2.0f-upScale,1);
             // 임계점 도달 체크 (드래그 중에만 체크)
-            if (draggingObject.transform.position.y < -0.5f)
+            if (draggingObject.transform.position.y < -0.25f)
             {
                 isClicked = false;
                 isRolling = true; 
                 StartCoroutine(ReturnToOrigin(draggingObject, startPos));
-
                 //여기 룰렛 돌아가는 함수 
                 Debug.Log("룰렛 시작!");
             }

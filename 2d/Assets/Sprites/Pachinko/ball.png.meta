@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 020229f00816d85439cf11c850422781
+guid: a543fc3eeca3c9a41a47c0bcac2dc295
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4610387984849099163
-    second: slotmucine2(main)_0
+      213: -3603556060819865620
+    second: ball_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slotmucine2(main)_0
+      name: ball_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 0
-        width: 126
-        height: 106
+        x: 131
+        y: 71
+        width: 15
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b99d8a102736bff30800000000000000
-      internalID: 4610387984849099163
+      spriteID: cef30aaead89dfdc0800000000000000
+      internalID: -3603556060819865620
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      slotmucine2(main)_0: 4610387984849099163
+      ball_0: -3603556060819865620
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
