@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4b92840e990667409bd73356e3626e4, type: 3}
+  m_Name: old sword
+  m_EditorClassIdentifier: Assembly-CSharp::ItemGenRule
+  itemName: 
+  itemType: 0
+  slot: 0
+  grade: 0
+  minPhys: 0
+  maxPhys: 0
+  minMagic: 0
+  maxMagic: 0
+  minCritChance: 0
+  maxCritChance: 0
+  minCritDmg: 0
+  maxCritDmg: 0
+  minHealth: 0
+  maxHealth: 0
+  minDef: 0
+  maxDef: 0
+  minMoveSpeed: 0
+  maxMoveSpeed: 0

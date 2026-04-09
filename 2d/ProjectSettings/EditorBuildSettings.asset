@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Project/Scenes/Bootstrap.unity
     guid: 49f9b51eb481e424fae7b21e42254b5a
   - enabled: 1
-    path: Assets/Project/Scenes/Base.unity
+    path: Assets/Project/Scenes/base.unity
     guid: 9d711ac3851c0ae4394a477dceeddaff
   - enabled: 1
     path: Assets/Project/Scenes/Dungeon.unity

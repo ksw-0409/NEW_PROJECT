@@ -1,0 +1,3 @@
+ID	Name	Type	Grade	IconName	BasePhys	BaseMagic	BaseCrit	BaseCritDmg	BaseHealth	BaseDef	BaseSpeed	AttackCooldown	MinAddPhys	MaxAddPhys	MinAddMagic	MaxAddMagic	MinAddCrit	MaxAddCrit	MinAddCritDmg	MaxAddCritDmg	MinAddHealth	MaxAddHealth	MinAddDef	MaxAddDef	MinAddSpeed	MaxAddSpeed
+1001	낡은검	Weapon	COMMON	C_SWORD	10	0	0	0	0	0	0	0.05	1	1.25	0	0	0.01	0.05	0.01	0.05	1	2	1	1.25	-0.05	-0.05
+1013	연마된검	Weapon	RARE	R_SWORD	10	0	0	0	0	0	0	0.05	1	1.25	0	0	0.01	0.05	0.01	0.05	1	2	1	1.25	-0.05	-0.05
