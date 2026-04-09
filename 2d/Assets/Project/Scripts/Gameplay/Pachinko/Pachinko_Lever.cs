@@ -1,8 +1,8 @@
 using System;
-using UnityEngine;
-using UnityEngine.InputSystem;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SuperEasyLever : MonoBehaviour
 {
@@ -111,7 +111,7 @@ public class SuperEasyLever : MonoBehaviour
                 isClicked = false;
                 isRolling = true; 
                 StartCoroutine(ReturnToOrigin(draggingObject, startPos));
-                //¿©±â ·ê·¿ µ¹¾Æ°¡´Â ÇÔ¼ö 
+                GetComponent<Pachinko>().StartPachinko();
                 Debug.Log("·ê·¿ ½ÃÀÛ!");
             }
         }
