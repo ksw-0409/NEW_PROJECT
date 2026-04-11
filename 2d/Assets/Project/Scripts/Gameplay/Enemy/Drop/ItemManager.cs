@@ -7,66 +7,31 @@ using UnityEngine.Pool;
 public class ItemManager : MonoBehaviour
 {
     public static ItemManager Instance; // 싱글톤
-
     [Header("아이템 설정")]
 
     public EquipmentManager equipManager; // 유니티에서 EquipmentManager 오브젝트를 연결
     public GameObject equipmentPrefab;    // 장비 전용 프리팹 (FieldItem 스크립트가 붙은 것)
-    public GameObject itemPrefab; // 경험치 프리팹
 
     public GameObject player;
-    private IObjectPool<Item> pool;
     [Header("아이템 드랍 확률")]
     [Range(0, 100)] public float equipDropChance = 10f; // 장비 드랍 확률 (ex: 10% 확률로 장비 드랍)
 
     // 현재 필드에 떨어져 있는 아이템들 (자석 효과 등을 위해 관리)
-    public List<Item> activeItems = new List<Item>();
+    public List<GameObject> activeItems = new List<GameObject>();
 
     void Awake()
     {
         Instance = this;
-
-        pool = new ObjectPool<Item>(
-            OnCreateItem,
-            OnGetItem,
-            OnReleaseItem,
-            OnDestroyItem,
-            maxSize: 500 // 아이템은 넉넉하게 설정
-        );
     }
 
-    private Item OnCreateItem()
+    public void RemoveItem(GameObject item)
     {
-        GameObject obj = Instantiate(itemPrefab, transform);
-        Item item = obj.GetComponent<Item>();
-        item.SetPool(pool);
-        return item;
-    }
-
-    private void OnGetItem(Item item)
-    {
-        item.gameObject.SetActive(true);
-        activeItems.Add(item);
-    }
-
-    private void OnReleaseItem(Item item)
-    {
-        item.gameObject.SetActive(false);
         activeItems.Remove(item);
     }
 
-    private void OnDestroyItem(Item item)
-    {
-        Destroy(item.gameObject);
-    }
-
-
     // 적이 죽을 때 호출할 함수
     public void DropItem(Vector2 position)
-    {
-        Item item = pool.Get();
-        item.transform.position = position;
-
+    {     
         // 드랍 확률 계산
         if (Random.Range(0f, 100f) <= equipDropChance)
         {
@@ -84,6 +49,7 @@ public class ItemManager : MonoBehaviour
         // 필드에 장비 오브젝트 생성
         GameObject equipObj = Instantiate(equipmentPrefab, position, Quaternion.identity);
         equipObj.GetComponent<FieldItem>().Setup(randomData);
+        activeItems.Add(equipObj);
     }
     private int GetRandomIDByWeight()
     {

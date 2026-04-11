@@ -27,6 +27,7 @@ public class EnemyHealth : MonoBehaviour
 
         // 여기서 경험치 보석을 생성하거나 이펙트
         GetComponent<EnemyAI>().ReturnToPool();
+        ExpManager.Instance.DropExp(this.transform.position);
         ItemManager.Instance.DropItem(this.transform.position);
     }
 }

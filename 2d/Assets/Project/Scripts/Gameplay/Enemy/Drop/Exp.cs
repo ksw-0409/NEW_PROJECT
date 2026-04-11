@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Item : MonoBehaviour
+public class Exp : MonoBehaviour
 {
-    private IObjectPool<Item> managedPool;
+    private IObjectPool<Exp> managedPool;
     public int expAmount = 1;
 
-    public void SetPool(IObjectPool<Item> pool)
+    public void SetPool(IObjectPool<Exp> pool)
     {
         managedPool = pool;
     }

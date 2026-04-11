@@ -28,6 +28,7 @@ public class EnemySpawner : MonoBehaviour
         enemy.transform.position = spawnPos;
     }
 
+    //앞으로 변경 예정 생성위치 랜덤 로직
     Vector2 GetRandomPosition()
     {
         // 랜덤한 각도(0~360도) 라디안으로 계산
