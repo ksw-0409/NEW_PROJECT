@@ -90,7 +90,7 @@ public class PlayerStats : MonoBehaviour
     private void Die()
     {
         Debug.Log("사망");
-        //추가
+        GetComponent<PlayerAnimation>().PlayDie(); //사망 애니메이션
     }
 
 

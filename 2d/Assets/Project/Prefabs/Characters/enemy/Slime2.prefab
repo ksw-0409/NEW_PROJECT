@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4809374081908270388}
   - component: {fileID: 4403972743369033802}
-  - component: {fileID: 5308676305861893565}
   - component: {fileID: 8345775517755416949}
   - component: {fileID: 3440786406656036238}
-  - component: {fileID: 9005891388612825590}
+  - component: {fileID: 5890229753937886589}
+  - component: {fileID: 2057916108661404140}
+  - component: {fileID: 4066524769108905982}
   m_Layer: 0
-  m_Name: enemy
+  m_Name: Slime2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,9 +31,9 @@ Transform:
   m_GameObject: {fileID: 1695417322640460754}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -85,8 +86,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 7860893253022973495, guid: 9596a426c7e4ce6498b84f32343bde35, type: 3}
+  m_Color: {r: 1, g: 0.4198113, b: 0.4198113, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,19 +96,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &5308676305861893565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1695417322640460754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f6c9f262fbd9174a85ba2ebaccc8fa6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  data: {fileID: 11400000, guid: d0b62ea391758a946853b81a006f4437, type: 2}
 --- !u!114 &8345775517755416949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76e9bdfce406d1478702397b0bdf9b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  data: {fileID: 11400000, guid: d0b62ea391758a946853b81a006f4437, type: 2}
+  data: {fileID: 11400000, guid: 94774e2a99b2f994ba2034100fb72ffc, type: 2}
 --- !u!50 &3440786406656036238
 Rigidbody2D:
   serializedVersion: 5
@@ -147,9 +135,46 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &9005891388612825590
-BoxCollider2D:
+  m_Constraints: 4
+--- !u!114 &5890229753937886589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695417322640460754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc82cff9f1a8954b81305d2ec4e89f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Slime2
+  data: {fileID: 11400000, guid: 94774e2a99b2f994ba2034100fb72ffc, type: 2}
+  jumpForce: 5
+  jumpInterval: 2
+--- !u!95 &2057916108661404140
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695417322640460754}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1adc8968ea14e9647bbaf665fe509f0d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!70 &4066524769108905982
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -182,15 +207,6 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.21133333}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.00018905613, y: 0.06751993}
+  m_Size: {x: 0.16676413, y: 0.12060658}
+  m_Direction: 1

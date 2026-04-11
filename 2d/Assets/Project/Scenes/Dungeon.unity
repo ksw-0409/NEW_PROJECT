@@ -2448,7 +2448,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
   player: {fileID: 2026055320}
-  enemyPrefab: {fileID: 1695417322640460754, guid: c1fa2ba47e55ed345871c72ba7e166eb, type: 3}
+  enemyPrefabs:
+  - {fileID: -173230191572223530, guid: 1845eb7003796454695a780ec27477d7, type: 3}
+  - {fileID: 5890229753937886589, guid: 75a218bc7d17cae47843e395b1fbaebb, type: 3}
+  - {fileID: 699984295962412739, guid: 0855abb6fae6d344f81e918e6c0dd31d, type: 3}
+  - {fileID: 8897876938073682168, guid: 9c77e8578a2883342bca10379bde0279, type: 3}
+  - {fileID: 6436225279340236973, guid: e52bc997f3dc94d4d803dd923c0b0836, type: 3}
+  - {fileID: 5876370225299857719, guid: c31f1520109b3454b8b068dad4d1566e, type: 3}
+  - {fileID: 5824028183925899899, guid: 1c0ce60b8b6033b4899b5038bf37c627, type: 3}
+  - {fileID: 8122228541311868060, guid: af25186670a31ae409af42d1342596d1, type: 3}
 --- !u!114 &1768684261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2461,12 +2469,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7eab8ef9b72274a96fb342dffd0c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemManager
-  equipManager: {fileID: 671964933}
-  equipmentPrefab: {fileID: 2589969546242863035, guid: e56047ea3e6308d48afc370d9fe658fb, type: 3}
   ExpPrefab: {fileID: 1197457025419246133, guid: 270621d7be9a59949b59b8eda4deacd4, type: 3}
   player: {fileID: 611033601}
-  equipDropChance: 10
-  activeItems: []
+  activeExps: []
 --- !u!114 &1768684262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2782,8 +2787,7 @@ PrefabInstance:
       propertyPath: rotatingSlashEffectPrefab
       value: 
       objectReference: {fileID: 30316419374980630, guid: a439a7af80a8efd47ac53636913ae096, type: 3}
-    m_RemovedComponents:
-    - {fileID: 6343506362770001556, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

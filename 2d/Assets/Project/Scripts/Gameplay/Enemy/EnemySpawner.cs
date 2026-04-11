@@ -16,14 +16,14 @@ public class EnemySpawner : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= spawnInterval)
         {
-            Spawn();
+            Spawn("Slime1");
             timer = 0;
         }
     }
 
-    void Spawn()
+    void Spawn(string name)
     {
-        EnemyAI enemy = enemyManager.GetEnemy();
+        EnemyAI enemy = enemyManager.GetEnemy(name);
         Vector2 spawnPos = GetRandomPosition();
         enemy.transform.position = spawnPos;
     }
