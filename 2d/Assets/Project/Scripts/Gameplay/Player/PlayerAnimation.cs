@@ -3,7 +3,8 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     private Animator anim;
-    private Rigidbody2D rb;
+    private Rigidbody2D rb; 
+    private Vector3 initialScale; // 원본 크기 저장용
 
     // 문자열 오타 방지를 위해 미리 Hash로 변환 
     private readonly int hashMoving = Animator.StringToHash("isMoving");
@@ -12,6 +13,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        initialScale=transform.localScale;
     }
     void Update()
     {
@@ -24,8 +26,8 @@ public class PlayerAnimation : MonoBehaviour
         // x축 속도가 양수면 오른쪽(1), 음수면 왼쪽(-1)
         if (Mathf.Abs(rb.linearVelocity.x) > 0.1f)
         {
-            float direction = (rb.linearVelocity.x > 0 ? 1f : -1f)*GetComponent<Transform>().localScale.y;
-            transform.localScale = new Vector3(direction, GetComponent<Transform>().localScale.y, GetComponent<Transform>().localScale.z);
+            float direction = (rb.linearVelocity.x > 0 ? 1f : -1f);
+            transform.localScale = new Vector3(direction* initialScale.x, initialScale.y, initialScale.z);
         }
     }
 
