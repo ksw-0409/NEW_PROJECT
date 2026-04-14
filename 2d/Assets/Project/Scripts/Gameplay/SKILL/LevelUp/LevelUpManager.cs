@@ -12,8 +12,9 @@ public class LevelUpManager : MonoBehaviour
 
     void Start()
     {
-        // 시작 시 스킬 선택창 띄우기
-        ShowStartSkillUI();
+        // 시작 시 1스테이지일 때 스킬 선택창 띄우기
+        //if (GameDataManager.Instance.CurrentFloor == 1)
+            ShowStartSkillUI();
     }
 
     private void OnEnable()
