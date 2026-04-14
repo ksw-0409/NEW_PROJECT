@@ -1,8 +1,8 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// ¡á ¿ªÇÒ: ¾À ÀüÈ¯¿¡µµ »ì¾Æ³²´Â À¯ÀÏÇÑ µ¥ÀÌÅÍ °ü¸®ÀÚ
+// ì—­í• : ì”¬ ì „í™˜ì—ë„ ì‚´ì•„ë‚¨ëŠ” ìœ ì¼í•œ ë°ì´í„° ê´€ë¦¬ì
 public class GameDataManager : MonoBehaviour
 {
     public static GameDataManager Instance { get; private set; }
@@ -26,6 +26,9 @@ public class GameDataManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        persistentData.ResetAll();
+        Debug.Log($"[GameDataManager] ResetAll í˜¸ì¶œ â€” runtimeItems ê°œìˆ˜: {persistentData.runtimeItems.Count}");
     }
 
     public void AddGold(int amount)
@@ -59,7 +62,7 @@ public class GameDataManager : MonoBehaviour
     {
         persistentData.currentFloor = floor;
         OnFloorChanged?.Invoke(floor);
-        Debug.Log($"[GameDataManager] ÇöÀç Ãş: {floor}");
+        Debug.Log($"[GameDataManager] í˜„ì¬ ì¸µ: {floor}");
     }
 
     public void NextFloor()
@@ -70,6 +73,36 @@ public class GameDataManager : MonoBehaviour
     public void ResetFloor()
     {
         SetFloor(1);
+    }
+
+    // ë¦¬ë¡¤ëœ ì•„ì´í…œ ì €ì¥ (ìŠ¬ë¡¯ ì¸ë±ìŠ¤ ê¸°ì¤€)
+    public void SaveRuntimeItem(int slotIndex, EquipmentData data)
+    {
+        var list = persistentData.runtimeItems;
+
+        while (list.Count <= slotIndex)
+            list.Add(null);
+
+        list[slotIndex] = RuntimeItemData.FromEquipmentData(data);
+        Debug.Log($"[GameDataManager] ìŠ¬ë¡¯ {slotIndex} ì•„ì´í…œ ì €ì¥: {data.itemName}");
+    }
+
+    // ì €ì¥ëœ ì•„ì´í…œì„ EquipmentDataì— ë®ì–´ì”Œìš°ê¸°
+    public void LoadRuntimeItem(int slotIndex, EquipmentData target)
+    {
+        var list = persistentData.runtimeItems;
+
+        if (slotIndex >= list.Count || list[slotIndex] == null) return;
+
+        list[slotIndex].ApplyTo(target);
+        Debug.Log($"[GameDataManager] ìŠ¬ë¡¯ {slotIndex} ì•„ì´í…œ ë¶ˆëŸ¬ì˜¤ê¸°: {target.itemName}");
+    }
+
+    // í•´ë‹¹ ìŠ¬ë¡¯ì— ì €ì¥ëœ ë¦¬ë¡¤ ë°ì´í„°ê°€ ìˆëŠ”ì§€ í™•ì¸
+    public bool HasRuntimeItem(int slotIndex)
+    {
+        var list = persistentData.runtimeItems;
+        return slotIndex < list.Count && list[slotIndex] != null;
     }
 
     public void ApplyGameOverPenalty()
@@ -109,12 +142,12 @@ public class GameDataManager : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    [ContextMenu("°ÔÀÓ¿À¹ö ÆĞ³ÎÆ¼ Å×½ºÆ®")]
+    [ContextMenu("ê²Œì„ì˜¤ë²„ íŒ¨ë„í‹° í…ŒìŠ¤íŠ¸")]
     private void TestPenalty()
     {
-        Debug.Log($"[ÆĞ³ÎÆ¼ Àü] °ñµå: {Gold}, Àåºñ: {Items.Count}°³, Ãş: {CurrentFloor}");
+        Debug.Log($"[íŒ¨ë„í‹° ì „] ê³¨ë“œ: {Gold}, ì¥ë¹„: {Items.Count}ê°œ, ì¸µ: {CurrentFloor}");
         ApplyGameOverPenalty();
-        Debug.Log($"[ÆĞ³ÎÆ¼ ÈÄ] °ñµå: {Gold}, Àåºñ: {Items.Count}°³, Ãş: {CurrentFloor}");
+        Debug.Log($"[íŒ¨ë„í‹° í›„] ê³¨ë“œ: {Gold}, ì¥ë¹„: {Items.Count}ê°œ, ì¸µ: {CurrentFloor}");
     }
 #endif
 }

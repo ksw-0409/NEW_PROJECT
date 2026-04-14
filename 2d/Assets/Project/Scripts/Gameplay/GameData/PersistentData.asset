@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b29991f90b68dc542b2438ac6065625e, type: 3}
   m_Name: PersistentData
   m_EditorClassIdentifier: Assembly-CSharp::PersistentData
-  gold: 0
+  gold: 950
   equippedItems: []
+  currentFloor: 1

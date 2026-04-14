@@ -25,3 +25,4 @@ MonoBehaviour:
   defense: 2.41
   moveSpeed: 1.62
   physicalDefense: 2.66
+  attackcooldown: 0
