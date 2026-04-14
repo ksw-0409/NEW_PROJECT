@@ -17,12 +17,20 @@ public class SkillNode : MonoBehaviour, IPointerClickHandler
     public Color unlockedColor = Color.yellow;
     public Image iconImage;
 
+    [Header("강화 비용")]
+    [SerializeField] private int unlockCost = 1; // 일반 재화 소모량
+
     // 이 부분이 정확히 있어야 SkillConnector에서 에러가 안 납니다.
     public bool IsUnlocked { get; private set; } = false;
     private bool isSelected = false;
 
     private void Awake()
     {
+        if (GameDataManager.Instance != null && GameDataManager.Instance.IsNodeUnlocked(skillName))
+        {
+            IsUnlocked = true;
+        }
+
         UpdateVisual();
     }
 
@@ -35,7 +43,16 @@ public class SkillNode : MonoBehaviour, IPointerClickHandler
     {
         if (!CanUnlock()) return;
 
+        if (!GameDataManager.Instance.SpendNormalCurrency(unlockCost))
+        {
+            Debug.Log($"[SkillNode] 일반 재화가 부족합니다. (필요: {unlockCost})");
+            return;
+        }
+
         IsUnlocked = true;
+
+        GameDataManager.Instance.SaveUnlockedNode(skillName);
+
         UpdateVisual();
 
         foreach (var link in outgoingLinks)

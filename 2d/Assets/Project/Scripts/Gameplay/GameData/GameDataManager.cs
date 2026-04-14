@@ -8,12 +8,16 @@ public class GameDataManager : MonoBehaviour
     public static GameDataManager Instance { get; private set; }
 
     public static event Action<int> OnGoldChanged;
+    public static event Action<int> OnNormalCurrencyChanged;
+    public static event Action<int> OnSpecialCurrencyChanged;
     public static event Action<List<string>> OnItemsChanged;
     public static event Action<int> OnFloorChanged;
 
     [SerializeField] private PersistentData persistentData;
 
     public int Gold => persistentData.gold;
+    public int NormalCurrency => persistentData.normalCurrency;
+    public int SpecialCurrency => persistentData.specialCurrency;
     public IReadOnlyList<string> Items => persistentData.equippedItems;
     public int CurrentFloor => persistentData.currentFloor;
 
@@ -43,6 +47,47 @@ public class GameDataManager : MonoBehaviour
         if (persistentData.gold < amount) return false;
         persistentData.gold -= amount;
         OnGoldChanged?.Invoke(persistentData.gold);
+        return true;
+    }
+
+    public void AddNormalCurrency(int amount)
+    {
+        if (amount <= 0) return;
+        persistentData.normalCurrency += amount;
+        OnNormalCurrencyChanged?.Invoke(persistentData.normalCurrency);
+    }
+
+    public bool SpendNormalCurrency(int amount)
+    {
+        if (persistentData.normalCurrency < amount) return false;
+        persistentData.normalCurrency -= amount;
+        OnNormalCurrencyChanged?.Invoke(persistentData.normalCurrency);
+        return true;
+    }
+
+    public void SaveUnlockedNode(string skillName)
+    {
+        if (!persistentData.unlockedSkillNodes.Contains(skillName))
+            persistentData.unlockedSkillNodes.Add(skillName);
+    }
+
+    public bool IsNodeUnlocked(string skillName)
+    {
+        return persistentData.unlockedSkillNodes.Contains(skillName);
+    }
+
+    public void AddSpecialCurrency(int amount)
+    {
+        if (amount <= 0) return;
+        persistentData.specialCurrency += amount;
+        OnSpecialCurrencyChanged?.Invoke(persistentData.specialCurrency);
+    }
+
+    public bool SpendSpecialCurrency(int amount)
+    {
+        if (persistentData.specialCurrency < amount) return false;
+        persistentData.specialCurrency -= amount;
+        OnSpecialCurrencyChanged?.Invoke(persistentData.specialCurrency);
         return true;
     }
 
