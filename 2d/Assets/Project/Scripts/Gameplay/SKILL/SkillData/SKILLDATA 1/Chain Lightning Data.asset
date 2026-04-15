@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6576fed85dfbc8c4bbcb576b48aee484, type: 3}
+  m_Name: Chain Lightning Data
+  m_EditorClassIdentifier: Assembly-CSharp::ChainLightningData
+  skillName: Chain Lightning
+  icon: {fileID: 0}
+  description: 
+  levels:
+  - cooldown: 5
+    count: 3
+    damage: 10
+    multiplier: 0.5
+    range: 5
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  projectilePrefab: {fileID: 30316419374980630, guid: 2998c18fa89b8cc4a955a20acd2a5e9a, type: 3}

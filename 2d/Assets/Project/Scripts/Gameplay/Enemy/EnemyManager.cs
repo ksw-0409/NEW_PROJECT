@@ -7,7 +7,13 @@ public class EnemyManager : MonoBehaviour
     public Transform player; 
     public GameObject enemyPrefab;
     private IObjectPool<EnemyAI> pool;
-    private List<EnemyAI> activeEnemies = new List<EnemyAI>();   // 현재 활성화되어 움직여야 할 적들을 따로 관리하는 리스트
+    public List<EnemyAI> activeEnemies = new List<EnemyAI>();   // 현재 활성화되어 움직여야 할 적들을 따로 관리하는 리스트 // 퍼블릭으로 변경
+
+    private Dictionary<string, IObjectPool<EnemyAI>> poolDict = new Dictionary<string, IObjectPool<EnemyAI>>();
+
+    [Header("다양한 몬스터 프리팹 리스트")]
+    public List<EnemyAI> enemyPrefabs;
+
     void Awake()
     {
         // 풀 설정

@@ -4,6 +4,7 @@ using System.Collections;
 using static UnityEngine.Rendering.DebugUI.Table;
 using UnityEngine.UIElements;
 
+
 public class PlayerSkillController : MonoBehaviour
 {
     [SerializeField] private GameObject slashEffectPrefab;
@@ -12,6 +13,14 @@ public class PlayerSkillController : MonoBehaviour
     [SerializeField] private GameObject slamPrefab;
     [SerializeField] private GameObject shieldPrefab;
     [SerializeField] private GameObject SwordWavePrefab;
+    [SerializeField] private GameObject meteorFireFieldPrefab;
+    [SerializeField] private GameObject ChainLightningPrefab;
+    [SerializeField] private GameObject IceRainPrefab;
+    [SerializeField] private GameObject FireFielfPrefab;
+
+
+    [Header("References")]
+    public EnemyManager enemyManager; // EnemyManager의 activeEnemies를 활용하기 위함
     public List<SkillData> equippedSkills = new();
 
     private Dictionary<SkillData, SkillBase> skillDict = new();
@@ -112,6 +121,36 @@ public class PlayerSkillController : MonoBehaviour
         {
             ShieldSkill skill = player.AddComponent<ShieldSkill>();
             skill.Init(shield, instance);
+            return skill;
+        }
+        // 1. 연쇄 번개
+        if (data is ChainLightningData chainData)
+        {
+            ChainLightningSkill skill = player.AddComponent<ChainLightningSkill>();
+            skill.enemyManager = this.enemyManager; // 적 탐색을 위해 매니저 전달
+            skill.lightningEffectPrefab = ChainLightningPrefab;
+            skill.Init(chainData, instance);
+            return skill;
+        }
+
+        // 2. 메테오
+        if (data is MeteorData meteorData)
+        {
+            MeteorSkill skill = player.AddComponent<MeteorSkill>();
+            skill.enemyManager = this.enemyManager;
+            skill.meteorVisualPrefab = meteorFireFieldPrefab;
+            skill.fireFieldPrefab = FireFielfPrefab;
+            skill.Init(meteorData, instance);
+            return skill;
+        }
+
+        // 3. 얼음 비
+        if (data is IceRainData iceData)
+        {
+            IceRainSkill skill = player.AddComponent<IceRainSkill>();
+            skill.enemyManager = this.enemyManager;
+            skill.iceRainEffectPrefab = IceRainPrefab;
+            skill.Init(iceData, instance);
             return skill;
         }
         return null;

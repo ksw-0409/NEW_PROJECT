@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 17b4eedb4059b8841987859fd3e13209
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - enemyManager: {instanceID: 0}
+  - fireFieldPrefab: {fileID: 2493754749878858455, guid: b06eb058fe913fb4e8ecc7a580492ac6, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
