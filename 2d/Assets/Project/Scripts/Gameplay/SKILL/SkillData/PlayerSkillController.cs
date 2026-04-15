@@ -25,6 +25,8 @@ public class PlayerSkillController : MonoBehaviour
 
     private Dictionary<SkillData, SkillBase> skillDict = new();
 
+    [SerializeField] private List<SkillData> saveSkills;
+
     private bool isInvincible = false;
 
 
@@ -34,6 +36,8 @@ public class PlayerSkillController : MonoBehaviour
         {
             AddNewSkill(data);
         }
+
+        RestoreSavedSkills();
     }
 
     public bool HasSkill(SkillData data)
@@ -60,6 +64,8 @@ public class PlayerSkillController : MonoBehaviour
         {
             skillDict.Add(data, skill);
         }
+        if (GameDataManager.Instance != null)
+            GameDataManager.Instance.SaveSkill(data.skillName);
     }
     public int GetSkillLevel(SkillData data)
     {
@@ -165,6 +171,33 @@ public class PlayerSkillController : MonoBehaviour
         }
 
         skillDict.Clear();
+
+        if (GameDataManager.Instance != null)
+        {
+            foreach (var data in equippedSkills)
+                GameDataManager.Instance.RemoveSkill(data.skillName);
+        }
+    }
+    private void RestoreSavedSkills()
+    {
+        if (GameDataManager.Instance == null) return;
+
+        var savedSkills = GameDataManager.Instance.EquippedSkills;
+        if (savedSkills.Count == 0) return;
+
+        foreach (string skillName in savedSkills)
+        {
+            SkillData found = saveSkills.Find(s => s.skillName == skillName);
+            if (found == null)
+            {
+                Debug.LogWarning($"[PlayerSkillController] 저장된 스킬 '{skillName}'을 찾을 수 없습니다.");
+                continue;
+            }
+
+            if (skillDict.ContainsKey(found)) continue;
+
+            AddNewSkill(found);
+        }
     }
 
 }

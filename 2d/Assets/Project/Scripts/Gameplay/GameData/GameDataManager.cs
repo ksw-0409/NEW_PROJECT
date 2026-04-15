@@ -19,6 +19,7 @@ public class GameDataManager : MonoBehaviour
     public int NormalCurrency => persistentData.normalCurrency;
     public int SpecialCurrency => persistentData.specialCurrency;
     public IReadOnlyList<string> Items => persistentData.equippedItems;
+    public IReadOnlyList<string> EquippedSkills => persistentData.savedSkills;
     public int CurrentFloor => persistentData.currentFloor;
 
     void Awake()
@@ -148,6 +149,27 @@ public class GameDataManager : MonoBehaviour
     {
         var list = persistentData.runtimeItems;
         return slotIndex < list.Count && list[slotIndex] != null;
+    }
+
+    public void SaveSkill(string skillName)
+    {
+        if (!persistentData.savedSkills.Contains(skillName))
+            persistentData.savedSkills.Add(skillName);
+    }
+
+    public void RemoveSkill(string skillName)
+    {
+        persistentData.savedSkills.Remove(skillName);
+    }
+
+    public void ClearSavedSkills()
+    {
+        persistentData.savedSkills.Clear();
+    }
+
+    public bool HasSkillSaved(string skillName)
+    {
+        return persistentData.savedSkills.Contains(skillName);
     }
 
     public void ApplyGameOverPenalty()

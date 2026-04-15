@@ -21,6 +21,9 @@ public class PersistentData : ScriptableObject
     [Header("활성화된 스킬 노드 (skillName 기준)")]
     public List<string> unlockedSkillNodes = new List<string>();
 
+    [Header("장착된 스킬 (skillName 기준)")]
+    public List<string> savedSkills = new List<string>();
+
     public void ResetAll()
     {
         gold = 1000;
@@ -30,5 +33,6 @@ public class PersistentData : ScriptableObject
         currentFloor = 1;
         runtimeItems.Clear();
         unlockedSkillNodes.Clear();
+        savedSkills.Clear();
     }
 }

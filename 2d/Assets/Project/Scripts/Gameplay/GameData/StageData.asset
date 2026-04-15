@@ -21,3 +21,17 @@ MonoBehaviour:
     stageDuration: 10
   - floor: 4
     stageDuration: 10
+  - floor: 5
+    stageDuration: 10
+  - floor: 6
+    stageDuration: 10
+  - floor: 7
+    stageDuration: 10
+  - floor: 8
+    stageDuration: 10
+  - floor: 9
+    stageDuration: 10
+  - floor: 10
+    stageDuration: 10
+  - floor: 1
+    stageDuration: 10

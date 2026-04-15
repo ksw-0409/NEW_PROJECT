@@ -31,6 +31,12 @@ public class Portal : BaseInteractable
         if (nextScene == SceneController.SceneName.Dungeon)
             GameDataManager.Instance.NextFloor();
 
+        else if (nextScene == SceneController.SceneName.Base)
+        {
+            // 거점으로 돌아갈 때 스킬 초기화
+            GameDataManager.Instance.ClearSavedSkills();
+        }
+
         SceneController.Instance.LoadScene(nextScene);
     }
 }

@@ -2918,6 +2918,46 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 30316419374980630, guid: a439a7af80a8efd47ac53636913ae096, type: 3}
     - target: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: saveSkills.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: 'saveSkills.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 04ce3a64b7ffb95418ec1fc201b62fff, type: 2}
+    - target: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: 'saveSkills.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 793d561b8eb1f3c4c8a91a828eb94f07, type: 2}
+    - target: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: 'saveSkills.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 75d064776e5d644439310478b85ba646, type: 2}
+    - target: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: 'saveSkills.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 35d59dd5a89f2f843a315159958c0938, type: 2}
+    - target: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: 'saveSkills.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 72a4cf4bf1439e942a4286d68b7eab43, type: 2}
+    - target: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: 'saveSkills.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 195312dbbdcc03840b660f6af8e6bf26, type: 2}
+    - target: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: 'saveSkills.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: aeb13a8b85bb2a24ca440bdc1e7d14cb, type: 2}
+    - target: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: 'saveSkills.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 66fb34921e8493c41bc85dae76ad0468, type: 2}
+    - target: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: 'saveSkills.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 389144f53eae61f489b6f0c23767e64c, type: 2}
+    - target: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
       propertyPath: rotatingSlashEffectPrefab
       value: 
       objectReference: {fileID: 30316419374980630, guid: a439a7af80a8efd47ac53636913ae096, type: 3}
