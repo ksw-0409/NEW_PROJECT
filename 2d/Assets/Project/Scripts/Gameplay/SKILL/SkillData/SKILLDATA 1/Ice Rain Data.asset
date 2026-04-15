@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f9b45e0fc117b4a815ffcceda0a872, type: 3}
+  m_Name: Ice Rain Data
+  m_EditorClassIdentifier: Assembly-CSharp::IceRainData
+  skillName: Ice Rain
+  icon: {fileID: 0}
+  description: 
+  levels:
+  - cooldown: 5
+    count: 3
+    damage: 10
+    multiplier: 0.1
+    range: 5
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0.2
+    slowDuration: 0
+    duration: 2
+    tickInterval: 1
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  projectilePrefab: {fileID: 30316419374980630, guid: f8542eeaa0eefdd448720c1493753acd, type: 3}

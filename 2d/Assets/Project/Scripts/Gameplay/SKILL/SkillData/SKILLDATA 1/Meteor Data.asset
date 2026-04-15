@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b4db75b04b517c469a6c0619d1b54c5, type: 3}
+  m_Name: Meteor Data
+  m_EditorClassIdentifier: Assembly-CSharp::MeteorData
+  skillName: Meteor
+  icon: {fileID: 0}
+  description: 
+  levels:
+  - cooldown: 8
+    count: 2
+    damage: 25
+    multiplier: 1.2
+    range: 5
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 6
+    slowPercent: 0
+    slowDuration: 0
+    duration: 2
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 5
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 8
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 0
+    multiplier: 0
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  projectilePrefab: {fileID: 30316419374980630, guid: 23a00c63f0c719144912414683f3697a, type: 3}
