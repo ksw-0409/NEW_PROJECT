@@ -2042,7 +2042,7 @@ MonoBehaviour:
   - {fileID: 986174977}
   levelUpUI: {fileID: 1350143454}
   playerStats: {fileID: 2026055332}
-  skillController: {fileID: 2026055337}
+  skillController: {fileID: 7423140879279617986}
 --- !u!114 &1197221768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2738,30 +2738,6 @@ MonoBehaviour:
   currentHealth: 0
   currentLevel: 1
   currentExp: 0
---- !u!114 &2026055337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 611033601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32591a986534f104e9f65f23c48fd7f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillController
-  slashEffectPrefab: {fileID: 30316419374980630, guid: b18de5af77bd21d4db6309edb90c4732, type: 3}
-  RotatingSlashPrefab: {fileID: 30316419374980630, guid: a439a7af80a8efd47ac53636913ae096, type: 3}
-  fireballPrefab: {fileID: 2493754749878858455, guid: 5f126f4a1a1c2c7478839eb4c6131b43, type: 3}
-  slamPrefab: {fileID: 30316419374980630, guid: 366d60b83acc7f049862a5f219294a8a, type: 3}
-  shieldPrefab: {fileID: 30316419374980630, guid: bd7353ba3c21c6842a22036481c73f6d, type: 3}
-  SwordWavePrefab: {fileID: 30316419374980630, guid: c4ef3ee85b73f0e4a90dff44f464aaa0, type: 3}
-  meteorFireFieldPrefab: {fileID: 0}
-  ChainLightningPrefab: {fileID: 0}
-  IceRainPrefab: {fileID: 0}
-  FireFielfPrefab: {fileID: 0}
-  enemyManager: {fileID: 0}
-  equippedSkills: []
 --- !u!1 &2047702095
 GameObject:
   m_ObjectHideFlags: 0
@@ -2952,10 +2928,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 30316419374980630, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
       insertIndex: 3
       addedObject: {fileID: 2026055332}
-    - targetCorrespondingSourceObject: {fileID: 30316419374980630, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2026055337}
   m_SourcePrefab: {fileID: 100100000, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+--- !u!114 &7423140879279617986 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+  m_PrefabInstance: {fileID: 7423140879279617985}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611033601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32591a986534f104e9f65f23c48fd7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillController
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
