@@ -1,21 +1,21 @@
+ï»¿using System;
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-// ¿ªÇÒ: ½ºÅ×ÀÌÁö ÀüÃ¼ Èå¸§ Á¦¾î
+// ì—­í• : ìŠ¤í…Œì´ì§€ ì „ì²´ íë¦„ ì œì–´
 
 public class StageManager : MonoBehaviour
 {
-    [Header("½ºÅ×ÀÌÁö ¼³Á¤")]
+    [Header("ìŠ¤í…Œì´ì§€ ì„¤ì •")]
     [SerializeField] private StageData stageData;
 
-    [Header("¿¬°á")]
+    [Header("ì—°ê²°")]
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private GameObject portalPrefab;
     [SerializeField] private Transform player;
 
-    [Header("Æ÷Å» ½ºÆù °Å¸®")]
+    [Header("í¬íƒˆ ìŠ¤í° ê±°ë¦¬")]
     [SerializeField] private float portalSpawnRadius = 3f;
 
     private const int MAX_DUNGEON_FLOOR = 10;
@@ -25,20 +25,23 @@ public class StageManager : MonoBehaviour
     private StageData.FloorData currentFloorData;
     private PlayerSkillController skillController;
 
+    // íƒ€ì´ë¨¸ UIì— ë‚¨ì€ ì‹œê°„ ì „ë‹¬
+    public static event Action<float> OnTimerUpdated;
+
     void Start()
     {
         int floor = GameDataManager.Instance.CurrentFloor;
         currentFloorData = stageData.GetFloorData(floor);
-
         skillController = player.GetComponent<PlayerSkillController>();
 
+        // 5ì¸µ, 10ì¸µì€ ë³´ìŠ¤ ì¸µ â€” ì¼ë°˜ ëª¬ìŠ¤í„° ìŠ¤í° ë¹„í™œì„±í™”
         if (floor == 5 || floor == 10)
         {
             if (enemySpawner != null)
                 enemySpawner.gameObject.SetActive(false);
         }
 
-        Debug.Log($"[StageManager] {floor}Ãş ½ÃÀÛ / Á¦ÇÑ½Ã°£: {currentFloorData.stageDuration}ÃÊ");
+        Debug.Log($"[StageManager] {floor}ì¸µ ì‹œì‘ / ì œí•œì‹œê°„: {currentFloorData.stageDuration}ì´ˆ");
     }
 
     void Update()
@@ -47,29 +50,37 @@ public class StageManager : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if (timer >= currentFloorData.stageDuration)
+        // ë‚¨ì€ ì‹œê°„ ê³„ì‚° í›„ ì´ë²¤íŠ¸ ë°œìƒ
+        float remaining = Mathf.Max(0f, currentFloorData.stageDuration - timer);
+        OnTimerUpdated?.Invoke(remaining);
+
+        if (timer >= currentFloorData.stageDuration && !isStageOver)
+        {
+            isStageOver = true;
             StartCoroutine(StageEndRoutine());
+        }
     }
 
     private IEnumerator StageEndRoutine()
     {
-        isStageOver = true;
-
         int floor = GameDataManager.Instance.CurrentFloor;
-        Debug.Log($"[StageManager] {floor}Ãş Å¬¸®¾î");
+        Debug.Log($"[StageManager] {floor}ì¸µ í´ë¦¬ì–´");
 
         if (enemyManager != null)
+        {
             enemyManager.gameObject.SetActive(false);
+            Debug.Log("[StageManager] ì  ì œê±° ì™„ë£Œ");
+        }
 
-        // ÇÃ·¹ÀÌ¾î ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­ -> ¸ğµç ÄÚ·çÆ¾ °­Á¦ Á¾·á
+        // í”Œë ˆì´ì–´ ë¹„í™œì„±í™” â†’ ìŠ¤í‚¬ ì½”ë£¨í‹´ ê°•ì œ ì¢…ë£Œ
         if (player != null)
             player.gameObject.SetActive(false);
 
         yield return null;
 
-        // Æ÷Å» »ı¼º ÈÄ ÇÃ·¹ÀÌ¾î ´Ù½Ã È°¼ºÈ­
         SpawnPortal();
 
+        // í”Œë ˆì´ì–´ ì¬í™œì„±í™”
         if (player != null)
             player.gameObject.SetActive(true);
     }
@@ -78,7 +89,7 @@ public class StageManager : MonoBehaviour
     {
         if (portalPrefab == null || player == null)
         {
-            Debug.LogError("[StageManager] portalPrefab ¶Ç´Â player°¡ ¾ø½À´Ï´Ù.");
+            Debug.LogError("[StageManager] portalPrefab ë˜ëŠ” playerê°€ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
@@ -96,6 +107,6 @@ public class StageManager : MonoBehaviour
             portalScript.SetNextScene(nextScene);
         }
 
-        Debug.Log("[StageManager] Æ÷Å» »ı¼º ¿Ï·á");
+        Debug.Log("[StageManager] í¬íƒˆ ìƒì„± ì™„ë£Œ");
     }
 }
