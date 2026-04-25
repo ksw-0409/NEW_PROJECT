@@ -1,23 +1,61 @@
 using UnityEngine;
+using System.Collections;
 
 public class Wolf2 : EnemyAI
 {
-    [Header("´Á´ë Æ¯È­ ¼³Á¤")]
-    public int a;
-    public override void Init()
-    {
-        base.Init(); // ºÎ¸ğÀÇ ÃÊ±âÈ­
-    }
+    [Header("ëŠ‘ëŒ€ íŠ¹í™” ì„¤ì •")]
+    private float timer=2.0f;
+    private bool isCharging = false;
+    private float rushM = 5.0f; 
+    private float dashSpeed = 15f;    // ëŒì§„ ì†ë„
 
-    // ¸Å´ÏÀúÀÇ FixedUpdate¿¡¼­ ¸Å ÇÁ·¹ÀÓ È£ÃâµÊ
+    // ë§¤ë‹ˆì €ì˜ FixedUpdateì—ì„œ ë§¤ í”„ë ˆì„ í˜¸ì¶œë¨
     public override void MoveTaget(Vector2 targetPos)
     {
+        if (isCharging) return;
         base.MoveTaget(targetPos);
     }
 
-    public override void Die()
+    // í”Œë ˆì´ì–´ê°€ 3m íŠ¸ë¦¬ê±° ì½œë¼ì´ë” ì•ˆìœ¼ë¡œ ë“¤ì–´ì˜¤ë©´ ìë™ ì‹¤í–‰
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        // Àü¿ëÀÌÆåÆ® Ãß°¡
-        base.Die(); // ºÎ¸ğÀÇ µå¶ø ¹× Ç® ¹İ³³ ·ÎÁ÷ ½ÇÇà
+        if (!isCharging && other.CompareTag("Player"))
+        { 
+            StartCoroutine(ChargeAndDash(other.transform));
+        }
+    }
+    IEnumerator ChargeAndDash(Transform playerTransform)
+    {
+        isCharging = true;
+
+        // ì°¨ì§• ë‹¨ê³„ (2ì´ˆ ëŒ€ê¸°)
+        Debug.Log("ì°¨ì§• ì‹œì‘...");
+
+        rb.linearVelocity = Vector2.zero; // ì°¨ì§• ì¤‘ì—ëŠ” ë©ˆì¶¤
+        yield return new WaitForSeconds(timer);
+
+        Vector2 dir = (playerTransform.position - transform.position).normalized;
+        HandleSpriteFlip(dir.x);
+        // ëŒì§„ ë‹¨ê³„ (5m ì´ë™)
+        Debug.Log("ëŒì§„!");
+        Vector2 startPos = transform.position;
+        float maxDashTime = 1.0f; // 5m ê°€ëŠ”ë° 1ì´ˆ ì´ìƒ ì•ˆê±¸ë¦¬ê²Œ
+        float elapsed = 0f;
+
+        while (Vector2.Distance(startPos, transform.position) < rushM && elapsed < maxDashTime)
+        {
+            if (isDie) yield break;
+
+            rb.linearVelocity = dir * dashSpeed;
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        rb.linearVelocity = Vector2.zero;
+
+        // í›„ë”œë ˆì´
+        yield return new WaitForSeconds(1.0f);
+        isCharging = false;
+
     }
 }

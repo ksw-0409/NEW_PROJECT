@@ -6,12 +6,15 @@ using UnityEngine.Pool;
 
 public class EnemyAI : MonoBehaviour
 {
-    public EnemyData data; 
+    [SerializeField] protected EnemyData data;
+    public PlayerData dataP;
     protected Rigidbody2D rb;
     protected EnemyHealth health; 
     private IObjectPool<EnemyAI> managedPool;
     protected bool isDie = false;
-
+    private float moveSpeed;
+    private float attackDamage;
+    private int expAmount;
     void Awake()
     {
         rb =GetComponent<Rigidbody2D>();
@@ -26,7 +29,25 @@ public class EnemyAI : MonoBehaviour
     {
         isDie = false;
         rb.linearVelocity = Vector2.zero; // 이전의 물리 속도 초기화
-        if (health != null) health.init(); //체력 초기화
+        
+        int floor = GameDataManager.Instance.CurrentFloor;
+        // int Startfloor = data.floor[0
+        // 테스트 위해서 시작층 모두 0으로 설정 
+         int Startfloor = 0;
+        health.init(
+            Mathf.RoundToInt(data.hp*(1.0f+(floor- Startfloor))*0.3f)
+            ); //체력 초기화
+        
+        attackDamage = Mathf.RoundToInt(
+            data.damage*(1.0f+(floor- Startfloor) *0.15f)
+            );
+
+        expAmount = Mathf.RoundToInt(data.DropExp * (1.0f + (Startfloor - 1.0f) * 0.4f));
+        if (data.Rank == 1)
+        {
+            expAmount *= 5;
+        }
+        moveSpeed = data.moveSpeed * dataP.moveSpeed;
     }
 
     //죽었을시 비활성화
@@ -43,15 +64,55 @@ public class EnemyAI : MonoBehaviour
         if (isDie) return;
         // 여기서 경험치 보석을 생성하거나 이펙트
         isDie = true;
-        ExpManager.Instance.DropExp(this.transform.position);
+
+
+        ExpManager.Instance.DropExp(this.transform.position, expAmount);
+        
         ItemManager.Instance.DropItem(this.transform.position);
         ReturnToPool();
     }
     public virtual void MoveTaget(Vector2 targetPos)
     {
         if (data == null) return;
+        float distance = Vector2.Distance(transform.position, targetPos);
+        // 타겟과 너무 가까우면 멈춤 (예: 0.1 유닛 거리)
+        if (distance < 0.1f)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
 
         Vector2 dir = (targetPos - (Vector2)transform.position).normalized;
-        rb.linearVelocity = dir * data.moveSpeed;
+        rb.linearVelocity = dir * moveSpeed;
+        HandleSpriteFlip(dir.x);
+    }
+    protected void HandleSpriteFlip(float horizontalDir)
+    {
+        // 0.1f는 미세한 움직임으로 인한 덜덜거림 방지
+        if (horizontalDir < 0.1f) // 오른쪽 이동
+        {
+            // 원래 크기 유지
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+        else if (horizontalDir > -0.1f) // 왼쪽 이동
+        {
+            // X값만 마이너스로
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
+
+            if (playerStats != null)
+            {
+
+                playerStats.TakeDamage(attackDamage);
+                // 시각적 확인을 위한 로그
+                Debug.Log($"{collision.gameObject.name}에게 {attackDamage}의 데미지를 입혔습니다.");
+            }
+        }
     }
 }

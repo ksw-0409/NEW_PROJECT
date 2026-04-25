@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= spawnInterval)
         {
-            Spawn("Slime1");
+            Spawn("Wolf2");
             timer = 0;
         }
     }

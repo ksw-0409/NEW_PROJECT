@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e0e5571749db8d4fa828bb368e2cc65, type: 3}
   m_Name: Orcs2
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  id: 8
   Name: Orcs2
-  Rank: 0
-  Level: 15
-  hp: 2500
-  damage: 120
-  Defense: 80
-  moveSpeed: 3
-  expGrant: 0
+  Rank: 1
+  hp: 500
+  damage: 40
+  Defense: 15
+  DropGold: 1
+  DropExp: 15
+  DropWeapon: 100
+  DropNormalEnhancement: 10
+  floor: 04000000
+  moveSpeed: 1.3

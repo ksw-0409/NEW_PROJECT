@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8345775517755416949}
   - component: {fileID: 3440786406656036238}
   - component: {fileID: 9005891388612825590}
-  - component: {fileID: 6436225279340236973}
+  - component: {fileID: -4370409311607150077}
   m_Layer: 0
-  m_Name: Toad1
+  m_Name: Spider2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76e9bdfce406d1478702397b0bdf9b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  data: {fileID: 11400000, guid: 78f0aff1168e98c429b83ad247395ded, type: 2}
+  data: {fileID: 11400000, guid: e8dd9cd156d3a1f4fb420cdc85de601e, type: 2}
 --- !u!50 &3440786406656036238
 Rigidbody2D:
   serializedVersion: 5
@@ -181,7 +181,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6436225279340236973
+--- !u!114 &-4370409311607150077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,8 +190,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1695417322640460754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ec07b4f501ae894499b9d4e104ea76f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e499a3a587aba24bb238d3a229e547d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Toad1
-  data: {fileID: 11400000, guid: 78f0aff1168e98c429b83ad247395ded, type: 2}
-  a: 0
+  m_EditorClassIdentifier: Assembly-CSharp::Spider2
+  data: {fileID: 11400000, guid: e8dd9cd156d3a1f4fb420cdc85de601e, type: 2}
+  dataP: {fileID: 11400000, guid: 4a3763b71508d894a8654cc78558c1c3, type: 2}

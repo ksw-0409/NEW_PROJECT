@@ -149,8 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slime1
   data: {fileID: 11400000, guid: d0b62ea391758a946853b81a006f4437, type: 2}
-  jumpForce: 5
-  jumpInterval: 2
+  dataP: {fileID: 11400000, guid: 4a3763b71508d894a8654cc78558c1c3, type: 2}
 --- !u!95 &1461253959210288566
 Animator:
   serializedVersion: 7

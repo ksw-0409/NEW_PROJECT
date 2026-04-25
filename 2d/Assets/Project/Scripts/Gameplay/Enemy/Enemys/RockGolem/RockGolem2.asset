@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e0e5571749db8d4fa828bb368e2cc65, type: 3}
+  m_Name: RockGolem2
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  id: 16
+  Name: RackGolem2
+  Rank: 1
+  hp: 600
+  damage: 150
+  Defense: 40
+  DropGold: 1
+  DropExp: 40
+  DropWeapon: 100
+  DropNormalEnhancement: 20
+  floor: 09000000
+  moveSpeed: 1.5

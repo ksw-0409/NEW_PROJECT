@@ -11,6 +11,11 @@ public class Exp : MonoBehaviour
         managedPool = pool;
     }
 
+    public void SetExp(int  expAmount)
+    {
+        this.expAmount = expAmount;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
