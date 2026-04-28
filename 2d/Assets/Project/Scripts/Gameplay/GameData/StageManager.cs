@@ -27,9 +27,14 @@ public class StageManager : MonoBehaviour
 
     // 타이머 UI에 남은 시간 전달
     public static event Action<float> OnTimerUpdated;
+    public static bool IsStageOver { get; private set; } = false;
+    public static bool IsStageActive { get; private set; } = false;
 
     void Start()
     {
+        IsStageActive = true;
+        IsStageOver = false;
+
         int floor = GameDataManager.Instance.CurrentFloor;
         currentFloorData = stageData.GetFloorData(floor);
         skillController = player.GetComponent<PlayerSkillController>();
@@ -63,6 +68,7 @@ public class StageManager : MonoBehaviour
 
     private IEnumerator StageEndRoutine()
     {
+        IsStageOver = true;
         int floor = GameDataManager.Instance.CurrentFloor;
         Debug.Log($"[StageManager] {floor}층 클리어");
 
@@ -72,7 +78,7 @@ public class StageManager : MonoBehaviour
             Debug.Log("[StageManager] 적 제거 완료");
         }
 
-        // 플레이어 비활성화 → 스킬 코루틴 강제 종료
+        // 플레이어 비활성화 -> 스킬 코루틴 강제 종료
         if (player != null)
             player.gameObject.SetActive(false);
 

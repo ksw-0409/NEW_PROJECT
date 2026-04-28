@@ -1,45 +1,45 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-// ì—­í• : ì•„ì´í…œ ê°•í™” UI (ì•„ì´í…œ ì„ íƒ + ê°•í™” ë²„íŠ¼ + ê³¨ë“œ/ë¹„ìš© í‘œì‹œ)
-// BaseCanvasUI ìƒì†ìœ¼ë¡œ ESC, IsUIOpen, PlayerInput ì²˜ë¦¬ ìë™í™”
+// ¿ªÇÒ: ¾ÆÀÌÅÛ °¨Á¤ UI
+// ÀÎº¥Åä¸®¿¡¼­ ¹Ì°¨Á¤ ¾ÆÀÌÅÛ ¼±ÅÃ ÈÄ °¨Á¤ ¹öÆ° Å¬¸¯
 
-public class ItemEnhanceUI : BaseCanvasUI
+public class ItemIdentifyUI : BaseCanvasUI
 {
-    [Header("ì—°ê²°")]
-    [SerializeField] private ItemEnhanceManager enhanceManager;
+    [Header("¿¬°á")]
+    [SerializeField] private ItemIdentifyManager identifyManager;
 
-    [Header("UI ìš”ì†Œ")]
-    [SerializeField] private Button enhanceButton;
+    [Header("UI ¿ä¼Ò")]
+    [SerializeField] private Button identifyButton;
     [SerializeField] private TextMeshProUGUI costText;
     [SerializeField] private TextMeshProUGUI currentGoldText;
 
-    [Header("ì„ íƒëœ ì•„ì´í…œ í‘œì‹œ")]
+    [Header("¼±ÅÃµÈ ¾ÆÀÌÅÛ Ç¥½Ã")]
     [SerializeField] private TextMeshProUGUI selectedItemName;
 
-    [Header("ì˜µì…˜ í‘œì‹œ TMP ë°°ì—´ (ì˜µì…˜ í•˜ë‚˜ë‹¹ TMP í•˜ë‚˜)")]
+    [Header("¿É¼Ç Ç¥½Ã TMP ¹è¿­ (¿É¼Ç ÇÏ³ª´ç TMP ÇÏ³ª)")]
     [SerializeField] private TextMeshProUGUI[] optionTexts;
 
-    [Header("ì¸ë²¤í† ë¦¬ ìŠ¬ë¡¯")]
+    [Header("ÀÎº¥Åä¸® ½½·Ô")]
     [SerializeField] private InventoryItemSlot[] inventorySlots;
 
     private InventoryItem selectedItem;
 
     protected override void OnOpen()
     {
-        enhanceButton.onClick.AddListener(OnClickEnhance);
-        enhanceButton.interactable = false;
+        identifyButton.onClick.AddListener(OnClickIdentify);
+        identifyButton.interactable = false;
 
-        enhanceManager.OnEnhanceSuccess += HandleSuccess;
-        enhanceManager.OnEnhanceFailed += HandleFailed;
+        identifyManager.OnIdentifySuccess += HandleSuccess;
+        identifyManager.OnIdentifyFailed += HandleFailed;
         GameDataManager.OnGoldChanged += RefreshGoldUI;
 
         if (GameDataManager.Instance != null)
             RefreshGoldUI(GameDataManager.Instance.Gold);
 
         if (costText != null)
-            costText.text = $"{enhanceManager.GetEnhanceCost()}G";
+            costText.text = $"{identifyManager.GetIdentifyCost()}G";
 
         ClearSelection();
         ClearOptionTexts();
@@ -48,10 +48,10 @@ public class ItemEnhanceUI : BaseCanvasUI
 
     protected override void OnClose()
     {
-        enhanceButton.onClick.RemoveAllListeners();
+        identifyButton.onClick.RemoveAllListeners();
 
-        enhanceManager.OnEnhanceSuccess -= HandleSuccess;
-        enhanceManager.OnEnhanceFailed -= HandleFailed;
+        identifyManager.OnIdentifySuccess -= HandleSuccess;
+        identifyManager.OnIdentifyFailed -= HandleFailed;
         GameDataManager.OnGoldChanged -= RefreshGoldUI;
 
         if (inventorySlots != null)
@@ -88,31 +88,33 @@ public class ItemEnhanceUI : BaseCanvasUI
         selectedItem = item;
 
         if (selectedItemName != null)
-            selectedItemName.text = item != null ? item.itemName : "ì•„ì´í…œì„ ì„ íƒí•˜ì„¸ìš”";
+            selectedItemName.text = item != null ? item.itemName : "¾ÆÀÌÅÛÀ» ¼±ÅÃÇÏ¼¼¿ä";
 
-        // ê°ì •ëœ ì•„ì´í…œì´ë©´ ì˜µì…˜ í‘œì‹œ
+        // ÀÌ¹Ì °¨Á¤µÈ ¾ÆÀÌÅÛÀÌ¸é ¿É¼Ç Ç¥½Ã
         if (item != null && item.isIdentified)
             RefreshOptionTexts(item);
         else
             ClearOptionTexts();
 
-        // ê°ì •ëœ ì•„ì´í…œë§Œ ê°•í™” ê°€ëŠ¥
-        enhanceButton.interactable = (item != null && item.isIdentified);
+        // ¹Ì°¨Á¤ ¾ÆÀÌÅÛ¸¸ ¹öÆ° È°¼ºÈ­
+        identifyButton.interactable = (item != null && !item.isIdentified);
     }
 
-    private void OnClickEnhance()
+    private void OnClickIdentify()
     {
-        enhanceManager.TryEnhance(selectedItem);
+        identifyManager.TryIdentify(selectedItem);
     }
 
-    private void HandleSuccess(InventoryItem enhanced)
+    private void HandleSuccess(InventoryItem item)
     {
-        RefreshOptionTexts(enhanced);
+        RefreshOptionTexts(item);
+        SetupSlots();
+        ClearSelection();
     }
 
     private void HandleFailed(string reason)
     {
-        Debug.Log($"[ItemEnhanceUI] ê°•í™” ì‹¤íŒ¨: {reason}");
+        Debug.Log($"[ItemIdentifyUI] °¨Á¤ ½ÇÆĞ: {reason}");
     }
 
     private void RefreshGoldUI(int gold)
@@ -144,20 +146,20 @@ public class ItemEnhanceUI : BaseCanvasUI
     private string[] BuildOptionArray(InventoryItem item)
     {
         var list = new System.Collections.Generic.List<string>();
-        if (item.physicalDamage > 0) list.Add($"ë¬¼ë¦¬ ê³µê²©ë ¥: {item.physicalDamage:F1}");
-        if (item.magicDamage > 0) list.Add($"ë§ˆë²• ê³µê²©ë ¥: {item.magicDamage:F1}");
-        if (item.criticalChance > 0) list.Add($"ì¹˜ëª…íƒ€ í™•ë¥ : {item.criticalChance * 100f:F1}%");
-        if (item.criticalDamage > 0) list.Add($"ì¹˜ëª…íƒ€ í”¼í•´: {item.criticalDamage:F2}ë°°");
-        if (item.maxHealth > 0) list.Add($"ìµœëŒ€ ì²´ë ¥: {item.maxHealth:F1}");
-        if (item.physicalDefense > 0) list.Add($"ë°©ì–´ë ¥: {item.physicalDefense:F1}");
-        if (item.moveSpeed > 0) list.Add($"ì´ë™ì†ë„: {item.moveSpeed:F2}");
+        if (item.physicalDamage > 0) list.Add($"¹°¸® °ø°İ·Â: {item.physicalDamage:F1}");
+        if (item.magicDamage > 0) list.Add($"¸¶¹ı °ø°İ·Â: {item.magicDamage:F1}");
+        if (item.criticalChance > 0) list.Add($"Ä¡¸íÅ¸ È®·ü: {item.criticalChance * 100f:F1}%");
+        if (item.criticalDamage > 0) list.Add($"Ä¡¸íÅ¸ ÇÇÇØ: {item.criticalDamage:F2}¹è");
+        if (item.maxHealth > 0) list.Add($"ÃÖ´ë Ã¼·Â: {item.maxHealth:F1}");
+        if (item.physicalDefense > 0) list.Add($"¹æ¾î·Â: {item.physicalDefense:F1}");
+        if (item.moveSpeed > 0) list.Add($"ÀÌµ¿¼Óµµ: {item.moveSpeed:F2}");
         return list.ToArray();
     }
 
     private void ClearSelection()
     {
         selectedItem = null;
-        if (selectedItemName != null) selectedItemName.text = "ì•„ì´í…œì„ ì„ íƒí•˜ì„¸ìš”";
-        enhanceButton.interactable = false;
+        if (selectedItemName != null) selectedItemName.text = "¾ÆÀÌÅÛÀ» ¼±ÅÃÇÏ¼¼¿ä";
+        identifyButton.interactable = false;
     }
 }
