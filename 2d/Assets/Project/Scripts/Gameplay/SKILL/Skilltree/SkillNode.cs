@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 
 public class SkillNode : MonoBehaviour, IPointerClickHandler
 {
+
     [Header("스킬 기본 정보")]
     public string skillName;
     public int level;
@@ -18,7 +19,7 @@ public class SkillNode : MonoBehaviour, IPointerClickHandler
     public Image iconImage;
 
     [Header("강화 비용")]
-    [SerializeField] private int unlockCost = 1; // 일반 재화 소모량
+    [SerializeField] private int unlockCost = 0; // 일반 재화 소모량
 
     // 이 부분이 정확히 있어야 SkillConnector에서 에러가 안 납니다.
     public bool IsUnlocked { get; private set; } = false;
