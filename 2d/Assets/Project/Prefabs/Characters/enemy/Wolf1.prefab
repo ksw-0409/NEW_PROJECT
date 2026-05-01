@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wolf1
   data: {fileID: 11400000, guid: 6023e2ea74dddcf418cc22b693d3730e, type: 2}
-  a: 0
+  dataP: {fileID: 11400000, guid: 4a3763b71508d894a8654cc78558c1c3, type: 2}
 --- !u!95 &7703671560371063998
 Animator:
   serializedVersion: 7

@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e0e5571749db8d4fa828bb368e2cc65, type: 3}
   m_Name: Wolf2
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  id: 4
   Name: Wolf2
-  Rank: 1
-  Level: 10
-  hp: 300
-  damage: 50
-  Defense: 10
-  moveSpeed: 3
-  expGrant: 0
+  hp: 325
+  skillDamage: 40
+  contactDamage: 40
+  Defense: 5
+  DropExp: 8
+  DropGold: 1
+  DropWeapon: 100
+  DropNormalEnhancement: 3
+  startfloor: 2
+  moveSpeed: 0.8

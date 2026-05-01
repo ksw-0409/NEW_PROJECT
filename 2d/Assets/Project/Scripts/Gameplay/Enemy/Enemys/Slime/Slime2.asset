@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e0e5571749db8d4fa828bb368e2cc65, type: 3}
   m_Name: Slime2
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  id: 2
   Name: Slime2
-  Rank: 1
-  Level: 3
-  hp: 120
-  damage: 12
-  Defense: 5
-  moveSpeed: 3
-  expGrant: 0
+  hp: 200
+  skillDamage: 28
+  contactDamage: 28
+  Defense: 0
+  DropExp: 5
+  DropGold: 1
+  DropWeapon: 100
+  DropNormalEnhancement: 3
+  startfloor: 1
+  moveSpeed: 0.6

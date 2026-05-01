@@ -16,16 +16,15 @@ public class EnemySpawner : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= spawnInterval)
         {
-            Spawn("Slime1");
+            Spawn(2);
             timer = 0;
         }
     }
 
-    void Spawn(string name)
+    void Spawn(int ID)
     {
-        EnemyAI enemy = enemyManager.GetEnemy(name);
         Vector2 spawnPos = GetRandomPosition();
-        enemy.transform.position = spawnPos;
+        EnemyAI enemy = enemyManager.SpawnEnemy(ID, spawnPos);
     }
 
     //앞으로 변경 예정 생성위치 랜덤 로직
