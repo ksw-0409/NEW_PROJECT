@@ -1,28 +1,19 @@
 fileFormatVersion: 2
-guid: d23e41ab09f99d04f8de641a92097d2f
+guid: db85aa1d9a552f14cb1584811bc08923
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7444046612802208997
-    second: wolf_0
+      213: -4945684728018057118
+    second: goblin idle_0
   - first:
-      213: -6836296053957781073
-    second: wolf_1
+      213: 5263809477104834338
+    second: goblin idle_1
   - first:
-      213: 8955941877185701628
-    second: wolf_2
+      213: -625662700645757262
+    second: goblin idle_2
   - first:
-      213: 8725252868083873810
-    second: wolf_3
-  - first:
-      213: -130435296094828817
-    second: wolf_4
-  - first:
-      213: 341809711022862023
-    second: wolf_5
-  - first:
-      213: -6867248659564942541
-    second: wolf_6
+      213: 2132046244418752174
+    second: goblin idle_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -55,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -93,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -118,155 +109,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wolf_0
+      name: goblin idle_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 10
-        width: 29
-        height: 15
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5e4868f34f09e4760800000000000000
-      internalID: 7444046612802208997
+      spriteID: b6ddd62a070e30044b135fe3f6670eca
+      internalID: -4945684728018057118
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wolf_1
+      name: goblin idle_1
       rect:
         serializedVersion: 2
-        x: 34
-        y: 6
-        width: 29
-        height: 18
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fa9117c85f89021a0800000000000000
-      internalID: -6836296053957781073
+      spriteID: 6cf1a10e2e2fa8f4eaad876d99d683c1
+      internalID: 5263809477104834338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wolf_2
+      name: goblin idle_2
       rect:
         serializedVersion: 2
-        x: 66
-        y: 6
-        width: 28
-        height: 17
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: cf6e2bacfa5e94c70800000000000000
-      internalID: 8955941877185701628
+      spriteID: aae71fb0a3b8d8c4080d66fc42be7862
+      internalID: -625662700645757262
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wolf_3
+      name: goblin idle_3
       rect:
         serializedVersion: 2
-        x: 98
-        y: 6
-        width: 27
-        height: 17
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 218f8915143561970800000000000000
-      internalID: 8725252868083873810
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wolf_4
-      rect:
-        serializedVersion: 2
-        x: 130
-        y: 7
-        width: 27
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fe6481e0ac9903ef0800000000000000
-      internalID: -130435296094828817
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wolf_5
-      rect:
-        serializedVersion: 2
-        x: 162
-        y: 7
-        width: 29
-        height: 18
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7ceeb460f1a5eb400800000000000000
-      internalID: 341809711022862023
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: wolf_6
-      rect:
-        serializedVersion: 2
-        x: 194
-        y: 11
-        width: 28
-        height: 15
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 33baa567ab1a2b0a0800000000000000
-      internalID: -6867248659564942541
+      spriteID: fc6076d3f875b74428ef67a6fc539b10
+      internalID: 2132046244418752174
       vertices: []
       indices: 
       edges: []
@@ -275,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 7b3e7a05eb7e6a7458585dee6a2261a7
+    spriteID: 3667ae8fd85e8824da20c199b2492a93
     internalID: 0
     vertices: []
     indices: 
@@ -283,15 +208,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      wolf_0: 7444046612802208997
-      wolf_1: -6836296053957781073
-      wolf_2: 8955941877185701628
-      wolf_3: 8725252868083873810
-      wolf_4: -130435296094828817
-      wolf_5: 341809711022862023
-      wolf_6: -6867248659564942541
+      goblin idle_0: -4945684728018057118
+      goblin idle_1: 5263809477104834338
+      goblin idle_2: -625662700645757262
+      goblin idle_3: 2132046244418752174
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

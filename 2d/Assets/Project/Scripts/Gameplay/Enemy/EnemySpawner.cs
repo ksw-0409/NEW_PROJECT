@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform player;          // 플레이어 위치 기준
 
     [Header("설정")]
-    public float spawnInterval = 1.0f; // 소환 간격 (초)
+    public float spawnInterval = 10; // 소환 간격 (초)
     public float spawnDistance = 12.0f; // 플레이어로부터 떨어진 거리
 
     private float timer;
@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= spawnInterval)
         {
-            Spawn(2);
+            Spawn(6);
             timer = 0;
         }
     }

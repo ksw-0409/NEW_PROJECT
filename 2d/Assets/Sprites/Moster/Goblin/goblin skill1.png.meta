@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: e7e68a5296dc66045a2a56a0303bd5a1
+guid: 01ca819de4aa3ee41a1e7f5d0900b78f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -697763020151794088
-    second: bat_0
+      213: 26166742484537462
+    second: goblin skill1_0
   - first:
-      213: -8072220183094876539
-    second: bat_1
+      213: 3679749563828413703
+    second: goblin skill1_1
   - first:
-      213: 6263388890442168103
-    second: bat_2
+      213: -7031827197610550387
+    second: goblin skill1_2
   - first:
-      213: 8615373810413218145
-    second: bat_3
+      213: 1336317764352489305
+    second: goblin skill1_3
   - first:
-      213: 7801246764459682756
-    second: bat_4
+      213: 5189243237062671889
+    second: goblin skill1_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -87,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -112,111 +112,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bat_0
+      name: goblin skill1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2
-        width: 17
-        height: 12
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 856d276ea3c0156f0800000000000000
-      internalID: -697763020151794088
+      spriteID: 67058be7386fc5000800000000000000
+      internalID: 26166742484537462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_1
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 1
-        width: 15
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 58624ed0386b9ff80800000000000000
-      internalID: -8072220183094876539
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bat_2
+      name: goblin skill1_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 15
-        height: 13
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 727fee0d2070ce650800000000000000
-      internalID: 6263388890442168103
+      spriteID: 705246e6bb8111330800000000000000
+      internalID: 3679749563828413703
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_3
+      name: goblin skill1_2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 1
-        width: 14
-        height: 13
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 16922e895d4ff8770800000000000000
-      internalID: 8615373810413218145
+      spriteID: d8b1e748b6ee96e90800000000000000
+      internalID: -7031827197610550387
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_4
+      name: goblin skill1_3
       rect:
         serializedVersion: 2
-        x: 63
-        y: 1
-        width: 33
-        height: 14
+        x: 96
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4cbe8c87998934c60800000000000000
-      internalID: 7801246764459682756
+      spriteID: 95736433ded8b8210800000000000000
+      internalID: 1336317764352489305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goblin skill1_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11ef736fa35e30840800000000000000
+      internalID: 5189243237062671889
       vertices: []
       indices: 
       edges: []
@@ -225,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: eae9ba0a4d6251c4e914b00afdc70985
     internalID: 0
     vertices: []
     indices: 
@@ -233,13 +233,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      bat_0: -697763020151794088
-      bat_1: -8072220183094876539
-      bat_2: 6263388890442168103
-      bat_3: 8615373810413218145
-      bat_4: 7801246764459682756
+      goblin skill1_0: 26166742484537462
+      goblin skill1_1: 3679749563828413703
+      goblin skill1_2: -7031827197610550387
+      goblin skill1_3: 1336317764352489305
+      goblin skill1_4: 5189243237062671889
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -13,11 +13,11 @@ public class EnemyAI : MonoBehaviour
     private IObjectPool<EnemyAI> managedPool;
     protected bool isDie = false;
     private float moveSpeed;
-    private float SkillDamage;
+    protected float SkillDamage;
     private float ContactDamage;
     private int expAmount;
     public bool usePooling = true; // 인스펙터에서 잡몹은 체크, 정예몹은 체크 해제
-    void Awake()
+    protected virtual void Awake()
     {
         rb =GetComponent<Rigidbody2D>();
         health=GetComponent<EnemyHealth>();
@@ -72,7 +72,10 @@ public class EnemyAI : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    public virtual void OnUpdate(Vector2 playerPos)
+    {
+        // 기본 로직 
+    }
     public virtual void MoveTaget(Vector2 targetPos)
     {
         if (data == null) return;

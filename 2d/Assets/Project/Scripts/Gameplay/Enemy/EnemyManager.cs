@@ -106,6 +106,7 @@ public class EnemyManager : MonoBehaviour
             if (activeEnemies[i] != null) // Null 체크 추가
             {
                 activeEnemies[i].MoveTaget(playerPos);
+                activeEnemies[i].OnUpdate(playerPos);
             }
         }
     }

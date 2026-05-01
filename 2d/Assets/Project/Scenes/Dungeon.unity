@@ -2203,6 +2203,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory
       objectReference: {fileID: 0}
+    - target: {fileID: 2470163384524014664, guid: c849299db961541418146ca76672854a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470163384524014664, guid: c849299db961541418146ca76672854a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470163384524014664, guid: c849299db961541418146ca76672854a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470163384524014664, guid: c849299db961541418146ca76672854a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470163384524014664, guid: c849299db961541418146ca76672854a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470163384524014664, guid: c849299db961541418146ca76672854a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3504340385272414249, guid: c849299db961541418146ca76672854a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2329,6 +2353,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3605254103953028094, guid: c849299db961541418146ca76672854a, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763746417702008284, guid: c849299db961541418146ca76672854a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763746417702008284, guid: c849299db961541418146ca76672854a, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4431610071933537696, guid: c849299db961541418146ca76672854a, type: 3}
@@ -3373,7 +3405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemyManager: {fileID: 1768684260}
   player: {fileID: 2026055320}
-  spawnInterval: 1
+  spawnInterval: 3
   spawnDistance: 12
 --- !u!114 &1768684260
 MonoBehaviour:
