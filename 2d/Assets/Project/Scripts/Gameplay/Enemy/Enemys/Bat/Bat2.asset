@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   id: 10
   Name: Bat2
-  Rank: 1
   hp: 300
-  damage: 140
+  skillDamage: 120
+  contactDamage: 120
   Defense: 5
-  DropGold: 1
   DropExp: 20
+  DropGold: 1
   DropWeapon: 100
-  DropNormalEnhancement: 20
-  floor: 06000000
-  moveSpeed: 1.5
+  DropNormalEnhancement: 5
+  startfloor: 6
+  moveSpeed: 0.8

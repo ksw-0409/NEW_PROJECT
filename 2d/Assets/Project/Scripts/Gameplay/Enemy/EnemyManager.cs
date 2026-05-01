@@ -4,26 +4,32 @@ using UnityEngine.Pool;
 
 public class EnemyManager : MonoBehaviour
 {
+    public static EnemyManager Instance { get; private set; } // 편의를 위한 싱글톤
     public Transform player;
     private IObjectPool<EnemyAI> pool;
     public List<EnemyAI> activeEnemies = new List<EnemyAI>();   // 현재 활성화되어 움직여야 할 적들을 따로 관리하는 리스트
 
-    private Dictionary<string, IObjectPool<EnemyAI>> poolDict = new Dictionary<string, IObjectPool<EnemyAI>>();
+    private Dictionary<int, IObjectPool<EnemyAI>> poolDict = new Dictionary<int, IObjectPool<EnemyAI>>();
 
     [Header("다양한 몬스터 프리팹 리스트")]
     public List<EnemyAI> enemyPrefabs;
 
     void Awake()
     {
+        Instance = this; // 싱글톤 초기화
         //딕셔너리 주입 
         foreach (var prefab in enemyPrefabs)
         {
+            if (!prefab.usePooling) continue;
+
+            int currentID = prefab.GetID();
             EnemyAI prefabRef = prefab;
 
-            var pool = new ObjectPool<EnemyAI>(
+            ObjectPool<EnemyAI> pool = null;
+            pool = new ObjectPool<EnemyAI>(
                 createFunc: () => {
                     EnemyAI ai = Instantiate(prefabRef, transform);
-                    ai.SetPool(poolDict[prefabRef.name]); // 각자의 풀 참조 주입
+                    ai.SetPool(pool); 
                     return ai;
                 },
                 actionOnGet: OnGetEnemy,
@@ -31,8 +37,14 @@ public class EnemyManager : MonoBehaviour
                 actionOnDestroy: OnDestroyEnemy,
                 maxSize: 100
             );
-
-            poolDict.Add(prefabRef.name, pool);
+            if (!poolDict.ContainsKey(currentID))
+            {
+                poolDict.Add(currentID, pool);
+            }
+            else
+            {
+                Debug.LogError($"중복된 몬스터 ID 발견: {prefab.name}. 프리팹 확인이 필요합니다.");
+            }
         }
     }
 
@@ -54,24 +66,47 @@ public class EnemyManager : MonoBehaviour
         Destroy(ai.gameObject);
     }
 
-    public EnemyAI GetEnemy(string monsterName)
+    public EnemyAI SpawnEnemy(int monsterID, Vector3 position)
     {
-        // 딕셔너리에서 이름으로 풀을 찾아서 Get
-        if (poolDict.TryGetValue(monsterName, out var pool))
+        // 프리팹 정보 찾기
+        EnemyAI prefab = enemyPrefabs.Find(x => x.GetID() == monsterID);
+        if (prefab == null) return null;
+        EnemyAI spawnedEnemy = null;
+        // 방식에 따른 
+        if (prefab.usePooling)
         {
-            return pool.Get();
+            // 풀링 방식
+            spawnedEnemy = poolDict[monsterID].Get();
         }
-        Debug.LogError($"{monsterName} 풀이 존재하지 않습니다!");
-        return null;
+        else
+        {
+            // 일반 생성 방식 (정예몹)
+            spawnedEnemy = Instantiate(prefab, transform);
+            spawnedEnemy.Init();
+            activeEnemies.Add(spawnedEnemy); // 리스트에 수동 추가
+        }
+
+        spawnedEnemy.transform.position = position;
+        return spawnedEnemy;
+    }
+    public void RemoveActiveEnemy(EnemyAI ai)
+    {
+        if (activeEnemies.Contains(ai))
+        {
+            activeEnemies.Remove(ai);
+        }
     }
 
     void FixedUpdate()
     {
         if (player == null) return;
         Vector2 playerPos = player.position;
-        for (int i = 0; i < activeEnemies.Count; i++)
+        for(int i = activeEnemies.Count - 1; i >= 0; i--)
         {
-            activeEnemies[i].MoveTaget(playerPos);
+            if (activeEnemies[i] != null) // Null 체크 추가
+            {
+                activeEnemies[i].MoveTaget(playerPos);
+            }
         }
     }
 }

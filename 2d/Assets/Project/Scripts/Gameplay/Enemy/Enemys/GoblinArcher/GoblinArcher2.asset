@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   id: 6
   Name: GoblinArcher2
-  Rank: 1
   hp: 250
-  damage: 30
+  skillDamage: 30
+  contactDamage: 15
   Defense: 5
-  DropGold: 1
   DropExp: 12
+  DropGold: 1
   DropWeapon: 100
-  DropNormalEnhancement: 10
-  floor: 03000000
+  DropNormalEnhancement: 7
+  startfloor: 3
   moveSpeed: 0.8

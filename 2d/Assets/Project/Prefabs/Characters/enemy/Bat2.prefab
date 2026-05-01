@@ -195,3 +195,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bat2
   data: {fileID: 11400000, guid: 5da3b0c72dfb75e43b6aa48001ed92da, type: 2}
   dataP: {fileID: 11400000, guid: 4a3763b71508d894a8654cc78558c1c3, type: 2}
+  usePooling: 0

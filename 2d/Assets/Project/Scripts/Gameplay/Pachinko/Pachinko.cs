@@ -43,7 +43,7 @@ public class Pachinko : MonoBehaviour
                 {
                     value *= items.items[j].itemValue;
                     values[i] = items.items[j].itemValue;
-                    Debug.Log(values[i]);
+                    Debug.Log(value);
                     break;
                 } 
             }

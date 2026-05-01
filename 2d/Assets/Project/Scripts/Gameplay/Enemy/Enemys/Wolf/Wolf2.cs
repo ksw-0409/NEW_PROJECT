@@ -4,10 +4,13 @@ using System.Collections;
 public class Wolf2 : EnemyAI
 {
     [Header("늑대 특화 설정")]
-    private float timer=2.0f;
+    public float timer=2.0f;
+    public float rushM = 5.0f; 
+    public float dashSpeed = 15f;    // 돌진 속도
+    public float Dtime = 0.5f; //돌진후 딜레이 
+    public float Cooltime = 5.0f; //쿨타임 
     private bool isCharging = false;
-    private float rushM = 5.0f; 
-    private float dashSpeed = 15f;    // 돌진 속도
+    private bool cnaDash = true;
 
     // 매니저의 FixedUpdate에서 매 프레임 호출됨
     public override void MoveTaget(Vector2 targetPos)
@@ -19,14 +22,17 @@ public class Wolf2 : EnemyAI
     // 플레이어가 3m 트리거 콜라이더 안으로 들어오면 자동 실행
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!isCharging && other.CompareTag("Player"))
+        if (cnaDash && other.CompareTag("Player"))
         { 
             StartCoroutine(ChargeAndDash(other.transform));
         }
     }
+
+
     IEnumerator ChargeAndDash(Transform playerTransform)
     {
         isCharging = true;
+        cnaDash = false;
 
         // 차징 단계 (2초 대기)
         Debug.Log("차징 시작...");
@@ -39,7 +45,7 @@ public class Wolf2 : EnemyAI
         // 돌진 단계 (5m 이동)
         Debug.Log("돌진!");
         Vector2 startPos = transform.position;
-        float maxDashTime = 1.0f; // 5m 가는데 1초 이상 안걸리게
+        float maxDashTime = 1.5f; // 5m 가는데 1초 이상 안걸리게
         float elapsed = 0f;
 
         while (Vector2.Distance(startPos, transform.position) < rushM && elapsed < maxDashTime)
@@ -54,8 +60,10 @@ public class Wolf2 : EnemyAI
         rb.linearVelocity = Vector2.zero;
 
         // 후딜레이
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(Dtime);
         isCharging = false;
-
+        // 4. 쿨타임 
+        yield return new WaitForSeconds(Cooltime);
+        cnaDash = true;
     }
 }

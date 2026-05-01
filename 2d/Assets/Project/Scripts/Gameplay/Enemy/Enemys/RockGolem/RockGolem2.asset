@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   id: 16
   Name: RackGolem2
-  Rank: 1
   hp: 600
-  damage: 150
+  skillDamage: 150
+  contactDamage: 150
   Defense: 40
-  DropGold: 1
   DropExp: 40
+  DropGold: 1
   DropWeapon: 100
-  DropNormalEnhancement: 20
-  floor: 09000000
-  moveSpeed: 1.5
+  DropNormalEnhancement: 15
+  startfloor: 9
+  moveSpeed: 0.6

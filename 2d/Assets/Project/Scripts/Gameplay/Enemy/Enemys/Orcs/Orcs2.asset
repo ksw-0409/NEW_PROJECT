@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   id: 8
   Name: Orcs2
-  Rank: 1
   hp: 500
-  damage: 40
+  skillDamage: 40
+  contactDamage: 30
   Defense: 15
-  DropGold: 1
   DropExp: 15
+  DropGold: 1
   DropWeapon: 100
   DropNormalEnhancement: 10
-  floor: 04000000
-  moveSpeed: 1.3
+  startfloor: 4
+  moveSpeed: 0.8

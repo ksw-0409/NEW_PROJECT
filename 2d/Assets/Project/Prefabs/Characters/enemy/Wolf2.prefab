@@ -151,6 +151,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Wolf2
   data: {fileID: 11400000, guid: b52a65964ce5374468002cacfe73ef19, type: 2}
   dataP: {fileID: 11400000, guid: 4a3763b71508d894a8654cc78558c1c3, type: 2}
+  usePooling: 0
+  timer: 2
+  rushM: 5
+  dashSpeed: 15
+  Dtime: 0.5
+  Cooltime: 5
 --- !u!95 &4473308758910716326
 Animator:
   serializedVersion: 7
@@ -245,4 +251,4 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.075}
-  m_Radius: 3
+  m_Radius: 0.6

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   id: 3
   Name: Wolf1
-  Rank: 0
   hp: 65
-  damage: 10
+  skillDamage: 10
+  contactDamage: 10
   Defense: 5
-  DropGold: 1
   DropExp: 8
+  DropGold: 1
   DropWeapon: 5
   DropNormalEnhancement: 0
-  floor: 020000000300000004000000
-  moveSpeed: 1.8
+  startfloor: 2
+  moveSpeed: 0.8

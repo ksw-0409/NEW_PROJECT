@@ -13,8 +13,10 @@ public class EnemyAI : MonoBehaviour
     private IObjectPool<EnemyAI> managedPool;
     protected bool isDie = false;
     private float moveSpeed;
-    private float attackDamage;
+    private float SkillDamage;
+    private float ContactDamage;
     private int expAmount;
+    public bool usePooling = true; // 인스펙터에서 잡몹은 체크, 정예몹은 체크 해제
     void Awake()
     {
         rb =GetComponent<Rigidbody2D>();
@@ -23,6 +25,7 @@ public class EnemyAI : MonoBehaviour
 
     //처음 세팅할때 pool 참조 메니저에서 갖고옴 
     public void SetPool(IObjectPool<EnemyAI> pool)=> managedPool = pool;
+    public int GetID() { return data.id; }
 
     //풀에서 꺼낼때 초기화 함수 Manager에서 호출
     public virtual void Init()
@@ -31,32 +34,25 @@ public class EnemyAI : MonoBehaviour
         rb.linearVelocity = Vector2.zero; // 이전의 물리 속도 초기화
         
         int floor = GameDataManager.Instance.CurrentFloor;
-        // int Startfloor = data.floor[0
+        // int Startfloor = data.startfloor;
         // 테스트 위해서 시작층 모두 0으로 설정 
          int Startfloor = 0;
         health.init(
             Mathf.RoundToInt(data.hp*(1.0f+(floor- Startfloor))*0.3f)
             ); //체력 초기화
-        
-        attackDamage = Mathf.RoundToInt(
-            data.damage*(1.0f+(floor- Startfloor) *0.15f)
+
+        ContactDamage = Mathf.RoundToInt(
+            data.contactDamage * (1.0f+(floor- Startfloor) *0.15f)
             );
 
-        expAmount = Mathf.RoundToInt(data.DropExp * (1.0f + (Startfloor - 1.0f) * 0.4f));
-        if (data.Rank == 1)
-        {
-            expAmount *= 5;
-        }
-        moveSpeed = data.moveSpeed * dataP.moveSpeed;
-    }
+        SkillDamage = Mathf.RoundToInt(
+            data.skillDamage * (1.0f + (floor - Startfloor) * 0.15f)
+            );
 
-    //죽었을시 비활성화
-    private void ReturnToPool()
-    {
-        if (managedPool != null)
-        {
-            managedPool.Release(this);
-        }
+
+        expAmount = Mathf.RoundToInt(data.DropExp * (1.0f + (Startfloor - 1.0f) * 0.4f));
+        
+        moveSpeed = data.moveSpeed * dataP.moveSpeed;
     }
 
     public virtual void Die()
@@ -64,13 +60,19 @@ public class EnemyAI : MonoBehaviour
         if (isDie) return;
         // 여기서 경험치 보석을 생성하거나 이펙트
         isDie = true;
-
-
-        ExpManager.Instance.DropExp(this.transform.position, expAmount);
-        
+        ExpManager.Instance.DropExp(this.transform.position, expAmount);        
         ItemManager.Instance.DropItem(this.transform.position);
-        ReturnToPool();
+        if (usePooling&& managedPool!=null)
+        {
+            managedPool.Release(this);
+        }
+        else
+        {
+            EnemyManager.Instance.RemoveActiveEnemy(this);
+            Destroy(gameObject);
+        }
     }
+
     public virtual void MoveTaget(Vector2 targetPos)
     {
         if (data == null) return;
@@ -81,7 +83,6 @@ public class EnemyAI : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             return;
         }
-
         Vector2 dir = (targetPos - (Vector2)transform.position).normalized;
         rb.linearVelocity = dir * moveSpeed;
         HandleSpriteFlip(dir.x);
@@ -102,6 +103,7 @@ public class EnemyAI : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if(ContactDamage==0) return;
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
@@ -109,9 +111,9 @@ public class EnemyAI : MonoBehaviour
             if (playerStats != null)
             {
 
-                playerStats.TakeDamage(attackDamage);
+                playerStats.TakeDamage(ContactDamage);
                 // 시각적 확인을 위한 로그
-                Debug.Log($"{collision.gameObject.name}에게 {attackDamage}의 데미지를 입혔습니다.");
+                Debug.Log($"{collision.gameObject.name}에게 {ContactDamage}의 데미지를 입혔습니다.");
             }
         }
     }

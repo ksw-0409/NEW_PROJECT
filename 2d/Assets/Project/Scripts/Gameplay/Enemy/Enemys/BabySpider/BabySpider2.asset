@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   id: 12
   Name: BabySpider2
-  Rank: 1
   hp: 250
-  damage: 100
+  skillDamage: 100
+  contactDamage: 100
   Defense: 5
-  DropGold: 1
   DropExp: 25
+  DropGold: 1
   DropWeapon: 100
-  DropNormalEnhancement: 20
-  floor: 07000000
-  moveSpeed: 2
+  DropNormalEnhancement: 7
+  startfloor: 7
+  moveSpeed: 1.2

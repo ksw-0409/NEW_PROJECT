@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   id: 9
   Name: Bat1
-  Rank: 0
   hp: 60
-  damage: 35
+  skillDamage: 35
+  contactDamage: 35
   Defense: 5
-  DropGold: 1
   DropExp: 20
+  DropGold: 1
   DropWeapon: 10
   DropNormalEnhancement: 0
-  floor: 060000000800000009000000
-  moveSpeed: 1.5
+  startfloor: 6
+  moveSpeed: 0.8

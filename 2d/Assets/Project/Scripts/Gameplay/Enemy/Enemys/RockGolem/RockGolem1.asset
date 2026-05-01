@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   id: 15
   Name: RockGolem1
-  Rank: 0
   hp: 120
-  damage: 50
+  skillDamage: 50
+  contactDamage: 50
   Defense: 30
-  DropGold: 1
   DropExp: 40
+  DropGold: 1
   DropWeapon: 10
   DropNormalEnhancement: 0
-  floor: 09000000
-  moveSpeed: 1.5
+  startfloor: 9
+  moveSpeed: 0.6

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   id: 14
   Name: Spider2
-  Rank: 1
   hp: 350
-  damage: 140
+  skillDamage: 140
+  contactDamage: 0
   Defense: 5
-  DropGold: 1
   DropExp: 30
+  DropGold: 1
   DropWeapon: 100
-  DropNormalEnhancement: 20
-  floor: 08000000
-  moveSpeed: 1.5
+  DropNormalEnhancement: 10
+  startfloor: 8
+  moveSpeed: 0.8

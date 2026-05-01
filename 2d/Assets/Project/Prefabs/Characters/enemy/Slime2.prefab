@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Slime2
   data: {fileID: 11400000, guid: 94774e2a99b2f994ba2034100fb72ffc, type: 2}
   dataP: {fileID: 11400000, guid: 4a3763b71508d894a8654cc78558c1c3, type: 2}
+  usePooling: 0
 --- !u!95 &2057916108661404140
 Animator:
   serializedVersion: 7
