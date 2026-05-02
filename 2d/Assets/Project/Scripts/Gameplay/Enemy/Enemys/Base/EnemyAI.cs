@@ -22,7 +22,7 @@ public class EnemyAI : MonoBehaviour
         rb =GetComponent<Rigidbody2D>();
         health=GetComponent<EnemyHealth>();
     }
-
+   
     //처음 세팅할때 pool 참조 메니저에서 갖고옴 
     public void SetPool(IObjectPool<EnemyAI> pool)=> managedPool = pool;
     public int GetID() { return data.id; }

@@ -9,6 +9,7 @@ public class GoblinArcher2 : EnemyAI
     public float chargeTime = 1.5f;     // 차징 시간
     public float arrowSpeed = 20f;      // 화살 속도
     public float attackCoolDown = 3.0f; // 공격 쿨타임
+    public float attackAfterDelay = 0.3f; //공격 후딜
     // 2. 부채꼴 설정
     public int arrowCount = 5;       // 화살 개수
     public float spreadAngle = 45f;  // 전체 퍼짐 각도 (좌우로 총 45도)
@@ -17,10 +18,16 @@ public class GoblinArcher2 : EnemyAI
     private bool isActionRunning = false;
     private bool canAttack = true;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
         base.Awake();
         anim = GetComponent<Animator>();
+    }
+    public override void Init()
+    {
+        base.Init();
+        isActionRunning = false;
+        canAttack = true;
     }
     public override void OnUpdate(Vector2 playerPos)
     {
@@ -107,7 +114,7 @@ public class GoblinArcher2 : EnemyAI
 
     private IEnumerator PostAttackPhase()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(attackAfterDelay);
         isActionRunning = false; // 이제 다시 MoveTaget이 작동 가능함
     }
 

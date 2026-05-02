@@ -23,4 +23,4 @@ MonoBehaviour:
   DropWeapon: 10
   DropNormalEnhancement: 0
   startfloor: 7
-  moveSpeed: 1.2
+  moveSpeed: 1

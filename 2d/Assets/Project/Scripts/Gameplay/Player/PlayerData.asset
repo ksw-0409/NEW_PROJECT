@@ -14,3 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   maxHealth: 100
   moveSpeed: 5
+  physicalDefense: 0
+  physicalDamage: 5
+  magicDamage: 10
+  criticalChance: 0.1
+  criticalDamage: 1.5
+  defenseRate: 0
+  attackcooldown: 1

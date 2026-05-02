@@ -196,3 +196,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 938e59fe7483073408208061f8bcd62f, type: 2}
   dataP: {fileID: 11400000, guid: 4a3763b71508d894a8654cc78558c1c3, type: 2}
   usePooling: 0
+  rockCount: 8
+  DieDealy: 1
+  rockSpeed: 10
+  rockPrefab: {fileID: 5388222843696298285, guid: b086d7fdd4c33a14ba1b519c84fcc7de, type: 3}

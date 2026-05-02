@@ -86,6 +86,14 @@ public class PlayerStats : MonoBehaviour
             Die();
         }
     }
+    
+    public void TakeFixedDamage(float damage) {
+        currentHealth -= damage;
+        if (currentHealth < 0)
+        {
+            Die();
+        }
+    }
 
     private void Die()
     {

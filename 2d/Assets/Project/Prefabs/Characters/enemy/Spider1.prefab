@@ -134,7 +134,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &9005891388612825590
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -195,3 +195,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Spider1
   data: {fileID: 11400000, guid: ea37e4cb6aec5214abf172d2bbb62c17, type: 2}
   dataP: {fileID: 11400000, guid: 4a3763b71508d894a8654cc78558c1c3, type: 2}
+  usePooling: 1
+  explosionRange: 3
+  detectRange: 2.5
+  chargeTime: 1
+  explosionDamage: 50
+  explosionEffect: {fileID: 4389706672037867357, guid: 567cf2e43efa6914e8315b54d4f41f30, type: 3}
