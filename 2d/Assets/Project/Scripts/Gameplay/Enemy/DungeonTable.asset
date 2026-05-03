@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cdbc239badd6e446b101a40aeffa3e9, type: 3}
+  m_Name: DungeonTable
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonTable
+  floors:
+  - floorName: 1
+    spawnList:
+    - monsterID: 1
+      chance: 100
+  - floorName: 2
+    spawnList:
+    - monsterID: 1
+      chance: 50
+    - monsterID: 3
+      chance: 50
+  - floorName: 3
+    spawnList:
+    - monsterID: 1
+      chance: 30
+    - monsterID: 3
+      chance: 30
+    - monsterID: 5
+      chance: 40
+  - floorName: 4
+    spawnList:
+    - monsterID: 1
+      chance: 20
+    - monsterID: 3
+      chance: 20
+    - monsterID: 5
+      chance: 20
+    - monsterID: 7
+      chance: 40
+  - floorName: 6
+    spawnList:
+    - monsterID: 9
+      chance: 100
+  - floorName: 7
+    spawnList:
+    - monsterID: 9
+      chance: 50
+    - monsterID: 11
+      chance: 50
+  - floorName: 8
+    spawnList:
+    - monsterID: 9
+      chance: 30
+    - monsterID: 11
+      chance: 30
+    - monsterID: 13
+      chance: 40
+  - floorName: 9
+    spawnList:
+    - monsterID: 9
+      chance: 20
+    - monsterID: 11
+      chance: 20
+    - monsterID: 13
+      chance: 20
+    - monsterID: 15
+      chance: 40

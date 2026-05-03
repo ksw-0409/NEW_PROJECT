@@ -3405,8 +3405,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemyManager: {fileID: 1768684260}
   player: {fileID: 2026055320}
-  spawnInterval: 3
   spawnDistance: 12
+  stageManager: {fileID: 1669466175}
+  table: {fileID: 11400000, guid: d61f98ed93003884caa624c835f8cb5b, type: 2}
 --- !u!114 &1768684260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3468,7 +3469,6 @@ MonoBehaviour:
   equipManager: {fileID: 671964933}
   equipmentPrefab: {fileID: 2589969546242863035, guid: e56047ea3e6308d48afc370d9fe658fb, type: 3}
   player: {fileID: 611033601}
-  equipDropChance: 10
   activeItems: []
 --- !u!1 &1950074554
 GameObject:

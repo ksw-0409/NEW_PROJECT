@@ -39,13 +39,16 @@ public class StageManager : MonoBehaviour
         currentFloorData = stageData.GetFloorData(floor);
         skillController = player.GetComponent<PlayerSkillController>();
 
+        //강 추가
+        enemySpawner.startInit();
+        /*
         // 5층, 10층은 보스 층 — 일반 몬스터 스폰 비활성화
         if (floor == 5 || floor == 10)
         {
             if (enemySpawner != null)
                 enemySpawner.gameObject.SetActive(false);
         }
-
+        */
         Debug.Log($"[StageManager] {floor}층 시작 / 제한시간: {currentFloorData.stageDuration}초");
     }
 
@@ -115,4 +118,6 @@ public class StageManager : MonoBehaviour
 
         Debug.Log("[StageManager] 포탈 생성 완료");
     }
+
+    public float getTimer() { return timer; }   
 }

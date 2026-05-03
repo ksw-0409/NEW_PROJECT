@@ -15,8 +15,14 @@ public class EnemyAI : MonoBehaviour
     private float moveSpeed;
     protected float SkillDamage;
     private float ContactDamage;
-    private int expAmount;
+    private float expAmount;
+    private float DropWeapon;
     public bool usePooling = true; // 인스펙터에서 잡몹은 체크, 정예몹은 체크 해제
+
+    //돌진 이벤트용
+    private bool isRushMode = false;
+    private Vector2 rushDir;
+    private float rushLimitY;
     protected virtual void Awake()
     {
         rb =GetComponent<Rigidbody2D>();
@@ -32,36 +38,46 @@ public class EnemyAI : MonoBehaviour
     {
         isDie = false;
         rb.linearVelocity = Vector2.zero; // 이전의 물리 속도 초기화
-        
+        isRushMode = false;
         int floor = GameDataManager.Instance.CurrentFloor;
         // int Startfloor = data.startfloor;
         // 테스트 위해서 시작층 모두 0으로 설정 
          int Startfloor = 0;
         health.init(
-            Mathf.RoundToInt(data.hp*(1.0f+(floor- Startfloor))*0.3f)
+            (float)Mathf.RoundToInt(data.hp*(1.0f+(floor- Startfloor))*0.3f)
             ); //체력 초기화
 
-        ContactDamage = Mathf.RoundToInt(
+        ContactDamage = (float)Mathf.RoundToInt(
             data.contactDamage * (1.0f+(floor- Startfloor) *0.15f)
             );
 
-        SkillDamage = Mathf.RoundToInt(
+        SkillDamage = (float)Mathf.RoundToInt(
             data.skillDamage * (1.0f + (floor - Startfloor) * 0.15f)
             );
 
 
-        expAmount = Mathf.RoundToInt(data.DropExp * (1.0f + (Startfloor - 1.0f) * 0.4f));
+        expAmount = (float)Mathf.RoundToInt(data.DropExp * (1.0f + (Startfloor - 1.0f) * 0.4f));
         
         moveSpeed = data.moveSpeed * dataP.moveSpeed;
+        DropWeapon = data.DropWeapon;
     }
-
+    // 돌진 모드 셋팅 방향, 돌진속도배율/hp배율/어디까지갈건지 Y축
+    public void SetRushMode(Vector2 dir, float speed, float hpMultiplier, float limitY)
+    {
+        isRushMode = true;
+        rushDir = dir.normalized;
+        rushLimitY = limitY+this.transform.position.y;
+        //속도 hp 설정
+        moveSpeed = speed * dataP.moveSpeed;
+        health.Multiple(hpMultiplier);
+    }
     public virtual void Die()
     {
         if (isDie) return;
         // 여기서 경험치 보석을 생성하거나 이펙트
         isDie = true;
         ExpManager.Instance.DropExp(this.transform.position, expAmount);        
-        ItemManager.Instance.DropItem(this.transform.position);
+        ItemManager.Instance.DropItem(this.transform.position, DropWeapon,false);
         if (usePooling&& managedPool!=null)
         {
             managedPool.Release(this);
@@ -79,16 +95,24 @@ public class EnemyAI : MonoBehaviour
     public virtual void MoveTaget(Vector2 targetPos)
     {
         if (data == null) return;
-        float distance = Vector2.Distance(transform.position, targetPos);
-        // 타겟과 너무 가까우면 멈춤 (예: 0.1 유닛 거리)
-        if (distance < 0.1f)
-        {
-            rb.linearVelocity = Vector2.zero;
-            return;
+        if (isRushMode) {
+            rb.linearVelocity = rushDir * moveSpeed;
+            if(transform.position.y< rushLimitY) managedPool.Release(this);
         }
-        Vector2 dir = (targetPos - (Vector2)transform.position).normalized;
-        rb.linearVelocity = dir * moveSpeed;
-        HandleSpriteFlip(dir.x);
+        else
+        {
+            float distance = Vector2.Distance(transform.position, targetPos);
+            // 타겟과 너무 가까우면 멈춤 (예: 0.1 유닛 거리)
+            if (distance < 0.1f)
+            {
+                rb.linearVelocity = Vector2.zero;
+                return;
+            }
+            Vector2 dir = (targetPos - (Vector2)transform.position).normalized;
+            rb.linearVelocity = dir * moveSpeed;
+            HandleSpriteFlip(dir.x);
+        }
+        
     }
     protected void HandleSpriteFlip(float horizontalDir)
     {

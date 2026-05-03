@@ -1,23 +1,22 @@
 using System.Collections.Generic;
-using Mono.Cecil.Cil;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
-using UnityEngine.Pool;
 
 public class ItemManager : MonoBehaviour
 {
     public static ItemManager Instance; // 싱글톤
     [Header("아이템 설정")]
-
     public EquipmentManager equipManager; // 유니티에서 EquipmentManager 오브젝트를 연결
     public GameObject equipmentPrefab;    // 장비 전용 프리팹 (FieldItem 스크립트가 붙은 것)
-
     public GameObject player;
-    [Header("아이템 드랍 확률")]
-    [Range(0, 100)] public float equipDropChance = 10f; // 장비 드랍 확률 (ex: 10% 확률로 장비 드랍)
-
     // 현재 필드에 떨어져 있는 아이템들 (자석 효과 등을 위해 관리)
     public List<GameObject> activeItems = new List<GameObject>();
+
+    //무기 드랍 확률
+    float[,] dropChances = {
+    { 50f, 25f, 15f, 10f }, // 1~5층
+    { 25f, 35f, 25f, 15f },  // 6~10층
+    { 0f, 50f, 30f, 20f }  // 보스
+    };
 
     void Awake()
     {
@@ -30,18 +29,18 @@ public class ItemManager : MonoBehaviour
     }
 
     // 적이 죽을 때 호출할 함수
-    public void DropItem(Vector2 position)
+    public void DropItem(Vector2 position, float equipDropChance,bool isBoss)
     {     
         // 드랍 확률 계산
         if (Random.Range(0f, 100f) <= equipDropChance)
         {
-            DropEquipment(position);
+            DropEquipment(position, isBoss);
         }
     }
-    private void DropEquipment(Vector2 position)
+    private void DropEquipment(Vector2 position, bool isBoss)
     {
-        // 등급 확률 계산 (예: 일반 70%, 레어 20%, 에픽 8%, 전설 2%)
-        int selectedID = GetRandomIDByWeight();
+        // 등급 확률 계산 K 구현완
+        int selectedID = GetRandomIDByWeight(isBoss);
 
         // 장비 데이터 생성 (랜덤 스탯 부여됨)
         EquipmentData randomData = equipManager.CreateItem(selectedID);
@@ -51,19 +50,35 @@ public class ItemManager : MonoBehaviour
         equipObj.GetComponent<FieldItem>().Setup(randomData);
         activeItems.Add(equipObj);
     }
-    private int GetRandomIDByWeight()
+    private int GetRandomIDByWeight(bool isBoss)
     {
+        int floor = GameDataManager.Instance.CurrentFloor;
+        int rowIndex = (floor <= 5) ? 0 : 1;
+        if (isBoss) rowIndex = 2;
         float roll = Random.Range(0f, 100f);
 
         // 테스트용: 50% 확률로 1013번, 아니면 1001번 드랍
-        if (roll < 50f)
+        // 일반
+        if (roll < dropChances[rowIndex, 0])
         {
             return 1013; // 연마된 검 (RARE)
         }
+        // 레어 (일반 + 레어)
+        else if (roll < dropChances[rowIndex, 0] + dropChances[rowIndex, 1])
+        {
+            return 1001; // 낡은 검 (COMMON)
+        }
+        // 희귀 (일반 + 레어 + 희귀)
+        else if (roll < dropChances[rowIndex, 0] + dropChances[rowIndex, 1] + dropChances[rowIndex, 2])
+        {
+            return 1001; // 낡은 검 (COMMON)
+        }
+        // 전설
         else
         {
             return 1001; // 낡은 검 (COMMON)
         }
+
     }
     void FixedUpdate()
     {

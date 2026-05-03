@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -21,5 +22,9 @@ public class EnemyHealth : MonoBehaviour
     public void init(float hp)
     {
         currentHp = hp;
+    }
+    public void Multiple(float m)
+    {
+        currentHp = m * currentHp;
     }
 }

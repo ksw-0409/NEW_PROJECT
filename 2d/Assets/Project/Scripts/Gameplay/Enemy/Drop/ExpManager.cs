@@ -55,7 +55,7 @@ public class ExpManager : MonoBehaviour
 
 
     // 적이 죽을 때 호출할 함수
-    public void DropExp(Vector2 position,int expAmount)
+    public void DropExp(Vector2 position,float expAmount)
     {
         Exp exp = pool.Get();
         exp.SetExp(expAmount);
