@@ -199,5 +199,25 @@ public class PlayerSkillController : MonoBehaviour
             AddNewSkill(found);
         }
     }
+    void OnEnable()
+    {
+        PlayerStats.OnPlayerDied += StopAllSkills;
+    }
 
+    void OnDisable()
+    {
+        PlayerStats.OnPlayerDied -= StopAllSkills;
+    }
+
+    public void StopAllSkills()
+    {
+        foreach (var skill in skillDict.Values)
+        {
+            if (skill != null)
+            {
+                skill.enabled = false;
+                skill.StopAllCoroutines();
+            }
+        }
+    }
 }

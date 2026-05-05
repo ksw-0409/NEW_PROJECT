@@ -7,10 +7,12 @@ public class PlayerStats : MonoBehaviour
     public PlayerData data;
 
     public event Action OnLevelUp; // 레벨업 이벤트 
+    public static event Action OnPlayerDied; //사망 이벤트
 
     public float currentHealth;
     public float currentLevel = 1;
     public float currentExp = 0;
+    private bool isDead = false;
 
     //data테이블에서 가져온 데이터들 
 
@@ -80,17 +82,21 @@ public class PlayerStats : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
+        if (isDead) return;
         currentHealth -= damage;
         if (currentHealth < 0)
         {
+            isDead = true;
             Die();
         }
     }
     
     public void TakeFixedDamage(float damage) {
+        if (isDead) return;
         currentHealth -= damage;
         if (currentHealth < 0)
         {
+            isDead = true;
             Die();
         }
     }
@@ -98,6 +104,7 @@ public class PlayerStats : MonoBehaviour
     private void Die()
     {
         Debug.Log("사망");
+        OnPlayerDied?.Invoke();
         GetComponent<PlayerAnimation>().PlayDie(); //사망 애니메이션
     }
 

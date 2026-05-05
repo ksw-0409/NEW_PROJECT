@@ -1,10 +1,10 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-// ¿ªÇÒ: Tab ÀÎº¥Åä¸® ½½·Ô
-// RectTransform ¹üÀ§ Ã¼Å©·Î ÅøÆÁ Ç¥½Ã
+// ì—­í• : Tab ì¸ë²¤í† ë¦¬ ìŠ¬ë¡¯
+// RectTransform ë²”ìœ„ ì²´í¬ë¡œ íˆ´íŒ í‘œì‹œ
 
 public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -41,7 +41,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (slotItem == null || InventoryTooltip.Instance == null) return;
-        InventoryTooltip.Instance.Show(BuildTooltipText(slotItem));
+        InventoryTooltip.Instance.ShowAt(BuildTooltipText(slotItem), rectTransform);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -58,18 +58,18 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         if (!item.isIdentified)
         {
-            sb.AppendLine("¹Ì°¨Á¤ ¾ÆÀÌÅÛ");
+            sb.AppendLine("ë¯¸ê°ì • ì•„ì´í…œ");
         }
         else
         {
-            sb.AppendLine("[ ¿É¼Ç ]");
-            if (item.physicalDamage > 0) sb.AppendLine($"¹°¸® °ø°İ·Â: {item.physicalDamage:F1}");
-            if (item.magicDamage > 0) sb.AppendLine($"¸¶¹ı °ø°İ·Â: {item.magicDamage:F1}");
-            if (item.criticalChance > 0) sb.AppendLine($"Ä¡¸íÅ¸ È®·ü: {item.criticalChance * 100f:F1}%");
-            if (item.criticalDamage > 0) sb.AppendLine($"Ä¡¸íÅ¸ ÇÇÇØ: {item.criticalDamage:F2}¹è");
-            if (item.maxHealth > 0) sb.AppendLine($"ÃÖ´ë Ã¼·Â: {item.maxHealth:F1}");
-            if (item.physicalDefense > 0) sb.AppendLine($"¹æ¾î·Â: {item.physicalDefense:F1}");
-            if (item.moveSpeed > 0) sb.AppendLine($"ÀÌµ¿¼Óµµ: {item.moveSpeed:F2}");
+            sb.AppendLine("[ ì˜µì…˜ ]");
+            if (item.physicalDamage > 0) sb.AppendLine($"ë¬¼ë¦¬ ê³µê²©ë ¥: {item.physicalDamage:F1}");
+            if (item.magicDamage > 0) sb.AppendLine($"ë§ˆë²• ê³µê²©ë ¥: {item.magicDamage:F1}");
+            if (item.criticalChance > 0) sb.AppendLine($"ì¹˜ëª…íƒ€ í™•ë¥ : {item.criticalChance * 100f:F1}%");
+            if (item.criticalDamage > 0) sb.AppendLine($"ì¹˜ëª…íƒ€ í”¼í•´: {item.criticalDamage:F2}ë°°");
+            if (item.maxHealth > 0) sb.AppendLine($"ìµœëŒ€ ì²´ë ¥: {item.maxHealth:F1}");
+            if (item.physicalDefense > 0) sb.AppendLine($"ë°©ì–´ë ¥: {item.physicalDefense:F1}");
+            if (item.moveSpeed > 0) sb.AppendLine($"ì´ë™ì†ë„: {item.moveSpeed:F2}");
         }
         return sb.ToString();
     }
@@ -84,9 +84,9 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         switch (grade)
         {
-            case ItemGrade.Rare: return new Color(0.2f, 0.5f, 1f);
-            case ItemGrade.Epic: return new Color(0.6f, 0.2f, 1f);
-            case ItemGrade.Legendary: return new Color(1f, 0.85f, 0f);
+            case ItemGrade.Rare: return Color.blue;
+            case ItemGrade.Epic: return Color.yellow;
+            case ItemGrade.Legendary: return Color.green;
             default: return Color.white;
         }
     }

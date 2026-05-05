@@ -39,6 +39,10 @@ public class StageManager : MonoBehaviour
         currentFloorData = stageData.GetFloorData(floor);
         skillController = player.GetComponent<PlayerSkillController>();
 
+        if (GameOverManager.Instance != null)
+            GameOverManager.Instance.StartTimer();
+
+
         //강 추가
         enemySpawner.startInit();
         /*
@@ -117,6 +121,11 @@ public class StageManager : MonoBehaviour
         }
 
         Debug.Log("[StageManager] 포탈 생성 완료");
+    }
+
+    void OnDestroy()
+    {
+        IsStageActive = false;
     }
 
     public float getTimer() { return timer; }   

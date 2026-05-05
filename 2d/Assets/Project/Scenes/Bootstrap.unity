@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 306990933}
   - component: {fileID: 306990936}
   - component: {fileID: 306990937}
+  - component: {fileID: 306990938}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -203,6 +204,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7211d7a0764d04e498af4f353cb208af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
+--- !u!114 &306990938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306990932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c476fbe2f0d89b4c9e0cf062ee6b8fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameOverManager
+  deathDelay: 3
 --- !u!1 &842497701
 GameObject:
   m_ObjectHideFlags: 0

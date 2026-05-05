@@ -32,12 +32,6 @@ public class InventoryTooltip : MonoBehaviour
         }
     }
 
-    void LateUpdate()
-    {
-        if (canvasGroup == null || canvasGroup.alpha == 0f) return;
-        UpdatePosition(Mouse.current.position.ReadValue());
-    }
-
     public void Show(string text)
     {
         if (tooltipText != null)
@@ -50,6 +44,31 @@ public class InventoryTooltip : MonoBehaviour
         }
 
         UpdatePosition(Mouse.current.position.ReadValue());
+    }
+    public void ShowAt(string text, RectTransform slotRect)
+    {
+
+        if (tooltipText != null)
+            tooltipText.text = text;
+
+        if (canvasGroup != null)
+        {
+            canvasGroup.alpha = 1f;
+            canvasGroup.blocksRaycasts = false;
+        }
+
+        // 슬롯 오른쪽 상단 기준으로 위치 설정
+        Vector3[] corners = new Vector3[4];
+        slotRect.GetWorldCorners(corners);
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            rootCanvas.GetComponent<RectTransform>(),
+            RectTransformUtility.WorldToScreenPoint(null, corners[2]),
+            rootCanvas.worldCamera,
+            out Vector2 localPos
+        );
+
+        tooltipRect.anchoredPosition = localPos;
     }
 
     public void Hide()
