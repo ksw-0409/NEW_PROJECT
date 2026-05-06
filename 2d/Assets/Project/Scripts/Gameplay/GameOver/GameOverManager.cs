@@ -94,6 +94,42 @@ public class GameOverManager : MonoBehaviour
 
         OnGameOver?.Invoke(data);
     }
+    public void TriggerGameOver()
+    {
+        if (isGameOver) return;
+        isGameOver = true;
+
+        isPlaying = false;
+        BaseInteractable.IsUIOpen = true;
+        StartCoroutine(GameOverRoutineImmediate()); // 딜레이 없는 버전
+    }
+
+    private IEnumerator GameOverRoutineImmediate()
+    {
+        yield return null; // 한 프레임만 대기
+
+        int goldBefore = GameDataManager.Instance.Gold;
+        int itemsBefore = Inventory.Instance.Items.Count;
+
+        GameDataManager.Instance.ApplyGameOverPenalty();
+        Inventory.Instance.ApplyDeathPenalty();
+        GameDataManager.Instance.ClearSavedSkills();
+
+        int goldAfter = GameDataManager.Instance.Gold;
+        int itemsAfter = Inventory.Instance.Items.Count;
+
+        GameOverData data = new GameOverData
+        {
+            floor = GameDataManager.Instance.CurrentFloor,
+            playTime = playTime,
+            goldBefore = goldBefore,
+            goldAfter = goldAfter,
+            itemsBefore = itemsBefore,
+            itemsAfter = itemsAfter
+        };
+
+        OnGameOver?.Invoke(data);
+    }
 }
 
 public class GameOverData
