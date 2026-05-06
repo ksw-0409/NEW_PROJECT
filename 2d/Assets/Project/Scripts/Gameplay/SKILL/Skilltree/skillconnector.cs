@@ -1,50 +1,50 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI.Extensions;
 
-[ExecuteInEditMode] // ÀÌ ÁÙÀÌ ÀÖ¾î¾ß ¿¡µðÅÍ¿¡¼­µµ ¼±ÀÌ º¸ÀÔ´Ï´Ù.
+[ExecuteAlways]
 [RequireComponent(typeof(UILineRenderer))]
 public class SkillConnector : MonoBehaviour
 {
     public SkillNode fromNode;
     public SkillNode toNode;
 
-    private UILineRenderer lineRenderer;
+    private UILineRenderer line;
 
-    private void OnEnable()
+    void OnEnable()
     {
-        lineRenderer = GetComponent<UILineRenderer>();
-        // ¼±ÀÌ Å¬¸¯À» ¹æÇØÇÏÁö ¾Êµµ·Ï ¼³Á¤
-        lineRenderer.raycastTarget = false;
+        line = GetComponent<UILineRenderer>();
+        if (line != null) line.raycastTarget = false;
+        RefreshColor();
+        UpdateLine();
     }
 
-    // Update ´ë½Å UpdatePositions¸¦ ¸íÈ®È÷ È£Ãâ
-    private void LateUpdate()
+    void LateUpdate() => UpdateLine();
+
+    public void UpdateLine()
     {
-        UpdatePositions();
+        if (line == null) line = GetComponent<UILineRenderer>();
+        if (line == null || fromNode == null || toNode == null) return;
+
+        var fromR = fromNode.GetComponent<RectTransform>();
+        var toR   = toNode  .GetComponent<RectTransform>();
+        if (fromR == null || toR == null) return;
+
+        line.Points = new Vector2[] { fromR.anchoredPosition, toR.anchoredPosition };
+        line.SetAllDirty();
     }
 
-    public void UpdatePositions()
-    {
-        if (fromNode == null || toNode == null || lineRenderer == null) return;
-
-        // ³ëµåÀÇ RectTransform À§Ä¡ °¡Á®¿À±â
-        Vector2 startPos = fromNode.GetComponent<RectTransform>().anchoredPosition;
-        Vector2 endPos = toNode.GetComponent<RectTransform>().anchoredPosition;
-
-        // Points ¹è¿­ ¾÷µ¥ÀÌÆ® (Size¸¦ 2·Î ¸¸µê)
-        lineRenderer.Points = new Vector2[] { startPos, endPos };
-
-        // ±×·¡ÇÈ °»½Å °­Á¦ È£Ãâ
-        lineRenderer.SetAllDirty();
-    }
-
-    // ³ëµå°¡ ÇØÁ¦µÇ¾úÀ» ¶§ È£ÃâÇÒ ÇÔ¼ö
     public void RefreshColor()
     {
-        if (lineRenderer == null || fromNode == null) return;
+        if (line == null) line = GetComponent<UILineRenderer>();
+        if (line == null || fromNode == null) return;
 
-        // ½ÃÀÛ ³ëµå°¡ ÇØÁ¦µÇ¾ú´Ù¸é ¼± »ö»óÀ» ¹Ù²Þ (¿¹: ÁÖÈ²»ö)
-        lineRenderer.color = fromNode.IsUnlocked ? new Color(1f, 0.6f, 0f) : Color.gray;
-        lineRenderer.SetAllDirty();
+        if (fromNode.IsUnlocked && toNode != null && toNode.IsUnlocked)
+            line.color = new Color(1f,  0.82f, 0.1f, 1f);   // ë‘˜ ë‹¤ í•´ê¸ˆ: í™©ê¸ˆ
+        else if (fromNode.IsUnlocked)
+            line.color = new Color(0.4f, 0.8f,  1f,  0.9f); // fromë§Œ í•´ê¸ˆ: í•˜ëŠ˜
+        else
+            line.color = new Color(0.3f, 0.3f,  0.35f, 0.6f); // ìž ê¸ˆ: íšŒìƒ‰
+
+        line.SetAllDirty();
     }
 }

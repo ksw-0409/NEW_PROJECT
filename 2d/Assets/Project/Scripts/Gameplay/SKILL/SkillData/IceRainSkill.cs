@@ -1,76 +1,76 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Linq;
 
 public class IceRainSkill : SkillBase
 {
+    public GameObject iceRainAreaPrefab;
+
     public EnemyManager enemyManager;
-    public GameObject iceRainEffectPrefab; // 얼음 비 파티클 프리팹
 
-    protected override void Execute()
+    protected override void Execute(Transform player)
     {
-        if (enemyManager == null) enemyManager = FindFirstObjectByType<EnemyManager>();
+        var ld = instance.GetCurrentLevelData();
+        if (ld == null) return;
 
-        SkillLevelData ld = instance.GetCurrentLevelData();
+        var bonus = PlayerStats.Instance.GetSkillBonus(instance.data);
 
-        // 1. 타겟 선정 (가장 가까운 적의 위치를 따거나, 없으면 플레이어 주변 랜덤)
-        Transform targetEnemy = FindNearestEnemy(transform.position, ld.range);
-        Vector2 targetPos = targetEnemy != null ? (Vector2)targetEnemy.position : (Vector2)transform.position;
+        Vector3 targetPos = GetNearestEnemyPosition(player);
 
-        // 2. 고정된 위치에서 코루틴 시작
-        StartCoroutine(IceRainRoutine(targetPos, ld));
-    }
-
-    IEnumerator IceRainRoutine(Vector2 centerPos, SkillLevelData ld)
-    {
-        // 3. 시각적 연출: 지정된 위치(centerPos)에 생성하고 부모를 설정하지 않음 (World 공간 고정)
-        if (iceRainEffectPrefab != null)
+        if (targetPos == Vector3.zero)
         {
-            GameObject effect = Instantiate(iceRainEffectPrefab, centerPos, Quaternion.identity);
-            Destroy(effect, ld.duration);
+            Debug.Log("[IceRain] 타겟팅할 적이 없어 스킬을 시전하지 않습니다.");
+            return;
         }
 
-        float timer = 0;
-        while (timer < ld.duration)
+        float distToEnemy = Vector2.Distance(player.position, targetPos);
+        if (distToEnemy > ld.range)
         {
-            // 4. 고정된 위치(centerPos) 기준으로 범위 내 적 탐색
-            var enemiesSnapshot = enemyManager.activeEnemies.ToArray();
-            foreach (var enemy in enemiesSnapshot)
-            {
-                if (enemy == null || !enemy.gameObject.activeInHierarchy) continue;
-
-                // 플레이어(transform.position)가 아닌 생성된 지점(centerPos) 기준 거리 체크
-                if (Vector2.Distance(centerPos, enemy.transform.position) <= ld.range)
-                {
-                    // 데미지 및 슬로우 적용
-                    enemy.GetComponent<EnemyHealth>()?.TakeDamage(ld.damage * ld.tickInterval);
-
-                    // 슬로우 기능이 있다면 여기서 호출 (예: enemy.ApplySlow(ld.slowPercent, 1.1f))
-                }
-            }
-
-            timer += ld.tickInterval;
-            yield return new WaitForSeconds(ld.tickInterval);
+            Vector2 dir = ((Vector2)targetPos - (Vector2)player.position).normalized;
+            targetPos = (Vector2)player.position + dir * ld.range;
         }
+
+        float finalDamage = ld.damage * bonus.dmg;
+        float finalRadius = ld.explosionRadius * bonus.rng;
+        float finalSlowPct = Mathf.Clamp01(ld.slowPercent * bonus.slowMul);
+        float finalDuration = Mathf.Max(0.05f, ld.duration * bonus.durMul);
+        float finalSlowDur = ld.slowDuration > 0f ? Mathf.Max(0f, ld.slowDuration * bonus.durMul) : 0f;
+
+        if (iceRainAreaPrefab == null)
+        {
+            Debug.LogWarning("[IceRain] iceRainAreaPrefab이 비어 있어 스킬을 생성할 수 없습니다.");
+            return;
+        }
+
+        GameObject areaObj = Instantiate(iceRainAreaPrefab, new Vector3(targetPos.x, targetPos.y, 0f), Quaternion.identity);
+        IceRainArea area = areaObj.GetComponent<IceRainArea>();
+        if (area != null)
+        {
+            float tick = ld.tickInterval > 0f ? ld.tickInterval : 1f;
+            area.Setup(finalDamage, ld.multiplier, finalDuration, finalRadius, finalSlowPct, finalSlowDur, tick);
+        }
+        else
+            Debug.LogWarning("[IceRain] 프리팹에 IceRainArea 컴포넌트가 없습니다.");
     }
 
-    private Transform FindNearestEnemy(Vector2 pos, float range)
+    private Vector3 GetNearestEnemyPosition(Transform player)
     {
-        Transform closest = null;
-        float minDst = range;
+        if (enemyManager == null || enemyManager.activeEnemies == null || enemyManager.activeEnemies.Count == 0)
+            return Vector3.zero;
+
+        EnemyAI nearestEnemy = null;
+        float minDistance = Mathf.Infinity;
+
         foreach (var enemy in enemyManager.activeEnemies)
         {
             if (enemy == null || !enemy.gameObject.activeInHierarchy) continue;
-            float dst = Vector2.Distance(pos, enemy.transform.position);
-            if (dst < minDst) { minDst = dst; closest = enemy.transform; }
-        }
-        return closest;
-    }
 
-    private void OnDrawGizmosSelected()
-    {
-        if (instance == null) return;
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, instance.GetCurrentLevelData().range);
+            float distance = Vector2.Distance(player.position, enemy.transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                nearestEnemy = enemy;
+            }
+        }
+
+        return nearestEnemy != null ? nearestEnemy.transform.position : Vector3.zero;
     }
 }

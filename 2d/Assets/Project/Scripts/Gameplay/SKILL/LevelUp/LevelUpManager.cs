@@ -48,10 +48,20 @@ public class LevelUpManager : MonoBehaviour
     // 🎯 핵심 랜덤 로직
     private void ShowRandomSkills()
     {
+        // 활 스킬 보유 중인지 확인
+        // allskills 리스트안에 bowskilldata타입을 가진 스킬 있는지 확인
+        bool hasBowSkill = allSkills.OfType<BowSkillData>().Any(bowData => skillController.HasSkill(bowData));
+
         var availableSkills = allSkills
             .Where(skill =>
             {
                 if (skill == null) return false;
+
+                if (skill is ArrowPassiveData || skill is ArrowRainData)
+                {
+                    // 2. 기본 활 스킬이 없을 경우 리스트에서 제외(false 반환)
+                    if (!hasBowSkill) return false;
+                }
 
                 if (!skillController.HasSkill(skill))
                     return true;

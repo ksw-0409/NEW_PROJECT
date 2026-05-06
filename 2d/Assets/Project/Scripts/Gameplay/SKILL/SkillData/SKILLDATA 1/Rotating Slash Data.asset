@@ -16,11 +16,11 @@ MonoBehaviour:
   icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   description: 
   levels:
-  - cooldown: 1
+  - cooldown: 4
     count: 1
-    damage: 11
-    multiplier: 1
-    range: 5
+    damage: 15
+    multiplier: 0.8
+    range: 1
     angle: 360
     projectileSpeed: 0
     explosionRadius: 0
@@ -29,11 +29,11 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  - cooldown: 1
+  - cooldown: 4
     count: 1
-    damage: 11
+    damage: 22
     multiplier: 1
-    range: 3
+    range: 1
     angle: 360
     projectileSpeed: 0
     explosionRadius: 0
@@ -42,12 +42,12 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  - cooldown: 1
+  - cooldown: 4
     count: 1
-    damage: 1
+    damage: 22
     multiplier: 1
-    range: 0
-    angle: 0
+    range: 1.3
+    angle: 360
     projectileSpeed: 0
     explosionRadius: 0
     slowPercent: 0
@@ -55,12 +55,12 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  - cooldown: 0
-    count: 0
-    damage: 0
-    multiplier: 0
-    range: 0
-    angle: 0
+  - cooldown: 3.5
+    count: 1
+    damage: 30
+    multiplier: 1.2
+    range: 1.3
+    angle: 360
     projectileSpeed: 0
     explosionRadius: 0
     slowPercent: 0
@@ -68,12 +68,12 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  - cooldown: 0
-    count: 0
-    damage: 0
-    multiplier: 0
-    range: 0
-    angle: 0
+  - cooldown: 3
+    count: 1
+    damage: 30
+    multiplier: 1.2
+    range: 1.3
+    angle: 360
     projectileSpeed: 0
     explosionRadius: 0
     slowPercent: 0
@@ -81,12 +81,12 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  - cooldown: 0
-    count: 0
-    damage: 0
-    multiplier: 0
-    range: 0
-    angle: 0
+  - cooldown: 2
+    count: 1
+    damage: 35
+    multiplier: 1.4
+    range: 1.3
+    angle: 360
     projectileSpeed: 0
     explosionRadius: 0
     slowPercent: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  range: 2
-  angle: 0
+  range: 1
+  angle: 360
   hitInterval: 0.1
   effectPrefab: {fileID: 30316419374980630, guid: a439a7af80a8efd47ac53636913ae096, type: 3}

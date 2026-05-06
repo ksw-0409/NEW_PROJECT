@@ -1,96 +1,155 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class SkillNode : MonoBehaviour, IPointerClickHandler
 {
-    [Header("��ų �⺻ ����")]
-    public string skillName;
-    public int level;
+    public enum NodeType { StatBoost, Specialty }
 
-    [Header("���� ��ų")]
-    public SkillNode[] prerequisites;
+    [Header("노드 기본 정보")]
+    public string nodeName;
+    [TextArea(2,4)] public string nodeDescription;
+
+    [Header("스킬 연결 정보")]
+    public SkillData targetSkill;
+    public NodeType nodeType;
+
+    [Header("스탯 보너스")]
+    public float damageMultiplier   = 1.0f;
+    public float rangeMultiplier    = 1.0f;
+    public float cooldownMultiplier = 1.0f;
+    public int   countBonus         = 0;
+
+    [Header("CC / 지속 보너스")]
+    public float slowPercentMultiplier = 1f;
+    public float durationMultiplier    = 1f;
+
+    [Header("특수 효과 (Specialty 노드)")]
+    public string specialtyTag;
+
+    [Header("노드 설정")]
+    public string skillNodeID;
+    public int    unlockCost = 1;
+
+    [Header("선행 조건")]
+    public SkillNode[]      prerequisites;
     public SkillConnector[] outgoingLinks;
 
-    [Header("�ð��� ����")]
-    public Color lockedColor = Color.gray;
-    public Color unlockedColor = Color.yellow;
-    public Image iconImage;
+    [Header("색상")]
+    public Color lockedColor    = new Color(0.25f, 0.25f, 0.25f, 1f);
+    public Color unlockedColor  = new Color(1f, 0.85f, 0f, 1f);
+    public Color selectedColor  = new Color(0.2f, 1f, 0.2f, 1f);
+    public Color availableColor = new Color(0.55f, 0.8f, 1f, 1f);
 
-    [Header("��ȭ ���")]
-    [SerializeField] private int unlockCost = 1; // �Ϲ� ��ȭ �Ҹ�
+    [Header("UI")]
+    public Image            iconImage;
+    public Image            frameImage;
+    public TextMeshProUGUI  costText;
 
-    // �� �κ��� ��Ȯ�� �־�� SkillConnector���� ������ �� ���ϴ�.
+    // ─── 상태 ───────────────────────────────
     public bool IsUnlocked { get; private set; } = false;
     private bool isSelected = false;
 
-    private void Awake()
+    // ─── 초기화 ─────────────────────────────
+    void Awake()
     {
-        if (GameDataManager.Instance != null && GameDataManager.Instance.IsNodeUnlocked(skillName))
-        {
+        if (GameDataManager.Instance != null
+            && !string.IsNullOrEmpty(skillNodeID)
+            && GameDataManager.Instance.IsNodeUnlocked(skillNodeID))
             IsUnlocked = true;
-        }
 
         UpdateVisual();
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    void Start() => UpdateVisual();
+
+    // ─── 클릭 ───────────────────────────────
+    public void OnPointerClick(PointerEventData e)
     {
-        SkillTreeUI.Instance.SelectNode(this);
+        if (SkillTreeUI.Instance != null)
+            SkillTreeUI.Instance.OnNodeSelected(this);
     }
 
+    public void SetSelected(bool v) { isSelected = v; UpdateVisual(); }
+
+    // ─── 해금 ───────────────────────────────
     public void TryUnlock()
     {
         if (!CanUnlock()) return;
 
-        if (!GameDataManager.Instance.SpendNormalCurrency(unlockCost))
+        // ★ 테스트 모드: 재화 차감 없이 바로 해금
+#if UNITY_EDITOR
+        DoUnlock();
+        return;
+#endif
+        if (GameDataManager.Instance != null
+            && !GameDataManager.Instance.SpendNormalCurrency(unlockCost))
         {
-            Debug.Log($"[SkillNode] �Ϲ� ��ȭ�� �����մϴ�. (�ʿ�: {unlockCost})");
+            Debug.Log("[SkillNode] 재화 부족");
             return;
         }
+        DoUnlock();
+    }
 
+    private void DoUnlock()
+    {
         IsUnlocked = true;
 
-        GameDataManager.Instance.SaveUnlockedNode(skillName);
+        if (!string.IsNullOrEmpty(skillNodeID) && GameDataManager.Instance != null)
+            GameDataManager.Instance.SaveUnlockedNode(skillNodeID);
+
+        if (nodeType == NodeType.StatBoost)
+        {
+            if (targetSkill != null)
+                PlayerStats.Instance.UpdateSkillBonus(targetSkill,
+                    damageMultiplier, rangeMultiplier, cooldownMultiplier,
+                    countBonus, slowPercentMultiplier, durationMultiplier);
+        }
+        else if (nodeType == NodeType.Specialty)
+        {
+            PlayerStats.Instance.UnlockSpecialty(specialtyTag, targetSkill,
+                damageMultiplier, rangeMultiplier, cooldownMultiplier,
+                countBonus, slowPercentMultiplier, durationMultiplier);
+        }
 
         UpdateVisual();
 
-        foreach (var link in outgoingLinks)
-        {
-            if (link != null) link.RefreshColor();
-        }
+        if (outgoingLinks != null)
+            foreach (var link in outgoingLinks)
+                if (link != null) link.RefreshColor();
+
+        // 자식 노드들 시각 갱신
+        foreach (var node in FindObjectsOfType<SkillNode>())
+            if (node.prerequisites != null)
+                foreach (var pre in node.prerequisites)
+                    if (pre == this) { node.UpdateVisual(); break; }
+
+        if (SkillTreeUI.Instance != null) SkillTreeUI.Instance.UpdateButtonState();
     }
 
-    private void UpdateVisual()
-    {
-        if (iconImage == null) return;
-
-        if (isSelected)
-        {
-            iconImage.color = Color.green; // ���õ� ���
-        }
-        else
-        {
-            iconImage.color = IsUnlocked ? unlockedColor : lockedColor;
-        }
-    }
-
+    // ─── 조건 ───────────────────────────────
     public bool CanUnlock()
     {
         if (IsUnlocked) return false;
-
-        foreach (var pre in prerequisites)
-        {
-            if (!pre.IsUnlocked)
-                return false;
-        }
-
+        if (prerequisites != null)
+            foreach (var pre in prerequisites)
+                if (pre != null && !pre.IsUnlocked) return false;
         return true;
     }
 
-    public void SetSelected(bool selected)
+    // ─── 시각 ───────────────────────────────
+    public void UpdateVisual()
     {
-        isSelected = selected;
-        UpdateVisual();
+        Image target = frameImage != null ? frameImage : iconImage;
+        if (target == null) return;
+
+        if (isSelected)         target.color = selectedColor;
+        else if (IsUnlocked)    target.color = unlockedColor;
+        else if (CanUnlock())   target.color = availableColor;
+        else                    target.color = lockedColor;
+
+        if (costText != null)
+            costText.text = IsUnlocked ? "✔" : unlockCost.ToString();
     }
 }

@@ -1,81 +1,151 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ChainLightningSkill : SkillBase
 {
     public EnemyManager enemyManager;
-    public GameObject lightningEffectPrefab; // 번개 이펙트 프리팹
+    public GameObject lightningEffectPrefab;
+    public GameObject cloudVisualPrefab;
+    private float cloudTimer;
+    private Transform cloudAnchor;
+    private const float CloudHeight = 1.8f;
 
-    protected override void Execute()
+    protected override void Execute(Transform player)
     {
-        if (enemyManager == null) enemyManager = FindFirstObjectByType<EnemyManager>();
+        if (IsCloudEnabled()) return;
 
-        SkillLevelData current = instance.GetCurrentLevelData();
-        Transform firstTarget = FindNearestEnemy(transform.position, current.range);
-
-        if (firstTarget != null)
-        {
-            StartCoroutine(ChainRoutine(firstTarget, current));
-        }
+        LaunchLightning(player);
     }
 
-    IEnumerator ChainRoutine(Transform firstTarget, SkillLevelData ld)
+    void Update()
     {
-        Transform currentTarget = firstTarget;
-        HashSet<Transform> hitTargets = new HashSet<Transform>();
-
-        for (int i = 0; i < ld.count; i++)
+        if (IsCloudEnabled())
         {
-            if (currentTarget == null) break;
-
-            // 시각적 연출: 루프 내부에서 생성할 때 바로 Destroy를 걸어줘야 합니다.
-            if (lightningEffectPrefab != null)
+            EnsureCloudVisual();
+            cloudTimer += Time.deltaTime;
+            if (cloudTimer >= 1.0f)
             {
-                GameObject effect = Instantiate(lightningEffectPrefab, currentTarget.position, Quaternion.identity);
-                // 생성하자마자 0.3~0.5초 뒤 삭제 예약
-                Destroy(effect, 0.5f);
+                cloudTimer = 0;
+                if (cloudAnchor != null)
+                    cloudAnchor.position = transform.position + Vector3.up * CloudHeight;
+                LaunchLightning(cloudAnchor != null ? cloudAnchor : transform, true);
             }
-
-            float finalDamage = ld.damage * Mathf.Pow(0.75f, i);
-            ApplyDamage(currentTarget, finalDamage);
-            hitTargets.Add(currentTarget);
-
-            Transform nextTarget = FindNearestEnemy(currentTarget.position, ld.range, hitTargets);
-            if (nextTarget == null) break;
-
-            yield return new WaitForSeconds(0.1f);
-            currentTarget = nextTarget;
         }
-
-        // ❌ 기존 루프 바깥에 있던 이펙트 생성 코드는 이제 필요 없으므로 삭제해도 됩니다.
-    }
-
-    private void ApplyDamage(Transform target, float dmg)
-    {
-        target.GetComponent<EnemyHealth>()?.TakeDamage(dmg);
-    }
-
-    private Transform FindNearestEnemy(Vector2 pos, float range, HashSet<Transform> ignore = null)
-    {
-        Transform closest = null;
-        float minDst = range;
-        foreach (var enemy in enemyManager.activeEnemies)
+        else
         {
-            if (enemy == null || !enemy.gameObject.activeInHierarchy || (ignore != null && ignore.Contains(enemy.transform))) continue;
-            float dst = Vector2.Distance(pos, enemy.transform.position);
-            if (dst < minDst) { minDst = dst; closest = enemy.transform; }
+            CleanupCloudVisual();
         }
-        return closest;
     }
 
-    // 에디터에서 공격 사거리를 표시
-    private void OnDrawGizmosSelected()
+    // ChainLightningSkill.cs 내부의 LaunchLightning 함수 수정
+    private void LaunchLightning(Transform caster, bool singleStrike = false)
     {
-        if (instance == null) return;
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, instance.GetCurrentLevelData().range);
+        var ld = instance.GetCurrentLevelData();
+        // ⭐ instance 대신 instance.data를 전달하여 에러 해결
+        var bonus = PlayerStats.Instance.GetSkillBonus(instance.data);
+
+        Transform target = GetNearestEnemy(caster, ld.range);
+
+        if (target != null)
+        {
+            GameObject obj = Instantiate(lightningEffectPrefab, caster.position, Quaternion.identity);
+            ChainLightning cl = obj.GetComponent<ChainLightning>();
+
+            if (cl != null)
+            {
+                // 보너스가 반영된 최종 수치 전달
+                float finalDamage = ld.damage * bonus.dmg;
+                int finalCount = singleStrike ? 1 : Mathf.RoundToInt(ld.count + bonus.cnt);
+                float finalRange = ld.range * bonus.rng;
+
+                cl.Setup(finalDamage, finalCount, finalRange, caster);
+                cl.StartChain(target);
+            }
+        }
     }
 
+    private Transform GetNearestEnemy(Transform caster, float range)
+    {
+        if (enemyManager == null || enemyManager.activeEnemies == null) return null;
 
+        Transform nearest = null;
+        float minTargetDist = range;
+
+        for (int i = 0; i < enemyManager.activeEnemies.Count; i++)
+        {
+            var enemy = enemyManager.activeEnemies[i];
+
+            // ⭐ 수정: enemy.activeInHierarchy -> enemy.gameObject.activeInHierarchy
+            if (enemy == null || !enemy.gameObject.activeInHierarchy) continue;
+
+            float dist = Vector2.Distance(caster.position, enemy.transform.position);
+            if (dist < minTargetDist)
+            {
+                minTargetDist = dist;
+                nearest = enemy.transform; // EnemyAI의 트랜스폼 참조
+            }
+        }
+        return nearest;
+    }
+
+    private bool IsCloudEnabled()
+    {
+        if (PlayerStats.Instance == null) return false;
+        return PlayerStats.Instance.HasAnySpecialty("Lightning_Cloud", "Special_LightningCloud", "ChainLightning_Cloud");
+    }
+
+    private void EnsureCloudVisual()
+    {
+        if (cloudAnchor != null)
+        {
+            cloudAnchor.position = transform.position + Vector3.up * CloudHeight;
+            return;
+        }
+
+        GameObject cloudObject;
+        if (cloudVisualPrefab != null)
+        {
+            cloudObject = Instantiate(cloudVisualPrefab, transform.position + Vector3.up * CloudHeight, Quaternion.identity);
+        }
+        else
+        {
+            cloudObject = CreateFallbackCloudVisual();
+            cloudObject.transform.position = transform.position + Vector3.up * CloudHeight;
+        }
+
+        cloudObject.name = "LightningCloudVisual";
+        cloudObject.transform.SetParent(transform, true);
+        cloudAnchor = cloudObject.transform;
+    }
+
+    private void CleanupCloudVisual()
+    {
+        if (cloudAnchor == null) return;
+        Destroy(cloudAnchor.gameObject);
+        cloudAnchor = null;
+    }
+
+    private GameObject CreateFallbackCloudVisual()
+    {
+        GameObject cloudObject = new GameObject("LightningCloudFallback");
+        ParticleSystem ps = cloudObject.AddComponent<ParticleSystem>();
+        var main = ps.main;
+        main.loop = true;
+        main.startLifetime = 0.8f;
+        main.startSpeed = 0.1f;
+        main.startSize = 0.45f;
+        main.maxParticles = 30;
+        main.startColor = new Color(0.6f, 0.8f, 1f, 0.9f);
+
+        var emission = ps.emission;
+        emission.rateOverTime = 20f;
+
+        var shape = ps.shape;
+        shape.shapeType = ParticleSystemShapeType.Circle;
+        shape.radius = 0.35f;
+
+        var renderer = ps.GetComponent<ParticleSystemRenderer>();
+        renderer.sortingOrder = 200;
+
+        return cloudObject;
+    }
 }

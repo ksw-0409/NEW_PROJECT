@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157709a3f0fd20b4bbf9d23169edb07a, type: 3}
+  m_Name: PosionArrowData
+  m_EditorClassIdentifier: Assembly-CSharp::ArrowPassiveData
+  skillName: Posion Arrow
+  icon: {fileID: 0}
+  description: 
+  levels:
+  - cooldown: 0
+    count: 0
+    damage: 4
+    multiplier: 0.1
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 3
+    tickInterval: 0.1
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 6
+    multiplier: 0.15
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 3
+    tickInterval: 0.15
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 6
+    multiplier: 0.15
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 5
+    tickInterval: 0.15
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 8
+    multiplier: 0.2
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 5
+    tickInterval: 0.2
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 8
+    multiplier: 0.2
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 7
+    tickInterval: 0.2
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 12
+    multiplier: 0.3
+    range: 0
+    angle: 0
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 7
+    tickInterval: 0.3
+    pierce: 0
+  arrowSprite: {fileID: 8615373810413218145, guid: e7e68a5296dc66045a2a56a0303bd5a1, type: 3}
+  arrowColor: {r: 0.7875009, g: 0.033018887, b: 1, a: 1}

@@ -6,28 +6,29 @@ public abstract class SkillBase : MonoBehaviour
     protected SkillData data;
     protected SkillInstance instance;
 
-    public void Init(SkillData data, SkillInstance instance)
+    public void Init(SkillInstance instance)
     {
-        this.data = data;
         this.instance = instance;
-
-        //StartCoroutine(AutoCast());
     }
 
     protected virtual void Start()
     {
         StartCoroutine(AutoCast());
     }
+    // 추상 메서드 정의 (Transform을 받도록 유지)
+    protected abstract void Execute(Transform player);
+
     protected IEnumerator AutoCast()
     {
         while (true)
         {
             yield return new WaitForSeconds(GetCooldown());
-            Execute();
+
+            // 에러 해결: Execute 호출 시 인자를 넣어줘야 합니다.
+            // SkillBase가 MonoBehaviour를 상속받으므로 'this.transform'을 넘겨주면 됩니다.
+            Execute(this.transform);
         }
     }
-
-    protected abstract void Execute();
 
     protected float GetDamage()
     {

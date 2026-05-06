@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157709a3f0fd20b4bbf9d23169edb07a, type: 3}
+  m_Name: ExplosionArrowData
+  m_EditorClassIdentifier: Assembly-CSharp::ArrowPassiveData
+  skillName: Explosion Arrow
+  icon: {fileID: 0}
+  description: 
+  levels:
+  - cooldown: 0
+    count: 0
+    damage: 10
+    multiplier: 0.1
+    range: 0
+    angle: 0
+    projectileSpeed: 10
+    explosionRadius: 1
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 12
+    multiplier: 0.15
+    range: 0
+    angle: 0
+    projectileSpeed: 10
+    explosionRadius: 1
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 12
+    multiplier: 0.15
+    range: 0
+    angle: 0
+    projectileSpeed: 10
+    explosionRadius: 1.25
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 15
+    multiplier: 0.2
+    range: 0
+    angle: 0
+    projectileSpeed: 10
+    explosionRadius: 1.25
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 15
+    multiplier: 0.2
+    range: 0
+    angle: 0
+    projectileSpeed: 10
+    explosionRadius: 1.5625
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 0
+    count: 0
+    damage: 20
+    multiplier: 0.3
+    range: 0
+    angle: 0
+    projectileSpeed: 10
+    explosionRadius: 1.5625
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  arrowSprite: {fileID: 6716665274705198843, guid: 1d81b991bc80edb43bbd6c2f7b676c89, type: 3}
+  arrowColor: {r: 1, g: 1, b: 1, a: 1}

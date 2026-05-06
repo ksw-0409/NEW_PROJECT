@@ -11,7 +11,7 @@ public class SkillTreeCameraControl : MonoBehaviour
     [Header("Zoom")]
     [SerializeField] private float zoomSpeed = 0.1f;
     [SerializeField] private float minZoom = 0.5f;
-    [SerializeField] private float maxZoom = 2f;
+    [SerializeField] private float maxZoom = 5f;
 
     [Header("Bounds")]
     [SerializeField] private Vector2 minPosition = new Vector2(-10000, -10000);

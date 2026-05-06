@@ -10,11 +10,11 @@ public class SlamSkill : SkillBase
 
     public void Init(SlamSkillData data, SkillInstance instance)
     {
-        base.Init(data, instance);
+        base.Init(instance);
         slamData = data;
     }
 
-    protected override void Execute()
+    protected override void Execute(Transform player)
     {
         if (slamData == null || instance == null) return;
 
