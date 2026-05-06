@@ -150,15 +150,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 39054933}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 14652291}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &14652291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,15 +261,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 1330409894}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 24552599}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &24552599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,16 +467,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 644915809}
   outgoingLinks:
   - {fileID: 1802720588}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 39054934}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &39054934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -675,15 +717,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites: []
   outgoingLinks:
   - {fileID: 2013260955}
   lockedColor: {r: 0.2, g: 0.18, b: 0.08, a: 1}
   unlockedColor: {r: 1, g: 0.82, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 62379115}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &62379115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1024,15 +1080,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 154606639}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 73980215}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &73980215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1102,16 +1172,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1524111085}
   outgoingLinks:
   - {fileID: 1015851903}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 74230674}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &74230674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1337,15 +1421,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 248999764}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 90916381}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &90916381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1529,16 +1627,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1488384851}
   outgoingLinks:
   - {fileID: 769116704}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 108360534}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &108360534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1647,16 +1759,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 389557191}
   outgoingLinks:
   - {fileID: 965816327}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 154606640}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &154606640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2000,15 +2126,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites: []
   outgoingLinks:
   - {fileID: 895549853}
   lockedColor: {r: 0.2, g: 0.18, b: 0.08, a: 1}
   unlockedColor: {r: 1, g: 0.82, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 174455651}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &174455651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2067,6 +2207,143 @@ RectTransform:
   m_AnchoredPosition: {x: 456.50714, y: 148.32816}
   m_SizeDelta: {x: 68, y: 68}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &175661916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 175661917}
+  - component: {fileID: 175661919}
+  - component: {fileID: 175661918}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &175661917
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175661916}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1936455708}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &175661918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175661916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "\uACC4\uC18D\uD558\uAE30"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: ac2af3832641cca429f9907c7e80cc3c, type: 2}
+  m_sharedMaterial: {fileID: -4100585044338009816, guid: ac2af3832641cca429f9907c7e80cc3c, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &175661919
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175661916}
+  m_CullTransparentMesh: 1
 --- !u!1 &176468107
 GameObject:
   m_ObjectHideFlags: 0
@@ -2288,15 +2565,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 554080322}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 185508538}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &185508538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2637,16 +2928,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 2138168052}
   outgoingLinks:
   - {fileID: 1115066045}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 246098138}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &246098138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2685,6 +2990,86 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 246098135}
   m_CullTransparentMesh: 1
+--- !u!1 &248820685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 248820688}
+  - component: {fileID: 248820687}
+  - component: {fileID: 248820686}
+  m_Layer: 5
+  m_Name: GameOverPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &248820686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248820685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &248820687
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248820685}
+  m_CullTransparentMesh: 1
+--- !u!224 &248820688
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248820685}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 283980025}
+  - {fileID: 1330318941}
+  - {fileID: 1680507856}
+  - {fileID: 599495807}
+  - {fileID: 1302183826}
+  m_Father: {fileID: 901664024}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &248999763
 GameObject:
   m_ObjectHideFlags: 0
@@ -2716,16 +3101,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1272327334}
   outgoingLinks:
   - {fileID: 1423377907}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 248999765}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &248999765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2952,16 +3351,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1821748796}
   outgoingLinks:
   - {fileID: 1879032311}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 269341248}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &269341248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3114,6 +3527,127 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &283980024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 283980025}
+  - component: {fileID: 283980027}
+  - component: {fileID: 283980026}
+  - component: {fileID: 283980028}
+  m_Layer: 5
+  m_Name: Return
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &283980025
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283980024}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1871331604}
+  m_Father: {fileID: 248820688}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 659, y: -460}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &283980026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283980024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &283980027
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283980024}
+  m_CullTransparentMesh: 1
+--- !u!114 &283980028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283980024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 283980026}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &287327641
 GameObject:
   m_ObjectHideFlags: 0
@@ -3260,16 +3794,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 303619120}
   outgoingLinks:
   - {fileID: 35820744}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 288760783}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &288760783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3571,8 +4119,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 2097640267}
   outgoingLinks:
@@ -3581,8 +4140,11 @@ MonoBehaviour:
   - {fileID: 1588653381}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 303619121}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &303619121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3640,6 +4202,83 @@ RectTransform:
   m_AnchoredPosition: {x: 493.73962, y: 679.5743}
   m_SizeDelta: {x: 56, y: 56}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &305753458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 305753459}
+  - component: {fileID: 305753461}
+  - component: {fileID: 305753460}
+  m_Layer: 5
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &305753459
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305753458}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1936455708}
+  - {fileID: 935804531}
+  m_Father: {fileID: 543817174}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &305753460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305753458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &305753461
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305753458}
+  m_CullTransparentMesh: 1
 --- !u!1 &313593739
 GameObject:
   m_ObjectHideFlags: 0
@@ -4135,16 +4774,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1272327334}
   outgoingLinks:
   - {fileID: 548790466}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 363703925}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &363703925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4254,16 +4907,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 828590479}
   outgoingLinks:
   - {fileID: 1521042321}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 368902471}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &368902471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4470,8 +5137,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 592127938}
   outgoingLinks:
@@ -4480,8 +5158,11 @@ MonoBehaviour:
   - {fileID: 754597761}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 389557192}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &389557192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5034,15 +5715,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites: []
   outgoingLinks:
   - {fileID: 70478177}
   lockedColor: {r: 0.2, g: 0.18, b: 0.08, a: 1}
   unlockedColor: {r: 1, g: 0.82, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 446266292}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &446266292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5398,15 +6093,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 1719487023}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 463916867}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &463916867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5540,6 +6249,143 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &469959890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 469959891}
+  - component: {fileID: 469959893}
+  - component: {fileID: 469959892}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &469959891
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469959890}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 935804531}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &469959892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469959890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "\uC885\uB8CC\uD558\uAE30"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: ac2af3832641cca429f9907c7e80cc3c, type: 2}
+  m_sharedMaterial: {fileID: -4100585044338009816, guid: ac2af3832641cca429f9907c7e80cc3c, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &469959893
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469959890}
+  m_CullTransparentMesh: 1
 --- !u!1 &497994290
 GameObject:
   m_ObjectHideFlags: 0
@@ -5571,15 +6417,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 814532510}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 497994292}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &497994292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5858,15 +6718,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites: []
   outgoingLinks:
   - {fileID: 1447585475}
   lockedColor: {r: 0.2, g: 0.18, b: 0.08, a: 1}
   unlockedColor: {r: 1, g: 0.82, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 525757023}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &525757023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6157,6 +7031,124 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &543817169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 543817174}
+  - component: {fileID: 543817173}
+  - component: {fileID: 543817172}
+  - component: {fileID: 543817171}
+  - component: {fileID: 543817170}
+  m_Layer: 5
+  m_Name: PauseCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &543817170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543817169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2ab420ac4d0cb4cb124628db12151f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenuUI
+  pausePanel: {fileID: 305753458}
+  continueButton: {fileID: 1936455711}
+  quitButton: {fileID: 935804527}
+--- !u!114 &543817171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543817169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &543817172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543817169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &543817173
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543817169}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &543817174
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543817169}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 305753459}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &545595178
 GameObject:
   m_ObjectHideFlags: 0
@@ -6188,16 +7180,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1448290034}
   outgoingLinks:
   - {fileID: 1072170793}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 545595180}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &545595180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6518,16 +7524,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 821700082}
   outgoingLinks:
   - {fileID: 769025846}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 554080323}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &554080323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7176,16 +8196,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1894428868}
   outgoingLinks:
   - {fileID: 1577066594}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 592127939}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &592127939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7274,15 +8308,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites: []
   outgoingLinks:
   - {fileID: 954860373}
   lockedColor: {r: 0.2, g: 0.18, b: 0.08, a: 1}
   unlockedColor: {r: 1, g: 0.82, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 593337556}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &593337556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7436,6 +8484,143 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &599495806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 599495807}
+  - component: {fileID: 599495808}
+  - component: {fileID: 599495809}
+  m_Layer: 5
+  m_Name: Gold
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &599495807
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599495806}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 248820688}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -695, y: 66}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &599495808
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599495806}
+  m_CullTransparentMesh: 1
+--- !u!114 &599495809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599495806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: New Text
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: ac2af3832641cca429f9907c7e80cc3c, type: 2}
+  m_sharedMaterial: {fileID: -4100585044338009816, guid: ac2af3832641cca429f9907c7e80cc3c, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &611033601 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 30316419374980630, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
@@ -7704,15 +8889,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 1011899825}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 637828470}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &637828470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7801,8 +9000,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1851008365}
   outgoingLinks:
@@ -7811,8 +9021,11 @@ MonoBehaviour:
   - {fileID: 1590826658}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 644915810}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &644915810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8091,16 +9304,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 593337555}
   outgoingLinks:
   - {fileID: 1277286132}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 666348282}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &666348282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8465,15 +9692,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 1142769832}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 716134833}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &716134833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8543,15 +9784,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 1170572438}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 723771225}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &723771225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9283,15 +10538,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 1604674369}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 762631368}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &762631368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9856,16 +11125,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1703190338}
   outgoingLinks:
   - {fileID: 185292986}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 799199420}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &799199420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9955,15 +11238,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites: []
   outgoingLinks:
   - {fileID: 624072131}
   lockedColor: {r: 0.2, g: 0.18, b: 0.08, a: 1}
   unlockedColor: {r: 1, g: 0.82, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 800978684}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &800978684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10053,16 +11350,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 828590479}
   outgoingLinks:
   - {fileID: 313593740}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 804265254}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &804265254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10152,16 +11463,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 2138168052}
   outgoingLinks:
   - {fileID: 1190769297}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 814532511}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &814532511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10251,8 +11576,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1155271672}
   outgoingLinks:
@@ -10261,8 +11597,11 @@ MonoBehaviour:
   - {fileID: 646841640}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 821700083}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &821700083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10351,8 +11690,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1997202793}
   outgoingLinks:
@@ -10361,8 +11711,11 @@ MonoBehaviour:
   - {fileID: 1468183984}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 828590480}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &828590480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10608,16 +11961,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 644915809}
   outgoingLinks:
   - {fileID: 1102389151}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 842907513}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &842907513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10983,6 +12350,127 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &901664019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 901664024}
+  - component: {fileID: 901664023}
+  - component: {fileID: 901664022}
+  - component: {fileID: 901664021}
+  - component: {fileID: 901664020}
+  m_Layer: 5
+  m_Name: GameOverCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &901664020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901664019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0411d2c32da39a54cae51476a08db12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameOverUI
+  floorText: {fileID: 1330318943}
+  playTimeText: {fileID: 1680507858}
+  goldText: {fileID: 599495809}
+  itemText: {fileID: 1302183828}
+  returnButton: {fileID: 283980028}
+  gameOverPanel: {fileID: 248820685}
+--- !u!114 &901664021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901664019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &901664022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901664019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &901664023
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901664019}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &901664024
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901664019}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 248820688}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &919024195
 GameObject:
   m_ObjectHideFlags: 0
@@ -11014,8 +12502,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1148394161}
   outgoingLinks:
@@ -11024,8 +12523,11 @@ MonoBehaviour:
   - {fileID: 1799967056}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 919024197}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &919024197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11101,7 +12603,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &928586735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11218,16 +12720,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 2013663634}
   outgoingLinks:
   - {fileID: 1671816857}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 933487841}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &933487841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11285,6 +12801,143 @@ RectTransform:
   m_AnchoredPosition: {x: 570.6339, y: -185.41019}
   m_SizeDelta: {x: 56, y: 56}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &935804526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 935804531}
+  - component: {fileID: 935804530}
+  - component: {fileID: 935804528}
+  - component: {fileID: 935804527}
+  - component: {fileID: 935804529}
+  m_Layer: 5
+  m_Name: Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &935804527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935804526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 935804528}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &935804528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935804526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &935804529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935804526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2ab420ac4d0cb4cb124628db12151f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenuUI
+  pausePanel: {fileID: 0}
+  continueButton: {fileID: 0}
+  quitButton: {fileID: 0}
+--- !u!222 &935804530
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935804526}
+  m_CullTransparentMesh: 1
+--- !u!224 &935804531
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935804526}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 469959891}
+  m_Father: {fileID: 305753459}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 400, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &936882881
 GameObject:
   m_ObjectHideFlags: 0
@@ -11316,15 +12969,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 799199419}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 936882883}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &936882883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11508,15 +13175,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 2012182137}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 952301246}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &952301246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12122,15 +13803,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 1077016219}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 977151921}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &977151921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12600,15 +14295,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 1423885009}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 996899205}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &996899205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12971,16 +14680,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 303619120}
   outgoingLinks:
   - {fileID: 2026927200}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1011899826}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1011899826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13302,16 +15025,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 800978683}
   outgoingLinks:
   - {fileID: 176468108}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1032718113}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1032718113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13822,16 +15559,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 644915809}
   outgoingLinks:
   - {fileID: 1561166370}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1077016220}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1077016220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14248,16 +15999,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 303619120}
   outgoingLinks:
   - {fileID: 1417865325}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1116789401}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1116789401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14367,16 +16132,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 919024196}
   outgoingLinks:
   - {fileID: 1675291283}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1142769833}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1142769833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14446,16 +16225,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 74230673}
   outgoingLinks:
   - {fileID: 946114079}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1148394162}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1148394162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14544,16 +16337,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 933487840}
   outgoingLinks:
   - {fileID: 2102708681}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1155271673}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1155271673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14642,16 +16449,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1703190338}
   outgoingLinks:
   - {fileID: 2086386853}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1170572439}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1170572439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14903,6 +16724,7 @@ RectTransform:
   m_Children:
   - {fileID: 1350143455}
   - {fileID: 64147889}
+  - {fileID: 1536335595}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -14989,15 +16811,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 363703924}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1200322965}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1200322965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15105,15 +16941,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 1226761121}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1206494263}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1206494263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15278,16 +17128,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 919024196}
   outgoingLinks:
   - {fileID: 1780338227}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1215777253}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1215777253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15397,16 +17261,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1272327334}
   outgoingLinks:
   - {fileID: 197800450}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1226761122}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1226761122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15476,15 +17354,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 2069415062}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1236913738}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1236913738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15847,15 +17739,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 804265253}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1250402755}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1250402755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15944,16 +17850,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 525757022}
   outgoingLinks:
   - {fileID: 1758137271}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1261156779}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1261156779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16042,8 +17962,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1944670810}
   outgoingLinks:
@@ -16052,8 +17983,11 @@ MonoBehaviour:
   - {fileID: 1666343056}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1272327335}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1272327335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16256,15 +18190,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 368902470}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1282706535}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1282706535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16349,7 +18297,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillTreeUI
   selectedNode: {fileID: 0}
-  upgradeButton: {fileID: 0}
+  unlockButton: {fileID: 0}
+  infoPanel: {fileID: 0}
+  infoNodeNameText: {fileID: 0}
+  infoNodeDescText: {fileID: 0}
+  infoNodeCostText: {fileID: 0}
+  infoNodeStatusText: {fileID: 0}
 --- !u!1 &1283098529
 GameObject:
   m_ObjectHideFlags: 0
@@ -16582,6 +18535,143 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1302183825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1302183826}
+  - component: {fileID: 1302183827}
+  - component: {fileID: 1302183828}
+  m_Layer: 5
+  m_Name: Item
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1302183826
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302183825}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 248820688}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -695, y: -56}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1302183827
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302183825}
+  m_CullTransparentMesh: 1
+--- !u!114 &1302183828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302183825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: New Text
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: ac2af3832641cca429f9907c7e80cc3c, type: 2}
+  m_sharedMaterial: {fileID: -4100585044338009816, guid: ac2af3832641cca429f9907c7e80cc3c, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1308961634
 GameObject:
   m_ObjectHideFlags: 0
@@ -16613,15 +18703,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 842907512}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1308961636}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1308961636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16984,15 +19088,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 1899011277}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1317897707}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1317897707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17145,6 +19263,143 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1330318940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1330318941}
+  - component: {fileID: 1330318942}
+  - component: {fileID: 1330318943}
+  m_Layer: 5
+  m_Name: Floor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1330318941
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330318940}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 248820688}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -695, y: 329}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1330318942
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330318940}
+  m_CullTransparentMesh: 1
+--- !u!114 &1330318943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330318940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: New Text
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: ac2af3832641cca429f9907c7e80cc3c, type: 2}
+  m_sharedMaterial: {fileID: -4100585044338009816, guid: ac2af3832641cca429f9907c7e80cc3c, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1330409893
 GameObject:
   m_ObjectHideFlags: 0
@@ -17176,16 +19431,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 389557191}
   outgoingLinks:
   - {fileID: 505096731}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1330409895}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1330409895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18530,16 +20799,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1414366603}
   outgoingLinks:
   - {fileID: 1726815373}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1393297491}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1393297491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18628,15 +20911,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 1116789400}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1400545195}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1400545195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18862,16 +21159,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 446266291}
   outgoingLinks:
   - {fileID: 1896893811}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1414366604}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1414366604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19150,16 +21461,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 919024196}
   outgoingLinks:
   - {fileID: 1617181237}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1423885010}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1423885010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19709,16 +22034,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 62379114}
   outgoingLinks:
   - {fileID: 511128302}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1448290035}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1448290035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20283,15 +22622,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 2073374573}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1469464355}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1469464355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20593,15 +22946,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites: []
   outgoingLinks:
   - {fileID: 1433479137}
   lockedColor: {r: 0.2, g: 0.18, b: 0.08, a: 1}
   unlockedColor: {r: 1, g: 0.82, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1488384852}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1488384852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20960,15 +23327,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites: []
   outgoingLinks:
   - {fileID: 1321649502}
   lockedColor: {r: 0.2, g: 0.18, b: 0.08, a: 1}
   unlockedColor: {r: 1, g: 0.82, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1524111086}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1524111086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21122,6 +23503,158 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1536335594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1536335595}
+  - component: {fileID: 1536335598}
+  - component: {fileID: 1536335597}
+  - component: {fileID: 1536335596}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1536335595
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536335594}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1197221766}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -855, y: 509}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1536335596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536335594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05ac3beff7720174cb54f35d0650e9b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HUDHealthUI
+  healthText: {fileID: 1536335597}
+  playerStats: {fileID: 2026055332}
+--- !u!114 &1536335597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536335594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: New Text
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: ac2af3832641cca429f9907c7e80cc3c, type: 2}
+  m_sharedMaterial: {fileID: -4100585044338009816, guid: ac2af3832641cca429f9907c7e80cc3c, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1536335598
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536335594}
+  m_CullTransparentMesh: 1
 --- !u!1 &1557051274
 GameObject:
   m_ObjectHideFlags: 0
@@ -21343,8 +23876,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1902642814}
   outgoingLinks:
@@ -21353,8 +23897,11 @@ MonoBehaviour:
   - {fileID: 1519347984}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1561539846}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1561539846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21653,16 +24200,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1703190338}
   outgoingLinks:
   - {fileID: 1907012839}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1585792856}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1585792856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21751,15 +24312,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 288760782}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1588289702}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1588289702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22114,16 +24689,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1561539845}
   outgoingLinks:
   - {fileID: 1838833484}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1604674370}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1604674370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22707,6 +25296,143 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1680507855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1680507856}
+  - component: {fileID: 1680507857}
+  - component: {fileID: 1680507858}
+  m_Layer: 5
+  m_Name: PlayTime
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1680507856
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680507855}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 248820688}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -695, y: 194}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1680507857
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680507855}
+  m_CullTransparentMesh: 1
+--- !u!114 &1680507858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680507855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: New Text
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: ac2af3832641cca429f9907c7e80cc3c, type: 2}
+  m_sharedMaterial: {fileID: -4100585044338009816, guid: ac2af3832641cca429f9907c7e80cc3c, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1703190337
 GameObject:
   m_ObjectHideFlags: 0
@@ -22738,8 +25464,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 545595179}
   outgoingLinks:
@@ -22748,8 +25485,11 @@ MonoBehaviour:
   - {fileID: 1074246549}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1703190339}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1703190339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22858,16 +25598,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 821700082}
   outgoingLinks:
   - {fileID: 467573282}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1719487024}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1719487024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24250,15 +27004,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 0
   prerequisites: []
   outgoingLinks:
   - {fileID: 540377014}
   lockedColor: {r: 0.2, g: 0.18, b: 0.08, a: 1}
   unlockedColor: {r: 1, g: 0.82, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1821748797}
-  unlockCost: 0
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1821748797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24367,15 +27135,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 246098137}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1827769010}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1827769010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24814,16 +27596,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 269341247}
   outgoingLinks:
   - {fileID: 1582455960}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1851008366}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1851008366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24912,15 +27708,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 2062097541}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1852781398}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1852781398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25115,6 +27925,143 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871225611}
   m_CullTransparentMesh: 1
+--- !u!1 &1871331603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1871331604}
+  - component: {fileID: 1871331606}
+  - component: {fileID: 1871331605}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1871331604
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871331603}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 283980025}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1871331605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871331603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Button
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1871331606
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871331603}
+  m_CullTransparentMesh: 1
 --- !u!1 &1878515250
 GameObject:
   m_ObjectHideFlags: 0
@@ -25146,16 +28093,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 389557191}
   outgoingLinks:
   - {fileID: 1599522015}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1878515252}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1878515252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25340,16 +28301,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 174455650}
   outgoingLinks:
   - {fileID: 420252226}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1894428869}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1894428869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25552,15 +28527,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 1585792855}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1898537857}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1898537857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25630,16 +28619,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 2138168052}
   outgoingLinks:
   - {fileID: 659953557}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1899011278}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1899011278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25729,16 +28732,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 666348281}
   outgoingLinks:
   - {fileID: 1946070977}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1902642815}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1902642815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25891,6 +28908,127 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1936455707
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1936455708}
+  - component: {fileID: 1936455710}
+  - component: {fileID: 1936455709}
+  - component: {fileID: 1936455711}
+  m_Layer: 5
+  m_Name: Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1936455708
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936455707}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 175661917}
+  m_Father: {fileID: 305753459}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -429, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1936455709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936455707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1936455710
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936455707}
+  m_CullTransparentMesh: 1
+--- !u!114 &1936455711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936455707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1936455709}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1944670809
 GameObject:
   m_ObjectHideFlags: 0
@@ -25922,16 +29060,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 108360533}
   outgoingLinks:
   - {fileID: 577475964}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1944670811}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1944670811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26754,16 +29906,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1032718112}
   outgoingLinks:
   - {fileID: 282277966}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1997202794}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1997202794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27084,16 +30250,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 821700082}
   outgoingLinks:
   - {fileID: 412088539}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 2012182138}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &2012182138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27278,15 +30458,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites: []
   outgoingLinks:
   - {fileID: 1987362366}
   lockedColor: {r: 0.2, g: 0.18, b: 0.08, a: 1}
   unlockedColor: {r: 1, g: 0.82, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 2013663635}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &2013663635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27567,15 +30761,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 1215777252}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 2051443958}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &2051443958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27759,16 +30967,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1561539845}
   outgoingLinks:
   - {fileID: 90978906}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 2062097542}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &2062097542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27858,16 +31080,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 828590479}
   outgoingLinks:
   - {fileID: 1803403178}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 2069415063}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &2069415063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27977,16 +31213,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1561539845}
   outgoingLinks:
   - {fileID: 572238909}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 2073374574}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &2073374574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28288,16 +31538,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1261156778}
   outgoingLinks:
   - {fileID: 323151630}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 2097640268}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &2097640268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28713,8 +31977,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 2
   prerequisites:
   - {fileID: 1393297490}
   outgoingLinks:
@@ -28723,8 +31998,11 @@ MonoBehaviour:
   - {fileID: 287327642}
   lockedColor: {r: 0.18, g: 0.18, b: 0.22, a: 1}
   unlockedColor: {r: 0.25, g: 0.6, b: 1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 2138168053}
-  unlockCost: 2
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &2138168053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28813,15 +32091,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: 
-  level: 0
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 3
   prerequisites:
   - {fileID: 1878515251}
   outgoingLinks: []
   lockedColor: {r: 0.18, g: 0.12, b: 0.22, a: 1}
   unlockedColor: {r: 1, g: 0.5, b: 0.1, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 2145624088}
-  unlockCost: 3
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &2145624088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29131,3 +32423,5 @@ SceneRoots:
   - {fileID: 671964934}
   - {fileID: 1347155567}
   - {fileID: 928586738}
+  - {fileID: 543817174}
+  - {fileID: 901664024}

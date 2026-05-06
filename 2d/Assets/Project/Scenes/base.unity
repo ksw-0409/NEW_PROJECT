@@ -2251,7 +2251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityUIExtensions::UnityEngine.UI.Extensions.UILineRenderer
   m_Material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3, g: 0.3, b: 0.35, a: 0.6}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2841,16 +2841,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: "\uD30C\uC774\uC5B4\uBCFC \uAE30\uBCF8 4"
-  level: 4
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites:
   - {fileID: 764345666}
   outgoingLinks:
   - {fileID: 1967041352}
   lockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   unlockedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 232417938}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &232417938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3352,10 +3366,10 @@ RectTransform:
   - {fileID: 1643803309}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 160, y: -380}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &269489491
 MonoBehaviour:
@@ -4186,10 +4200,10 @@ RectTransform:
   - {fileID: 1058088416}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 270, y: -380}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &338201762
 MonoBehaviour:
@@ -4402,7 +4416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityUIExtensions::UnityEngine.UI.Extensions.UILineRenderer
   m_Material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3, g: 0.3, b: 0.35, a: 0.6}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6078,7 +6092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityUIExtensions::UnityEngine.UI.Extensions.UILineRenderer
   m_Material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3, g: 0.3, b: 0.35, a: 0.6}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6161,10 +6175,10 @@ RectTransform:
   - {fileID: 779249923}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 490, y: -160}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &451708479
 MonoBehaviour:
@@ -6494,10 +6508,10 @@ RectTransform:
   - {fileID: 1066868651}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 270, y: -490}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &470741829
 MonoBehaviour:
@@ -6705,16 +6719,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: "\uD30C\uC774\uC5B4\uBCFC \uAE30\uBCF8 2"
-  level: 2
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites:
   - {fileID: 648291723}
   outgoingLinks:
   - {fileID: 1169066096}
   lockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   unlockedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 483586886}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &483586886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7046,10 +7074,10 @@ RectTransform:
   - {fileID: 828790895}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 160, y: -160}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &493507520
 MonoBehaviour:
@@ -7620,8 +7648,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: "\uD30C\uC774\uC5B4\uBCFC \uAE30\uBCF8 9-1"
-  level: 1
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites:
   - {fileID: 904252816}
   outgoingLinks:
@@ -7629,8 +7668,11 @@ MonoBehaviour:
   - {fileID: 183805067}
   lockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   unlockedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 511274220}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &511274220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8120,10 +8162,10 @@ RectTransform:
   - {fileID: 1729092202}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &545900427
 GameObject:
@@ -8837,16 +8879,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: "\uD30C\uC774\uC5B4\uBCFC \uAE30\uBCF8 7"
-  level: 6
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites:
   - {fileID: 1062354884}
   outgoingLinks:
   - {fileID: 1957356153}
   lockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   unlockedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 568450621}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &568450621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9070,7 +9126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityUIExtensions::UnityEngine.UI.Extensions.UILineRenderer
   m_Material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3, g: 0.3, b: 0.35, a: 0.6}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9153,10 +9209,10 @@ RectTransform:
   - {fileID: 469621571}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 380, y: -380}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &580542516
 MonoBehaviour:
@@ -9499,7 +9555,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillTreeUI
   selectedNode: {fileID: 0}
-  upgradeButton: {fileID: 268126249}
+  unlockButton: {fileID: 0}
+  infoPanel: {fileID: 0}
+  infoNodeNameText: {fileID: 0}
+  infoNodeDescText: {fileID: 0}
+  infoNodeCostText: {fileID: 0}
+  infoNodeStatusText: {fileID: 0}
 --- !u!114 &632725912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9670,7 +9731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &639262131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10013,15 +10074,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: "\uD30C\uC774\uC5B4\uBCFC \uAE30\uBCF8 1"
-  level: 1
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites: []
   outgoingLinks:
   - {fileID: 650172039}
   lockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   unlockedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 648291724}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &648291724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10125,7 +10200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityUIExtensions::UnityEngine.UI.Extensions.UILineRenderer
   m_Material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3, g: 0.3, b: 0.35, a: 0.6}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11414,10 +11489,10 @@ RectTransform:
   - {fileID: 1689675699}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 270, y: -270}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &728643705
 MonoBehaviour:
@@ -11718,16 +11793,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: "\uD30C\uC774\uC5B4\uBCFC \uAE30\uBCF8 3"
-  level: 3
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites:
   - {fileID: 483586885}
   outgoingLinks:
   - {fileID: 1530674693}
   lockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   unlockedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 764345667}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &764345667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12514,7 +12603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityUIExtensions::UnityEngine.UI.Extensions.UILineRenderer
   m_Material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3, g: 0.3, b: 0.35, a: 0.6}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12827,10 +12916,10 @@ RectTransform:
   - {fileID: 1978470266}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 490, y: -380}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &842212403
 MonoBehaviour:
@@ -13282,10 +13371,10 @@ RectTransform:
   - {fileID: 2102526499}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 490, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &854215063
 MonoBehaviour:
@@ -14020,15 +14109,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: "\uD30C\uC774\uC5B4\uBCFC \uAE30\uBCF8 6-2"
-  level: 7
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites:
   - {fileID: 1062354884}
   outgoingLinks: []
   lockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   unlockedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 889791656}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &889791656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14117,16 +14220,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: "\uD30C\uC774\uC5B4\uBCFC \uAE30\uBCF8 8"
-  level: 1
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites:
   - {fileID: 568450620}
   outgoingLinks:
   - {fileID: 822500188}
   lockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   unlockedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 904252817}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &904252817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15014,15 +15131,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: "\uD30C\uC774\uC5B4\uBCFC \uAE30\uBCF8 6-3"
-  level: 6
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites:
   - {fileID: 1062354884}
   outgoingLinks: []
   lockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   unlockedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 967622052}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &967622052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15114,10 +15245,10 @@ RectTransform:
   - {fileID: 1150150940}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 270, y: -160}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &976114395
 MonoBehaviour:
@@ -15492,10 +15623,10 @@ RectTransform:
   - {fileID: 1037240028}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 160, y: -490}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1019180235
 MonoBehaviour:
@@ -16844,8 +16975,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: "\uD30C\uC774\uC5B4\uBCFC \uAE30\uBCF8 6-1"
-  level: 6
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites:
   - {fileID: 1745974168}
   outgoingLinks:
@@ -16854,8 +16996,11 @@ MonoBehaviour:
   - {fileID: 574526944}
   lockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   unlockedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1062354885}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1062354885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18601,7 +18746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityUIExtensions::UnityEngine.UI.Extensions.UILineRenderer
   m_Material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3, g: 0.3, b: 0.35, a: 0.6}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -19364,10 +19509,10 @@ RectTransform:
   - {fileID: 498318762}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -270}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1195672554
 MonoBehaviour:
@@ -20185,10 +20330,10 @@ RectTransform:
   - {fileID: 1534481712}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 160, y: -270}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1257228467
 MonoBehaviour:
@@ -20583,15 +20728,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: "\uD30C\uC774\uC5B4\uBCFC \uAE30\uBCF8 9-3"
-  level: 1
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites:
   - {fileID: 232417937}
   outgoingLinks: []
   lockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   unlockedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1308877646}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1308877646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20950,7 +21109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityUIExtensions::UnityEngine.UI.Extensions.UILineRenderer
   m_Material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3, g: 0.3, b: 0.35, a: 0.6}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -21108,10 +21267,10 @@ RectTransform:
   - {fileID: 1003640508}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -490}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1353526891
 MonoBehaviour:
@@ -22217,10 +22376,10 @@ RectTransform:
   - {fileID: 1146704849}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 490, y: -270}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1416854681
 MonoBehaviour:
@@ -22526,6 +22685,12 @@ MonoBehaviour:
   ChainLightningPrefab: {fileID: 0}
   IceRainPrefab: {fileID: 0}
   FireFielfPrefab: {fileID: 0}
+  bowArrowPrefab: {fileID: 0}
+  arrowRainPrefab: {fileID: 0}
+  iceCardAsset: {fileID: 0}
+  explosionCardAsset: {fileID: 0}
+  poisonCardAsset: {fileID: 0}
+  pierceCardAsset: {fileID: 0}
   enemyManager: {fileID: 0}
   equippedSkills: []
   saveSkills: []
@@ -23489,7 +23654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityUIExtensions::UnityEngine.UI.Extensions.UILineRenderer
   m_Material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3, g: 0.3, b: 0.35, a: 0.6}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -24398,15 +24563,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: "\uD30C\uC774\uC5B4\uBCFC \uAE30\uBCF8 9-2"
-  level: 1
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites:
   - {fileID: 232417937}
   outgoingLinks: []
   lockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   unlockedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1604022149}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1604022149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25666,7 +25845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityUIExtensions::UnityEngine.UI.Extensions.UILineRenderer
   m_Material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3, g: 0.3, b: 0.35, a: 0.6}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -26787,16 +26966,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  skillName: "\uD30C\uC774\uC5B4\uBCFC \uAE30\uBCF8 5"
-  level: 5
+  nodeName: 
+  nodeDescription: 
+  targetSkill: {fileID: 0}
+  nodeType: 0
+  damageMultiplier: 1
+  rangeMultiplier: 1
+  cooldownMultiplier: 1
+  countBonus: 0
+  slowPercentMultiplier: 1
+  durationMultiplier: 1
+  specialtyTag: 
+  skillNodeID: 
+  unlockCost: 1
   prerequisites:
   - {fileID: 232417937}
   outgoingLinks:
   - {fileID: 348215742}
   lockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   unlockedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  selectedColor: {r: 0.2, g: 1, b: 0.2, a: 1}
+  availableColor: {r: 0.55, g: 0.8, b: 1, a: 1}
   iconImage: {fileID: 1745974169}
-  unlockCost: 1
+  frameImage: {fileID: 0}
+  costText: {fileID: 0}
 --- !u!114 &1745974169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27665,10 +27858,10 @@ RectTransform:
   - {fileID: 1026140214}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 380, y: -270}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1795124976
 MonoBehaviour:
@@ -29203,10 +29396,10 @@ RectTransform:
   - {fileID: 858959902}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 160, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1897467126
 MonoBehaviour:
@@ -29837,7 +30030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityUIExtensions::UnityEngine.UI.Extensions.UILineRenderer
   m_Material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3, g: 0.3, b: 0.35, a: 0.6}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -29932,7 +30125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityUIExtensions::UnityEngine.UI.Extensions.UILineRenderer
   m_Material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3, g: 0.3, b: 0.35, a: 0.6}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -30272,10 +30465,10 @@ RectTransform:
   - {fileID: 639235410}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -380}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1988374720
 MonoBehaviour:
@@ -30471,10 +30664,10 @@ RectTransform:
   - {fileID: 383352195}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 270, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1990146095
 MonoBehaviour:
@@ -30788,10 +30981,10 @@ RectTransform:
   - {fileID: 447884861}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 380, y: -160}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2030744899
 MonoBehaviour:
@@ -31760,10 +31953,10 @@ RectTransform:
   - {fileID: 559715998}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 380, y: -50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2079794126
 MonoBehaviour:
@@ -32611,10 +32804,10 @@ RectTransform:
   - {fileID: 914662458}
   m_Father: {fileID: 341094755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -160}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2121564332
 MonoBehaviour:
