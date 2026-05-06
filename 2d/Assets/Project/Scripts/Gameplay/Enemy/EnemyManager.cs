@@ -71,7 +71,13 @@ public class EnemyManager : MonoBehaviour
         Vector2 playerPos = player.position;
         for (int i = 0; i < activeEnemies.Count; i++)
         {
-            activeEnemies[i].MoveTaget(playerPos);
+            EnemyAI enemy = activeEnemies[i];
+            if (enemy == null || !enemy.gameObject.activeInHierarchy) continue;
+
+            if (!enemy.IsStunned)
+                enemy.MoveTaget(playerPos);
+
+            enemy.TickCrowdControl(Time.fixedDeltaTime);
         }
     }
 }

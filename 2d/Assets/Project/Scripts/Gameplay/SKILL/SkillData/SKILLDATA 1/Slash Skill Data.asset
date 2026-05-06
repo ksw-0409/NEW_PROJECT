@@ -16,11 +16,50 @@ MonoBehaviour:
   icon: {fileID: 4610387984849099163, guid: 020229f00816d85439cf11c850422781, type: 3}
   description: 
   levels:
-  - cooldown: 1
+  - cooldown: 2
+    count: 1
+    damage: 8
+    multiplier: 0.5
+    range: 2
+    angle: 90
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 2
     count: 1
     damage: 10
-    multiplier: 1
-    range: 3
+    multiplier: 0.6
+    range: 2
+    angle: 90
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 1.5
+    count: 1
+    damage: 10
+    multiplier: 0.6
+    range: 2
+    angle: 90
+    projectileSpeed: 0
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 1.5
+    count: 1
+    damage: 12
+    multiplier: 0.8
+    range: 2
     angle: 90
     projectileSpeed: 0
     explosionRadius: 0
@@ -31,9 +70,9 @@ MonoBehaviour:
     pierce: 0
   - cooldown: 1
     count: 1
-    damage: 10
-    multiplier: 1
-    range: 3
+    damage: 12
+    multiplier: 0.8
+    range: 2
     angle: 90
     projectileSpeed: 0
     explosionRadius: 0
@@ -44,10 +83,10 @@ MonoBehaviour:
     pierce: 0
   - cooldown: 1
     count: 1
-    damage: 10
+    damage: 15
     multiplier: 1
-    range: 0
-    angle: 0
+    range: 2
+    angle: 90
     projectileSpeed: 0
     explosionRadius: 0
     slowPercent: 0
@@ -55,45 +94,6 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  - cooldown: 0
-    count: 0
-    damage: 0
-    multiplier: 0
-    range: 0
-    angle: 0
-    projectileSpeed: 0
-    explosionRadius: 0
-    slowPercent: 0
-    slowDuration: 0
-    duration: 0
-    tickInterval: 0
-    pierce: 0
-  - cooldown: 0
-    count: 0
-    damage: 0
-    multiplier: 0
-    range: 0
-    angle: 0
-    projectileSpeed: 0
-    explosionRadius: 0
-    slowPercent: 0
-    slowDuration: 0
-    duration: 0
-    tickInterval: 0
-    pierce: 0
-  - cooldown: 0
-    count: 0
-    damage: 0
-    multiplier: 0
-    range: 0
-    angle: 0
-    projectileSpeed: 0
-    explosionRadius: 0
-    slowPercent: 0
-    slowDuration: 0
-    duration: 0
-    tickInterval: 0
-    pierce: 0
-  range: 5
+  range: 2
   angle: 90
   effectPrefab: {fileID: 30316419374980630, guid: b18de5af77bd21d4db6309edb90c4732, type: 3}

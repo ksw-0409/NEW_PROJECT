@@ -1,31 +1,53 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class FireField : MonoBehaviour
 {
-    private float damagePerSecond; // 초당 데미지
-    private float duration;        // 유지 시간
-    private float timer = 0f;
+    private float damagePerSecond;
+    private float tickInterval = 0.5f; // 0.5초마다 데미지 틱
+    private float slowMultiplier = 1f;
+    private float slowDuration = 0f;
+    private readonly Dictionary<EnemyHealth, float> enemyTickTimers = new Dictionary<EnemyHealth, float>();
 
-    public void Setup(float duration, float damage)
+    public void Setup(float duration, float damage, float slowMul = 1f, float slowDur = 0f)
     {
-        this.duration = duration;
         this.damagePerSecond = damage;
-
-        // 지정된 시간(duration) 후에 장판 자동 삭제
+        this.slowMultiplier = Mathf.Clamp(slowMul, 0.1f, 1f);
+        this.slowDuration = Mathf.Max(0f, slowDur);
+        // 지정된 시간 후 장판 삭제
         Destroy(gameObject, duration);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        // 몬스터가 장판 위에 있을 때 실행
         if (collision.CompareTag("Enemy"))
         {
-            EnemyHealth health = collision.GetComponent<EnemyHealth>();
-            if (health != null)
+            EnemyHealth health = collision.GetComponentInParent<EnemyHealth>();
+            if (health == null) return;
+
+            if (!enemyTickTimers.ContainsKey(health))
+                enemyTickTimers[health] = 0f;
+
+            enemyTickTimers[health] += Time.deltaTime;
+            if (enemyTickTimers[health] >= tickInterval)
             {
-                // 프레임마다 데미지를 나눠서 줌 (1초에 총 damagePerSecond만큼 깎임)
-                health.TakeDamage(damagePerSecond * Time.deltaTime);
+                enemyTickTimers[health] = 0f;
+                // 0.5초마다 초당 데미지의 절반씩 입힘
+                if (health != null) health.TakeDamage(damagePerSecond * tickInterval);
+            }
+
+            if (slowMultiplier < 0.999f && slowDuration > 0f)
+            {
+                EnemyAI ai = collision.GetComponentInParent<EnemyAI>();
+                if (ai != null) ai.ApplySlow(slowMultiplier, slowDuration);
             }
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        EnemyHealth health = collision.GetComponentInParent<EnemyHealth>();
+        if (health != null && enemyTickTimers.ContainsKey(health))
+            enemyTickTimers.Remove(health);
     }
 }

@@ -44,7 +44,7 @@ public abstract class BaseInteractable : MonoBehaviour
         // Canvas UI가 열려있으면 상호작용 차단
         if (IsUIOpen) return;
 
-        Debug.Log($"[OnInteract] F키 감지 / 오브젝트: {gameObject.name} / 범위 안: {isPlayerInRange}");
+        //Debug.Log($"[OnInteract] F키 감지 / 오브젝트: {gameObject.name} / 범위 안: {isPlayerInRange}");
 
         if (!isPlayerInRange) return;
         HandleInteract();
@@ -54,7 +54,7 @@ public abstract class BaseInteractable : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         isPlayerInRange = true;
-        Debug.Log($"[OnTriggerEnter2D] {gameObject.name} 범위 진입");
+        //Debug.Log($"[OnTriggerEnter2D] {gameObject.name} 범위 진입");
         if (interactPrompt != null) interactPrompt.SetActive(true);
     }
 
@@ -62,7 +62,7 @@ public abstract class BaseInteractable : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         isPlayerInRange = false;
-        Debug.Log($"[OnTriggerExit2D] {gameObject.name} 범위 이탈");
+        //Debug.Log($"[OnTriggerExit2D] {gameObject.name} 범위 이탈");
         if (interactPrompt != null) interactPrompt.SetActive(false);
     }
 

@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 465c5aa03c782054a844c0a16ede5162, type: 3}
+  m_Name: Bow Skill Data
+  m_EditorClassIdentifier: Assembly-CSharp::BowSkillData
+  skillName: Bowskill
+  icon: {fileID: 0}
+  description: 
+  levels:
+  - cooldown: 3
+    count: 1
+    damage: 6
+    multiplier: 0.3
+    range: 0
+    angle: 0
+    projectileSpeed: 20
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 3
+    count: 1
+    damage: 8
+    multiplier: 0.4
+    range: 0
+    angle: 0
+    projectileSpeed: 20
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 2.5
+    count: 1
+    damage: 8
+    multiplier: 0.4
+    range: 0
+    angle: 0
+    projectileSpeed: 20
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 2.5
+    count: 2
+    damage: 10
+    multiplier: 0.5
+    range: 0
+    angle: 0
+    projectileSpeed: 20
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 2
+    count: 2
+    damage: 10
+    multiplier: 0.5
+    range: 0
+    angle: 0
+    projectileSpeed: 20
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  - cooldown: 1.5
+    count: 2
+    damage: 14
+    multiplier: 0.6
+    range: 0
+    angle: 0
+    projectileSpeed: 20
+    explosionRadius: 0
+    slowPercent: 0
+    slowDuration: 0
+    duration: 0
+    tickInterval: 0
+    pierce: 0
+  effectPrefab: {fileID: 30316419374980630, guid: baa01f8ce9f29ba46a3a41fb4b67cbeb, type: 3}
