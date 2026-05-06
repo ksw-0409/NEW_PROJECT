@@ -39,7 +39,7 @@ public class FireField : MonoBehaviour
             if (slowMultiplier < 0.999f && slowDuration > 0f)
             {
                 EnemyAI ai = collision.GetComponentInParent<EnemyAI>();
-                if (ai != null) ai.ApplySlow(slowMultiplier, slowDuration);
+              //  if (ai != null) ai.ApplySlow(slowMultiplier, slowDuration);
             }
         }
     }

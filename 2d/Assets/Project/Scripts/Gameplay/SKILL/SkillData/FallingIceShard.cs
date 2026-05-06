@@ -71,7 +71,7 @@ public class FallingIceShard : MonoBehaviour
             if (ai != null)
             {
                 float speedMul = Mathf.Clamp(1f - slowPercent, 0.1f, 1f);
-                ai.ApplySlow(speedMul, slowDuration);
+              //  ai.ApplySlow(speedMul, slowDuration);
             }
         }
 

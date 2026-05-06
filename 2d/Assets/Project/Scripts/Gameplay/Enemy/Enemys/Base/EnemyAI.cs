@@ -114,6 +114,7 @@ public class EnemyAI : MonoBehaviour
         }
         
     }
+
     protected void HandleSpriteFlip(float horizontalDir)
     {
         // 0.1f는 미세한 움직임으로 인한 덜덜거림 방지
@@ -144,4 +145,5 @@ public class EnemyAI : MonoBehaviour
             }
         }
     }
+
 }

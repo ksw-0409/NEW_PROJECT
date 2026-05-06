@@ -18,8 +18,12 @@ public class EnemyHealth : MonoBehaviour
         }
     }
     //초기화 ai에서 처리
-    public void init()
+    public void init(float hp)
     {
-        currentHp = data.hp;
+        currentHp = hp;
+    }
+    public void Multiple(float m)
+    {
+        currentHp = m * currentHp;
     }
 }

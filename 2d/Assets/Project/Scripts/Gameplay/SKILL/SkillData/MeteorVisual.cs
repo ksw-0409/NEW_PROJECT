@@ -68,8 +68,8 @@ public class MeteorVisual : MonoBehaviour
                 if (planetCrashEnabled)
                 {
                     EnemyAI ai = hit.GetComponentInParent<EnemyAI>();
-                    if (ai != null)
-                        ai.ApplyKnockbackAndStun(transform.position, PlanetCrashKnockbackForce, PlanetCrashStunDuration);
+                  //둔화 추가
+                     //   ai.ApplyKnockbackAndStun(transform.position, PlanetCrashKnockbackForce, PlanetCrashStunDuration);
                 }
             }
         }

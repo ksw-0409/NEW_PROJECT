@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
-using static UnityEngine.Rendering.DebugUI.Table;
-using UnityEngine.UIElements;
-
 
 public class PlayerSkillController : MonoBehaviour
 {
@@ -18,17 +15,29 @@ public class PlayerSkillController : MonoBehaviour
     [SerializeField] private GameObject IceRainPrefab;
     [SerializeField] private GameObject FireFielfPrefab;
 
+    [SerializeField] private GameObject bowArrowPrefab;
+    [SerializeField] private GameObject arrowRainPrefab;
+
+    [Header("Bow Passive Assets")]
+    public ArrowPassiveData iceCardAsset;
+    public ArrowPassiveData explosionCardAsset;
+    public ArrowPassiveData poisonCardAsset;
+    public ArrowPassiveData pierceCardAsset;
+
+    public static PlayerSkillController Instance { get; private set; }
 
     [Header("References")]
-    public EnemyManager enemyManager; // EnemyManager의 activeEnemies를 활용하기 위함
+    public EnemyManager enemyManager;
     public List<SkillData> equippedSkills = new();
 
     private Dictionary<SkillData, SkillBase> skillDict = new();
 
     [SerializeField] private List<SkillData> saveSkills;
 
-    private bool isInvincible = false;
-
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -42,43 +51,80 @@ public class PlayerSkillController : MonoBehaviour
 
     public bool HasSkill(SkillData data)
     {
-        return skillDict.ContainsKey(data);
+        if (data == null) return false;
+        if (skillDict.ContainsKey(data)) return true;
+        foreach (var key in skillDict.Keys)
+        {
+            if (key != null && key.skillName == data.skillName)
+                return true;
+        }
+        return false;
     }
 
     public bool IsMaxLevel(SkillData data)
     {
-        if (!skillDict.ContainsKey(data)) return false;
-
-        return skillDict[data].IsMaxLevel();
+        if (data == null) return false;
+        if (skillDict.ContainsKey(data)) return skillDict[data].IsMaxLevel();
+        foreach (var pair in skillDict)
+        {
+            if (pair.Key != null && pair.Key.skillName == data.skillName)
+                return pair.Value.IsMaxLevel();
+        }
+        return false;
     }
 
     public void AddNewSkill(SkillData data)
     {
-        if (data == null || skillDict.ContainsKey(data)) return;
+        if (this == null || data == null || HasSkill(data)) return;
 
         SkillInstance instance = new SkillInstance(data);
 
-        SkillBase skill = CreateSkill(data, instance); // ⭐ instance 같이 넘김
+        // ⭐ 패시브 카드일 경우, 에셋에 인스턴스 연결 (실시간 반영의 핵심)
+        if (data is ArrowPassiveData passiveData)
+        {
+            passiveData.skillInstance = instance;
+            Debug.Log($"<color=green>[SkillController] {data.skillName} 패시브 인스턴스 연결 완료!</color>");
+        }
+
+        SkillBase skill = CreateSkill(data, instance);
 
         if (skill != null)
         {
             skillDict.Add(data, skill);
         }
+
         if (GameDataManager.Instance != null)
             GameDataManager.Instance.SaveSkill(data.skillName);
     }
+
     public int GetSkillLevel(SkillData data)
     {
-        if (!skillDict.ContainsKey(data)) return 0;
-
-        return skillDict[data].GetLevel();
+        if (data == null) return 0;
+        if (skillDict.ContainsKey(data)) return skillDict[data].GetLevel();
+        foreach (var pair in skillDict)
+        {
+            if (pair.Key != null && pair.Key.skillName == data.skillName)
+                return pair.Value.GetLevel();
+        }
+        return 0;
     }
 
     public void LevelUpSkill(SkillData data)
     {
-        if (!skillDict.ContainsKey(data)) return;
-
-        skillDict[data].LevelUp();
+        if (data == null) return;
+        if (skillDict.ContainsKey(data))
+        {
+            skillDict[data].LevelUp();
+            return;
+        }
+        foreach (var pair in skillDict)
+        {
+            if (pair.Key != null && pair.Key.skillName == data.skillName)
+            {
+                pair.Value.LevelUp();
+                return;
+            }
+        }
     }
 
     private SkillBase CreateSkill(SkillData data, SkillInstance instance)
@@ -94,14 +140,12 @@ public class PlayerSkillController : MonoBehaviour
 
         if (data is SlashData slash)
         {
-            SlashSkill skill = gameObject.AddComponent<SlashSkill>(); // ⭐ 핵심
-
-            skill.effectPrefab = slashEffectPrefab; // ⭐ 이거 반드시
-
-            skill.Init(slash, instance);
-
+            SlashSkill skill = gameObject.AddComponent<SlashSkill>();
+            skill.effectPrefab = slashEffectPrefab;
+            skill.Init(instance);
             return skill;
         }
+
         if (data is RotatingSlashData rotatingSlash)
         {
             RotatingSlashSkill skill = player.AddComponent<RotatingSlashSkill>();
@@ -109,6 +153,7 @@ public class PlayerSkillController : MonoBehaviour
             skill.Init(rotatingSlash, instance);
             return skill;
         }
+
         if (data is SlamSkillData slam)
         {
             SlamSkill skill = player.AddComponent<SlamSkill>();
@@ -116,60 +161,80 @@ public class PlayerSkillController : MonoBehaviour
             skill.Init(slam, instance);
             return skill;
         }
+
         if (data is SwordWaveData swordWave)
         {
             SwordWaveSkill skill = player.AddComponent<SwordWaveSkill>();
             skill.effectPrefab = SwordWavePrefab;
-            skill.Init(swordWave, instance);
-            return skill;
-        }
-        if (data is ShieldData shield)
-        {
-            ShieldSkill skill = player.AddComponent<ShieldSkill>();
-            skill.Init(shield, instance);
-            return skill;
-        }
-        // 1. 연쇄 번개
-        if (data is ChainLightningData chainData)
-        {
-            ChainLightningSkill skill = player.AddComponent<ChainLightningSkill>();
-            skill.enemyManager = this.enemyManager; // 적 탐색을 위해 매니저 전달
-            skill.lightningEffectPrefab = ChainLightningPrefab;
-            skill.Init(chainData, instance);
+            skill.Init(instance);
             return skill;
         }
 
-        // 2. 메테오
+        if (data is ShieldData shieldDat)
+        {
+            ShieldSkill skill = player.AddComponent<ShieldSkill>();
+            skill.Init(shieldDat, instance);
+            return skill;
+        }
+
+        if (data is ChainLightningData chainData)
+        {
+            ChainLightningSkill skill = player.AddComponent<ChainLightningSkill>();
+            skill.enemyManager = this.enemyManager;
+            skill.lightningEffectPrefab = ChainLightningPrefab;
+            skill.Init(instance);
+            return skill;
+        }
+
         if (data is MeteorData meteorData)
         {
             MeteorSkill skill = player.AddComponent<MeteorSkill>();
             skill.enemyManager = this.enemyManager;
             skill.meteorVisualPrefab = meteorFireFieldPrefab;
             skill.fireFieldPrefab = FireFielfPrefab;
-            skill.Init(meteorData, instance);
+            skill.Init(instance);
             return skill;
         }
 
-        // 3. 얼음 비
         if (data is IceRainData iceData)
         {
             IceRainSkill skill = player.AddComponent<IceRainSkill>();
             skill.enemyManager = this.enemyManager;
-            skill.iceRainEffectPrefab = IceRainPrefab;
-            skill.Init(iceData, instance);
+            skill.iceRainAreaPrefab = IceRainPrefab;
+            skill.Init(instance);
             return skill;
         }
+
+        if (data is ArrowRainData arrowRainData)
+        {
+            ArrowRainSkill skill = player.AddComponent<ArrowRainSkill>();
+            skill.enemyManager = this.enemyManager;
+            skill.rainAreaPrefab = arrowRainPrefab;
+            skill.Init(instance);
+            return skill;
+        }
+
+        if (data is BowSkillData bowData)
+        {
+            BowSkill skill = player.AddComponent<BowSkill>();
+            skill.arrowPrefab = bowArrowPrefab;
+            skill.iceCard = iceCardAsset;
+            skill.explosionCard = explosionCardAsset;
+            skill.poisonCard = poisonCardAsset;
+            skill.pierceCard = pierceCardAsset;
+            skill.Init(instance);
+            return skill;
+        }
+
         return null;
     }
 
-    // 👉 죽었을 때 초기화
     public void ResetSkills()
     {
         foreach (var skill in skillDict.Values)
         {
             Destroy(skill);
         }
-
         skillDict.Clear();
 
         if (GameDataManager.Instance != null)
@@ -178,46 +243,19 @@ public class PlayerSkillController : MonoBehaviour
                 GameDataManager.Instance.RemoveSkill(data.skillName);
         }
     }
+
     private void RestoreSavedSkills()
     {
         if (GameDataManager.Instance == null) return;
-
         var savedSkills = GameDataManager.Instance.EquippedSkills;
         if (savedSkills.Count == 0) return;
 
         foreach (string skillName in savedSkills)
         {
             SkillData found = saveSkills.Find(s => s.skillName == skillName);
-            if (found == null)
-            {
-                Debug.LogWarning($"[PlayerSkillController] 저장된 스킬 '{skillName}'을 찾을 수 없습니다.");
-                continue;
-            }
-
+            if (found == null) continue;
             if (skillDict.ContainsKey(found)) continue;
-
             AddNewSkill(found);
-        }
-    }
-    void OnEnable()
-    {
-        PlayerStats.OnPlayerDied += StopAllSkills;
-    }
-
-    void OnDisable()
-    {
-        PlayerStats.OnPlayerDied -= StopAllSkills;
-    }
-
-    public void StopAllSkills()
-    {
-        foreach (var skill in skillDict.Values)
-        {
-            if (skill != null)
-            {
-                skill.enabled = false;
-                skill.StopAllCoroutines();
-            }
         }
     }
 }

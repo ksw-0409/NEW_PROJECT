@@ -94,7 +94,7 @@ public class ShieldSkill : SkillBase
         // [유틸] 위상 변화: 이동속도 +20% & 적 통과
         if (Stats.HasSpecialty("DEF_phase") && !phaseApplied)
         {
-            Stats.AddTemporarySpeedBonus(PHASE_SPEED_BONUS);
+          //  Stats.AddTemporarySpeedBonus(PHASE_SPEED_BONUS);
             phaseApplied = true;
             var rb = GetComponentInParent<Rigidbody2D>();
             if (rb != null) rb.excludeLayers = LayerMask.GetMask("Enemy");
@@ -116,7 +116,7 @@ public class ShieldSkill : SkillBase
         // 위상 변화 해제
         if (phaseApplied)
         {
-            Stats.AddTemporarySpeedBonus(-PHASE_SPEED_BONUS);
+          //  Stats.AddTemporarySpeedBonus(-PHASE_SPEED_BONUS);
             phaseApplied = false;
             var rb = GetComponentInParent<Rigidbody2D>();
             if (rb != null) rb.excludeLayers = 0;

@@ -173,7 +173,7 @@ public class ArrowProjectile : MonoBehaviour
     void ApplyIce(EnemyHealth enemy)
     {
         var mv = enemy.GetComponent<EnemyAI>();
-        if (mv != null) mv.ApplySlow(iceSlowAmount, iceDuration);
+     //   if (mv != null) mv.ApplySlow(iceSlowAmount, iceDuration);
         Debug.Log($"{enemy.name} 빙결 둔화 {iceSlowAmount*100:F0}%");
     }
 }
