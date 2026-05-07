@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class FireballProjectile : MonoBehaviour
 {
@@ -40,7 +40,7 @@ public class FireballProjectile : MonoBehaviour
 
         bool isBigExplosion = PlayerStats.Instance.HasSpecialty("Fireball_2_2");
 
-        // 1. 판정 범위 (흰색 원 크기만큼 적 탐색)
+        // 1. 판정 범위 (OverlapCircle explosionRadius)
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         foreach (var hit in hits)
         {
@@ -59,15 +59,27 @@ public class FireballProjectile : MonoBehaviour
         // 2. 분열 (1회 제한)
         if (!isSplitChild && PlayerStats.Instance.HasSpecialty("Fireball_3_2")) SpawnSplitProjectiles();
 
-        // 3. 이펙트 생성 및 크기 보정
+        // 3. 폭발 이펙트 — ⭐ explosion-a sprite native(0.48), 활성 픽셀 90% → 월드 지름이 explosionRadius*2가 되도록
         if (effectPrefab != null)
         {
             GameObject fx = Instantiate(effectPrefab, transform.position, Quaternion.identity);
-            // 프리팹 크기에 맞춰 보정 (9배가 적당하다고 하셨으므로 9f 적용)
-            float fxSize = explosionRadius * 9f;
+            // sprite native 0.48, 활성 90% → 실제 보이는 영역 = scale * 0.48 * 0.9
+            // 월드 지름 = explosionRadius*2 → scale = explosionRadius*2 / (0.48*0.9)
+            const float spriteNative = 0.48f;
+            const float activeRatio = 0.9f;
+            float fxSize = (explosionRadius * 2f) / (spriteNative * activeRatio);
             fx.transform.localScale = new Vector3(fxSize, fxSize, 1f);
             Destroy(fx, 0.7f);
         }
+
+        // 4. ⭐ 피격범위 가시화 — 외곽선 + 반투명 채움으로 정확한 데미지 영역을 보여줌
+        SkillRangeIndicator.Spawn(
+            transform.position,
+            explosionRadius,
+            new Color(1f, 0.55f, 0.1f, 0.95f),
+            0.55f,
+            SkillRangeIndicator.Shape.Circle
+        );
 
         Destroy(gameObject);
     }
@@ -92,7 +104,8 @@ public class FireballProjectile : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.white;
+        // 실제 시스태파이 판정(OverlapCircle explosionRadius)과 일치
+        Gizmos.color = new Color(1f, 0.5f, 0.1f, 0.9f);
         Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }

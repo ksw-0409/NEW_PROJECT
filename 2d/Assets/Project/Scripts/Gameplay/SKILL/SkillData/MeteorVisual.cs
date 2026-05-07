@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class MeteorVisual : MonoBehaviour
 {
@@ -56,7 +56,7 @@ public class MeteorVisual : MonoBehaviour
         if (hasExploded) return;
         hasExploded = true;
 
-        // 1. 주변 즉발 데미지 판정 (검은 원 범위만큼)
+        // 1. 피격판정 (OverlapCircle explosionRadius)
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         foreach (var hit in hits)
         {
@@ -68,8 +68,8 @@ public class MeteorVisual : MonoBehaviour
                 if (planetCrashEnabled)
                 {
                     EnemyAI ai = hit.GetComponentInParent<EnemyAI>();
-                  //둔화 추가
-                     //   ai.ApplyKnockbackAndStun(transform.position, PlanetCrashKnockbackForce, PlanetCrashStunDuration);
+                  // 둘화 추가
+                  //   ai.ApplyKnockbackAndStun(transform.position, PlanetCrashKnockbackForce, PlanetCrashStunDuration);
                 }
             }
         }
@@ -88,13 +88,22 @@ public class MeteorVisual : MonoBehaviour
             SpawnPlanetCrashFX();
         }
 
-        // 2. 기본 불 장판 생성 (기존 메테오 장판)
+        // 2. 레드 폭발 고리 가시화 — 즉발 데미지 영역
+        SkillRangeIndicator.Spawn(
+            transform.position,
+            explosionRadius,
+            new Color(1f, 0.3f, 0.05f, 0.95f),
+            0.7f,
+            SkillRangeIndicator.Shape.Circle
+        );
+
+        // 3. 불 장판 생성 — ⭐ FireFieldPrefab의 콜라이더 r=0.48이 월드 r=explosionRadius가 되도록
+        // 동시에 장판 하단에 지속적인 레인지 링을 자식으로 추가해서 "이 안에 들어오면 데미지"를 명시
         if (fireFieldPrefab != null)
         {
             GameObject fieldGo = Instantiate(fireFieldPrefab, transform.position, Quaternion.identity);
-
-            // 장판 크기를 폭발 범위에 맞춤 (보정치 2배 적용)
-            float fieldScale = explosionRadius * 2f;
+            const float colliderBaseRadius = 0.48f;
+            float fieldScale = explosionRadius / colliderBaseRadius;
             fieldGo.transform.localScale = new Vector3(fieldScale, fieldScale, 1f);
 
             FireField field = fieldGo.GetComponent<FireField>();
@@ -102,22 +111,33 @@ public class MeteorVisual : MonoBehaviour
             {
                 field.Setup(duration, dotDamage, 1f, 0f);
             }
+
+            // ⭐ 장판의 외곽선을 끝까지 유지하는 indicator를 자식으로 추가 (autoDestroy=false, duration=field의 수명)
+            var ringGo = new GameObject("FireFieldEdgeRing");
+            ringGo.transform.position = transform.position;
+            var ind = ringGo.AddComponent<SkillRangeIndicator>();
+            ind.shape = SkillRangeIndicator.Shape.Circle;
+            ind.radius = explosionRadius;
+            ind.edgeColor = new Color(1f, 0.4f, 0.1f, 0.85f);
+            ind.fillColor = new Color(1f, 0.4f, 0.1f, 0.06f);
+            ind.lineWidth = 0.1f;
+            ind.autoDestroy = false;
+            // FireField 수명과 동일하게 수동 파괴
+            Destroy(ringGo, duration);
         }
 
-        // 2-1. 용암 지대 특수 장판을 추가로 생성 (기본 장판과 중복)
         if (lavaFieldEnabled)
         {
             SpawnLavaFieldOverlay();
         }
 
-        // 3. 운석 오브젝트 파괴
         Destroy(gameObject);
     }
 
     private void OnDrawGizmos()
     {
-        // 에디터에서 착지 지점의 범위를 미리 확인
-        Gizmos.color = Color.red;
+        // 착지 지점의 실제 판정 범위(OverlapCircle explosionRadius)과 일치
+        Gizmos.color = new Color(1f, 0.3f, 0.1f, 0.9f);
         Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 

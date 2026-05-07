@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c9a5b188c0236884d861d1e461b12ce8
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260353
+  packageName: UI_Extension Elements
+  packageVersion: 1.0
+  assetPath: Assets/ExtendedUI/Prefab/Elements/ProgresBar.prefab
+  uploadId: 623023

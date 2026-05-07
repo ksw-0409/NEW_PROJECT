@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 83e4a4c44e52e9b4f897fef868d1e916
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260353
+  packageName: UI_Extension Elements
+  packageVersion: 1.0
+  assetPath: Assets/ExtendedUI/Prefab/Elements/SlideToggle.prefab
+  uploadId: 623023

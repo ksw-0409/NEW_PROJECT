@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5bf2530b8eb854f499553174fc5cf53e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260353
+  packageName: UI_Extension Elements
+  packageVersion: 1.0
+  assetPath: Assets/ExtendedUI/Prefab/Elements/PopUp.prefab
+  uploadId: 623023

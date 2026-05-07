@@ -23,6 +23,16 @@ public class SlashSkill : SkillBase
 
         SpawnEffect(player, dir, range);
 
+        // ⭐ 피격범위 가시화: 전방 부채꼴 (Slash는 코드상 OverlapCircle이지만 dot threshold로 부채꼴 필터링)
+        SkillRangeIndicator.SpawnSector(
+            player.position,
+            dir,
+            range,
+            angle,
+            new Color(1f, 0.85f, 0.2f, 0.95f),
+            0.4f
+        );
+
         // [변칙] 패링 베기: 주변 투사체 제거
         if (PlayerStats.Instance.HasSpecialty("SL_parry"))
         {
@@ -48,11 +58,11 @@ public class SlashSkill : SkillBase
 
             enemy.TakeDamage(damage);
 
-            // [공격] 잔상: 50% 확률로 2번째 타격
+            // [공격] 잔상
             if (hasPhantom && Random.value < 0.5f)
                 enemy.TakeDamage(damage);
 
-            // [유틸] 혈투: 출혈 적용
+            // [유틸] 혈투
             if (hasBloodbath)
                 ApplyBleed(enemy, damage);
         }
@@ -102,10 +112,41 @@ public class SlashSkill : SkillBase
         follow.target = player;
         follow.dir = dir;
         follow.range = range;
-        effect.transform.position = player.position + (Vector3)(dir * range * 0.7f);
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        effect.transform.rotation = Quaternion.Euler(0, 0, angle);
-        effect.transform.localScale = Vector3.one * 2.5f;
-        Destroy(effect, 0.2f);
+        effect.transform.position = player.position + (Vector3)(dir * range * 0.5f);
+        float angleDeg = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        effect.transform.rotation = Quaternion.Euler(0, 0, angleDeg);
+        const float spriteNative = 0.95f;
+        const float activeRatio = 0.77f;
+        float visualScale = (range * 2f) / (spriteNative * activeRatio);
+        effect.transform.localScale = new Vector3(visualScale, visualScale, 1f);
+        Destroy(effect, 0.3f);
+    }
+
+
+    // ⭐ 기즈모: 실제 피격판정(OverlapCircle range)과 정확히 같은 영역
+    void OnDrawGizmos()
+    {
+        if (instance == null) return;
+        var ld = instance.GetCurrentLevelData();
+        float range = ld.range;
+        Gizmos.color = new Color(1f, 0.4f, 0.1f, 0.9f);
+        Gizmos.DrawWireSphere(transform.position, range);
+
+        // 부채꼴 각도(angle) 표시 — 단, dir은 마우스 방향이므로 캐스트 시점 기준이 아님.
+        // 캐스터 우측 기준으로 부채꼴 가이드를 그려 사거리·각도 동시 시각화
+        var slashData = instance.data as SlashData;
+        if (slashData != null)
+        {
+            float angle = slashData.angle;
+            Vector3 forward = transform.right;
+            int step = 20;
+            Gizmos.color = new Color(1f, 0.9f, 0.2f, 0.8f);
+            for (int i = 0; i <= step; i++)
+            {
+                float currentAngle = -angle / 2f + (angle / step) * i;
+                Vector3 d = Quaternion.Euler(0, 0, currentAngle) * forward;
+                Gizmos.DrawLine(transform.position, transform.position + d * range);
+            }
+        }
     }
 }

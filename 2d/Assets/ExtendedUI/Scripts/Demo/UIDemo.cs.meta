@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 551e7295fb2f16f49b849c0ee18aa3d5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260353
+  packageName: UI_Extension Elements
+  packageVersion: 1.0
+  assetPath: Assets/ExtendedUI/Scripts/Demo/UIDemo.cs
+  uploadId: 623023

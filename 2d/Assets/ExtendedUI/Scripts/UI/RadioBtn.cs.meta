@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4023edb25d568f547bfafd59e3526044
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260353
+  packageName: UI_Extension Elements
+  packageVersion: 1.0
+  assetPath: Assets/ExtendedUI/Scripts/UI/RadioBtn.cs
+  uploadId: 623023

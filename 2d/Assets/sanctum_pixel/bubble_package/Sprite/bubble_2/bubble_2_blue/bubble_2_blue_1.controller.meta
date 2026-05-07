@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3560e8ad364bc4373af15c6b7ed02cc5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 327756
+  packageName: Bubble - Pixel Art Effect
+  packageVersion: 1.0
+  assetPath: Assets/sanctum_pixel/bubble_package/Sprite/bubble_2/bubble_2_blue/bubble_2_blue_1.controller
+  uploadId: 778524

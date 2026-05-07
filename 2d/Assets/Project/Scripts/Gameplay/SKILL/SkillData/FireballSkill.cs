@@ -37,8 +37,10 @@ public class FireballSkill : SkillBase
         var levelData = instance.GetCurrentLevelData();
         GameObject obj = Instantiate(fireData.projectilePrefab, player.position, Quaternion.identity);
 
-        float projectileVisualMultiplier = 2.0f;
-        float currentScale = levelData.explosionRadius * projectileVisualMultiplier;
+        // ⭐ 발사체 비주얼 크기 — 이제는 적당한 크기(콜라이더 반지름 때문에)
+        // 발사체는 자체 스프라이트가 있고 적이 아고는 OnTriggerEnter로 트리거만 함.
+        // 폭발 판정(explosionRadius)이 실제 스킬 펠교단은 따로이므로, 발사체는 0.6배 정도로 관리 가능한 크기
+        float currentScale = Mathf.Max(0.5f, levelData.explosionRadius * 0.6f);
         obj.transform.localScale = new Vector3(currentScale, currentScale, 1f);
 
         Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
@@ -54,6 +56,10 @@ public class FireballSkill : SkillBase
         {
             rb.linearVelocity = finalDir * levelData.projectileSpeed;
         }
+
+        // 발사체 스프라이트 회전: 진행 방향에 맞춤
+        float angleDeg = Mathf.Atan2(finalDir.y, finalDir.x) * Mathf.Rad2Deg;
+        obj.transform.rotation = Quaternion.Euler(0, 0, angleDeg);
 
         FireballProjectile proj = obj.GetComponent<FireballProjectile>();
         if (proj != null)

@@ -21,7 +21,7 @@ MonoBehaviour:
     damage: 8
     multiplier: 0.5
     range: 2
-    angle: 90
+    angle: 140
     projectileSpeed: 0
     explosionRadius: 0
     slowPercent: 0
@@ -34,7 +34,7 @@ MonoBehaviour:
     damage: 10
     multiplier: 0.6
     range: 2
-    angle: 90
+    angle: 140
     projectileSpeed: 0
     explosionRadius: 0
     slowPercent: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
     damage: 10
     multiplier: 0.6
     range: 2
-    angle: 90
+    angle: 140
     projectileSpeed: 0
     explosionRadius: 0
     slowPercent: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
     damage: 12
     multiplier: 0.8
     range: 2
-    angle: 90
+    angle: 140
     projectileSpeed: 0
     explosionRadius: 0
     slowPercent: 0
@@ -73,7 +73,7 @@ MonoBehaviour:
     damage: 12
     multiplier: 0.8
     range: 2
-    angle: 90
+    angle: 140
     projectileSpeed: 0
     explosionRadius: 0
     slowPercent: 0
@@ -86,7 +86,7 @@ MonoBehaviour:
     damage: 15
     multiplier: 1
     range: 2
-    angle: 90
+    angle: 140
     projectileSpeed: 0
     explosionRadius: 0
     slowPercent: 0
@@ -95,5 +95,5 @@ MonoBehaviour:
     tickInterval: 0
     pierce: 0
   range: 2
-  angle: 90
+  angle: 140
   effectPrefab: {fileID: 30316419374980630, guid: b18de5af77bd21d4db6309edb90c4732, type: 3}

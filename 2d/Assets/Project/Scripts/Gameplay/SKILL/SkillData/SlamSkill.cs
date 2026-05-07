@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.InputSystem;
 
@@ -63,6 +63,17 @@ public class SlamSkill : SkillBase
                 slow.ApplySlow(slamData.slowPercent, slamData.slowDuration);
         }
 
+        // ⭐ 피격범위 가시화: 내려찍기는 부채꼴 영역
+        float angleDeg = slamData != null ? slamData.angle : 90f;
+        SkillRangeIndicator.SpawnSector(
+            transform.position,
+            dir,
+            range,
+            angleDeg,
+            new Color(1f, 0.7f, 0.1f, 0.95f),
+            0.6f
+        );
+
         SpawnEffect(dir, range);
     }
 
@@ -72,31 +83,47 @@ public class SlamSkill : SkillBase
 
         GameObject fx = Instantiate(effectPrefab);
 
-        // ⭐ 위치 (중간쯤)
+        // 위치: 부채꼴 중심(캐스터와 사거리의 절반 지점)
         fx.transform.position = transform.position + (Vector3)(dir * range * 0.5f);
 
-        // ⭐ 방향
+        // 방향
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         fx.transform.rotation = Quaternion.Euler(0, 0, angle);
 
-        // ⭐ 핵심: 이펙트 크기 = range 기반
-        float scal = range * 1.5f; // 적당히 키워봄
-        fx.transform.localScale = new Vector3(scal, scal, 1);
+        // ⭐ explosion-f sprite native(0.48), 가로 활성 83% — 가로는 사거리, 세로는 사거리 절반
+        const float spriteNativeX = 0.48f;
+        const float spriteNativeY = 0.48f;
+        const float activeRatioX = 0.83f;
+        const float activeRatioY = 0.83f; // explosion-f는 프레임마다 활성 영역 다름; 평균값
+        // 가로는 사거리의 1배 (접에서 앞까지), 세로는 사거리의 60% 정도
+        float scaleX = range / (spriteNativeX * activeRatioX);
+        float scaleY = (range * 0.6f) / (spriteNativeY * activeRatioY);
+        fx.transform.localScale = new Vector3(scaleX, scaleY, 1f);
 
-        Destroy(fx, 0.3f);
+        Destroy(fx, 0.5f);
     }
 
+    // ⭐ 기즈모: 실제 피격판정(OverlapCircle range + angle 부채꼴)과 일치 — 선택 시와 항상 둘 다 표시
     void OnDrawGizmosSelected()
+    {
+        DrawSlamGizmo();
+    }
+
+    void OnDrawGizmos()
+    {
+        DrawSlamGizmo();
+    }
+
+    private void DrawSlamGizmo()
     {
         if (instance == null) return;
 
         float range = instance.GetCurrentLevelData().range;
 
-        Gizmos.color = Color.red;
+        Gizmos.color = new Color(1f, 0.2f, 0.2f, 0.85f);
         Gizmos.DrawWireSphere(transform.position, range);
 
-        // ⭐ 방향 표시 (부채꼴)
-        Gizmos.color = Color.yellow;
+        Gizmos.color = new Color(1f, 0.9f, 0.2f, 0.7f);
 
         float angle = slamData != null ? slamData.angle : 90f;
         Vector3 forward = transform.right;
@@ -107,7 +134,6 @@ public class SlamSkill : SkillBase
         {
             float currentAngle = -angle / 2 + (angle / step) * i;
             Vector3 dir = Quaternion.Euler(0, 0, currentAngle) * forward;
-
             Gizmos.DrawLine(transform.position, transform.position + dir * range);
         }
     }

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class RotatingSlashSkill : SkillBase
@@ -42,6 +42,15 @@ public class RotatingSlashSkill : SkillBase
             }
         }
 
+        // ⭐ 피격범위 가시화: 회전 베기는 360도 원형
+        SkillRangeIndicator.Spawn(
+            transform.position,
+            range,
+            new Color(0.3f, 0.85f, 1f, 0.95f),
+            0.35f,
+            SkillRangeIndicator.Shape.Circle
+        );
+
         SpawnEffect(range);
     }
 
@@ -49,28 +58,24 @@ public class RotatingSlashSkill : SkillBase
     {
         if (effectPrefab == null) return;
         GameObject effect = Instantiate(effectPrefab, transform.position, Quaternion.identity, transform);
-
-        // [수정] 2.0f가 너무 크다면 0.5f~0.8f 정도로 낮추세요.
-        // 이 값이 낮아질수록 이미지의 끝이 검은 원 안으로 들어옵니다.
-        float multiplier = 0.2f;
-        float finalScale = range * multiplier;
-
-        effect.transform.localScale = new Vector3(finalScale, finalScale, 1);
-        Destroy(effect, 0.2f);
+        const float spriteNative = 0.96f;
+        const float activeRatio = 0.30f;
+        float finalScale = (range * 1.4f) / (spriteNative * activeRatio);
+        effect.transform.localScale = new Vector3(finalScale, finalScale, 1f);
+        Destroy(effect, 0.3f);
     }
 
     // 기즈모 색상을 검은색으로 변경
+    // ⭐ 기즈모: 실제 피격판정(OverlapCircle range)과 완벽 일치
     void OnDrawGizmos()
     {
         if (instance == null) return;
 
         float range = instance.GetCurrentLevelData().range;
 
-        // 전체 범위 원을 검은색으로 표시
-        Gizmos.color = Color.black;
+        Gizmos.color = new Color(0.2f, 0.85f, 1f, 0.9f);
         Gizmos.DrawWireSphere(transform.position, range);
 
-        // 부채꼴 가이드라인도 검은색으로 통일
         float angle = (rotData != null) ? rotData.angle : 360f;
         if (angle < 360f)
         {

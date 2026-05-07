@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 090bc60a34c46544fa426985639a802f
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260353
+  packageName: UI_Extension Elements
+  packageVersion: 1.0
+  assetPath: Assets/ExtendedUI/Scenes/ExampleScene.unity
+  uploadId: 623023

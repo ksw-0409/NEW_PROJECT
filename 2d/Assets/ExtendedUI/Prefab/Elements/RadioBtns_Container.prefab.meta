@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 34f58c8661447be439be187eb1ee7b1a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260353
+  packageName: UI_Extension Elements
+  packageVersion: 1.0
+  assetPath: Assets/ExtendedUI/Prefab/Elements/RadioBtns_Container.prefab
+  uploadId: 623023

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ca46d495c1e2449d9858e05400a0938b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 326627
+  packageName: Spin Blade - Pixel Art Effect
+  packageVersion: 1.0
+  assetPath: Assets/sanctum_pixel/spin_blade_package/Sprite/spin_1/spin_1_blue/spin_1_blue_1.controller
+  uploadId: 778602
