@@ -27,6 +27,7 @@ public class BabySpider2 : EnemyAI
     }
     public override void OnUpdate(Vector2 playerPos)
     {
+        base.OnUpdate(playerPos);
         // 체크 조건: 죽지 않았고, 액션 중이 아니며, 쿨타임이 끝났을 때
         if (isDie || isActionRunning || !canDash) return;
 

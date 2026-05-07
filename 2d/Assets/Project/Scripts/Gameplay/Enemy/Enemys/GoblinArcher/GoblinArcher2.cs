@@ -31,6 +31,7 @@ public class GoblinArcher2 : EnemyAI
     }
     public override void OnUpdate(Vector2 playerPos)
     {
+        base.OnUpdate(playerPos);
         if (isDie || isActionRunning) return;
 
         // 성능을 위해 거리의 제곱으로 비교 

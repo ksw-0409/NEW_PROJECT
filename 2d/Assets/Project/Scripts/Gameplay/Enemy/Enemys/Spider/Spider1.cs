@@ -20,6 +20,7 @@ public class Spider1 : EnemyAI
 
     public override void OnUpdate(Vector2 playerPos)
     {
+        base.OnUpdate(playerPos);
         if (isDie || isActionRunning) return;
 
         float sqrDist = (playerPos - (Vector2)transform.position).sqrMagnitude;

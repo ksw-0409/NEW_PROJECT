@@ -32,6 +32,7 @@ public class Orcs2 : EnemyAI
 
     public override void OnUpdate(Vector2 playerPos)
     {
+        base.OnUpdate(playerPos);
         if (isDie || isActionRunning) return;
 
         float distance = Vector2.Distance(transform.position, playerPos);

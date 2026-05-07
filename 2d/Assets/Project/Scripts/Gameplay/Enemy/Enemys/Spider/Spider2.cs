@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using MCPForUnity.Editor.Tools;
 
 public class Spider2 : EnemyAI
 {
@@ -22,6 +23,7 @@ public class Spider2 : EnemyAI
 
     public override void OnUpdate(Vector2 playerPos)
     {
+        base.OnUpdate(playerPos);
         if (isDie || isActionRunning) return;
 
         float sqrDist = (playerPos - (Vector2)transform.position).sqrMagnitude;

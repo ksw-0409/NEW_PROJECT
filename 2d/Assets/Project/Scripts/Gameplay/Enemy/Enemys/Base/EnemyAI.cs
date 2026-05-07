@@ -23,6 +23,17 @@ public class EnemyAI : MonoBehaviour
     private bool isRushMode = false;
     private Vector2 rushDir;
     private float rushLimitY;
+
+    //슬로우 변수
+    private float slowTimer = 0f;           // 슬로우 지속시간 타이머
+    private bool isSlowed = false;          // 현재 슬로우 상태인지 체크
+    private float originalSpeed = 5f;     // 원래 기본 속도 저장용
+
+    //스턴 변수
+    protected bool isStun = false; //스턴 
+    private float stunTimer = 0f;   // 스턴 지속시간 타이머
+
+
     protected virtual void Awake()
     {
         rb =GetComponent<Rigidbody2D>();
@@ -90,11 +101,14 @@ public class EnemyAI : MonoBehaviour
     }
     public virtual void OnUpdate(Vector2 playerPos)
     {
-        // 기본 로직 
+        HandleSlowTimer();
+        HandleStunTimer();
+        if (isStun) return;
     }
     public virtual void MoveTaget(Vector2 targetPos)
     {
         if (data == null) return;
+        if (isStun) return;
         if (isRushMode) {
             rb.linearVelocity = rushDir * moveSpeed;
             if(transform.position.y< rushLimitY) managedPool.Release(this);
@@ -146,4 +160,65 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+
+    // 외부에서 호출할 슬로우 함수   ( 배수 , 지속시간 ) 중첩 실행시 시간만 갱신 
+    public void ApplySlow(float slowMultiplier, float duration)
+    {
+        // 이미 슬로우 중이라면 시간만 초기화(갱신)
+        if (!isSlowed)
+        {
+            originalSpeed = moveSpeed; // 슬로우 전 속도 저장
+            moveSpeed *= slowMultiplier; // 속도 감소 
+            isSlowed = true;
+        }
+
+        slowTimer = duration; // 지속 시간 설정 (중첩 호출 시 시간 갱신)
+        Debug.Log("슬로우 적용");
+    }
+    private void HandleSlowTimer()
+    {
+        if (isSlowed)
+        {
+            slowTimer -= Time.deltaTime;
+
+            if (slowTimer <= 0)
+            {
+                StopSlow();
+            }
+        }
+    }
+    private void StopSlow()
+    {
+        isSlowed = false;
+        moveSpeed = originalSpeed; // 원래 속도로 복구
+        slowTimer = 0f;
+        Debug.Log("슬로우 종료, 속도 복구");
+    }
+
+    //외부에서 호출할 스턴 함수 (지속시간) 중복시 시간 갱신
+    public void ApplyStun(float duration)
+    {
+        isStun = true;
+        stunTimer = duration; // 지속 시간 설정 (중첩 호출 시 시간 갱신)
+        rb.linearVelocity = Vector2.zero; // 즉시 정지
+        Debug.Log("슬로우 적용");
+    }
+    private void HandleStunTimer()
+    {
+        if (isStun)
+        {
+            stunTimer -= Time.deltaTime;
+
+            if (stunTimer <= 0)
+            {
+                StopStun();
+            }
+        }
+    }
+    private void StopStun()
+    {
+        isStun = false;
+        stunTimer = 0f;
+        Debug.Log("스턴 종료, 스턴 복구");
+    }
 }
