@@ -22,6 +22,7 @@ public class EnemySlow : MonoBehaviour
 
     IEnumerator SlowRoutine(float percent, float duration)
     {
+        if (data == null) yield break; // 안전장치: data 미할당 시 NRE 방지
         float originalSpeed = data.moveSpeed;
 
         data.moveSpeed *= (1f - percent);

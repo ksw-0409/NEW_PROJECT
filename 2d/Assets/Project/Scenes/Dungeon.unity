@@ -2740,6 +2740,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &201180546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 201180547}
+  m_Layer: 0
+  m_Name: BossSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &201180547
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201180546}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 696667238}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &231340054
 GameObject:
   m_ObjectHideFlags: 0
@@ -9428,6 +9459,59 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &696667236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 696667238}
+  - component: {fileID: 696667237}
+  m_Layer: 0
+  m_Name: BossStageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &696667237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696667236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1dc88d75a5d6d142be011c63433b350, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossStageManager
+  bossPrefab: {fileID: 6158536839425183535, guid: df549d85362462840a82482083976df6, type: 3}
+  spawnPoint: {fileID: 201180547}
+  player: {fileID: 2026055320}
+  portalPrefab: {fileID: 3424542349691123839, guid: acf6ebc6717f39b408acd6a904d68514, type: 3}
+  portalSpawnRadius: 3
+  normalSpawner: {fileID: 1768684259}
+  stageManager: {fileID: 1669466175}
+  enemyManager: {fileID: 1768684260}
+--- !u!4 &696667238
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696667236}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 201180547}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &697624322
@@ -32364,6 +32448,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 5a0eac14b3fba9a449e90a2ad88076fa, type: 2}
     - target: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: meteorWarningCirclePrefab
+      value: 
+      objectReference: {fileID: 2907236242975453759, guid: 8b958bde021539246894fe458ad38c91, type: 3}
+    - target: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
       propertyPath: rotatingSlashEffectPrefab
       value: 
       objectReference: {fileID: 30316419374980630, guid: a439a7af80a8efd47ac53636913ae096, type: 3}
@@ -32425,3 +32513,4 @@ SceneRoots:
   - {fileID: 928586738}
   - {fileID: 543817174}
   - {fileID: 901664024}
+  - {fileID: 696667238}

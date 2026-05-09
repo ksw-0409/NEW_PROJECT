@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 
@@ -14,6 +14,8 @@ public class PlayerSkillController : MonoBehaviour
     [SerializeField] private GameObject ChainLightningPrefab;
     [SerializeField] private GameObject IceRainPrefab;
     [SerializeField] private GameObject FireFielfPrefab;
+    [Tooltip("메테오 떨어지기 전 사전 표시 마법진 prefab")]
+    [SerializeField] private GameObject meteorWarningCirclePrefab;
 
     [SerializeField] private GameObject bowArrowPrefab;
     [SerializeField] private GameObject arrowRainPrefab;
@@ -192,6 +194,7 @@ public class PlayerSkillController : MonoBehaviour
             skill.enemyManager = this.enemyManager;
             skill.meteorVisualPrefab = meteorFireFieldPrefab;
             skill.fireFieldPrefab = FireFielfPrefab;
+            skill.warningCirclePrefab = meteorWarningCirclePrefab;
             skill.Init(instance);
             return skill;
         }

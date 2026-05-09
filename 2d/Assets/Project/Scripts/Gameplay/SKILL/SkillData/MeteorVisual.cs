@@ -3,6 +3,8 @@ using UnityEngine;
 public class MeteorVisual : MonoBehaviour
 {
     public GameObject fireFieldPrefab;
+    public GameObject warningCirclePrefab; // ⭐ 떨어지기 전 바닥에 표시할 마법진
+    private GameObject warningCircleInstance;
     private float impactDamage;
     private float dotDamage;
     private float duration;
@@ -28,9 +30,39 @@ public class MeteorVisual : MonoBehaviour
         duration = dur;                // 장판 지속시간
         explosionRadius = rad;         // 폭발 및 장판 범위
         targetDestination = target;    // 도달해야 할 바닥 좌표
+
+        // 떨어질 위치에 사전 경고 마법진 즉시 스폰
+        SpawnWarningCircle();
     }
 
-    public void ConfigureSpecialties(bool enablePlanetCrash, bool enableLavaField)
+    private void SpawnWarningCircle()
+    {
+        if (warningCirclePrefab == null)
+        {
+            Debug.LogWarning("[MeteorVisual] warningCirclePrefab NULL — 마법진 표시 불가. PlayerSkillController에 할당했는지 확인.");
+            return;
+        }
+        // z=-0.1로 살짝 앞으로 빼서 다른 sprite보다 앞에 그려지게
+        Vector3 pos = new Vector3(targetDestination.x, targetDestination.y, -0.1f);
+        warningCircleInstance = Instantiate(warningCirclePrefab, pos, Quaternion.identity);
+
+        // sprite native 0.96, 실제 보이는 픽셀은 30%만 사용 (가운데 작은 원)
+        // → 월드 지름 = explosionRadius*2가 되려면 scale을 active ratio로 보정
+        const float spriteNative = 0.96f;
+        const float activeRatio = 0.30f; // aura_icon_11_orange_3 측정값
+        float scale = (explosionRadius * 2f) / (spriteNative * activeRatio);
+        warningCircleInstance.transform.localScale = new Vector3(scale, scale, 1f);
+
+        var sr = warningCircleInstance.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.sortingOrder = 500;
+            sr.color = new Color(1f, 0.7f, 0.2f, 0.95f);
+        }
+        Debug.Log($"[MeteorVisual] WarningCircle spawned at {pos} scale={scale} radius={explosionRadius}");
+    }
+
+        public void ConfigureSpecialties(bool enablePlanetCrash, bool enableLavaField)
     {
         planetCrashEnabled = enablePlanetCrash;
         lavaFieldEnabled = enableLavaField;
@@ -55,6 +87,9 @@ public class MeteorVisual : MonoBehaviour
     {
         if (hasExploded) return;
         hasExploded = true;
+
+        // ⭐ 사전 마법진 제거 (이펙트로 페이드 아웃 대신 즉시 destroy — fire field 외곽선이 인계)
+        if (warningCircleInstance != null) Destroy(warningCircleInstance);
 
         // 1. 피격판정 (OverlapCircle explosionRadius)
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);

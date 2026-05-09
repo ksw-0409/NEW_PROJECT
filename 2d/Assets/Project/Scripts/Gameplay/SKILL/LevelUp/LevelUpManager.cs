@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,11 +10,28 @@ public class LevelUpManager : MonoBehaviour
     public PlayerStats playerStats;
     public PlayerSkillController skillController;
 
+    private static bool startUIShown = false; // 같은 세션에서 두 번 뜨지 않게 정적 플래그
+
     void Start()
     {
-        // 시작 시 1스테이지일 때 스킬 선택창 띄우기
-        if (GameDataManager.Instance.CurrentFloor == 1)
+        var bsm = FindFirstObjectByType<BossStageManager>();
+        bool isBossMode = bsm != null && bsm.gameObject.activeInHierarchy;
+        int floor = GameDataManager.Instance.CurrentFloor;
+        Debug.Log($"[LevelUpManager] Start - CurrentFloor={floor} startUIShown={startUIShown} isBossMode={isBossMode}");
+
+        // ⭐ 던전 진입 시 시작 스킬창 단 한 번 표시
+        // - 일반 진입: 1층에서 한 번
+        // - 보스 진입: 보스 모드에서도 한 번 (스킬 없이 보스 못 잡으니까)
+        bool shouldShow = !startUIShown && (floor == 1 || isBossMode);
+        if (shouldShow)
+        {
+            startUIShown = true;
             ShowStartSkillUI();
+        }
+        else if (startUIShown)
+        {
+            Debug.Log("[LevelUpManager] Skipping start UI - already shown this session");
+        }
     }
 
     private void OnEnable()
@@ -30,6 +47,7 @@ public class LevelUpManager : MonoBehaviour
     // 🟢 시작 스킬 선택
     public void ShowStartSkillUI()
     {
+        Debug.Log("[LevelUpManager] ShowStartSkillUI invoked");
         levelUpUI.SetActive(true);
         Time.timeScale = 0f;
 
@@ -39,6 +57,7 @@ public class LevelUpManager : MonoBehaviour
     // 🟢 레벨업 시 호출
     public void ShowLevelUpUI()
     {
+        Debug.Log("[LevelUpManager] ShowLevelUpUI invoked (from level up event)");
         levelUpUI.SetActive(true);
         Time.timeScale = 0f;
 

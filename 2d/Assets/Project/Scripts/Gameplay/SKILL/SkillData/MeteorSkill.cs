@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class MeteorSkill : SkillBase
 {
@@ -7,6 +7,7 @@ public class MeteorSkill : SkillBase
 
     public GameObject meteorVisualPrefab; // 떨어지는 운석 프리팹
     public GameObject fireFieldPrefab;    // 바닥 장판 프리팹
+    public GameObject warningCirclePrefab; // ⭐ 떨어지기 전 바닥에 표시할 마법진
 
     protected override void Execute(Transform player)
     {
@@ -27,6 +28,15 @@ public class MeteorSkill : SkillBase
         int meteorCount = meteorShower ? 5 : 1;
         float showerRadiusMultiplier = meteorShower ? 1.5f : 1f;
 
+        // ⭐ 동시 활성 메테오 수 제한 — 이전 메테오가 너무 많이 쌓이면 새 발동 스킵 (시각 누적 방지)
+        var existing = GameObject.FindObjectsByType<MeteorVisual>(FindObjectsSortMode.None);
+        int maxConcurrent = meteorShower ? 8 : 3;
+        if (existing.Length >= maxConcurrent)
+        {
+            Debug.Log($"[MeteorSkill] Skip spawn — already {existing.Length} meteors active (max {maxConcurrent})");
+            return;
+        }
+
         for (int i = 0; i < meteorCount; i++)
         {
             // 1. 떨어질 목표 지점 계산 (플레이어 주변 range 범위 내 랜덤)
@@ -45,8 +55,11 @@ public class MeteorSkill : SkillBase
                 {
                     float meteorDamage = meteorShower ? finalDamage * 0.55f : finalDamage;
                     float meteorRadius = meteorShower ? finalRadius * 0.55f : finalRadius;
-                    visual.Setup(meteorDamage, ld.multiplier, finalDuration, meteorRadius, targetPos);
+                    // (Setup 호출은 prefab 할당 후로 이동됨)
                     visual.fireFieldPrefab = fireFieldPrefab;
+                    visual.warningCirclePrefab = warningCirclePrefab;
+                    Debug.Log($"[MeteorSkill] Spawning meteor at {targetPos}, warningCirclePrefab={(warningCirclePrefab != null ? warningCirclePrefab.name : "NULL")}");
+                    visual.Setup(meteorDamage, ld.multiplier, finalDuration, meteorRadius, targetPos);
                     visual.ConfigureSpecialties(
                         enablePlanetCrash: HasMeteorSpecialty(
                             new[] { "Meteor_PlanetCrash", "PlanetCollision", "Special_PlanetCrash" },
