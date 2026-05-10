@@ -69,7 +69,7 @@ public class FireballProjectile : MonoBehaviour
             const float activeRatio = 0.9f;
             float fxSize = (explosionRadius * 2f) / (spriteNative * activeRatio);
             fx.transform.localScale = new Vector3(fxSize, fxSize, 1f);
-            Destroy(fx, 0.7f);
+            Destroy(fx, 0.55f); // 폭발 애니 0.5초 + 약간 여유
         }
 
         // 4. ⭐ 피격범위 가시화 — 외곽선 + 반투명 채움으로 정확한 데미지 영역을 보여줌

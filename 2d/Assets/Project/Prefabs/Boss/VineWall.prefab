@@ -46,6 +46,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5ea77cbf5acd745973aa36540507e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VineWall
+  perVeinLength: 1.5
+  perVeinGrowTime: 0.25
+  perVeinSpawnInterval: 0.08
+  growFrames:
+  - {fileID: 9160016950512176009, guid: b8f351a83f78e064cb728b810a87cb64, type: 3}
+  - {fileID: 900621701718633026, guid: b8f351a83f78e064cb728b810a87cb64, type: 3}
+  - {fileID: 3487462089996530738, guid: b8f351a83f78e064cb728b810a87cb64, type: 3}
+  - {fileID: -5638358782135306099, guid: b8f351a83f78e064cb728b810a87cb64, type: 3}
 --- !u!61 &2069679555251095903
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -76,7 +84,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -179,7 +187,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.13, y: 0.08}
+  m_Size: {x: 1.2, y: 30}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -192,7 +200,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8684807424790037063}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7e178c7be99ea1c4c8c4c216b29bb0b4, type: 2}
   m_CullingMode: 0

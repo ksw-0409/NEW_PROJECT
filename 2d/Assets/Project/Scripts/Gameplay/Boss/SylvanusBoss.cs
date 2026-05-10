@@ -37,6 +37,12 @@ public class SylvanusBoss : EnemyAI
     public float rootSpawnRadius = 1.0f;        // 플레이어 위치 주변 분포
     public float rootDamageDelay = 0.6f;        // 뿌리 솟구 후 데미지 발생까지 시간
 
+    [Header("특수2 — 추적 막대 indicator")]
+    public GameObject rootIndicatorPrefab;       // x/y 축 추적 indicator prefab (1.5초 추적 후 vine 생성)
+    public float indicatorTrackDuration = 3f;    // 추적 단계 시간 (사용자 기획: 3초)
+    public float indicatorLockDuration = 1.5f;   // 고정 단계 시간 (사용자 기획: 1.5초)
+    public float indicatorBarLength = 20f;       // indicator 막대 길이 (화면 끝까지)
+
     [Header("연계 / 프리딜")]
     public float postComboFreeTime = 7f;        // 연계 후 프리딜 시간
 
@@ -133,7 +139,7 @@ public class SylvanusBoss : EnemyAI
                 if (flashEndTime <= 0)
                 {
                     sr.color = new Color(1f, 0.3f, 0.3f, 1f);
-                    Debug.Log($"[SylvanusBoss] HIT FLASH | hp {lastHp} -> {hpComp.currentHp}");
+                    //Debug.Log($"[SylvanusBoss] HIT FLASH | hp {lastHp} -> {hpComp.currentHp}");
                 }
                 flashEndTime = Time.time + FLASH_DURATION;
             }
@@ -251,32 +257,86 @@ public class SylvanusBoss : EnemyAI
     // ===================== 특수공격 1: 위/아래 나무 줄기 =====================
     private IEnumerator SpecialAttack_Vine()
     {
-        // 새 vine 발동 시 이전 vine부터 정리 (한 번에 보이는 vine은 위/아래 1쌍만)
+        // 이전 vine 정리 (새 패턴 시작 시 기존 vine 자동 제거)
         ClearAllVines();
 
         if (anim != null) anim.Play("Skill2", 0, 0f);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
 
         if (vinePrefab == null || playerTr == null) yield break;
 
-        Vector3 anchor = playerTr.position;
+        // ===== Phase A: 가로 설정 (추적 3초 → 고정 1.5초 → 벽 생성) =====
+        yield return StartCoroutine(WallPhase(RootIndicator.Axis.Horizontal, Vector2.right));
 
-        // 위쪽 줄기
-        GameObject up = Instantiate(vinePrefab, anchor, Quaternion.identity);
-        var vUp = up.GetComponent<VineWall>();
-        if (vUp != null) vUp.Setup(Vector2.up, vineLength, vineWidth, SkillDamage, vineDamageInterval, vineDuration);
-        activeVines.Add(up);
+        // ===== Phase B: 세로 설정 =====
+        yield return StartCoroutine(WallPhase(RootIndicator.Axis.Vertical, Vector2.up));
 
-        // 아래쪽 줄기
-        GameObject down = Instantiate(vinePrefab, anchor, Quaternion.identity);
-        var vDown = down.GetComponent<VineWall>();
-        if (vDown != null) vDown.Setup(Vector2.down, vineLength, vineWidth, SkillDamage, vineDamageInterval, vineDuration);
-        activeVines.Add(down);
+        // ===== 자동 연계: 1.5초 대기 후 나무 뿌리 15회 =====
+        yield return new WaitForSeconds(1.5f);
+        Debug.Log("[SylvanusBoss] === Roots 15회 시작 (벽은 아직 살아있음) ===");
+        yield return StartCoroutine(SpecialAttack_Roots());
+        Debug.Log("[SylvanusBoss] === Roots 끝 → 이제 모든 벽 제거 ===");
 
-        yield return new WaitForSeconds(0.4f);
+        // 뿌리 패턴 끝나면 모든 벽 제거 (사용자 기획)
+        ClearAllVines();
+    }
+
+    /// <summary>
+    /// 한 방향 벽 생성 패턴: 추적 → 고정 → 벽 생성
+    /// </summary>
+    private IEnumerator WallPhase(RootIndicator.Axis axis, Vector2 vineGrowDir)
+    {
+        // 1) 추적 indicator 생성 (3초 플레이어 추적)
+        Vector3 lockPos = playerTr != null ? playerTr.position : transform.position;
+        GameObject indicator = null;
+        RootIndicator ind = null;
+
+        if (rootIndicatorPrefab != null)
+        {
+            indicator = Instantiate(rootIndicatorPrefab, lockPos, Quaternion.identity);
+            ind = indicator.GetComponent<RootIndicator>();
+            if (ind != null)
+            {
+                // 추적 시간 = 3초, 고정 시간 = 1.5초 → 총 4.5초 생존
+                ind.Setup(playerTr, axis, indicatorTrackDuration + indicatorLockDuration, indicatorBarLength, vineWidth);
+            }
+        }
+
+        // 2) 추적 단계 — indicator가 자체적으로 플레이어 추적
+        yield return new WaitForSeconds(indicatorTrackDuration);
+
+        // 3) 고정 단계 — 추적 중단, 현재 위치 고정
+        if (ind != null)
+        {
+            ind.StopTracking();
+            lockPos = indicator.transform.position;
+        }
+        yield return new WaitForSeconds(indicatorLockDuration);
+
+        // 4) indicator 제거 후 벽 생성 (한 쌍: dir 방향 + 반대 방향)
+        if (indicator != null) Destroy(indicator);
+
+        Vector2 dirA = vineGrowDir;
+        Vector2 dirB = -vineGrowDir;
+
+        GameObject wA = Instantiate(vinePrefab, lockPos, Quaternion.identity);
+        var vA = wA.GetComponent<VineWall>();
+        if (vA != null) vA.Setup(dirA, vineLength, vineWidth, SkillDamage, vineDamageInterval, vineDuration);
+        activeVines.Add(wA);
+
+        GameObject wB = Instantiate(vinePrefab, lockPos, Quaternion.identity);
+        var vB = wB.GetComponent<VineWall>();
+        if (vB != null) vB.Setup(dirB, vineLength, vineWidth, SkillDamage, vineDamageInterval, vineDuration);
+        activeVines.Add(wB);
+
+        Debug.Log($"[SylvanusBoss] {axis} wall 생성 at {lockPos}");
+
+        yield return new WaitForSeconds(0.3f);
     }
 
     // ===================== 특수공격 2: 나무 뿌리 15회 =====================
+    // ===================== 특수공격2: x축 막대 → 수평 vine → y축 막대 → 수직 vine =====================
+    // ===================== 특수공2: 플레이어 위치에 나무 뿌리 15회 =====================
     private IEnumerator SpecialAttack_Roots()
     {
         if (anim != null) anim.Play("Skill2", 0, 0f);
@@ -287,7 +347,7 @@ public class SylvanusBoss : EnemyAI
         for (int i = 0; i < rootCount; i++)
         {
             if (isDie) yield break;
-            // 플레이어 현재 위치 + 약간의 랜덤
+            // 플레이어 현재 위치 + 약간의 랜덤 오프셋
             Vector2 origin = playerTr.position;
             Vector2 offset = Random.insideUnitCircle * rootSpawnRadius;
             Vector3 spawn = (Vector3)(origin + offset);
@@ -299,6 +359,12 @@ public class SylvanusBoss : EnemyAI
             yield return new WaitForSeconds(rootInterval);
         }
     }
+
+    /// <summary>
+    /// indicator를 생성해 플레이어를 trackDuration 동안 따라다니게 하고,
+    /// 그 자리에 해당 축 방향으로 vine wall을 생성
+    /// </summary>
+
 
     private void ClearAllVines()
     {

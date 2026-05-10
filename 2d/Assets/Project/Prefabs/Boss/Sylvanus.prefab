@@ -261,14 +261,17 @@ MonoBehaviour:
   normalAttackCountFrenzy: 4
   frenzyHpThreshold: 0.3
   vinePrefab: {fileID: 3826859410447166204, guid: 018ced8c7f0f8984eb212fd2c83ff9d7, type: 3}
-  vineLength: 5
+  vineLength: 30
   vineDuration: 99
   vineDamageInterval: 1
-  vineWidth: 4
+  vineWidth: 1.2
   rootPrefab: {fileID: 5142683496054444484, guid: e74b369119452924c8a1f72820b38f6e, type: 3}
   rootCount: 15
   rootInterval: 0.18
   rootSpawnRadius: 1
   rootDamageDelay: 0.6
+  rootIndicatorPrefab: {fileID: 831448601743774942, guid: 597310cb611cf6d42a1d6958abe63f61, type: 3}
+  indicatorTrackDuration: 1.5
+  indicatorBarLength: 30
   postComboFreeTime: 7
   rangeIndicatorColor: {r: 0.45, g: 0.85, b: 0.25, a: 0.85}
