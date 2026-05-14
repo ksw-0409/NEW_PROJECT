@@ -94,7 +94,7 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  projectilePrefab: {fileID: 2493754749878858455, guid: a95713e3ead5c164f812272983a21fca, type: 3}
+  projectilePrefab: {fileID: 2493754749878858455, guid: b06eb058fe913fb4e8ecc7a580492ac6, type: 3}
   effectPrefab: {fileID: 2197338236776400270, guid: ae6c20bb428770747945e42a2b2fe370, type: 3}
   projectileSpeed: 10
   explosionRadius: 1

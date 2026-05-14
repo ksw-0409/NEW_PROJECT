@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836915f0e80dff44089ab2c4d8d1ad00, type: 3}
   m_Name: Slash Skill Data
   m_EditorClassIdentifier: Assembly-CSharp::SlashSkillData
-  skillName: Slash
-  icon: {fileID: 4610387984849099163, guid: 020229f00816d85439cf11c850422781, type: 3}
+  skillName: "\uBC30\uAE30"
+  icon: {fileID: 21300000, guid: 3bf9cde34fe2cdc4ca2780a61a3dbc4b, type: 3}
   description: 
   levels:
   - cooldown: 2

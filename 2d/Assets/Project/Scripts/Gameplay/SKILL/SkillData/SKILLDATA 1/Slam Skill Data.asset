@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479bd60b232741c43a1990ba010c7b8b, type: 3}
   m_Name: Slam Skill Data
   m_EditorClassIdentifier: Assembly-CSharp::SlamSkillData
-  skillName: Slam
-  icon: {fileID: 6799163214939887052, guid: c47ce1883beec284ca2c011d7712b162, type: 3}
+  skillName: "\uB0B4\uB824\uCC0D\uAE30"
+  icon: {fileID: 21300000, guid: 5ccc4b386e540864f8b74d192892ce45, type: 3}
   description: 
   levels:
   - cooldown: 7

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7a9e55ebebb7243bdba72f435d2b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FieldItem
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: 8fd8e5a8ad50e1843aed13f45912a7f5, type: 2}
 --- !u!58 &841116785609864018
 CircleCollider2D:
   m_ObjectHideFlags: 0
