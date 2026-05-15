@@ -4,6 +4,7 @@ using UnityEngine.Pool;
 public class Exp : MonoBehaviour
 {
     private IObjectPool<Exp> managedPool;
+    public bool IsEaten { get; private set; } = false;
     public float expAmount = 1;
     public Sprite[] expSprite;
     private SpriteRenderer spriteRenderer;
@@ -14,6 +15,7 @@ public class Exp : MonoBehaviour
     public void SetPool(IObjectPool<Exp> pool)
     {
         managedPool = pool;
+        IsEaten = false; // 풀에서 꺼낼 때 초기화
     }
 
     public void SetExp(float expAmount)
@@ -31,9 +33,10 @@ public class Exp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            IsEaten = true;
             // 플레이어 경험치 증가 로직 호출 
             other.GetComponent<PlayerStats>().TakeExp(expAmount);
-            managedPool.Release(this);
+            ExpManager.Instance.EnqueueToRelease(this);
         }
     }
 }

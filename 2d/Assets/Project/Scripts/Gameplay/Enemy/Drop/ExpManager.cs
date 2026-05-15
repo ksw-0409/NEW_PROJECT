@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using Mono.Cecil.Cil;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.Pool;
 
 public class ExpManager : MonoBehaviour
@@ -14,6 +12,11 @@ public class ExpManager : MonoBehaviour
     private IObjectPool<Exp> pool;
     // 현재 필드에 떨어져 있는 Exp
     public List<Exp> activeExps = new List<Exp>();
+    // 지연 처리를 위한 청소 큐 추가
+    private Queue<Exp> expsToRelease = new Queue<Exp>();
+
+    float magnetDistance = 3.0f; // 자석 범위
+    float moveSpeed = 10.0f; // 자석 속도
 
     void Awake()
     {
@@ -45,7 +48,6 @@ public class ExpManager : MonoBehaviour
     private void OnReleaseExp(Exp exp)
     {
         exp.gameObject.SetActive(false);
-        activeExps.Remove(exp);
     }
 
     private void OnDestroyExp(Exp exp)
@@ -61,26 +63,47 @@ public class ExpManager : MonoBehaviour
         exp.SetExp(expAmount);
         exp.transform.position = position;
     }
+
+    public void EnqueueToRelease(Exp exp)
+    {
+        if (!expsToRelease.Contains(exp))
+        {
+            expsToRelease.Enqueue(exp);
+        }
+    }
+
     void FixedUpdate()
     {
         if (player == null) return;
 
-        float magnetDistance = 3.0f; // 자석 범위
-        float moveSpeed = 10.0f;
+        Vector3 playerPos = player.transform.position;
 
-        for (int i = activeExps.Count - 1; i >= 0; i--)
+        for (int i = 0; i < activeExps.Count; i++)
         {
-            float dist = Vector2.Distance(activeExps[i].transform.position, player.transform.position);
+            Exp exp = activeExps[i];
+            if (exp == null || exp.IsEaten) continue; // 이미 먹힌 애는 패스
 
+            float dist = Vector2.Distance(exp.transform.position, playerPos);
             if (dist < magnetDistance)
             {
-                // 플레이어 방향으로 이동
-                activeExps[i].transform.position = Vector2.MoveTowards(
-                    activeExps[i].transform.position,
-                    player.transform.position,
+                exp.transform.position = Vector2.MoveTowards(
+                    exp.transform.position,
+                    playerPos,
                     moveSpeed * Time.fixedDeltaTime
                 );
             }
+        }
+
+        CleanUpExps();
+    }
+    private void CleanUpExps()
+    {
+        while (expsToRelease.Count > 0)
+        {
+            Exp exp = expsToRelease.Dequeue();
+            if (exp == null) continue;
+            activeExps.Remove(exp);
+            pool.Release(exp);
         }
     }
 }

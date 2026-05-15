@@ -11,7 +11,7 @@ public class EnemyAI : MonoBehaviour
     protected Rigidbody2D rb;
     protected EnemyHealth health; 
     private IObjectPool<EnemyAI> managedPool;
-    protected bool isDie = false;
+    public bool isDie = false;
     private float moveSpeed;
     protected float SkillDamage;
     private float ContactDamage;
@@ -89,29 +89,26 @@ public class EnemyAI : MonoBehaviour
         isDie = true;
         ExpManager.Instance.DropExp(this.transform.position, expAmount);        
         ItemManager.Instance.DropItem(this.transform.position, DropWeapon,false);
-        if (usePooling&& managedPool!=null)
-        {
-            managedPool.Release(this);
-        }
-        else
-        {
-            EnemyManager.Instance.RemoveActiveEnemy(this);
-            Destroy(gameObject);
-        }
+
+        EnemyManager.Instance.EnqueueToRelease(this);
     }
     public virtual void OnUpdate(Vector2 playerPos)
     {
         HandleSlowTimer();
         HandleStunTimer();
         if (isStun) return;
+        if (isDie) return;
     }
     public virtual void MoveTaget(Vector2 targetPos)
     {
         if (data == null) return;
         if (isStun) return;
+        if (isDie) return;
         if (isRushMode) {
             rb.linearVelocity = rushDir * moveSpeed;
-            if(transform.position.y< rushLimitY) managedPool.Release(this);
+            if (transform.position.y < rushLimitY) {
+                isDie = true;
+                EnemyManager.Instance.EnqueueToRelease(this); }
         }
         else
         {
@@ -152,7 +149,6 @@ public class EnemyAI : MonoBehaviour
 
             if (playerStats != null)
             {
-
                 playerStats.TakeDamage(ContactDamage);
                 // 시각적 확인을 위한 로그
                 Debug.Log($"{collision.gameObject.name}에게 {ContactDamage}의 데미지를 입혔습니다.");
@@ -175,6 +171,16 @@ public class EnemyAI : MonoBehaviour
         slowTimer = duration; // 지속 시간 설정 (중첩 호출 시 시간 갱신)
         Debug.Log("슬로우 적용");
     }
+    //외부에서 호출할 스턴 함수 (지속시간) 중복시 시간 갱신
+    public void ApplyStun(float duration)
+    {
+        isStun = true;
+        stunTimer = duration; // 지속 시간 설정 (중첩 호출 시 시간 갱신)
+        rb.linearVelocity = Vector2.zero; // 즉시 정지
+        Debug.Log("슬로우 적용");
+    }
+
+    
     private void HandleSlowTimer()
     {
         if (isSlowed)
@@ -193,15 +199,6 @@ public class EnemyAI : MonoBehaviour
         moveSpeed = originalSpeed; // 원래 속도로 복구
         slowTimer = 0f;
         Debug.Log("슬로우 종료, 속도 복구");
-    }
-
-    //외부에서 호출할 스턴 함수 (지속시간) 중복시 시간 갱신
-    public void ApplyStun(float duration)
-    {
-        isStun = true;
-        stunTimer = duration; // 지속 시간 설정 (중첩 호출 시 시간 갱신)
-        rb.linearVelocity = Vector2.zero; // 즉시 정지
-        Debug.Log("슬로우 적용");
     }
     private void HandleStunTimer()
     {
