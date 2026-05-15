@@ -21,12 +21,25 @@ public class SkillRangeIndicator : MonoBehaviour
     public float fadeOutDuration = 0.25f;
     public bool autoDestroy = true;
 
+    // ⭐ 전역 스위치: false면 어디서든 SkillRangeIndicator가 스폰되더라도 즉시 숨겨집니다.
+    //    후처리/시연용 클린 캡쳐를 위해 일괄적으로 끌 때 사용.
+    public static bool GloballyEnabled = false;
+
     private LineRenderer edgeRenderer;
     private LineRenderer fillRenderer;
     private const int CircleSegments = 64;
     private float lifeTimer;
 
-    void Awake() { BuildRenderers(); }
+    void Awake()
+    {
+        if (!GloballyEnabled)
+        {
+            // 전역 토글이 꺼져 있으면 입자마자 파괴 (렌더러 생성조차 안 함 → 성능 흫수)
+            Destroy(gameObject);
+            return;
+        }
+        BuildRenderers();
+    }
 
     void OnEnable() { lifeTimer = 0f; UpdateLines(); }
 

@@ -32,7 +32,7 @@ public class MeteorVisual : MonoBehaviour
         targetDestination = target;    // 도달해야 할 바닥 좌표
 
         // 떨어질 위치에 사전 경고 마법진 즉시 스폰
-        SpawnWarningCircle();
+        // SpawnWarningCircle removed
     }
 
     private void SpawnWarningCircle()
@@ -89,7 +89,7 @@ public class MeteorVisual : MonoBehaviour
         hasExploded = true;
 
         // ⭐ 사전 마법진 제거 (이펙트로 페이드 아웃 대신 즉시 destroy — fire field 외곽선이 인계)
-        if (warningCircleInstance != null) Destroy(warningCircleInstance);
+        // warningCircle destroy removed
 
         // 1. 피격판정 (OverlapCircle explosionRadius)
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);

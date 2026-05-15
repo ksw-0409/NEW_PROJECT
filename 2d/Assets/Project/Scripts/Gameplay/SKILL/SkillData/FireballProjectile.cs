@@ -12,35 +12,73 @@ public class FireballProjectile : MonoBehaviour
     private bool exploded = false;
     private bool isSplitChild = false;
 
-    private void Awake() => startPos = transform.position;
+    private void Awake()
+    {
+        startPos = transform.position;
+        // 5초 안전장치
+        Invoke(nameof(ForceExpire), 5f);
+        Debug.Log($"[Fireball] Awake at {transform.position}, ForceExpire scheduled in 5s");
+    }
+
+    void ForceExpire()
+    {
+        if (!exploded)
+        {
+            Debug.Log("[Fireball] ForceExpire — 5초 타임아웃 폭발");
+            Explode();
+        }
+    }
 
     public void Init(float dmg, float radius, GameObject fx, float scale, bool isChild = false)
     {
         damage = dmg;
-        explosionRadius = radius; // FireballSkill에서 받은 레벨 데이터 값이 들어옴
+        explosionRadius = radius;
         effectPrefab = fx;
         effectScale = scale;
         this.isSplitChild = isChild;
+        Debug.Log($"[Fireball] Init: dmg={dmg} radius={radius}");
     }
 
     void Update()
     {
-        if (!exploded && Vector3.Distance(startPos, transform.position) > maxDistance) Explode();
+        if (!exploded && Vector3.Distance(startPos, transform.position) > maxDistance)
+        {
+            Debug.Log("[Fireball] maxDistance reached - exploding");
+            Explode();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!exploded && other.CompareTag("Enemy")) Explode();
+        Debug.Log($"[Fireball] OnTriggerEnter2D: other={other.gameObject.name} tag={other.tag}");
+        if (!exploded && other.CompareTag("Enemy"))
+        {
+            Debug.Log($"[Fireball] Enemy hit via Trigger: {other.gameObject.name}");
+            Explode();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log($"[Fireball] OnCollisionEnter2D: other={collision.gameObject.name} tag={collision.gameObject.tag}");
+        if (!exploded && collision.collider.CompareTag("Enemy"))
+        {
+            Debug.Log($"[Fireball] Enemy hit via Collision: {collision.gameObject.name}");
+            Explode();
+        }
     }
 
     void Explode()
     {
         if (exploded) return;
         exploded = true;
+        CancelInvoke(nameof(ForceExpire));
 
-        bool isBigExplosion = PlayerStats.Instance.HasSpecialty("Fireball_2_2");
+        Debug.Log($"[Fireball] EXPLODE at {transform.position} radius={explosionRadius}");
 
-        // 1. 판정 범위 (OverlapCircle explosionRadius)
+        bool isBigExplosion = PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Fireball_2_2");
+
+        // 1. 데미지 판정
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         foreach (var hit in hits)
         {
@@ -57,22 +95,21 @@ public class FireballProjectile : MonoBehaviour
         }
 
         // 2. 분열 (1회 제한)
-        if (!isSplitChild && PlayerStats.Instance.HasSpecialty("Fireball_3_2")) SpawnSplitProjectiles();
+        if (!isSplitChild && PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Fireball_3_2"))
+            SpawnSplitProjectiles();
 
-        // 3. 폭발 이펙트 — ⭐ explosion-a sprite native(0.48), 활성 픽셀 90% → 월드 지름이 explosionRadius*2가 되도록
+        // 3. 폭발 이펙트
         if (effectPrefab != null)
         {
             GameObject fx = Instantiate(effectPrefab, transform.position, Quaternion.identity);
-            // sprite native 0.48, 활성 90% → 실제 보이는 영역 = scale * 0.48 * 0.9
-            // 월드 지름 = explosionRadius*2 → scale = explosionRadius*2 / (0.48*0.9)
             const float spriteNative = 0.48f;
             const float activeRatio = 0.9f;
             float fxSize = (explosionRadius * 2f) / (spriteNative * activeRatio);
             fx.transform.localScale = new Vector3(fxSize, fxSize, 1f);
-            Destroy(fx, 0.55f); // 폭발 애니 0.5초 + 약간 여유
+            Destroy(fx, 0.55f);
         }
 
-        // 4. ⭐ 피격범위 가시화 — 외곽선 + 반투명 채움으로 정확한 데미지 영역을 보여줌
+        // 4. 피격범위 가시화
         SkillRangeIndicator.Spawn(
             transform.position,
             explosionRadius,
@@ -104,7 +141,6 @@ public class FireballProjectile : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        // 실제 시스태파이 판정(OverlapCircle explosionRadius)과 일치
         Gizmos.color = new Color(1f, 0.5f, 0.1f, 0.9f);
         Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }

@@ -18,6 +18,9 @@ public class SkillTreeUI : MonoBehaviour
     public TextMeshProUGUI infoNodeCostText;
     public TextMeshProUGUI infoNodeStatusText;
 
+    [Tooltip("선택된 노드의 아이콘을 표시할 Image (선택사항 — InfoPanel 안의 Icon)")]
+    public Image           infoNodeIcon;
+
     void Awake() => Instance = this;
 
     void Start()
@@ -52,16 +55,28 @@ public class SkillTreeUI : MonoBehaviour
             infoNodeDescText.text = selectedNode.nodeDescription;
 
         if (infoNodeCostText != null)
-            infoNodeCostText.text = $"비용: {selectedNode.unlockCost}";
+            infoNodeCostText.text = $"<color=#FFD700>◆ 비용: {selectedNode.unlockCost}</color>";
 
         if (infoNodeStatusText != null)
         {
             if (selectedNode.IsUnlocked)
-                infoNodeStatusText.text = "<color=#FFD700>해금됨</color>";
+                infoNodeStatusText.text = "<color=#FFD700><b>✔ 해금됨</b></color>";
+            else if (selectedNode.IsBlockedByExclusive())
+                infoNodeStatusText.text = "<color=#666666>✕ 다른 분기 선택됨</color>";
             else if (!selectedNode.CanUnlock())
-                infoNodeStatusText.text = "<color=#888888>선행 조건 필요</color>";
+                infoNodeStatusText.text = "<color=#888888>✕ 선행 조건 필요</color>";
             else
-                infoNodeStatusText.text = "<color=#88FF88>해금 가능</color>";
+                infoNodeStatusText.text = "<color=#7BCFFF>☆ 해금 가능</color>";
+        }
+
+        if (infoNodeIcon != null)
+        {
+            UnityEngine.Sprite preview = selectedNode.iconUnlocked != null
+                ? selectedNode.iconUnlocked
+                : (selectedNode.iconImage != null ? selectedNode.iconImage.sprite : null);
+            infoNodeIcon.sprite = preview;
+            infoNodeIcon.enabled = preview != null;
+            infoNodeIcon.color = UnityEngine.Color.white;
         }
     }
 

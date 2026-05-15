@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bow Skill Data
   m_EditorClassIdentifier: Assembly-CSharp::BowSkillData
   skillName: Bowskill
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 695cdb22bb910c941906d11269da5b7b, type: 3}
   description: 
   levels:
   - cooldown: 3

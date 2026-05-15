@@ -60,7 +60,8 @@ public class RotatingSlashSkill : SkillBase
         GameObject effect = Instantiate(effectPrefab, transform.position, Quaternion.identity, transform);
         const float spriteNative = 0.96f;
         const float activeRatio = 0.30f;
-        float finalScale = (range * 1.4f) / (spriteNative * activeRatio);
+        // 이펙트 크기 = 데미지 판정 영역(지름 = range*2)과 일치
+        float finalScale = (range * 2f) / spriteNative; // active ratio 제거
         effect.transform.localScale = new Vector3(finalScale, finalScale, 1f);
         Destroy(effect, 0.3f);
     }

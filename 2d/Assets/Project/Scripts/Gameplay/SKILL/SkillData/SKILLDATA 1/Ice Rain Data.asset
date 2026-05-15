@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ice Rain Data
   m_EditorClassIdentifier: Assembly-CSharp::IceRainData
   skillName: Ice Rain
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 4a5f2901c82599545aa8efa9a43a933d, type: 3}
   description: 
   levels:
   - cooldown: 6

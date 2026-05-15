@@ -36,6 +36,10 @@ public class SkillNode : MonoBehaviour, IPointerClickHandler
     public SkillNode[]      prerequisites;
     public SkillConnector[] outgoingLinks;
 
+    [Header("✨ 배타 제약 (3갈래 분기)")]
+    [Tooltip("이 노드와 서로 배타적인 노드들. 이 노드가 해금되면 exclusiveWith의 모든 노드는 영원히 잠김됩니다.\n例: 공격/유틸/변칙 중 하나를 고르면 나머지 둘은 선택 불가.")]
+    public SkillNode[]      exclusiveWith;
+
     [Header("색상")]
     public Color lockedColor    = new Color(0.25f, 0.25f, 0.25f, 1f);
     public Color unlockedColor  = new Color(1f, 0.85f, 0f, 1f);
@@ -44,6 +48,13 @@ public class SkillNode : MonoBehaviour, IPointerClickHandler
 
     [Header("UI")]
     public Image            iconImage;
+
+    [Header("✨ 아이콘 상태별 스프라이트")]
+    [Tooltip("잠김 상태일 때 표시할 스프라이트 (회색). 비워두면 iconImage의 기본 sprite가 그대로 사용됩니다.")]
+    public Sprite           iconLocked;
+    [Tooltip("해금되었거나 해금 가능한 상태일 때 표시할 스프라이트 (파란/컴러).")]
+    public Sprite           iconUnlocked;
+
     public Image            frameImage;
     public TextMeshProUGUI  costText;
 
@@ -125,6 +136,21 @@ public class SkillNode : MonoBehaviour, IPointerClickHandler
                 foreach (var pre in node.prerequisites)
                     if (pre == this) { node.UpdateVisual(); break; }
 
+        // ✨ 배타 관계 노드들 시각 갱신 (그들이 이제 영원 잠김 상태로 표시되도록)
+        if (exclusiveWith != null)
+        {
+            foreach (var other in exclusiveWith)
+            {
+                if (other == null) continue;
+                other.UpdateVisual();
+                // 그 노드의 하위 자식들도 연쇄 갱신
+                foreach (var sub in FindObjectsOfType<SkillNode>())
+                    if (sub.prerequisites != null)
+                        foreach (var pre in sub.prerequisites)
+                            if (pre == other) { sub.UpdateVisual(); break; }
+            }
+        }
+
         if (SkillTreeUI.Instance != null) SkillTreeUI.Instance.UpdateButtonState();
     }
 
@@ -132,24 +158,63 @@ public class SkillNode : MonoBehaviour, IPointerClickHandler
     public bool CanUnlock()
     {
         if (IsUnlocked) return false;
+        if (IsBlockedByExclusive()) return false;
         if (prerequisites != null)
             foreach (var pre in prerequisites)
                 if (pre != null && !pre.IsUnlocked) return false;
         return true;
     }
 
+    public bool IsBlockedByExclusive()
+    {
+        if (exclusiveWith == null) return false;
+        foreach (var other in exclusiveWith)
+        {
+            if (other != null && other.IsUnlocked) return true;
+        }
+        return false;
+    }
+
     // ─── 시각 ───────────────────────────────
     public void UpdateVisual()
     {
-        Image target = frameImage != null ? frameImage : iconImage;
-        if (target == null) return;
+        bool blocked = IsBlockedByExclusive();
 
-        if (isSelected)         target.color = selectedColor;
-        else if (IsUnlocked)    target.color = unlockedColor;
-        else if (CanUnlock())   target.color = availableColor;
-        else                    target.color = lockedColor;
+        if (iconImage != null && (iconLocked != null || iconUnlocked != null))
+        {
+            Sprite chosen = IsUnlocked ? iconUnlocked : iconLocked;
+            if (chosen != null) iconImage.sprite = chosen;
+
+            if (isSelected)
+                iconImage.color = new UnityEngine.Color(1.3f, 1.3f, 1.0f, 1f);
+            else if (IsUnlocked)
+                iconImage.color = UnityEngine.Color.white;
+            else if (blocked)
+                iconImage.color = new UnityEngine.Color(0.22f, 0.22f, 0.26f, 1f); // 영원 잠김 (거의 검정)
+            else if (CanUnlock())
+                iconImage.color = new UnityEngine.Color(1.0f, 1.0f, 1.0f, 1f);
+            else
+                iconImage.color = new UnityEngine.Color(0.5f, 0.5f, 0.5f, 1f);
+        }
+
+        if (frameImage != null)
+        {
+            if (isSelected)         frameImage.color = selectedColor;
+            else if (IsUnlocked)    frameImage.color = unlockedColor;
+            else if (blocked)       frameImage.color = new UnityEngine.Color(0.15f, 0.15f, 0.18f, 1f);
+            else if (CanUnlock())   frameImage.color = availableColor;
+            else                    frameImage.color = lockedColor;
+        }
+        else if (iconImage != null && iconLocked == null && iconUnlocked == null)
+        {
+            if (isSelected)         iconImage.color = selectedColor;
+            else if (IsUnlocked)    iconImage.color = unlockedColor;
+            else if (blocked)       iconImage.color = new UnityEngine.Color(0.15f, 0.15f, 0.18f, 1f);
+            else if (CanUnlock())   iconImage.color = availableColor;
+            else                    iconImage.color = lockedColor;
+        }
 
         if (costText != null)
-            costText.text = IsUnlocked ? "✔" : unlockCost.ToString();
+            costText.text = IsUnlocked ? "✔" : (blocked ? "✕" : unlockCost.ToString());
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Meteor Data
   m_EditorClassIdentifier: Assembly-CSharp::MeteorData
   skillName: Meteor
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 7003f1af9e7ae18478959128f2bd051e, type: 3}
   description: 
   levels:
   - cooldown: 8
