@@ -145,13 +145,24 @@ public class RotatingSlashSkill : SkillBase
     void SpawnEffect(float range)
     {
         if (effectPrefab == null) return;
+
         GameObject effect = Instantiate(effectPrefab, transform.position, Quaternion.identity, transform);
-        const float spriteNative = 0.96f;
-        const float activeRatio = 0.30f;
-        // 이펙트 크기 = 데미지 판정 영역(지름 = range*2)과 일치
-        float finalScale = (range * 2f) / spriteNative; // active ratio 제거
-        effect.transform.localScale = new Vector3(finalScale, finalScale, 1f);
-        Destroy(effect, 0.3f);
+        effect.transform.localPosition = Vector3.zero;
+
+        var rb = effect.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            rb.simulated = false;
+        }
+
+        var matcher = effect.GetComponent<SkillRangeMatcher>();
+        if (matcher == null) matcher = effect.AddComponent<SkillRangeMatcher>();
+        matcher.activeRatio = 1.0f;
+        matcher.ApplyRadius(range);
+
+        float lifetime = rotData != null ? Mathf.Max(0.3f, rotData.hitInterval) : 0.3f;
+        Destroy(effect, lifetime);
     }
 
     // 기즈모 색상을 검은색으로 변경

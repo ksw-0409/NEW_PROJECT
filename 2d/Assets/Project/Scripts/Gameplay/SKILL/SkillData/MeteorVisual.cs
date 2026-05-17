@@ -93,19 +93,10 @@ public class MeteorVisual : MonoBehaviour
         else
             CameraShake.ShakePreset(CameraShake.Preset.Epic);
 
-        // ✨ 메테오 전체 크기를 절반으로 줄이고 시각 = 판정 정확히 일치
-        // FireFieldPrefab 실측값:
-        //   - sprite 시각적 불꽃 픽셀 반지름 = 0.153 (스케일 1)
-        //   - CircleCollider2D radius = 0.18
-        //   - sprite 투명 영역 포함 전체 = 0.48
-        // 원하는 결과: 사용자가 보는 장판 = 데미지 영역 = explosionRadius * 0.5
-        const float fireFieldVisibleBaseRadius = 0.153f;
-        const float fireFieldColliderBaseRadius = 0.18f;
-
-        // 메테오 전체 크기 절반 축소
+        // 메테오 전체 크기 절반 축소 (이펙트와 판정 둘 다 이게 기준)
         float effectiveRadius = explosionRadius * 0.5f;
 
-        // 1. 즉발 피격 판정 — 시각 장판 크기와 정확히 일치
+        // 1. 즉발 피격 판정
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, effectiveRadius);
         foreach (var hit in hits)
         {
@@ -130,7 +121,6 @@ public class MeteorVisual : MonoBehaviour
             SpawnPlanetCrashFX();
         }
 
-        // 2. 즉발 폭발 고리
         SkillRangeIndicator.Spawn(
             transform.position,
             effectiveRadius,
@@ -139,24 +129,16 @@ public class MeteorVisual : MonoBehaviour
             SkillRangeIndicator.Shape.Circle
         );
 
-        // 3. 불 장판 생성 — 시각 불꽃과 콜라이더 모두 effectiveRadius에 정확히 맞춤
+        // 2. 불 장판 생성 — SkillRangeMatcher로 자동 동기화
         if (fireFieldPrefab != null)
         {
             GameObject fieldGo = Instantiate(fireFieldPrefab, transform.position, Quaternion.identity);
 
-            // sprite 시각적 불꽃이 정확히 effectiveRadius가 되도록 스케일
-            // 즉, sprite 는 effectiveRadius / 0.153 배 커짐
-            float fieldScale = effectiveRadius / fireFieldVisibleBaseRadius;
-            fieldGo.transform.localScale = new Vector3(fieldScale, fieldScale, 1f);
-
-            // 하지만 이렇게 하면 콜라이더는 0.18 * fieldScale = effectiveRadius * 1.18이 되어 시각보다 18% 큼
-            // → 콜라이더를 직접 effectiveRadius로 조정해서 정확히 일치시킴
-            var col = fieldGo.GetComponent<CircleCollider2D>();
-            if (col != null)
-            {
-                // localScale을 고려하면 col.radius * fieldScale = effectiveRadius 가 되도록
-                col.radius = effectiveRadius / fieldScale;
-            }
+            // FireField sprite의 시각적 불꽃 활성 비율은 약 32% (이전에 측정)
+            var matcher = fieldGo.GetComponent<SkillRangeMatcher>();
+            if (matcher == null) matcher = fieldGo.AddComponent<SkillRangeMatcher>();
+            matcher.activeRatio = 0.32f;
+            matcher.ApplyRadius(effectiveRadius);
 
             FireField field = fieldGo.GetComponent<FireField>();
             if (field != null)

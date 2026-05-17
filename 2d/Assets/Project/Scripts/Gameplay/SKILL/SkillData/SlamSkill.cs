@@ -171,23 +171,15 @@ public class SlamSkill : SkillBase
         if (effectPrefab == null) return;
 
         GameObject fx = Instantiate(effectPrefab);
-
-        // 위치: 부채꼴 중심(캐스터와 사거리의 절반 지점)
         fx.transform.position = transform.position + (Vector3)(dir * range * 0.5f);
 
-        // 방향
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         fx.transform.rotation = Quaternion.Euler(0, 0, angle);
 
-        // ⭐ explosion-f sprite native(0.48), 가로 활성 83% — 가로는 사거리, 세로는 사거리 절반
-        const float spriteNativeX = 0.48f;
-        const float spriteNativeY = 0.48f;
-        const float activeRatioX = 0.83f;
-        const float activeRatioY = 0.83f; // explosion-f는 프레임마다 활성 영역 다름; 평균값
-        // 가로는 사거리의 1배 (접에서 앞까지), 세로는 사거리의 60% 정도
-        float scaleX = range / (spriteNativeX * activeRatioX);
-        float scaleY = (range * 0.6f) / (spriteNativeY * activeRatioY);
-        fx.transform.localScale = new Vector3(scaleX, scaleY, 1f);
+        var matcher = fx.GetComponent<SkillRangeMatcher>();
+        if (matcher == null) matcher = fx.AddComponent<SkillRangeMatcher>();
+        matcher.activeRatio = 0.83f;
+        matcher.ApplyRect(range, range * 0.6f);
 
         Destroy(fx, 0.5f);
     }

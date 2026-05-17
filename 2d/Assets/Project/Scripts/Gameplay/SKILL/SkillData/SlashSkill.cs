@@ -108,17 +108,23 @@ public class SlashSkill : SkillBase
     {
         if (effectPrefab == null) return;
         GameObject effect = Instantiate(effectPrefab);
+
         FollowEffect follow = effect.AddComponent<FollowEffect>();
         follow.target = player;
         follow.dir = dir;
         follow.range = range;
         effect.transform.position = player.position + (Vector3)(dir * range * 0.5f);
+
         float angleDeg = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         effect.transform.rotation = Quaternion.Euler(0, 0, angleDeg);
-        const float spriteNative = 0.95f;
-        const float activeRatio = 0.77f;
-        float visualScale = (range * 2f) / (spriteNative * activeRatio);
-        effect.transform.localScale = new Vector3(visualScale, visualScale, 1f);
+
+        // ✨ SkillRangeMatcher로 자동 스케일 — 이펙트 시각 = 사거리
+        // SlashEffect sprite는 가로로 길게 뀸으므로 특별 처리 (가로 쓰는 이펙트는 으로 접근)
+        var matcher = effect.GetComponent<SkillRangeMatcher>();
+        if (matcher == null) matcher = effect.AddComponent<SkillRangeMatcher>();
+        matcher.activeRatio = 0.77f; // 기존에 측정된 값
+        matcher.ApplyRadius(range);
+
         Destroy(effect, 0.3f);
     }
 

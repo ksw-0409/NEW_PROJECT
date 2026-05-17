@@ -13,15 +13,47 @@ public class FireballSkill : SkillBase
 
     protected override void Execute(Transform player)
     {
-        if (fireData == null || instance == null) return;
+        if (fireData == null || instance == null)
+        {
+            Debug.LogWarning("[Fireball] fireData or instance is null — skipping shot");
+            return;
+        }
 
-        // PlayerStats.GetSkillBonus: dmg, rng, cool, cnt, slowMul, durMul
         var bonus = PlayerStats.Instance.GetSkillBonus(fireData);
 
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        Vector2 mouseDir = (mousePos - (Vector2)player.position).normalized;
+        // ✨ 마우스 입력 null 가드 — 마우스가 없거나 카메라가 없을 때는
+            // 가장 가까운 적 혹은 플레이어 바라보는 방향으로 발사
+        Vector2 mouseDir = Vector2.right;
+        bool gotMouseDir = false;
 
-        // ⭐ 2. 스킬 자체 횟수(count) + 노드 보너스 횟수(bonus.cnt)를 합산합니다.
+        if (Camera.main != null && Mouse.current != null)
+        {
+            try
+            {
+                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                Vector2 raw = mousePos - (Vector2)player.position;
+                if (raw.sqrMagnitude > 0.01f)
+                {
+                    mouseDir = raw.normalized;
+                    gotMouseDir = true;
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning("[Fireball] mouse read failed: " + e.Message);
+            }
+        }
+
+        // 마우스 방향 획득 실패 시 폴백: 가장 가까운 적 혹은 플레이어 향 반향
+        if (!gotMouseDir)
+        {
+            Transform fallbackTarget = FindNearestEnemy(player.position, 20f);
+            if (fallbackTarget != null)
+                mouseDir = ((Vector2)fallbackTarget.position - (Vector2)player.position).normalized;
+            else
+                mouseDir = (player.localScale.x >= 0 ? Vector2.right : Vector2.left); // 플레이어 바라보는 방향
+        }
+
         int totalShootCount = instance.GetCurrentLevelData().count + bonus.cnt;
 
         for (int i = 0; i < totalShootCount; i++)
