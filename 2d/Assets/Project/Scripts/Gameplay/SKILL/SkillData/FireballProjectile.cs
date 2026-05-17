@@ -76,6 +76,9 @@ public class FireballProjectile : MonoBehaviour
 
         Debug.Log($"[Fireball] EXPLODE at {transform.position} radius={explosionRadius}");
 
+        // 임팩트 흔들림: 화염구는 중간 강도 (분열 자식은 약하게)
+        CameraShake.ShakePreset(isSplitChild ? CameraShake.Preset.Light : CameraShake.Preset.Medium);
+
         bool isBigExplosion = PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Fireball_2_2");
 
         // 1. 데미지 판정

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,8 +32,21 @@ public class GameDataManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        // ✨ ResetAll 제거 — 이제 해금 데이터가 영구 저장됨
+        //   게임 완전 리셋이 필요하면 ContextMenu의 명령이나 메뉴에서 명시적으로 호출
+        Debug.Log($"[GameDataManager] 아이템 더미 로드 완료 — unlocked 노드: {persistentData.unlockedSkillNodes.Count}, 골드: {persistentData.gold}");
+    }
+
+    // 명시적 리셋 (메뉴에서 호출)
+    public void HardResetAll()
+    {
         persistentData.ResetAll();
-        Debug.Log($"[GameDataManager] ResetAll 호출 — runtimeItems 개수: {persistentData.runtimeItems.Count}");
+        OnGoldChanged?.Invoke(persistentData.gold);
+        OnNormalCurrencyChanged?.Invoke(persistentData.normalCurrency);
+        OnSpecialCurrencyChanged?.Invoke(persistentData.specialCurrency);
+        OnItemsChanged?.Invoke(persistentData.equippedItems);
+        OnFloorChanged?.Invoke(persistentData.currentFloor);
+        Debug.Log("[GameDataManager] HardResetAll 호출 — 모든 데이터 리셋");
     }
 
     public void AddGold(int amount)
@@ -75,6 +88,18 @@ public class GameDataManager : MonoBehaviour
     public bool IsNodeUnlocked(string skillName)
     {
         return persistentData.unlockedSkillNodes.Contains(skillName);
+    }
+
+    public void SaveUnlockedEffect(UnlockedNodeEffect effect)
+    {
+        if (effect == null || string.IsNullOrEmpty(effect.skillNodeID)) return;
+        persistentData.unlockedEffects.RemoveAll(e => e.skillNodeID == effect.skillNodeID);
+        persistentData.unlockedEffects.Add(effect);
+    }
+
+    public List<UnlockedNodeEffect> GetUnlockedEffects()
+    {
+        return persistentData.unlockedEffects;
     }
 
     public void AddSpecialCurrency(int amount)

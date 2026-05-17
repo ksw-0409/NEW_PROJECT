@@ -68,12 +68,42 @@ public class SkillNode : MonoBehaviour, IPointerClickHandler
         if (GameDataManager.Instance != null
             && !string.IsNullOrEmpty(skillNodeID)
             && GameDataManager.Instance.IsNodeUnlocked(skillNodeID))
+        {
             IsUnlocked = true;
+        }
 
         UpdateVisual();
     }
 
-    void Start() => UpdateVisual();
+    /// <summary>
+    /// PlayerStats에 이 노드의 효과를 적용 (스킬 보너스 혹은 스폐셜티 태그 등록).
+    /// Awake/Start 시점에서 재적용 — 이 메서드를 DoUnlock과 Start에서 모두 사용.
+    /// </summary>
+    private void ApplyUnlockEffectToStats()
+    {
+        if (PlayerStats.Instance == null) return;
+
+        if (nodeType == NodeType.StatBoost)
+        {
+            if (targetSkill != null)
+                PlayerStats.Instance.UpdateSkillBonus(targetSkill,
+                    damageMultiplier, rangeMultiplier, cooldownMultiplier,
+                    countBonus, slowPercentMultiplier, durationMultiplier);
+        }
+        else if (nodeType == NodeType.Specialty)
+        {
+            PlayerStats.Instance.UnlockSpecialty(specialtyTag, targetSkill,
+                damageMultiplier, rangeMultiplier, cooldownMultiplier,
+                countBonus, slowPercentMultiplier, durationMultiplier);
+        }
+    }
+
+    void Start()
+    {
+        UpdateVisual();
+        // ✨ 던전에 진입했을 때 PlayerStats에 재적용 (해금된 경우에만)
+        if (IsUnlocked) ApplyUnlockEffectToStats();
+    }
 
     // ─── 클릭 ───────────────────────────────
     public void OnPointerClick(PointerEventData e)
@@ -108,21 +138,25 @@ public class SkillNode : MonoBehaviour, IPointerClickHandler
         IsUnlocked = true;
 
         if (!string.IsNullOrEmpty(skillNodeID) && GameDataManager.Instance != null)
+        {
             GameDataManager.Instance.SaveUnlockedNode(skillNodeID);
 
-        if (nodeType == NodeType.StatBoost)
-        {
-            if (targetSkill != null)
-                PlayerStats.Instance.UpdateSkillBonus(targetSkill,
-                    damageMultiplier, rangeMultiplier, cooldownMultiplier,
-                    countBonus, slowPercentMultiplier, durationMultiplier);
+            var effect = new UnlockedNodeEffect {
+                skillNodeID = skillNodeID,
+                targetSkillAssetName = targetSkill != null ? targetSkill.name : "",
+                nodeType = (int)nodeType,
+                specialtyTag = specialtyTag,
+                damageMultiplier = damageMultiplier,
+                rangeMultiplier = rangeMultiplier,
+                cooldownMultiplier = cooldownMultiplier,
+                countBonus = countBonus,
+                slowPercentMultiplier = slowPercentMultiplier,
+                durationMultiplier = durationMultiplier
+            };
+            GameDataManager.Instance.SaveUnlockedEffect(effect);
         }
-        else if (nodeType == NodeType.Specialty)
-        {
-            PlayerStats.Instance.UnlockSpecialty(specialtyTag, targetSkill,
-                damageMultiplier, rangeMultiplier, cooldownMultiplier,
-                countBonus, slowPercentMultiplier, durationMultiplier);
-        }
+
+        ApplyUnlockEffectToStats();
 
         UpdateVisual();
 
@@ -130,20 +164,17 @@ public class SkillNode : MonoBehaviour, IPointerClickHandler
             foreach (var link in outgoingLinks)
                 if (link != null) link.RefreshColor();
 
-        // 자식 노드들 시각 갱신
         foreach (var node in FindObjectsOfType<SkillNode>())
             if (node.prerequisites != null)
                 foreach (var pre in node.prerequisites)
                     if (pre == this) { node.UpdateVisual(); break; }
 
-        // ✨ 배타 관계 노드들 시각 갱신 (그들이 이제 영원 잠김 상태로 표시되도록)
         if (exclusiveWith != null)
         {
             foreach (var other in exclusiveWith)
             {
                 if (other == null) continue;
                 other.UpdateVisual();
-                // 그 노드의 하위 자식들도 연쇄 갱신
                 foreach (var sub in FindObjectsOfType<SkillNode>())
                     if (sub.prerequisites != null)
                         foreach (var pre in sub.prerequisites)

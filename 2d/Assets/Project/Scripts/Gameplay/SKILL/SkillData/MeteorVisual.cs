@@ -88,6 +88,13 @@ public class MeteorVisual : MonoBehaviour
         if (hasExploded) return;
         hasExploded = true;
 
+        // ✨ 메테오 임팩트: 강력한 카메라 흔들림
+        //   PlanetCrash 특수효과가 있으면 더 강하게
+        if (planetCrashEnabled)
+            CameraShake.Shake(0.7f, 0.55f, 14f); // EPIC+
+        else
+            CameraShake.ShakePreset(CameraShake.Preset.Epic);
+
         // ⭐ 사전 마법진 제거 (이펙트로 페이드 아웃 대신 즉시 destroy — fire field 외곽선이 인계)
         // warningCircle destroy removed
 

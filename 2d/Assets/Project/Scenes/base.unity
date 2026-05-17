@@ -387,15 +387,15 @@ MonoBehaviour:
     \uC774\uC0C1 \uC801\uC911 \uC2DC \uB370\uBBF8\uC9C0 5%\uC529 \uC911\uCCA9 \uC99D\uAC00
     (\uCD5C\uB300 50%, 5\uCD08 \uC9C0\uC18D)."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: RotSlash_crush
+  skillNodeID: RotSlash_crush
   unlockCost: 3
   prerequisites:
   - {fileID: 1532359954}
@@ -743,7 +743,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Slam_range
   unlockCost: 2
   prerequisites:
   - {fileID: 654530808}
@@ -1758,7 +1758,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: ChainLight_cool
   unlockCost: 2
   prerequisites:
   - {fileID: 320065899}
@@ -2870,15 +2870,15 @@ MonoBehaviour:
     \uBD80\uCC44\uAF34 \uBAA8\uC591\uC73C\uB85C 3\uC904\uAE30 \uB3D9\uC2DC \uBC1C\uC0AC\uD558\uC5EC\n\uC815\uBA74\uC758
     \uB113\uC740 \uBC94\uC704\uB97C \uC7A5\uC545\uD569\uB2C8\uB2E4."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: SwordWave_triple
+  skillNodeID: SwordWave_triple
   unlockCost: 3
   prerequisites:
   - {fileID: 452989455}
@@ -3226,7 +3226,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Shield_cool3
   unlockCost: 2
   prerequisites:
   - {fileID: 1324956700}
@@ -3962,15 +3962,15 @@ MonoBehaviour:
     \uC2DC \uC911\uC2EC\uBD80\uC758 \uC801\uC5D0\uAC8C 2\uBC30 \uD53C\uD574\uB97C
     \uC785\uD799\uB2C8\uB2E4."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: Fireball_2_2
+  skillNodeID: Frireball_1_1
   unlockCost: 3
   prerequisites:
   - {fileID: 1585092949}
@@ -4207,7 +4207,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: BW_boost_cool
   unlockCost: 2
   prerequisites:
   - {fileID: 798975299}
@@ -4576,7 +4576,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: SM_boost_cool
   unlockCost: 2
   prerequisites:
   - {fileID: 252438785}
@@ -4963,7 +4963,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: SwordWave_start
   unlockCost: 1
   prerequisites: []
   outgoingLinks:
@@ -5884,7 +5884,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Slam_cool
   unlockCost: 2
   prerequisites:
   - {fileID: 38556692}
@@ -6095,7 +6095,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Shield_start
   unlockCost: 1
   prerequisites: []
   outgoingLinks:
@@ -6211,7 +6211,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: SW_boost_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 1551984249}
@@ -7154,7 +7154,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: ChainLight_chain
   unlockCost: 2
   prerequisites:
   - {fileID: 947332453}
@@ -7270,7 +7270,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: IR_boost_slow
   unlockCost: 2
   prerequisites:
   - {fileID: 2113623341}
@@ -8389,15 +8389,15 @@ MonoBehaviour:
     \uB418\uB3CC\uC544\uC624\uBA70 \uACBD\uB85C\uC0C1\uC758 \uC801\uC744 \uB2E4\uC2DC
     \uD55C\uBC88 \uD0C0\uACA9\uD569\uB2C8\uB2E4."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: SwordWave_return
+  skillNodeID: SwordWave_return
   unlockCost: 3
   prerequisites:
   - {fileID: 1736019909}
@@ -8972,7 +8972,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: MT_boost_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 1696803231}
@@ -10033,15 +10033,15 @@ MonoBehaviour:
     5\uCD08\uAC04 \uC6A9\uC554\uC774 \uB0A8\uC73C\uBA70,\n\uCD08\uB2F9 \uBA54\uD14C\uC624
     \uB370\uBBF8\uC9C0\uC758 1/10 \uD53C\uD574 + \uC774\uB3D9 \uC18D\uB3C4 50% \uAC10\uC18C."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: Meteor_LavaField
+  skillNodeID: Meteor_lava
   unlockCost: 3
   prerequisites:
   - {fileID: 1262141583}
@@ -10158,7 +10158,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: SW_boost_range
   unlockCost: 2
   prerequisites:
   - {fileID: 1551984249}
@@ -11757,7 +11757,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Slash_start
   unlockCost: 1
   prerequisites: []
   outgoingLinks:
@@ -12203,7 +12203,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: SL_boost_range
   unlockCost: 2
   prerequisites:
   - {fileID: 1018743989}
@@ -12964,7 +12964,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: DEF_boost_cd2
   unlockCost: 2
   prerequisites:
   - {fileID: 154907382}
@@ -13074,15 +13074,15 @@ MonoBehaviour:
     1\uAC1C \uB300\uC2E0 \uC791\uC740 \uC720\uC131 5\uAC1C\uAC00\n\uB113\uC740 \uC9C0\uC5ED\uC5D0
     \uBB34\uC791\uC704\uB85C \uB099\uD558\uD569\uB2C8\uB2E4."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: Meteor_Shower
+  skillNodeID: Meteor_shower
   unlockCost: 3
   prerequisites:
   - {fileID: 798855513}
@@ -13193,15 +13193,15 @@ MonoBehaviour:
     1\uD68C \uD295\uAE41\uB2C8\uB2E4.\n(\uB3C4\uD0C4 \uD654\uC0B4\uC740 \uD328\uC2DC\uBE0C
     \uD654\uC0B4 \uD6A8\uACFC\uAC00 \uC808\uBC18\uB9CC \uC801\uC6A9)"
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: Bow_ricochet
+  skillNodeID: Bow_ricochet
   unlockCost: 3
   prerequisites:
   - {fileID: 905006646}
@@ -13318,7 +13318,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: CL_boost_chain
   unlockCost: 2
   prerequisites:
   - {fileID: 86825940}
@@ -13529,7 +13529,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Bow_cool
   unlockCost: 2
   prerequisites:
   - {fileID: 1065288441}
@@ -13644,7 +13644,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: IceRain_slow
   unlockCost: 2
   prerequisites:
   - {fileID: 822543624}
@@ -14315,7 +14315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &639262131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15005,7 +15005,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Slam_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 2005024571}
@@ -15341,15 +15341,15 @@ MonoBehaviour:
     \uB9DE\uC740 \uC801\uC740 1.5\uCD08\uAC04 \uAE30\uC808,\n\uCDA9\uACA9\uD30C\uC5D0
     \uB9DE\uC740 \uC801\uC740 \uB454\uD654 (\uAE30\uC808 \uBA74\uC5ED 5\uCD08)."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: Slam_thunder
+  skillNodeID: Slam_thunder
   unlockCost: 3
   prerequisites:
   - {fileID: 198620474}
@@ -15661,7 +15661,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Meteor_start
   unlockCost: 1
   prerequisites: []
   outgoingLinks:
@@ -16417,7 +16417,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: BW_boost_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 798975299}
@@ -16527,15 +16527,15 @@ MonoBehaviour:
     \uC5BC\uC74C \uCC3D\uB4E4\uC774 \uD558\uB098\uC529 \uB099\uD558.\n\uBC94\uC704\uB294
     \uC881\uC544\uC9C0\uC9C0\uB9CC \uC9C1\uACA9 \uC2DC 300% \uB9C8\uBC95 \uD53C\uD574."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: IceRain_spear
+  skillNodeID: IceRain_spear
   unlockCost: 3
   prerequisites:
   - {fileID: 1829984262}
@@ -16740,15 +16740,15 @@ MonoBehaviour:
     300% \uCD94\uAC00 \uD53C\uD574, \uC8FC\uBCC0 \uC801 \uAC15\uD55C \uB109\uBC31
     + 1\uCD08 \uAE30\uC808."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: Meteor_PlanetCrash
+  skillNodeID: Meteor_impact
   unlockCost: 3
   prerequisites:
   - {fileID: 393098421}
@@ -17454,7 +17454,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Frireball_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 2001224935}
@@ -18875,7 +18875,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: MT_boost_cool
   unlockCost: 2
   prerequisites:
   - {fileID: 1696803231}
@@ -18971,7 +18971,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Bow_crit
   unlockCost: 2
   prerequisites:
   - {fileID: 585875329}
@@ -19296,15 +19296,15 @@ MonoBehaviour:
     \uC804\uAE30 \uD3ED\uBC1C\uC774 \uC77C\uC5B4\uB098 \uAD11\uC5ED \uD53C\uD574\uB97C
     \uC785\uD799\uB2C8\uB2E4."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: Lightning_FinalExplosion
+  skillNodeID: ChainLight_discharge
   unlockCost: 3
   prerequisites:
   - {fileID: 584540617}
@@ -19677,7 +19677,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: IceRain_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 1512502385}
@@ -20566,15 +20566,15 @@ MonoBehaviour:
     \uC791\uC740 \uD654\uC5FC\uAD6C 4\uAC1C\uAC00 \uD280\uC5B4\uB098\uAC00\n\uC8FC\uBCC0
     \uC801\uB4E4\uC5D0\uAC8C 2\uCC28 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: Fireball_3_2
+  skillNodeID: Frireball_2_1
   unlockCost: 3
   prerequisites:
   - {fileID: 1228038325}
@@ -21116,7 +21116,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Frireball_range
   unlockCost: 2
   prerequisites:
   - {fileID: 724578561}
@@ -21654,7 +21654,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: BW_boost_crit
   unlockCost: 2
   prerequisites:
   - {fileID: 798975299}
@@ -22736,7 +22736,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: ChainLight_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 1618502540}
@@ -23195,15 +23195,15 @@ MonoBehaviour:
     \uBA38\uB9AC \uC704 \uBC88\uAC1C \uAD6C\uB984\uC774 1\uCD08\uB9C8\uB2E4 \uC801
     \uD558\uB098\uC5D0\uAC8C \uBC88\uAC1C\uB97C \uB5A8\uC5B4\uB728\uB9BD\uB2C8\uB2E4."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: Lightning_Cloud
+  skillNodeID: ChainLight_cloud
   unlockCost: 3
   prerequisites:
   - {fileID: 1500440425}
@@ -23629,7 +23629,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Slash_range
   unlockCost: 2
   prerequisites:
   - {fileID: 1693383942}
@@ -25111,7 +25111,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: FB_boost_range
   unlockCost: 2
   prerequisites:
   - {fileID: 1970197938}
@@ -25222,15 +25222,15 @@ MonoBehaviour:
     \uBCC0\uACBD.\n\uC8FC\uBCC0 \uC801\uC5D0\uAC8C \uCD08\uB2F9 1/10 \uB370\uBBF8\uC9C0
     \uC9C0\uC18D \uC785\uD798."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: RotSlash_aura
+  skillNodeID: RotSlash_aura
   unlockCost: 3
   prerequisites:
   - {fileID: 1693504296}
@@ -25612,7 +25612,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: RS_boost_range
   unlockCost: 2
   prerequisites:
   - {fileID: 1684366892}
@@ -25728,7 +25728,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Bow_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 1654185874}
@@ -26333,15 +26333,15 @@ MonoBehaviour:
     \uD478\uB978 \uB9C8\uB098 \uCDA9\uACA9\uD30C\uB85C \uBCC0\uD658\uD574 \uC8FC\uBCC0
     \uC801\uC5D0\uAC8C \uBC18\uC0AC."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: DEF_reflect
+  skillNodeID: Shield_reflect
   unlockCost: 3
   prerequisites:
   - {fileID: 1534531212}
@@ -26793,15 +26793,15 @@ MonoBehaviour:
     \uC8FD\uC744 \uB54C,\n\uC8FC\uBCC0\uC5D0 \uC5BC\uC74C \uD30C\uD3B8\uC744 \uD280\uAE30\uBA70
     \uCD94\uAC00 \uB9C8\uBC95 \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: IceRain_burst
+  skillNodeID: IceRain_burst
   unlockCost: 3
   prerequisites:
   - {fileID: 1161107352}
@@ -27219,15 +27219,15 @@ MonoBehaviour:
     \uBAAC\uC2A4\uD130 \uC989\uC2DC \uCC98\uD615 (\uBCF4\uC2A4\uC5D0\uAC8C \uCD94\uAC00
     \uD53C\uD574)."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: Slam_execute
+  skillNodeID: Slam_execute
   unlockCost: 3
   prerequisites:
   - {fileID: 1219936341}
@@ -27864,7 +27864,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: SL_boost_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 1018743989}
@@ -28162,7 +28162,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: IR_boost_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 2113623341}
@@ -29362,7 +29362,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: SM_boost_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 252438785}
@@ -29687,7 +29687,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: FB_boost_cool
   unlockCost: 2
   prerequisites:
   - {fileID: 1970197938}
@@ -30776,7 +30776,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: SwordWave_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 211660260}
@@ -30892,7 +30892,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: MT_boost_range
   unlockCost: 2
   prerequisites:
   - {fileID: 1696803231}
@@ -31189,15 +31189,15 @@ MonoBehaviour:
   nodeDescription: "\uD3ED\uBC1C \uBC94\uC704 +40% \uCD94\uAC00.\n\uD654\uC5FC\uAD6C\uAC00
     \uAC00\uC7A5 \uAC00\uAE4C\uC6B4 \uC801\uC744 \uC790\uB3D9\uC73C\uB85C \uCD94\uACA9\uD569\uB2C8\uB2E4."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: Fireball_1_2
+  skillNodeID: Frireball_1_2
   unlockCost: 3
   prerequisites:
   - {fileID: 1052688953}
@@ -31307,15 +31307,15 @@ MonoBehaviour:
     \uCD5C\uB300 \uC218\uB7C9\uC744 1\uAC1C\uC5D0\uC11C 2\uAC1C\uB85C \uC99D\uAC00\uC2DC\uD0B5\uB2C8\uB2E4.\n(\uC774\uC911
     \uBC29\uC5B4)"
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: DEF_double
+  skillNodeID: Shield_double
   unlockCost: 3
   prerequisites:
   - {fileID: 575464353}
@@ -32213,7 +32213,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Shield_cool2
   unlockCost: 2
   prerequisites:
   - {fileID: 1855371767}
@@ -32459,15 +32459,15 @@ MonoBehaviour:
     \uD130\uC9C8 \uACBD\uC6B0,\n\uB2E4\uC74C \uD654\uC0B4\uC758 \uCE58\uBA85\uD0C0
     \uB370\uBBF8\uC9C0\uAC00 50% \uC99D\uAC00\uD569\uB2C8\uB2E4."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: Bow_weakpoint
+  skillNodeID: Bow_weakpoint
   unlockCost: 3
   prerequisites:
   - {fileID: 686257291}
@@ -32652,15 +32652,15 @@ MonoBehaviour:
     \uB54C\uB9C8\uB2E4 \uB370\uBBF8\uC9C0\uAC00 \uAC10\uC18C\uD558\uC9C0 \uC54A\uACE0,\n\uC624\uD788\uB824
     10%\uC529 \uC99D\uAC00\uD569\uB2C8\uB2E4. (\uCD5C\uB300 100%)"
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: Lightning_Overload
+  skillNodeID: ChainLight_overload
   unlockCost: 3
   prerequisites:
   - {fileID: 1512103430}
@@ -34085,15 +34085,15 @@ MonoBehaviour:
     \uB530\uB77C \uD478\uB978 \uB9C8\uB098 \uBD88\uAF43\uC774 2\uCD08\uAC04 \uD0C0\uC624\uB974\uBA70,\n\uB9E4\uCD08
     \uAC80\uAE30 \uB370\uBBF8\uC9C0 1/10\uC758 \uC9C0\uC18D \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: SwordWave_firezone
+  skillNodeID: SwordWave_firezone
   unlockCost: 3
   prerequisites:
   - {fileID: 271796562}
@@ -34777,7 +34777,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: SL_boost_speed
   unlockCost: 2
   prerequisites:
   - {fileID: 1018743989}
@@ -34894,7 +34894,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: RotSlash_start
   unlockCost: 1
   prerequisites: []
   outgoingLinks:
@@ -35688,7 +35688,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Slash_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 528162892}
@@ -35917,7 +35917,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: CL_boost_cool
   unlockCost: 2
   prerequisites:
   - {fileID: 86825940}
@@ -36164,7 +36164,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: CL_boost_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 86825940}
@@ -36281,7 +36281,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: IceRain_start
   unlockCost: 1
   prerequisites: []
   outgoingLinks:
@@ -36585,7 +36585,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: RS_boost_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 1684366892}
@@ -36702,7 +36702,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: DEF_boost_cd1
   unlockCost: 2
   prerequisites:
   - {fileID: 154907382}
@@ -37110,7 +37110,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: RotSlash_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 1453018316}
@@ -37225,7 +37225,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: SwordWave_cool
   unlockCost: 2
   prerequisites:
   - {fileID: 1722244010}
@@ -37812,15 +37812,15 @@ MonoBehaviour:
   nodeDescription: "\uCFE8\uD0C0\uC784 -30% \uCD94\uAC00.\n\uD68C\uC804 \uC911 \uC8FC\uBCC0
     \uC801\uC744 \uC790\uC2E0\uC5D0\uAC8C \uB04C\uC5B4\uB2F9\uAE41\uB2C8\uB2E4."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: RotSlash_blackhole
+  skillNodeID: RotSlash_blackhole
   unlockCost: 3
   prerequisites:
   - {fileID: 1063954136}
@@ -38322,7 +38322,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: FB_boost_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 1970197938}
@@ -38433,15 +38433,15 @@ MonoBehaviour:
     \uC601\uC5ED \uC0DD\uC131,\n5\uCD08\uAC04 \uCD5C\uB300 \uCCB4\uB825\uC758 3%
     \uD68C\uBCF5."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: DEF_sanctuary
+  skillNodeID: Shield_sanctuary
   unlockCost: 3
   prerequisites:
   - {fileID: 1802559916}
@@ -38794,15 +38794,15 @@ MonoBehaviour:
     \uB3D9\uC77C \uB370\uBBF8\uC9C0\uC758 \uC794\uC0C1\uC774 \uD55C \uBC88 \uB354
     \uBCA0\uAE30."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: SL_phantom
+  skillNodeID: Slash_phantom
   unlockCost: 3
   prerequisites:
   - {fileID: 1156824997}
@@ -39116,7 +39116,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: ChainLight_start
   unlockCost: 1
   prerequisites: []
   outgoingLinks:
@@ -40102,7 +40102,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Bow_start
   unlockCost: 1
   prerequisites: []
   outgoingLinks:
@@ -40211,15 +40211,15 @@ MonoBehaviour:
     \uB0B4\uC5D0\uC11C 2\uCD08 \uC774\uC0C1 \uBC84\uD2F4 \uC801\uC740\n1.5\uCD08\uAC04
     \uBE59\uACB0(\uC644\uC804 \uC815\uC9C0) \uC0C1\uD0DC\uAC00 \uB429\uB2C8\uB2E4."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: IceRain_frozen
+  skillNodeID: IceRain_frozen
   unlockCost: 3
   prerequisites:
   - {fileID: 326177257}
@@ -40523,7 +40523,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: RotSlash_cool
   unlockCost: 2
   prerequisites:
   - {fileID: 2030565488}
@@ -40760,7 +40760,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Slash_speed
   unlockCost: 2
   prerequisites:
   - {fileID: 1496640908}
@@ -40896,7 +40896,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: RS_boost_cool
   unlockCost: 2
   prerequisites:
   - {fileID: 1684366892}
@@ -41087,7 +41087,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Meteor_cool
   unlockCost: 2
   prerequisites:
   - {fileID: 1857574059}
@@ -41318,15 +41318,15 @@ MonoBehaviour:
     \uC9C0\uC18D\uB51C) \uBD80\uC5EC,\n\uCD9C\uD608 \uC801 \uCC98\uCE58 \uC2DC \uCCB4\uB825
     2% \uD68C\uBCF5."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: SL_bloodbath
+  skillNodeID: Slash_bloodbath
   unlockCost: 3
   prerequisites:
   - {fileID: 1446454361}
@@ -41579,7 +41579,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: SwordWave_range
   unlockCost: 2
   prerequisites:
   - {fileID: 1260311697}
@@ -41992,7 +41992,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: SW_boost_cool
   unlockCost: 2
   prerequisites:
   - {fileID: 1551984249}
@@ -42835,7 +42835,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Meteor_dmg
   unlockCost: 2
   prerequisites:
   - {fileID: 673234789}
@@ -44302,7 +44302,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: DEF_boost_cd3
   unlockCost: 2
   prerequisites:
   - {fileID: 154907382}
@@ -44529,15 +44529,15 @@ MonoBehaviour:
     \uC801\uC758 \uD22C\uC0AC\uCCB4\uB97C \uC9C0\uC6CC\uBC84\uB9BC.\n\uB2E8, \uACF5\uACA9
     \uC18D\uB3C4 -50%."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: SL_parry
+  skillNodeID: Slash_parry
   unlockCost: 3
   prerequisites:
   - {fileID: 545245601}
@@ -44767,7 +44767,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: IR_boost_dur
   unlockCost: 2
   prerequisites:
   - {fileID: 2113623341}
@@ -44856,15 +44856,15 @@ MonoBehaviour:
   nodeDescription: "\uCFE8\uD0C0\uC784 -30% \uCD94\uAC00.\n1\uD68C \uBC1C\uC0AC \uC2DC
     \uD654\uC0B4\uC744 2\uBC1C \uC5F0\uC18D\uC73C\uB85C \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: Bow_rapid
+  skillNodeID: Bow_rapid
   unlockCost: 3
   prerequisites:
   - {fileID: 188476259}
@@ -45301,7 +45301,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Shield_cool1
   unlockCost: 2
   prerequisites:
   - {fileID: 260535220}
@@ -45416,7 +45416,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Meteor_range
   unlockCost: 2
   prerequisites:
   - {fileID: 1765084591}
@@ -47626,7 +47626,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: SM_boost_range
   unlockCost: 2
   prerequisites:
   - {fileID: 252438785}
@@ -47862,7 +47862,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Frireball_cool
   unlockCost: 2
   prerequisites:
   - {fileID: 870454887}
@@ -48068,15 +48068,15 @@ MonoBehaviour:
     3\uCD08\uAC04 \uC801\uC744 \uB290\uB9AC\uAC8C \uD558\uB294 \uADE0\uC5F4 \uC9C0\uB300
     \uC0DD\uC131."
   targetSkill: {fileID: 0}
-  nodeType: 0
+  nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
-  specialtyTag: 
-  skillNodeID: 
+  specialtyTag: Slam_quake
+  skillNodeID: Slam_quake
   unlockCost: 3
   prerequisites:
   - {fileID: 1958665279}
@@ -48272,7 +48272,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: start
   unlockCost: 0
   prerequisites: []
   outgoingLinks:
@@ -48388,7 +48388,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: Slam_start
   unlockCost: 1
   prerequisites: []
   outgoingLinks:
@@ -48794,7 +48794,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: RotSlash_range
   unlockCost: 2
   prerequisites:
   - {fileID: 1550039566}
@@ -48879,6 +48879,7 @@ GameObject:
   - component: {fileID: 2034753975}
   - component: {fileID: 2034753974}
   - component: {fileID: 2034753977}
+  - component: {fileID: 2034753978}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -49004,6 +49005,20 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &2034753978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034753973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86634c7b4cd9c04d9b32a7669b4457a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShake
+  currentRemaining: 0
+  currentMagnitude: 0
 --- !u!1 &2044378848
 GameObject:
   m_ObjectHideFlags: 0
@@ -50607,7 +50622,7 @@ MonoBehaviour:
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
-  skillNodeID: 
+  skillNodeID: IceRain_dur
   unlockCost: 2
   prerequisites:
   - {fileID: 588667738}

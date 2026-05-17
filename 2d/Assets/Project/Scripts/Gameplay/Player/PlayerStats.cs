@@ -6,24 +6,24 @@ public class PlayerStats : MonoBehaviour
 {
     public PlayerData data;
     public static PlayerStats Instance;
-    public event Action OnLevelUp; // ·¹º§¾÷ ÀÌº¥Æ® 
-    public static event Action OnPlayerDied; //»ç¸Á ÀÌº¥Æ®
+    public event Action OnLevelUp; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® 
+    public static event Action OnPlayerDied; //ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®
 
     public float currentHealth;
     public float currentLevel = 1;
     public float currentExp = 0;
     private bool isDead = false;
 
-    //dataÅ×ÀÌºí¿¡¼­ °¡Á®¿Â µ¥ÀÌÅÍµé 
+    //dataï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ 
 
-    // ÀåÂøÇÑ Àåºñ ÀúÀå
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private Dictionary<EquipmentSlot, EquipmentData> equippedItems = new Dictionary<EquipmentSlot, EquipmentData>();
 
     private Dictionary<SkillData, (float dmg, float rng, float cool, int cnt, float slowMul, float durMul)> skillBonuses = new();
     private HashSet<string> activeSpecialties = new HashSet<string>();
 
-    #region Properties(Àåºñ + ±âº» ½ºÅÈ °è»ê)
-    // ±âº»°ª + (·¹º§¾÷ Áõ°¡ºÐ * ·¹º§) + Àåºñ ÇÕ»ê
+    #region Properties(ï¿½ï¿½ï¿½ + ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½)
+    // ï¿½âº»ï¿½ï¿½ + (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ * ï¿½ï¿½ï¿½ï¿½) + ï¿½ï¿½ï¿½ ï¿½Õ»ï¿½
     public float MaxHealth => data.maxHealth + GetEquipSum(item => item.maxHealth);
     public float MoveSpeed => data.moveSpeed + GetEquipSum(item => item.moveSpeed);
     public float PhysicalDamage => data.physicalDamage + GetEquipSum(item => item.physicalDamage);
@@ -32,13 +32,58 @@ public class PlayerStats : MonoBehaviour
     public float DefenseRate => data.defenseRate + GetEquipSum(item => item.defense);
     public float CriticalChance => data.criticalChance + GetEquipSum(item => item.criticalChance);
     public float CriticalDamage => data.criticalDamage + GetEquipSum(item => item.criticalDamage);
-    public float AttackCooldown => data.attackcooldown + GetEquipSum(item => item.moveSpeed); // ¿¹½Ã·Î moveSpeed¸¦ °ø°Ý ÄðÅ¸ÀÓ¿¡ ¿µÇâ ÁÖ´Â Àåºñ ½ºÅÈÀ¸·Î »ç¿ë
+    public float AttackCooldown => data.attackcooldown + GetEquipSum(item => item.moveSpeed); // ï¿½ï¿½ï¿½Ã·ï¿½ moveSpeedï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½Ó¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
     #endregion
     void Awake()
     {
         if (Instance == null) Instance = this;
         currentHealth = data.maxHealth;
+    }
+
+    void Start()
+    {
+        RestoreUnlockedEffectsFromSave();
+    }
+
+    void RestoreUnlockedEffectsFromSave()
+    {
+        if (GameDataManager.Instance == null) return;
+        var effects = GameDataManager.Instance.GetUnlockedEffects();
+        if (effects == null || effects.Count == 0) return;
+
+        var allSkillData = Resources.FindObjectsOfTypeAll<SkillData>();
+        var skillByName = new System.Collections.Generic.Dictionary<string, SkillData>();
+        foreach (var sd in allSkillData)
+        {
+            if (sd != null && !string.IsNullOrEmpty(sd.name) && !skillByName.ContainsKey(sd.name))
+                skillByName[sd.name] = sd;
+        }
+
+        int restored = 0;
+        foreach (var e in effects)
+        {
+            SkillData skill = null;
+            if (!string.IsNullOrEmpty(e.targetSkillAssetName))
+                skillByName.TryGetValue(e.targetSkillAssetName, out skill);
+
+            if (e.nodeType == 1)
+            {
+                UnlockSpecialty(e.specialtyTag, skill,
+                    e.damageMultiplier, e.rangeMultiplier, e.cooldownMultiplier,
+                    e.countBonus, e.slowPercentMultiplier, e.durationMultiplier);
+                restored++;
+            }
+            else if (skill != null)
+            {
+                UpdateSkillBonus(skill,
+                    e.damageMultiplier, e.rangeMultiplier, e.cooldownMultiplier,
+                    e.countBonus, e.slowPercentMultiplier, e.durationMultiplier);
+                restored++;
+            }
+        }
+
+        Debug.Log("<color=cyan>[PlayerStats]</color> saved " + effects.Count + " effects, restored " + restored);
     }
     public bool HasSpecialty(string specialtyTag) => activeSpecialties.Contains(specialtyTag);
 
@@ -74,7 +119,7 @@ public class PlayerStats : MonoBehaviour
         if (!string.IsNullOrEmpty(specialtyTag))
         {
             activeSpecialties.Add(specialtyTag);
-            Debug.Log($"<color=yellow>[Æ¯¼ö È¿°ú ÇØ±Ý]</color> ÅÂ±×: {specialtyTag}");
+            Debug.Log($"<color=yellow>[Æ¯ï¿½ï¿½ È¿ï¿½ï¿½ ï¿½Ø±ï¿½]</color> ï¿½Â±ï¿½: {specialtyTag}");
         }
 
         UpdateSkillBonus(skillData, d, r, c, cnt, slowMul, durMul);
@@ -100,7 +145,7 @@ public class PlayerStats : MonoBehaviour
         );
 
         var b = skillBonuses[skillData];
-        Debug.Log($"<color=cyan>[{skillData.skillName} °­È­]</color> " +
+        Debug.Log($"<color=cyan>[{skillData.skillName} ï¿½ï¿½È­]</color> " +
                   $"Dmg: x{b.dmg:F1}, Rng: x{b.rng:F1}, Cool: x{b.cool:F1}, Count: +{b.cnt}, " +
                   $"Slow: x{b.slowMul:F2}, Duration: x{b.durMul:F2}");
     }
@@ -127,10 +172,10 @@ public class PlayerStats : MonoBehaviour
         if (newItem == null) return;
         equippedItems[newItem.slot] = newItem;
 
-        // Ã¼·Â ¾ÆÀÌÅÛ ÀåÂø ½Ã ÇöÀç Ã¼·Â ºñÀ² À¯Áö È¤Àº º¸Á¤
+        // Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (currentHealth > MaxHealth) currentHealth = MaxHealth;
 
-        Debug.Log($"{newItem.itemName} ÀåÂø ¿Ï·á. ÇöÀç °ø°Ý·Â: {PhysicalDamage}");
+        Debug.Log($"{newItem.itemName} ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý·ï¿½: {PhysicalDamage}");
     }
 
     public void Unequip(EquipmentSlot slot)
@@ -138,7 +183,7 @@ public class PlayerStats : MonoBehaviour
         if (equippedItems.ContainsKey(slot))
         {
             equippedItems.Remove(slot);
-            Debug.Log($"{slot} ½½·Ô ÀåÂø ÇØÁ¦");
+            Debug.Log($"{slot} ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         }
     }
     public void TakeExp(float exp)
@@ -180,9 +225,9 @@ public class PlayerStats : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("»ç¸Á");
+        Debug.Log("ï¿½ï¿½ï¿½");
         OnPlayerDied?.Invoke();
-        GetComponent<PlayerAnimation>().PlayDie(); //»ç¸Á ¾Ö´Ï¸ÞÀÌ¼Ç
+        GetComponent<PlayerAnimation>().PlayDie(); //ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½
     }
 
 
