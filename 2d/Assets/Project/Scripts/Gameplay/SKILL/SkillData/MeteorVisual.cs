@@ -88,37 +88,37 @@ public class MeteorVisual : MonoBehaviour
         if (hasExploded) return;
         hasExploded = true;
 
-        // ✨ 메테오 임팩트: 강력한 카메라 흔들림
-        //   PlanetCrash 특수효과가 있으면 더 강하게
         if (planetCrashEnabled)
-            CameraShake.Shake(0.7f, 0.55f, 14f); // EPIC+
+            CameraShake.Shake(0.7f, 0.55f, 14f);
         else
             CameraShake.ShakePreset(CameraShake.Preset.Epic);
 
-        // ⭐ 사전 마법진 제거 (이펙트로 페이드 아웃 대신 즉시 destroy — fire field 외곽선이 인계)
-        // warningCircle destroy removed
+        // ✨ 메테오 전체 크기를 절반으로 줄이고 시각 = 판정 정확히 일치
+        // FireFieldPrefab 실측값:
+        //   - sprite 시각적 불꽃 픽셀 반지름 = 0.153 (스케일 1)
+        //   - CircleCollider2D radius = 0.18
+        //   - sprite 투명 영역 포함 전체 = 0.48
+        // 원하는 결과: 사용자가 보는 장판 = 데미지 영역 = explosionRadius * 0.5
+        const float fireFieldVisibleBaseRadius = 0.153f;
+        const float fireFieldColliderBaseRadius = 0.18f;
 
-        // 1. 피격판정 (OverlapCircle explosionRadius)
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+        // 메테오 전체 크기 절반 축소
+        float effectiveRadius = explosionRadius * 0.5f;
+
+        // 1. 즉발 피격 판정 — 시각 장판 크기와 정확히 일치
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, effectiveRadius);
         foreach (var hit in hits)
         {
             if (hit.CompareTag("Enemy"))
             {
                 EnemyHealth enemy = hit.GetComponentInParent<EnemyHealth>();
                 if (enemy != null) enemy.TakeDamage(impactDamage);
-
-                if (planetCrashEnabled)
-                {
-                    EnemyAI ai = hit.GetComponentInParent<EnemyAI>();
-                  // 둘화 추가
-                  //   ai.ApplyKnockbackAndStun(transform.position, PlanetCrashKnockbackForce, PlanetCrashStunDuration);
-                }
             }
         }
 
         if (planetCrashEnabled)
         {
-            float centerRadius = Mathf.Max(0.35f, explosionRadius * PlanetCrashCenterRadiusRate);
+            float centerRadius = Mathf.Max(0.2f, effectiveRadius * PlanetCrashCenterRadiusRate);
             Collider2D[] centerHits = Physics2D.OverlapCircleAll(transform.position, centerRadius);
             foreach (var centerHit in centerHits)
             {
@@ -130,42 +130,39 @@ public class MeteorVisual : MonoBehaviour
             SpawnPlanetCrashFX();
         }
 
-        // 2. 레드 폭발 고리 가시화 — 즉발 데미지 영역
+        // 2. 즉발 폭발 고리
         SkillRangeIndicator.Spawn(
             transform.position,
-            explosionRadius,
+            effectiveRadius,
             new Color(1f, 0.3f, 0.05f, 0.95f),
             0.7f,
             SkillRangeIndicator.Shape.Circle
         );
 
-        // 3. 불 장판 생성 — ⭐ FireFieldPrefab의 콜라이더 r=0.48이 월드 r=explosionRadius가 되도록
-        // 동시에 장판 하단에 지속적인 레인지 링을 자식으로 추가해서 "이 안에 들어오면 데미지"를 명시
+        // 3. 불 장판 생성 — 시각 불꽃과 콜라이더 모두 effectiveRadius에 정확히 맞춤
         if (fireFieldPrefab != null)
         {
             GameObject fieldGo = Instantiate(fireFieldPrefab, transform.position, Quaternion.identity);
-            const float colliderBaseRadius = 0.48f;
-            float fieldScale = explosionRadius / colliderBaseRadius;
+
+            // sprite 시각적 불꽃이 정확히 effectiveRadius가 되도록 스케일
+            // 즉, sprite 는 effectiveRadius / 0.153 배 커짐
+            float fieldScale = effectiveRadius / fireFieldVisibleBaseRadius;
             fieldGo.transform.localScale = new Vector3(fieldScale, fieldScale, 1f);
+
+            // 하지만 이렇게 하면 콜라이더는 0.18 * fieldScale = effectiveRadius * 1.18이 되어 시각보다 18% 큼
+            // → 콜라이더를 직접 effectiveRadius로 조정해서 정확히 일치시킴
+            var col = fieldGo.GetComponent<CircleCollider2D>();
+            if (col != null)
+            {
+                // localScale을 고려하면 col.radius * fieldScale = effectiveRadius 가 되도록
+                col.radius = effectiveRadius / fieldScale;
+            }
 
             FireField field = fieldGo.GetComponent<FireField>();
             if (field != null)
             {
                 field.Setup(duration, dotDamage, 1f, 0f);
             }
-
-            // ⭐ 장판의 외곽선을 끝까지 유지하는 indicator를 자식으로 추가 (autoDestroy=false, duration=field의 수명)
-            var ringGo = new GameObject("FireFieldEdgeRing");
-            ringGo.transform.position = transform.position;
-            var ind = ringGo.AddComponent<SkillRangeIndicator>();
-            ind.shape = SkillRangeIndicator.Shape.Circle;
-            ind.radius = explosionRadius;
-            ind.edgeColor = new Color(1f, 0.4f, 0.1f, 0.85f);
-            ind.fillColor = new Color(1f, 0.4f, 0.1f, 0.06f);
-            ind.lineWidth = 0.1f;
-            ind.autoDestroy = false;
-            // FireField 수명과 동일하게 수동 파괴
-            Destroy(ringGo, duration);
         }
 
         if (lavaFieldEnabled)
@@ -178,9 +175,9 @@ public class MeteorVisual : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        // 착지 지점의 실제 판정 범위(OverlapCircle explosionRadius)과 일치
-        Gizmos.color = new Color(1f, 0.3f, 0.1f, 0.9f);
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
+        // 실제 데미지 영역 = 시각 장판 크기 = explosionRadius * 0.5
+        Gizmos.color = new Color(1f, 0.3f, 0.05f, 0.95f);
+        Gizmos.DrawWireSphere(transform.position, explosionRadius * 0.5f);
     }
 
     private void SpawnPlanetCrashFX()

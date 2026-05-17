@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157709a3f0fd20b4bbf9d23169edb07a, type: 3}
   m_Name: PosionArrowData
   m_EditorClassIdentifier: Assembly-CSharp::ArrowPassiveData
-  skillName: Posion Arrow
-  icon: {fileID: 21300000, guid: d3413c8f5de08ea438da57c88d29fb39, type: 3}
+  skillName: "\uB3C5\uD654\uC0B4"
+  icon: {fileID: -2255137287090605211, guid: 17ef6014bbde2c746af02215cf2e23da, type: 3}
   description: 
   levels:
   - cooldown: 0

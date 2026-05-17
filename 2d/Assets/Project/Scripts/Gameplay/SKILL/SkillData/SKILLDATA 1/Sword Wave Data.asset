@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sword Wave Data
   m_EditorClassIdentifier: Assembly-CSharp::SwordWaveData
   skillName: "\uAC80\uAE30\uBC29\uCD9C"
-  icon: {fileID: 8491926195530482266, guid: 48db986e7e30b7849989c8d9595e5448, type: 3}
+  icon: {fileID: 21300000, guid: 48db986e7e30b7849989c8d9595e5448, type: 3}
   description: 
   levels:
   - cooldown: 2

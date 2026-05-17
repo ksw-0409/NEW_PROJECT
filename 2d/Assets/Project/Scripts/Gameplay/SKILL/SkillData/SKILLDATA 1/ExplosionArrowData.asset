@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157709a3f0fd20b4bbf9d23169edb07a, type: 3}
   m_Name: ExplosionArrowData
   m_EditorClassIdentifier: Assembly-CSharp::ArrowPassiveData
-  skillName: Explosion Arrow
-  icon: {fileID: 21300000, guid: cb00a910634f41742a21494f80ba634a, type: 3}
+  skillName: "\uD3ED\uBC1C\uD654\uC0B4"
+  icon: {fileID: 529693262079123283, guid: 7e8f9ab2105118d44b7f2dbd31b6c22f, type: 3}
   description: 
   levels:
   - cooldown: 0

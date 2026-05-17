@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157709a3f0fd20b4bbf9d23169edb07a, type: 3}
   m_Name: IceArrowData
   m_EditorClassIdentifier: Assembly-CSharp::ArrowPassiveData
-  skillName: Ice Arrow
-  icon: {fileID: 21300000, guid: bb4d077b0b5acd6408aa538734f9dba5, type: 3}
+  skillName: "\uC5BC\uC74C\uD654\uC0B4"
+  icon: {fileID: 4025852118320482988, guid: 0222f0afe19872849b77c3383337d506, type: 3}
   description: 
   levels:
   - cooldown: 0

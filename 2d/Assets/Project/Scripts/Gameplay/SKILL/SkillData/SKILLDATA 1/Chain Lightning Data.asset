@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6576fed85dfbc8c4bbcb576b48aee484, type: 3}
   m_Name: Chain Lightning Data
   m_EditorClassIdentifier: Assembly-CSharp::ChainLightningData
-  skillName: Chain Lightning
-  icon: {fileID: 21300000, guid: c11890b48b096fd41813eef61c647d0e, type: 3}
+  skillName: "\uC5F0\uC1C4\uBC88\uAC1C"
+  icon: {fileID: 21300000, guid: c41816e028a9c7d4792acaa670a6763d, type: 3}
   description: 
   levels:
   - cooldown: 5

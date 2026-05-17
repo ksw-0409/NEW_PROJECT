@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: -3810440115334909774
     second: ro_0
+  - first:
+      213: -724647110686789229
+    second: "\uD68C\uC804\uBCA0\uAE30_gray"
+  - first:
+      213: -6452130118505429731
+    second: "\uD68C\uC804\uBCA0\uAE30_color"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +52,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -98,34 +104,12 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: ro_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1254
-        height: 1254
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2b0709757e89e1bc0800000000000000
-      internalID: -3810440115334909774
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -136,6 +120,8 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       ro_0: -3810440115334909774
+      "\uD68C\uC804\uBCA0\uAE30_color": -6452130118505429731
+      "\uD68C\uC804\uBCA0\uAE30_gray": -724647110686789229
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

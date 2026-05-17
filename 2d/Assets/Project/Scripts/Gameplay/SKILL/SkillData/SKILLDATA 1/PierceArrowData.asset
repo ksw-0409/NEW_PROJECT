@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157709a3f0fd20b4bbf9d23169edb07a, type: 3}
   m_Name: PierceArrowData
   m_EditorClassIdentifier: Assembly-CSharp::ArrowPassiveData
-  skillName: Pierce Arrow
-  icon: {fileID: 21300000, guid: c2a1da7190c8e044686aaf83a781609d, type: 3}
+  skillName: "\uAD00\uD1B5\uD654\uC0B4"
+  icon: {fileID: -5493517760241110473, guid: f239f76565e388445bd7867c0faa2f90, type: 3}
   description: 
   levels:
   - cooldown: 0

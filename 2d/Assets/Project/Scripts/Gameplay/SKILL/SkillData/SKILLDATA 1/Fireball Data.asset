@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279dc5907f69c7349b215565459ecde9, type: 3}
   m_Name: Fireball Data
   m_EditorClassIdentifier: Assembly-CSharp::FireballData
-  skillName: Fireball
-  icon: {fileID: 21300000, guid: 800f9ba3d908c574c97997c7ca502cb1, type: 3}
+  skillName: "\uD30C\uC774\uC5B4\uBCFC"
+  icon: {fileID: 21300000, guid: b2c51c064faf58e43bf700ce4eae4091, type: 3}
   description: 
   levels:
   - cooldown: 1
