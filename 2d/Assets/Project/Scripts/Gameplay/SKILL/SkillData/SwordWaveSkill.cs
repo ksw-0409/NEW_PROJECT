@@ -22,15 +22,34 @@ public class SwordWaveSkill : SkillBase
         Vector2 fireDir = Vector2.right * lookDirection;
         lastFireDir = fireDir;
 
+        // ✨ [유틸] 삼연각: 3줄기 부채꼴로 동시 발사
+        bool hasTriple = PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("SwordWave_triple");
+
         for (int i = 0; i < GetCount(); i++)
         {
-            Fire(player.position, fireDir);
+            if (hasTriple)
+            {
+                // 3줄기 부채꼴 (좌 -25도, 중앙, 우 +25도)
+                Fire(player.position, RotateBy(fireDir, -25f));
+                Fire(player.position, fireDir);
+                Fire(player.position, RotateBy(fireDir, +25f));
+            }
+            else
+            {
+                Fire(player.position, fireDir);
+            }
         }
+    }
+
+    private static Vector2 RotateBy(Vector2 v, float deg)
+    {
+        float rad = deg * Mathf.Deg2Rad;
+        float cos = Mathf.Cos(rad), sin = Mathf.Sin(rad);
+        return new Vector2(v.x * cos - v.y * sin, v.x * sin + v.y * cos);
     }
 
     void Fire(Vector2 startPos, Vector2 dir)
     {
-        // ⭐ SwordWaveData(SO)의 effectPrefab을 우선 사용. 비어있을 때만 컴포넌트 필드로 폴백.
         var swordWaveData = instance.data as SwordWaveData;
         GameObject prefabToUse = swordWaveData != null && swordWaveData.effectPrefab != null
             ? swordWaveData.effectPrefab
@@ -47,18 +66,19 @@ public class SwordWaveSkill : SkillBase
         float range = levelData.range;
         float damage = levelData.damage * levelData.multiplier;
 
-        // 1. 투사체 생성
         GameObject projectile = Instantiate(prefabToUse, (Vector3)startPos, Quaternion.identity);
 
-        // 2. 투사체 초기화 (방향/데미지/사거리/속도/두께)
         var projectileScript = projectile.GetComponent<SwordWaveProjectile>();
         if (projectileScript == null)
         {
             projectileScript = projectile.AddComponent<SwordWaveProjectile>();
         }
+
+        // ✨ 귀환 특수효과를 위해 caster transform 전달
+        projectileScript.casterTransform = transform;
+
         projectileScript.Init(dir, damage, range, speed, thickness);
 
-        // 3. 피격범위 가시화 (선택)
         ShowRangeIndicator(startPos, dir, range, thickness);
     }
 

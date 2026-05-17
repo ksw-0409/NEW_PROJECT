@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,20 +28,51 @@ public class BowSkill : SkillBase
         }
     }
 
+    // ✨ 약점 사격: 치명타 적중 시 다음 화살 치명타 데미지 강화 플래그
+    private bool nextArrowCritBoost = false;
+
+    public void NotifyArrowHit(bool wasCritical)
+    {
+        if (PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Bow_weakpoint") && wasCritical)
+        {
+            nextArrowCritBoost = true;
+        }
+    }
+
     void ShootArrow(Vector2 pos, Vector2 dir)
     {
         var ld = instance.GetCurrentLevelData();
-        GameObject obj = Instantiate(arrowPrefab, pos, Quaternion.identity);
-
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        obj.transform.rotation = Quaternion.Euler(0, 0, angle);
-
-        ArrowProjectile arrow = obj.GetComponent<ArrowProjectile>();
-        if (arrow != null)
+        
+        // ✨ [유틸] 속사: 1회 발사 시 화살 2발 연속
+        bool hasRapid = PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Bow_rapid");
+        int shotsThisCall = hasRapid ? 2 : 1;
+        
+        for (int shot = 0; shot < shotsThisCall; shot++)
         {
-            arrow.Setup(ld.damage, ld.multiplier, ld.projectileSpeed, dir);
-            // ⭐ 모든 패시브 체크를 이 안에서만 수행
-            CheckAndApplyPassives(arrow);
+            GameObject obj = Instantiate(arrowPrefab, pos, Quaternion.identity);
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            obj.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+            ArrowProjectile arrow = obj.GetComponent<ArrowProjectile>();
+            if (arrow != null)
+            {
+                arrow.Setup(ld.damage, ld.multiplier, ld.projectileSpeed, dir);
+
+                // ✨ [공격] 약점 사격: 이전 치명타 적중 이후의 화살은 치명타 데미지 +50%
+                if (nextArrowCritBoost)
+                {
+                    arrow.weakpointCritBoost = 0.5f;
+                    nextArrowCritBoost = false;
+                }
+
+                // ✨ [변칙] 화살 도탄: 치명타 시 주변 적으로 튱김
+                arrow.ricochetEnabled = PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Bow_ricochet");
+
+                // 일반 화살과 도탄 화살이 본인을 다시 맞추지 않도록 프로젝타일에서 관리
+                arrow.bowSkillRef = this;
+
+                CheckAndApplyPassives(arrow);
+            }
         }
     }
 

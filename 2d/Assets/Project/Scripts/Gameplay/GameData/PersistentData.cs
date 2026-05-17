@@ -4,25 +4,28 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PersistentData", menuName = "Scriptable Objects/PersistentData")]
 public class PersistentData : ScriptableObject
 {
-    [Header("ÀçÈ­")]
+    [Header("ì¬í™”")]
     public int gold = 1000;
-    public int normalCurrency = 10;  // ÀÏ¹İ ¿É¼Ç °­È­ ÀçÈ­
-    public int specialCurrency = 10; // Æ¯¼ö ¿É¼Ç °­È­ ÀçÈ­
+    public int normalCurrency = 10;
+    public int specialCurrency = 10;
 
-    [Header("Àåºñ")]
+    [Header("ì¥ë¹„")]
     public List<string> equippedItems = new List<string>();
 
-    [Header("ÁøÇà")]
+    [Header("ì¸µ")]
     public int currentFloor = 1;
 
-    [Header("·±Å¸ÀÓ ¾ÆÀÌÅÛ µ¥ÀÌÅÍ (¸®·Ñ °á°ú ÀúÀå)")]
+    [Header("ë¦¬íƒ€ì„ ì•„ì´í…œ ë°ì´í„° (ë¦¬ë¡¤ ê²°ê³¼ ë³´ì¡´)")]
     public List<RuntimeItemData> runtimeItems = new List<RuntimeItemData>();
 
-    [Header("È°¼ºÈ­µÈ ½ºÅ³ ³ëµå (skillName ±âÁØ)")]
+    [Header("í™œì„±í™”ëœ ìŠ¤í‚¬ ë…¸ë“œ (skillNodeID ì €ì¥)")]
     public List<string> unlockedSkillNodes = new List<string>();
 
-    [Header("ÀåÂøµÈ ½ºÅ³ (skillName ±âÁØ)")]
+    [Header("ì €ì¥ëœ ìŠ¤í‚¬ (skillName ì €ì¥)")]
     public List<string> savedSkills = new List<string>();
+
+    [Header("âœ¨ í•´ê¸ˆëœ ë…¸ë“œì˜ íš¨ê³¼ ë°ì´í„° (PlayerStats ì¬êµ¬ì„±ìš© - ì”¬ ì „í™˜ ì‹œ íš¨ê³¼ ë³µì›)")]
+    public List<UnlockedNodeEffect> unlockedEffects = new List<UnlockedNodeEffect>();
 
     public void ResetAll()
     {
@@ -34,5 +37,24 @@ public class PersistentData : ScriptableObject
         runtimeItems.Clear();
         unlockedSkillNodes.Clear();
         savedSkills.Clear();
+        unlockedEffects.Clear();
     }
+}
+
+/// <summary>
+/// í•´ê¸ˆëœ ìŠ¤í‚¬ ë…¸ë“œ í•˜ë‚˜ì˜ íš¨ê³¼ ë°ì´í„°. ì”¬ ì „í™˜ ì‹œ PlayerStatsë¥¼ ì¬êµ¬ì„±í•˜ê¸° ìœ„í•œ ì§ë ¬í™” ê°€ëŠ¥ êµ¬ì¡°.
+/// </summary>
+[System.Serializable]
+public class UnlockedNodeEffect
+{
+    public string skillNodeID;
+    public string targetSkillAssetName;   // SkillData ScriptableObject ì—ì…‹ ì´ë¦„ (AssetDatabase ê²€ìƒ‰ìš©)
+    public int    nodeType;               // 0 = StatBoost, 1 = Specialty
+    public string specialtyTag;
+    public float  damageMultiplier = 1f;
+    public float  rangeMultiplier = 1f;
+    public float  cooldownMultiplier = 1f;
+    public int    countBonus = 0;
+    public float  slowPercentMultiplier = 1f;
+    public float  durationMultiplier = 1f;
 }

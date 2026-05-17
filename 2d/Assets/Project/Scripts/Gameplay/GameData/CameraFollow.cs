@@ -1,15 +1,25 @@
 using UnityEngine;
 
-// ¿ªÇÒ: Ä«¸Ş¶ó°¡ ÇÃ·¹ÀÌ¾î¸¦ µû¶ó´Ù´Ïµµ·Ï °íÁ¤
-
+/// <summary>
+/// ì¹´ë©”ë¼ê°€ í”Œë ˆì´ì–´ë¥¼ ë”°ë¼ë‹¤ë‹ˆë„ë¡ + CameraShake ì˜¤í”„ì…‹ì„ ë”í•´ì¤Œ
+/// </summary>
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] private Transform target; // ÇÃ·¹ÀÌ¾î Transform ¿¬°á
-    [SerializeField] private Vector3 offset = new Vector3(0f, 0f, -10f); // Ä«¸Ş¶ó ¿ÀÇÁ¼Â
+    [SerializeField] private Transform target; // í”Œë ˆì´ì–´ Transform ì—°ê²°
+    [SerializeField] private Vector3 offset = new Vector3(0f, 0f, -10f); // ì¹´ë©”ë¼ ì˜¤í”„ì…‹
 
     void LateUpdate()
     {
         if (target == null) return;
-        transform.position = target.position + offset;
+
+        Vector3 basePos = target.position + offset;
+
+        // â­ ì¹´ë©”ë¼ í”ë“¤ë¦¼ ì˜¤í”„ì…‹ ì¶”ê°€ (CameraShake.Instanceê°€ ìˆì„ ë•Œë§Œ)
+        if (CameraShake.Instance != null)
+        {
+            basePos += CameraShake.Instance.CurrentOffset;
+        }
+
+        transform.position = basePos;
     }
 }
