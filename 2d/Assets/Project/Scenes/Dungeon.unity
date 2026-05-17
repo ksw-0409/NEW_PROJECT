@@ -5514,6 +5514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1669466176}
   - component: {fileID: 1669466175}
+  - component: {fileID: 1669466177}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -5554,6 +5555,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1669466177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669466174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462fcaa19956fe4429ab2a34373f12a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleInfiniteMap
+  playerTransform: {fileID: 2026055320}
+  floorSprites:
+  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
+  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
+  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
+  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
+  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
+  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
+  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
+  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
+  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
+  chunkSize: {x: 40, y: 40}
 --- !u!1 &1680507855
 GameObject:
   m_ObjectHideFlags: 0
