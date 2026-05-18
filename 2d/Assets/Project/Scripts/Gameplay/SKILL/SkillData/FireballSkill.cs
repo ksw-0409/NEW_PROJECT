@@ -97,12 +97,28 @@ public class FireballSkill : SkillBase
         if (proj != null)
         {
             float finalDamage = (levelData.damage * levelData.multiplier) * bonus.dmg;
-            // [방어] 마력 과부하: 방패 활성 중 마법 데미지 +30%
             var shieldSkill = GetComponent<ShieldSkill>();
             if (shieldSkill != null) finalDamage *= shieldSkill.MagicDamageBonus;
             float finalExplosionRange = levelData.explosionRadius * bonus.rng;
 
+            // ✨ 폴백: 데이터 누락 또는 PlayerStats가 일시적으로 깨진 경우
+            if (finalDamage <= 0f) { finalDamage = 10f; Debug.LogWarning("[Fireball] damage=0 → 폴백 10"); }
+            if (finalExplosionRange <= 0.1f) { finalExplosionRange = 1.5f; Debug.LogWarning("[Fireball] explosionRange=0 → 폴백 1.5"); }
+
             proj.Init(finalDamage, finalExplosionRange, fireData.effectPrefab, currentScale);
+        }
+        else
+        {
+            Debug.LogError("[Fireball] FireballProjectile component missing on instantiated prefab! Destroying.");
+            Destroy(obj);
+            return;
+        }
+
+        // ✨ Rigidbody2D 속도 폴백 — projectileSpeed가 0이면 기본 속도
+        if (rb != null && rb.linearVelocity.sqrMagnitude < 0.01f)
+        {
+            rb.linearVelocity = finalDir * 8f;
+            Debug.LogWarning("[Fireball] velocity 0 → 폴백 속도 8 적용");
         }
     }
 

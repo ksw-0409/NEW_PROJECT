@@ -102,6 +102,26 @@ public class GameDataManager : MonoBehaviour
         return persistentData.unlockedEffects;
     }
 
+    // ✨ 패시브 레벨 저장/복원
+    public void SavePassiveLevels(System.Collections.Generic.Dictionary<string, int> levels)
+    {
+        persistentData.passiveLevels.Clear();
+        foreach (var kv in levels)
+        {
+            persistentData.passiveLevels.Add(new PassiveLevelEntry { passiveID = kv.Key, level = kv.Value });
+        }
+    }
+
+    public System.Collections.Generic.Dictionary<string, int> GetPassiveLevels()
+    {
+        var d = new System.Collections.Generic.Dictionary<string, int>();
+        foreach (var e in persistentData.passiveLevels)
+        {
+            if (!string.IsNullOrEmpty(e.passiveID)) d[e.passiveID] = e.level;
+        }
+        return d;
+    }
+
     public void AddSpecialCurrency(int amount)
     {
         if (amount <= 0) return;
