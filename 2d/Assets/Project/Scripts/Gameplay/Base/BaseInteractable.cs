@@ -54,7 +54,7 @@ public abstract class BaseInteractable : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         isPlayerInRange = true;
-        //Debug.Log($"[OnTriggerEnter2D] {gameObject.name} 범위 진입");
+        Debug.Log($"[OnTriggerEnter2D] {gameObject.name} 범위 진입");
         if (interactPrompt != null) interactPrompt.SetActive(true);
     }
 
