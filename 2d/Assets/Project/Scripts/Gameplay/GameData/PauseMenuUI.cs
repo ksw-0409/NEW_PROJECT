@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 // 역할: ESC 키로 열고 닫는 일시정지 메뉴
-// 계속하기 버튼, 종료 버튼 (종료 시 패널티 적용 + 게임오버 UI)
 
 public class PauseMenuUI : MonoBehaviour
 {
@@ -55,8 +54,19 @@ public class PauseMenuUI : MonoBehaviour
         Time.timeScale = 1f;
         BaseInteractable.IsUIOpen = false;
 
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != SceneController.SceneName.Dungeon)
+        {
+            Application.Quit();
+            return;
+        }
+
         // 패널티 적용 + 게임오버 UI 트리거
         if (GameOverManager.Instance != null)
             GameOverManager.Instance.TriggerGameOver();
+    }
+
+    public void OnClickPauseButton()
+    {
+        TogglePause();
     }
 }
