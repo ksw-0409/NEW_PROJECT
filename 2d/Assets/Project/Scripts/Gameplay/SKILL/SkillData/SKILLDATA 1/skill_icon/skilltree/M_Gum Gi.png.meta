@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: 5450212816085784650
     second: M_Gum Gi_0
+  - first:
+      213: -7050458785101041712
+    second: M_Gum Gi_locked
+  - first:
+      213: 2036609240927275359
+    second: M_Gum Gi_unlocked
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +81,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +106,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: M_Gum Gi_gray
+      name: M_Gum Gi_locked
       rect:
         serializedVersion: 2
         x: 0
@@ -113,16 +119,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 9f6135f2334698e42b1598f4dabe83de
-      internalID: -2126655983
+      spriteID: 0df2582071db72e90800000000000000
+      internalID: -7050458785101041712
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: M_Gum Gi_color
+      name: M_Gum Gi_unlocked
       rect:
         serializedVersion: 2
         x: 32
@@ -135,10 +141,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: fff14246019a2364a881b080e18f94ff
-      internalID: 586946615
+      spriteID: f598fbf605d734c10800000000000000
+      internalID: 2036609240927275359
       vertices: []
       indices: 
       edges: []
@@ -159,6 +165,8 @@ TextureImporter:
     nameFileIdTable:
       M_Gum Gi_color: 586946615
       M_Gum Gi_gray: -2126655983
+      M_Gum Gi_locked: -7050458785101041712
+      M_Gum Gi_unlocked: 2036609240927275359
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

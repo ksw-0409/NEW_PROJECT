@@ -7,10 +7,10 @@ public class ItemDataRow
     public ItemGrade grade;
     public string iconName;
 
-    // °íÁ¤ ±âº» ´É·ÂÄ¡
+    // ê¸°ë³¸ ëŠ¥ë ¥ì¹˜
     public float basePhys, baseMagic, baseCrit, baseCritDmg, baseHealth, baseDef, baseSpeed, attackCooldown;
 
-    // Ãß°¡ ·£´ı ´É·ÂÄ¡ ¹üÀ§
+    // ì¶”ê°€ ì˜µì…˜ ëŠ¥ë ¥ì¹˜ ë²”ìœ„
     public float minAddPhys, maxAddPhys;
     public float minAddMagic, maxAddMagic;
     public float minAddCrit, maxAddCrit;
@@ -18,4 +18,7 @@ public class ItemDataRow
     public float minAddHealth, maxAddHealth;
     public float minAddDef, maxAddDef;
     public float minAddSpeed, maxAddSpeed;
+
+    // íŠ¹ìˆ˜ ëŠ¥ë ¥ ID (0 = ì—†ìŒ)
+    public int ability;
 }

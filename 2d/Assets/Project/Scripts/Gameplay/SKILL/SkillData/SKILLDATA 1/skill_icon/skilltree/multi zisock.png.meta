@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: -4970128226284047789
     second: multi zisock_0
+  - first:
+      213: 6170218440707455437
+    second: multi zisock_locked
+  - first:
+      213: -4686494192516687392
+    second: multi zisock_unlocked
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +81,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,23 +106,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: multi zisock_0
+      name: multi zisock_locked
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
+        width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 352723806be860bb0800000000000000
-      internalID: -4970128226284047789
+      spriteID: dc9bee80bf401a550800000000000000
+      internalID: 6170218440707455437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: multi zisock_unlocked
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e99c1dac5a36feb0800000000000000
+      internalID: -4686494192516687392
       vertices: []
       indices: 
       edges: []
@@ -125,7 +153,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -136,6 +164,8 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       multi zisock_0: -4970128226284047789
+      multi zisock_locked: 6170218440707455437
+      multi zisock_unlocked: -4686494192516687392
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -196,6 +196,7 @@ MonoBehaviour:
   meteorWarningCirclePrefab: {fileID: 0}
   bowArrowPrefab: {fileID: 0}
   arrowRainPrefab: {fileID: 0}
+  bowExplosionEffectPrefab: {fileID: 2197338236776400270, guid: ae6c20bb428770747945e42a2b2fe370, type: 3}
   iceCardAsset: {fileID: 0}
   explosionCardAsset: {fileID: 0}
   poisonCardAsset: {fileID: 0}
@@ -265,6 +266,8 @@ MonoBehaviour:
   currentHealth: 0
   currentLevel: 1
   currentExp: 0
+  currentShield: 0
+  maxShield: 1
 --- !u!95 &5119616863804153185
 Animator:
   serializedVersion: 7

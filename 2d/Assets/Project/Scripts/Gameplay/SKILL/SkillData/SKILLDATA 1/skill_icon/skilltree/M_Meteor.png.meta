@@ -11,6 +11,12 @@ TextureImporter:
   - first:
       213: 6784478951072466442
     second: M_Meteor_color
+  - first:
+      213: 7472003562072415085
+    second: M_Meteor_locked
+  - first:
+      213: -3726607437198565708
+    second: M_Meteor_unlocked
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -57,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -81,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,7 +112,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: M_Meteor_gray
+      name: M_Meteor_locked
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2648babc7f16882b0800000000000000
-      internalID: -5582104021223898014
+      spriteID: d6b97cdb6a3e1b760800000000000000
+      internalID: 7472003562072415085
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: M_Meteor_color
+      name: M_Meteor_unlocked
       rect:
         serializedVersion: 2
         x: 32
@@ -143,8 +149,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a060ac809af472e50800000000000000
-      internalID: 6784478951072466442
+      spriteID: 4be5370c74e684cc0800000000000000
+      internalID: -3726607437198565708
       vertices: []
       indices: 
       edges: []
@@ -153,7 +159,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -166,6 +172,8 @@ TextureImporter:
       M_Meteor_0: -5424593002815210477
       M_Meteor_color: 6784478951072466442
       M_Meteor_gray: -5582104021223898014
+      M_Meteor_locked: 7472003562072415085
+      M_Meteor_unlocked: -3726607437198565708
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

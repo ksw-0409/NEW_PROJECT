@@ -11,6 +11,12 @@ TextureImporter:
   - first:
       213: -3226425055097585560
     second: M_BomeArrow_color
+  - first:
+      213: -3224138123016095345
+    second: M_BomeArrow_locked
+  - first:
+      213: 4118174653403846938
+    second: M_BomeArrow_unlocked
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -57,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -81,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,7 +112,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: M_BomeArrow_gray
+      name: M_BomeArrow_locked
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 931226f844753a610800000000000000
-      internalID: 1631243442013217081
+      spriteID: f89b4d6957f8143d0800000000000000
+      internalID: -3224138123016095345
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: M_BomeArrow_color
+      name: M_BomeArrow_unlocked
       rect:
         serializedVersion: 2
         x: 32
@@ -143,8 +149,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8600d78b18f6933d0800000000000000
-      internalID: -3226425055097585560
+      spriteID: a19572b3702b62930800000000000000
+      internalID: 4118174653403846938
       vertices: []
       indices: 
       edges: []
@@ -153,7 +159,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -166,6 +172,8 @@ TextureImporter:
       M_BomeArrow_0: -4428922309940445130
       M_BomeArrow_color: -3226425055097585560
       M_BomeArrow_gray: 1631243442013217081
+      M_BomeArrow_locked: -3224138123016095345
+      M_BomeArrow_unlocked: 4118174653403846938
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

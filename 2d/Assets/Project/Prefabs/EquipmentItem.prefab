@@ -47,6 +47,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FieldItem
   data: {fileID: 11400000, guid: 8fd8e5a8ad50e1843aed13f45912a7f5, type: 2}
+  itemDisplayScale: 1.8
+  beamWidthCommon: 1.4
+  beamHeightCommon: 3.5
+  beamWidthRare: 1.8
+  beamHeightRare: 4.5
+  beamWidthEpic: 2.2
+  beamHeightEpic: 5.5
+  beamWidthLegend: 2.6
+  beamHeightLegend: 6.5
 --- !u!58 &841116785609864018
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -130,7 +139,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: 3204897955049574171
     second: Attack++_0
+  - first:
+      213: 5366887905858729839
+    second: Attack++_locked
+  - first:
+      213: 7207657692109103926
+    second: Attack++_unlocked
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +81,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +106,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attack++_gray
+      name: Attack++_locked
       rect:
         serializedVersion: 2
         x: 0
@@ -113,16 +119,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 147ce6a8d96912e4c877a4219674c668
-      internalID: 819959941
+      spriteID: f67bc0a8d140b7a40800000000000000
+      internalID: 5366887905858729839
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack++_color
+      name: Attack++_unlocked
       rect:
         serializedVersion: 2
         x: 32
@@ -135,10 +141,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2b95da447c63fd64790e3b3417d52c51
-      internalID: 231661079
+      spriteID: 63366c0bb7eb60460800000000000000
+      internalID: 7207657692109103926
       vertices: []
       indices: 
       edges: []
@@ -159,6 +165,8 @@ TextureImporter:
     nameFileIdTable:
       Attack++_color: 231661079
       Attack++_gray: 819959941
+      Attack++_locked: 5366887905858729839
+      Attack++_unlocked: 7207657692109103926
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

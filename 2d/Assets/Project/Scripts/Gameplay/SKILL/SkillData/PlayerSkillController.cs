@@ -19,6 +19,9 @@ public class PlayerSkillController : MonoBehaviour
 
     [SerializeField] private GameObject bowArrowPrefab;
     [SerializeField] private GameObject arrowRainPrefab;
+    [Tooltip("폭발화살이 발동될 때 사용할 폭발 이펙트 프리팹 (보통 FireExplosionEffect)")]
+    [SerializeField] private GameObject bowExplosionEffectPrefab;
+
 
     [Header("Bow Passive Assets")]
     public ArrowPassiveData iceCardAsset;
@@ -225,6 +228,8 @@ public class PlayerSkillController : MonoBehaviour
             skill.explosionCard = explosionCardAsset;
             skill.poisonCard = poisonCardAsset;
             skill.pierceCard = pierceCardAsset;
+                skill.explosionEffectPrefab = bowExplosionEffectPrefab;
+
             skill.Init(instance);
             return skill;
         }

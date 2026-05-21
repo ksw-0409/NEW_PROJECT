@@ -17,14 +17,12 @@ public class FireballProjectile : MonoBehaviour
         startPos = transform.position;
         // 5초 안전장치
         Invoke(nameof(ForceExpire), 5f);
-        Debug.Log($"[Fireball] Awake at {transform.position}, ForceExpire scheduled in 5s");
     }
 
     void ForceExpire()
     {
         if (!exploded)
         {
-            Debug.Log("[Fireball] ForceExpire — 5초 타임아웃 폭발");
             Explode();
         }
     }
@@ -36,34 +34,28 @@ public class FireballProjectile : MonoBehaviour
         effectPrefab = fx;
         effectScale = scale;
         this.isSplitChild = isChild;
-        Debug.Log($"[Fireball] Init: dmg={dmg} radius={radius}");
     }
 
     void Update()
     {
         if (!exploded && Vector3.Distance(startPos, transform.position) > maxDistance)
         {
-            Debug.Log("[Fireball] maxDistance reached - exploding");
             Explode();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"[Fireball] OnTriggerEnter2D: other={other.gameObject.name} tag={other.tag}");
         if (!exploded && other.CompareTag("Enemy"))
         {
-            Debug.Log($"[Fireball] Enemy hit via Trigger: {other.gameObject.name}");
             Explode();
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log($"[Fireball] OnCollisionEnter2D: other={collision.gameObject.name} tag={collision.gameObject.tag}");
         if (!exploded && collision.collider.CompareTag("Enemy"))
         {
-            Debug.Log($"[Fireball] Enemy hit via Collision: {collision.gameObject.name}");
             Explode();
         }
     }
@@ -74,9 +66,7 @@ public class FireballProjectile : MonoBehaviour
         exploded = true;
         CancelInvoke(nameof(ForceExpire));
 
-        Debug.Log($"[Fireball] EXPLODE at {transform.position} radius={explosionRadius}");
-
-        // 임팩트 흔들림: 화염구는 중간 강도 (분열 자식은 약하게)
+        // 임팩트 흔들림
         CameraShake.ShakePreset(isSplitChild ? CameraShake.Preset.Light : CameraShake.Preset.Medium);
 
         bool isBigExplosion = PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Fireball_2_2");

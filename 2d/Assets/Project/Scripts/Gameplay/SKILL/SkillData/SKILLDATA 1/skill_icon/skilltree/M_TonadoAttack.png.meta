@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: -8902887080195537869
     second: M_TonadoAttack_0
+  - first:
+      213: 8117757384397738831
+    second: M_TonadoAttack_locked
+  - first:
+      213: -6657986331411240506
+    second: M_TonadoAttack_unlocked
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +81,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +106,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: M_TonadoAttack_gray
+      name: M_TonadoAttack_locked
       rect:
         serializedVersion: 2
         x: 0
@@ -113,16 +119,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 96ad8cf9b4192c64397e658f38dda129
-      internalID: -333596270
+      spriteID: f43d4d5d45118a070800000000000000
+      internalID: 8117757384397738831
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: M_TonadoAttack_color
+      name: M_TonadoAttack_unlocked
       rect:
         serializedVersion: 2
         x: 32
@@ -135,10 +141,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 26e6b73e62f58fa439880f220b5769bf
-      internalID: -596564349
+      spriteID: 6c9a3d405b41a93a0800000000000000
+      internalID: -6657986331411240506
       vertices: []
       indices: 
       edges: []
@@ -159,6 +165,8 @@ TextureImporter:
     nameFileIdTable:
       M_TonadoAttack_color: -596564349
       M_TonadoAttack_gray: -333596270
+      M_TonadoAttack_locked: 8117757384397738831
+      M_TonadoAttack_unlocked: -6657986331411240506
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

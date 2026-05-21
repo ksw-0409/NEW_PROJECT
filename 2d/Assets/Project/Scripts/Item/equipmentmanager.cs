@@ -3,81 +3,157 @@ using System.Collections.Generic;
 
 public class EquipmentManager : MonoBehaviour
 {
+    [System.Serializable]
+    public class IconEntry
+    {
+        public string iconName;   // CSV IconName ì»¬ëŸ¼ê³¼ ë§¤ì¹­ (ì˜ˆ: "fa735")
+        public Sprite sprite;
+    }
+
+    [Header("Database CSV")]
     public TextAsset itemDatabaseCsv;
+
+    [Header("Icon Mapping (Inspector or Auto-populate)")]
+    [Tooltip("CSVì˜ IconNameê³¼ ë§¤ì¹­ë˜ëŠ” ìŠ¤í”„ë¼ì´íŠ¸ë“¤. ë¹„ì–´ ìˆìœ¼ë©´ ì—ë””í„°ì—ì„œ ìë™ ì±„ì›€.")]
+    public List<IconEntry> iconEntries = new List<IconEntry>();
+
     private Dictionary<int, ItemDataRow> itemDatabase = new Dictionary<int, ItemDataRow>();
+    private Dictionary<string, Sprite> iconLookup;
 
     void Awake()
     {
+        BuildIconLookup();
         LoadDatabase();
+    }
+
+    private void BuildIconLookup()
+    {
+        iconLookup = new Dictionary<string, Sprite>(System.StringComparer.OrdinalIgnoreCase);
+        if (iconEntries == null) return;
+        foreach (var e in iconEntries)
+        {
+            if (e == null || string.IsNullOrWhiteSpace(e.iconName) || e.sprite == null) continue;
+            iconLookup[e.iconName.Trim()] = e.sprite;
+        }
+        Debug.Log($"[EquipmentManager] ì•„ì´ì½˜ ë§¤í•‘ ë¡œë“œ: {iconLookup.Count}ê°œ");
     }
 
     void LoadDatabase()
     {
-        if (itemDatabaseCsv == null) return;
+        if (itemDatabaseCsv == null)
+        {
+            Debug.LogError("[EquipmentManager] itemDatabaseCsvê°€ í• ë‹¹ë˜ì§€ ì•ŠìŒ!");
+            return;
+        }
 
-        // \r Á¦°Å ÈÄ ÁÙ¹Ù²ŞÀ¸·Î ºĞ¸®
         string[] lines = itemDatabaseCsv.text.Replace("\r", "").Split('\n');
 
         for (int i = 1; i < lines.Length; i++)
         {
             if (string.IsNullOrWhiteSpace(lines[i])) continue;
 
-            // ÇÙ½É ¼öÁ¤: ½°Ç¥(,), ÅÇ(\t) Áß ¾î¶² °ÍÀÌ ÀÖ¾îµµ Àß¶ó³»°í ºó Ä­Àº Á¦°ÅÇÔ
-            string[] cols = lines[i].Split(new char[] { ',', '\t' }, System.StringSplitOptions.RemoveEmptyEntries);
+            string[] cols = lines[i].Split(new char[] { ',', '\t' });
 
-            if (cols.Length < 10) continue;
+            if (cols.Length < 28)
+            {
+                Debug.LogWarning($"[EquipmentManager] {i}ë²ˆì§¸ ì¤„ ì»¬ëŸ¼ ìˆ˜ ë¶€ì¡±({cols.Length}): {lines[i]}");
+                continue;
+            }
 
             try
             {
                 ItemDataRow row = new ItemDataRow();
 
-                // ¸ğµç µ¥ÀÌÅÍ ÀĞÀ» ¶§ .Trim()À¸·Î ¾ÕµÚ °ø¹é È®½ÇÈ÷ Á¦°Å
                 row.id = int.Parse(cols[0].Trim());
                 row.itemName = cols[1].Trim();
                 row.itemType = (ItemType)System.Enum.Parse(typeof(ItemType), cols[2].Trim(), true);
                 row.grade = (ItemGrade)System.Enum.Parse(typeof(ItemGrade), cols[3].Trim(), true);
                 row.iconName = cols[4].Trim();
 
-                // ¼ıÀÚ º¯È¯ºÎ (ÀÎµ¦½º ¹øÈ£°¡ ²¿ÀÌÁö ¾Ê¾Ò´ÂÁö È®ÀÎÇÏ¼¼¿ä)
-                row.basePhys = float.Parse(cols[5].Trim());
-                row.baseMagic = float.Parse(cols[6].Trim());
-                // ... (³ª¸ÓÁö ÄÃ·³µéµµ ¶È°°ÀÌ .Trim() ºÙ¿©¼­ ÁøÇà)
+                row.basePhys       = ParseFloat(cols[5]);
+                row.baseMagic      = ParseFloat(cols[6]);
+                row.baseCrit       = ParseFloat(cols[7]);
+                row.baseCritDmg    = ParseFloat(cols[8]);
+                row.baseHealth     = ParseFloat(cols[9]);
+                row.baseDef        = ParseFloat(cols[10]);
+                row.baseSpeed      = ParseFloat(cols[11]);
+                row.attackCooldown = ParseFloat(cols[12]);
 
-                itemDatabase.Add(row.id, row);
+                row.minAddPhys     = ParseFloat(cols[13]);
+                row.maxAddPhys     = ParseFloat(cols[14]);
+                row.minAddMagic    = ParseFloat(cols[15]);
+                row.maxAddMagic    = ParseFloat(cols[16]);
+                row.minAddCrit     = ParseFloat(cols[17]);
+                row.maxAddCrit     = ParseFloat(cols[18]);
+                row.minAddCritDmg  = ParseFloat(cols[19]);
+                row.maxAddCritDmg  = ParseFloat(cols[20]);
+                row.minAddHealth   = ParseFloat(cols[21]);
+                row.maxAddHealth   = ParseFloat(cols[22]);
+                row.minAddDef      = ParseFloat(cols[23]);
+                row.maxAddDef      = ParseFloat(cols[24]);
+                row.minAddSpeed    = ParseFloat(cols[25]);
+                row.maxAddSpeed    = ParseFloat(cols[26]);
+
+                row.ability = cols.Length > 27 ? int.Parse(cols[27].Trim()) : 0;
+
+                itemDatabase[row.id] = row;
             }
             catch (System.Exception e)
             {
-                Debug.LogError($"{i}¹øÂ° ÁÙ ÆÄ½Ì ¿À·ù: {e.Message} | µ¥ÀÌÅÍ: {lines[i]}");
+                Debug.LogError($"[EquipmentManager] {i}ë²ˆì§¸ ì¤„ íŒŒì‹± ì‹¤íŒ¨: {e.Message} | ì›ë³¸: {lines[i]}");
             }
         }
+
+        Debug.Log($"[EquipmentManager] ì•„ì´í…œ DB ë¡œë“œ ì™„ë£Œ â€” ì´ {itemDatabase.Count}ê°œ");
+    }
+
+    private float ParseFloat(string s)
+    {
+        if (string.IsNullOrWhiteSpace(s)) return 0f;
+        return float.Parse(s.Trim(), System.Globalization.CultureInfo.InvariantCulture);
     }
 
     public EquipmentData CreateItem(int id)
     {
         if (!itemDatabase.ContainsKey(id))
         {
-            Debug.LogError($"ID {id}¸¦ µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogError($"ID {id}ì„(ë¥¼) ë°ì´í„°ë² ì´ìŠ¤ì—ì„œ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             return null;
         }
 
         ItemDataRow data = itemDatabase[id];
         EquipmentData newItem = ScriptableObject.CreateInstance<EquipmentData>();
 
-        // ÃÖÁ¾ ½ºÅÈ °áÁ¤: ±âº»°ª + ·£´ı(ÃÖ¼Ò Ãß°¡, ÃÖ´ë Ãß°¡)
         newItem.itemName = data.itemName;
         newItem.itemType = data.itemType;
         newItem.grade = data.grade;
 
-        newItem.physicalDamage = data.basePhys + Random.Range(data.minAddPhys, data.maxAddPhys);
-        newItem.magicDamage = data.baseMagic + Random.Range(data.minAddMagic, data.maxAddMagic);
-        newItem.criticalChance = data.baseCrit + Random.Range(data.minAddCrit, data.maxAddCrit);
-        newItem.criticalDamage = data.baseCritDmg + Random.Range(data.minAddCritDmg, data.maxAddCritDmg);
-        newItem.maxHealth = data.baseHealth + Random.Range(data.minAddHealth, data.maxAddHealth);
-        newItem.physicalDefense = data.baseDef + Random.Range(data.minAddDef, data.maxAddDef);
-        newItem.moveSpeed = data.baseSpeed + Random.Range(data.minAddSpeed, data.maxAddSpeed);
+        newItem.physicalDamage  = data.basePhys    + Random.Range(data.minAddPhys, data.maxAddPhys);
+        newItem.magicDamage     = data.baseMagic   + Random.Range(data.minAddMagic, data.maxAddMagic);
+        newItem.criticalChance  = data.baseCrit    + Random.Range(data.minAddCrit, data.maxAddCrit);
+        newItem.criticalDamage  = data.baseCritDmg + Random.Range(data.minAddCritDmg, data.maxAddCritDmg);
+        newItem.maxHealth       = data.baseHealth  + Random.Range(data.minAddHealth, data.maxAddHealth);
+        newItem.physicalDefense = data.baseDef     + Random.Range(data.minAddDef, data.maxAddDef);
+        newItem.moveSpeed       = data.baseSpeed   + Random.Range(data.minAddSpeed, data.maxAddSpeed);
+        newItem.attackcooldown  = data.attackCooldown;
+        newItem.ability         = data.ability;
 
-        // ¾ÆÀÌÄÜ ·Îµå (Resources/Icons Æú´õ ±âÁØ)
-        newItem.icon = Resources.Load<Sprite>("Icons/" + data.iconName);
+        // ì•„ì´ì½˜ â€” ì¸ìŠ¤í™í„°ì—ì„œ ë§¤í•‘ëœ dictionaryë¡œ ë¨¼ì € ì‹œë„, í´ë°±ìœ¼ë¡œ Resources
+        Sprite icon = null;
+        if (iconLookup != null && iconLookup.TryGetValue(data.iconName, out var found))
+        {
+            icon = found;
+        }
+        else
+        {
+            icon = Resources.Load<Sprite>("Icons/" + data.iconName);
+        }
+
+        if (icon == null)
+        {
+            Debug.LogWarning($"[EquipmentManager] ì•„ì´ì½˜ì„ ì°¾ì„ ìˆ˜ ì—†ìŒ: '{data.iconName}' (ID={id}, ì´ë¦„={data.itemName})");
+        }
+        newItem.icon = icon;
 
         return newItem;
     }

@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: ff658acb466dd494fbcce3bbcf4a5d05
+guid: dc55254f1ec4b2b4d90cb2e5e0e6ae7b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4705720130608584643
-    second: M_IceRain_0
-  - first:
-      213: 7791336338833608846
-    second: M_IceRain_gray
-  - first:
-      213: 9152759896190529353
-    second: M_IceRain_color
-  - first:
-      213: 3497674338904081757
-    second: M_IceRain_locked
-  - first:
-      213: -2720207697735611741
-    second: M_IceRain_unlocked
+      213: -3083378280639475770
+    second: arrow(poison)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -58,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 8
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -112,45 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: M_IceRain_locked
+      name: arrow(poison)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d55806e974c3a8030800000000000000
-      internalID: 3497674338904081757
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: M_IceRain_unlocked
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3aa8f2dd281ef3ad0800000000000000
-      internalID: -2720207697735611741
+      spriteID: 6cf445a4ac3a535d0800000000000000
+      internalID: -3083378280639475770
       vertices: []
       indices: 
       edges: []
@@ -169,11 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      M_IceRain_0: -4705720130608584643
-      M_IceRain_color: 9152759896190529353
-      M_IceRain_gray: 7791336338833608846
-      M_IceRain_locked: 3497674338904081757
-      M_IceRain_unlocked: -2720207697735611741
+      arrow(poison)_0: -3083378280639475770
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

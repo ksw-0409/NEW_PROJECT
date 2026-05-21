@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 
 [CreateAssetMenu(menuName = "Items/EquipmentData")]
 public class EquipmentData : ScriptableObject
@@ -14,11 +13,14 @@ public class EquipmentData : ScriptableObject
     [Header("Stats")]
     public float physicalDamage;
     public float magicDamage;
-    public float criticalChance; // 0 ~ 1 (¿¹: 0.1f = 10%)
-    public float criticalDamage; // ±âº» 1.5¹è µî
+    public float criticalChance;     // 0 ~ 1 (ì˜ˆ: 0.1f = 10%)
+    public float criticalDamage;     // ê¸°ë³¸ 1.5f ë“±
     public float maxHealth;
     public float defense;
     public float moveSpeed;
-    public float physicalDefense; // ¹æ¾î·Â ¼öÄ¡ (¿¹: 20 = 20 ¹æ¾î·Â)
-    public float attackcooldown; // °ø°İ ÄğÅ¸ÀÓ °¨¼Ò ¼öÄ¡ (¿¹: 0.2f = 20% °¨¼Ò)
+    public float physicalDefense;    // ë°©ì–´ ìˆ˜ì¹˜ (ì˜ˆ: 20 = 20 ê°ì†Œ)
+    public float attackcooldown;     // ê³µê²© ì¿¨ë‹¤ìš´ ê°ì†Œ ìˆ˜ì¹˜ (ì˜ˆ: 0.2f = 20% ê°ì†Œ)
+
+    [Header("Special")]
+    public int ability;              // íŠ¹ìˆ˜ ëŠ¥ë ¥ ID (0 = ì—†ìŒ)
 }

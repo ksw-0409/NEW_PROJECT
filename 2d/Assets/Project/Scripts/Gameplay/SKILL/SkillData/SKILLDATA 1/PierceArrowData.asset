@@ -94,5 +94,5 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  arrowSprite: {fileID: -8135818278935822431, guid: f0558bb0987179d45a36bba6c8b73b7c, type: 3}
+  arrowSprite: {fileID: 21300000, guid: 82e966e9034c83b4591e7cea7d26847f, type: 3}
   arrowColor: {r: 0.4292453, g: 1, b: 0.56969124, a: 1}
