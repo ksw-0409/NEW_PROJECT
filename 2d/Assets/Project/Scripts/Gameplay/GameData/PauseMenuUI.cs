@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-
-// 역할: ESC 키로 열고 닫는 일시정지 메뉴
+using System.Collections;
 
 public class PauseMenuUI : MonoBehaviour
 {
@@ -10,10 +9,18 @@ public class PauseMenuUI : MonoBehaviour
     [SerializeField] private Button continueButton;
     [SerializeField] private Button quitButton;
 
+    [SerializeField] private Animator pauseAnimator;
+    [SerializeField] private Button[] buttonsToShowAfterAnim;
+    [SerializeField] private string openAnimName = "PanelIntro";
+
     private bool isPaused = false;
+    private Coroutine showButtonsCoroutine;
 
     void Start()
     {
+        foreach (var clip in pauseAnimator.runtimeAnimatorController.animationClips)
+            Debug.Log($"클립 이름: [{clip.name}]");
+
         continueButton.onClick.AddListener(OnClickContinue);
         quitButton.onClick.AddListener(OnClickQuit);
         pausePanel.SetActive(false);
@@ -23,9 +30,7 @@ public class PauseMenuUI : MonoBehaviour
     {
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            // 다른 UI가 열려있으면 ESC는 해당 UI가 처리
             if (BaseInteractable.IsUIOpen && !isPaused) return;
-
             TogglePause();
         }
     }
@@ -36,6 +41,40 @@ public class PauseMenuUI : MonoBehaviour
         pausePanel.SetActive(isPaused);
         Time.timeScale = isPaused ? 0f : 1f;
         BaseInteractable.IsUIOpen = isPaused;
+
+        if (isPaused)
+        {
+            SetButtonsVisible(false);
+            pauseAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+
+            if (showButtonsCoroutine != null) StopCoroutine(showButtonsCoroutine);
+            showButtonsCoroutine = StartCoroutine(PlayAnimAndShowButtons());
+        }
+    }
+    private IEnumerator PlayAnimAndShowButtons()
+    {
+        yield return null; // 한 프레임 대기 (Animator 초기화 완료 후 Play)
+        pauseAnimator.Play(openAnimName, 0, 0f);
+
+        float clipLength = GetClipLength(openAnimName);
+        yield return new WaitForSecondsRealtime(clipLength);
+        SetButtonsVisible(true);
+    }
+
+
+    private void SetButtonsVisible(bool visible)
+    {
+        foreach (var btn in buttonsToShowAfterAnim)
+            btn.gameObject.SetActive(visible);
+    }
+
+    private float GetClipLength(string clipName)
+    {
+        foreach (var clip in pauseAnimator.runtimeAnimatorController.animationClips)
+            if (clip.name == clipName) return clip.length;
+
+        Debug.LogWarning($"클립 '{clipName}'을 찾을 수 없습니다.");
+        return 1f;
     }
 
     private void OnClickContinue()
@@ -48,7 +87,6 @@ public class PauseMenuUI : MonoBehaviour
 
     private void OnClickQuit()
     {
-        // 일시정지 해제
         isPaused = false;
         pausePanel.SetActive(false);
         Time.timeScale = 1f;
@@ -60,7 +98,6 @@ public class PauseMenuUI : MonoBehaviour
             return;
         }
 
-        // 패널티 적용 + 게임오버 UI 트리거
         if (GameOverManager.Instance != null)
             GameOverManager.Instance.TriggerGameOver();
     }

@@ -1,22 +1,28 @@
 fileFormatVersion: 2
-guid: 9db14eca3ae42c148a2582d2a0d17744
+guid: 8cac7f16c71353a449acf0fe52a25289
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8174442108873153783
-    second: option UI_0
+      213: -1060740448181984941
+    second: anvil_0
   - first:
-      213: 362821734938780170
-    second: option UI_1
+      213: -8700570298996612361
+    second: anvil_1
   - first:
-      213: 5892281419798832440
-    second: option UI_2
+      213: 7513588564446307463
+    second: anvil_2
   - first:
-      213: 6662822646937465602
-    second: option UI_3
+      213: 7445011678508915141
+    second: anvil_3
   - first:
-      213: -3029347172330243696
-    second: option UI_4
+      213: 5360770172975845728
+    second: anvil_4
+  - first:
+      213: 7646648374604514908
+    second: anvil_5
+  - first:
+      213: -1129082803175864268
+    second: anvil_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -63,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -112,13 +118,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: option UI_0
+      name: anvil_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 5
         y: 0
-        width: 158
-        height: 256
+        width: 22
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 903ee97463c8e8e80800000000000000
-      internalID: -8174442108873153783
+      spriteID: 3516933be2e7741f0800000000000000
+      internalID: -1060740448181984941
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: option UI_1
+      name: anvil_1
       rect:
         serializedVersion: 2
-        x: 161
+        x: 37
         y: 0
-        width: 158
-        height: 256
+        width: 22
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,20 +155,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a0221d31270090500800000000000000
-      internalID: 362821734938780170
+      spriteID: 7f22ef0296d514780800000000000000
+      internalID: -8700570298996612361
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: option UI_2
+      name: anvil_2
       rect:
         serializedVersion: 2
-        x: 321
+        x: 69
         y: 0
-        width: 158
-        height: 256
+        width: 22
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +177,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8356ebf8bb695c150800000000000000
-      internalID: 5892281419798832440
+      spriteID: 784624c9df0a54860800000000000000
+      internalID: 7513588564446307463
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: option UI_3
+      name: anvil_3
       rect:
         serializedVersion: 2
-        x: 481
+        x: 101
         y: 0
-        width: 158
-        height: 256
+        width: 22
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,20 +199,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 203b22075e9177c50800000000000000
-      internalID: 6662822646937465602
+      spriteID: 5c9982e1daef15760800000000000000
+      internalID: 7445011678508915141
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: option UI_4
+      name: anvil_4
       rect:
         serializedVersion: 2
-        x: 641
+        x: 133
         y: 0
-        width: 158
-        height: 256
+        width: 22
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,8 +221,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 099fbe30cc895f5d0800000000000000
-      internalID: -3029347172330243696
+      spriteID: 0611cbad118456a40800000000000000
+      internalID: 5360770172975845728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: anvil_5
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 0
+        width: 22
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c56ce9ade2a5e1a60800000000000000
+      internalID: 7646648374604514908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: anvil_6
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 0
+        width: 22
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43843b23c21b450f0800000000000000
+      internalID: -1129082803175864268
       vertices: []
       indices: 
       edges: []
@@ -225,7 +275,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ea06dde3662e0eb42b77257cd4077055
+    spriteID: 4328b5dcc9660ba469eadbe79908f8e0
     internalID: 0
     vertices: []
     indices: 
@@ -237,11 +287,13 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      option UI_0: -8174442108873153783
-      option UI_1: 362821734938780170
-      option UI_2: 5892281419798832440
-      option UI_3: 6662822646937465602
-      option UI_4: -3029347172330243696
+      anvil_0: -1060740448181984941
+      anvil_1: -8700570298996612361
+      anvil_2: 7513588564446307463
+      anvil_3: 7445011678508915141
+      anvil_4: 5360770172975845728
+      anvil_5: 7646648374604514908
+      anvil_6: -1129082803175864268
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
