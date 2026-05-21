@@ -11,6 +11,12 @@ TextureImporter:
   - first:
       213: 7246170812377876043
     second: magiczisock_color
+  - first:
+      213: -8232149338704482852
+    second: magiczisock_locked
+  - first:
+      213: -6214645324342539534
+    second: magiczisock_unlocked
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -57,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -81,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,7 +112,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: magiczisock_gray
+      name: magiczisock_locked
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5635b8a909324eaa0800000000000000
-      internalID: -6132737688596688027
+      spriteID: cdd6d80dac781cd80800000000000000
+      internalID: -8232149338704482852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: magiczisock_color
+      name: magiczisock_unlocked
       rect:
         serializedVersion: 2
         x: 32
@@ -143,8 +149,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b46469546f19f8460800000000000000
-      internalID: 7246170812377876043
+      spriteID: 2fa458d010521c9a0800000000000000
+      internalID: -6214645324342539534
       vertices: []
       indices: 
       edges: []
@@ -153,7 +159,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -166,6 +172,8 @@ TextureImporter:
       magiczisock_0: 544876881775318996
       magiczisock_color: 7246170812377876043
       magiczisock_gray: -6132737688596688027
+      magiczisock_locked: -8232149338704482852
+      magiczisock_unlocked: -6214645324342539534
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

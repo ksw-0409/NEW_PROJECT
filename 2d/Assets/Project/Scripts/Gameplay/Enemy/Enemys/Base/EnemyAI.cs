@@ -17,21 +17,21 @@ public class EnemyAI : MonoBehaviour
     private float ContactDamage;
     private float expAmount;
     private float DropWeapon;
-    public bool usePooling = true; // ÀÎ½ºÆåÅÍ¿¡¼­ Àâ¸÷Àº Ã¼Å©, Á¤¿¹¸÷Àº Ã¼Å© ÇØÁ¦
+    public bool usePooling = true; // ï¿½Î½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å© ï¿½ï¿½ï¿½ï¿½
 
-    //µ¹Áø ÀÌº¥Æ®¿ë
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½
     private bool isRushMode = false;
     private Vector2 rushDir;
     private float rushLimitY;
 
-    //½½·Î¿ì º¯¼ö
-    private float slowTimer = 0f;           // ½½·Î¿ì Áö¼Ó½Ã°£ Å¸ÀÌ¸Ó
-    private bool isSlowed = false;          // ÇöÀç ½½·Î¿ì »óÅÂÀÎÁö Ã¼Å©
-    private float originalSpeed = 5f;     // ¿ø·¡ ±âº» ¼Óµµ ÀúÀå¿ë
+    //ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½
+    private float slowTimer = 0f;           // ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½Ó½Ã°ï¿½ Å¸ï¿½Ì¸ï¿½
+    private bool isSlowed = false;          // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
+    private float originalSpeed = 5f;     // ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    //½ºÅÏ º¯¼ö
-    protected bool isStun = false; //½ºÅÏ 
-    private float stunTimer = 0f;   // ½ºÅÏ Áö¼Ó½Ã°£ Å¸ÀÌ¸Ó
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    protected bool isStun = false; //ï¿½ï¿½ï¿½ï¿½ 
+    private float stunTimer = 0f;   // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó½Ã°ï¿½ Å¸ï¿½Ì¸ï¿½
 
 
     protected virtual void Awake()
@@ -40,23 +40,23 @@ public class EnemyAI : MonoBehaviour
         health=GetComponent<EnemyHealth>();
     }
    
-    //Ã³À½ ¼¼ÆÃÇÒ¶§ pool ÂüÁ¶ ¸Ş´ÏÀú¿¡¼­ °®°í¿È 
+    //Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ pool ï¿½ï¿½ï¿½ï¿½ ï¿½Ş´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ 
     public void SetPool(IObjectPool<EnemyAI> pool)=> managedPool = pool;
     public int GetID() { return data.id; }
 
-    //Ç®¿¡¼­ ²¨³¾¶§ ÃÊ±âÈ­ ÇÔ¼ö Manager¿¡¼­ È£Ãâ
+    //Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Ô¼ï¿½ Managerï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½
     public virtual void Init()
     {
         isDie = false;
-        rb.linearVelocity = Vector2.zero; // ÀÌÀüÀÇ ¹°¸® ¼Óµµ ÃÊ±âÈ­
+        rb.linearVelocity = Vector2.zero; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ ï¿½Ê±ï¿½È­
         isRushMode = false;
         int floor = GameDataManager.Instance.CurrentFloor;
         // int Startfloor = data.startfloor;
-        // Å×½ºÆ® À§ÇØ¼­ ½ÃÀÛÃş ¸ğµÎ 0À¸·Î ¼³Á¤ 
+        // ï¿½×½ï¿½Æ® ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
          int Startfloor = 0;
         health.init(
             (float)Mathf.RoundToInt(data.hp*(1.0f+(floor- Startfloor))*0.3f)
-            ); //Ã¼·Â ÃÊ±âÈ­
+            ); //Ã¼ï¿½ï¿½ ï¿½Ê±ï¿½È­
 
         ContactDamage = (float)Mathf.RoundToInt(
             data.contactDamage * (1.0f+(floor- Startfloor) *0.15f)
@@ -72,23 +72,27 @@ public class EnemyAI : MonoBehaviour
         moveSpeed = data.moveSpeed * dataP.moveSpeed;
         DropWeapon = data.DropWeapon;
     }
-    // µ¹Áø ¸ğµå ¼ÂÆÃ ¹æÇâ, µ¹Áø¼Óµµ¹èÀ²/hp¹èÀ²/¾îµğ±îÁö°¥°ÇÁö YÃà
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½/hpï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Yï¿½ï¿½
     public void SetRushMode(Vector2 dir, float speed, float hpMultiplier, float limitY)
     {
         isRushMode = true;
         rushDir = dir.normalized;
         rushLimitY = limitY+this.transform.position.y;
-        //¼Óµµ hp ¼³Á¤
+        //ï¿½Óµï¿½ hp ï¿½ï¿½ï¿½ï¿½
         moveSpeed = speed * dataP.moveSpeed;
         health.Multiple(hpMultiplier);
     }
     public virtual void Die()
     {
         if (isDie) return;
-        // ¿©±â¼­ °æÇèÄ¡ º¸¼®À» »ı¼ºÇÏ°Å³ª ÀÌÆåÆ®
         isDie = true;
-        ExpManager.Instance.DropExp(this.transform.position, expAmount);        
-        ItemManager.Instance.DropItem(this.transform.position, DropWeapon,false);
+
+        // âœ¨ ì  ì²˜ì¹˜ ì´í™íŠ¸ â€” ë³´ìŠ¤ë©´ elite í­ë°œ
+        bool isElite = gameObject.name.Contains("Boss") || gameObject.name.Contains("Elite");
+        VFXManager.SpawnDeathBurst(transform.position, isElite);
+
+        ExpManager.Instance.DropExp(this.transform.position, expAmount);
+        ItemManager.Instance.DropItem(this.transform.position, DropWeapon, false);
 
         EnemyManager.Instance.EnqueueToRelease(this);
     }
@@ -113,7 +117,7 @@ public class EnemyAI : MonoBehaviour
         else
         {
             float distance = Vector2.Distance(transform.position, targetPos);
-            // Å¸°Ù°ú ³Ê¹« °¡±î¿ì¸é ¸ØÃã (¿¹: 0.1 À¯´Ö °Å¸®)
+            // Å¸ï¿½Ù°ï¿½ ï¿½Ê¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½: 0.1 ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½)
             if (distance < 0.1f)
             {
                 rb.linearVelocity = Vector2.zero;
@@ -128,15 +132,15 @@ public class EnemyAI : MonoBehaviour
 
     protected void HandleSpriteFlip(float horizontalDir)
     {
-        // 0.1f´Â ¹Ì¼¼ÇÑ ¿òÁ÷ÀÓÀ¸·Î ÀÎÇÑ ´ú´ú°Å¸² ¹æÁö
-        if (horizontalDir < 0.1f) // ¿À¸¥ÂÊ ÀÌµ¿
+        // 0.1fï¿½ï¿½ ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+        if (horizontalDir < 0.1f) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         {
-            // ¿ø·¡ Å©±â À¯Áö
+            // ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
-        else if (horizontalDir > -0.1f) // ¿ŞÂÊ ÀÌµ¿
+        else if (horizontalDir > -0.1f) // ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         {
-            // X°ª¸¸ ¸¶ÀÌ³Ê½º·Î
+            // Xï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì³Ê½ï¿½ï¿½ï¿½
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
     }
@@ -150,34 +154,34 @@ public class EnemyAI : MonoBehaviour
             if (playerStats != null)
             {
                 playerStats.TakeDamage(ContactDamage);
-                // ½Ã°¢Àû È®ÀÎÀ» À§ÇÑ ·Î±×
-                Debug.Log($"{collision.gameObject.name}¿¡°Ô {ContactDamage}ÀÇ µ¥¹ÌÁö¸¦ ÀÔÇû½À´Ï´Ù.");
+                // ï¿½Ã°ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½
+                Debug.Log($"{collision.gameObject.name}ï¿½ï¿½ï¿½ï¿½ {ContactDamage}ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
             }
         }
     }
 
 
-    // ¿ÜºÎ¿¡¼­ È£ÃâÇÒ ½½·Î¿ì ÇÔ¼ö   ( ¹è¼ö , Áö¼Ó½Ã°£ ) ÁßÃ¸ ½ÇÇà½Ã ½Ã°£¸¸ °»½Å 
+    // ï¿½ÜºÎ¿ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½Ô¼ï¿½   ( ï¿½ï¿½ï¿½ , ï¿½ï¿½ï¿½Ó½Ã°ï¿½ ) ï¿½ï¿½Ã¸ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
     public void ApplySlow(float slowMultiplier, float duration)
     {
-        // ÀÌ¹Ì ½½·Î¿ì ÁßÀÌ¶ó¸é ½Ã°£¸¸ ÃÊ±âÈ­(°»½Å)
+        // ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­(ï¿½ï¿½ï¿½ï¿½)
         if (!isSlowed)
         {
-            originalSpeed = moveSpeed; // ½½·Î¿ì Àü ¼Óµµ ÀúÀå
-            moveSpeed *= slowMultiplier; // ¼Óµµ °¨¼Ò 
+            originalSpeed = moveSpeed; // ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
+            moveSpeed *= slowMultiplier; // ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½ 
             isSlowed = true;
         }
 
-        slowTimer = duration; // Áö¼Ó ½Ã°£ ¼³Á¤ (ÁßÃ¸ È£Ãâ ½Ã ½Ã°£ °»½Å)
-        Debug.Log("½½·Î¿ì Àû¿ë");
+        slowTimer = duration; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½Ã¸ È£ï¿½ï¿½ ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½)
+        Debug.Log("ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
     }
-    //¿ÜºÎ¿¡¼­ È£ÃâÇÒ ½ºÅÏ ÇÔ¼ö (Áö¼Ó½Ã°£) Áßº¹½Ã ½Ã°£ °»½Å
+    //ï¿½ÜºÎ¿ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ (ï¿½ï¿½ï¿½Ó½Ã°ï¿½) ï¿½ßºï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void ApplyStun(float duration)
     {
         isStun = true;
-        stunTimer = duration; // Áö¼Ó ½Ã°£ ¼³Á¤ (ÁßÃ¸ È£Ãâ ½Ã ½Ã°£ °»½Å)
-        rb.linearVelocity = Vector2.zero; // Áï½Ã Á¤Áö
-        Debug.Log("½½·Î¿ì Àû¿ë");
+        stunTimer = duration; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½Ã¸ È£ï¿½ï¿½ ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½)
+        rb.linearVelocity = Vector2.zero; // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        Debug.Log("ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½");
     }
 
     
@@ -196,9 +200,9 @@ public class EnemyAI : MonoBehaviour
     private void StopSlow()
     {
         isSlowed = false;
-        moveSpeed = originalSpeed; // ¿ø·¡ ¼Óµµ·Î º¹±¸
+        moveSpeed = originalSpeed; // ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         slowTimer = 0f;
-        Debug.Log("½½·Î¿ì Á¾·á, ¼Óµµ º¹±¸");
+        Debug.Log("ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½");
     }
     private void HandleStunTimer()
     {
@@ -216,6 +220,6 @@ public class EnemyAI : MonoBehaviour
     {
         isStun = false;
         stunTimer = 0f;
-        Debug.Log("½ºÅÏ Á¾·á, ½ºÅÏ º¹±¸");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
     }
 }

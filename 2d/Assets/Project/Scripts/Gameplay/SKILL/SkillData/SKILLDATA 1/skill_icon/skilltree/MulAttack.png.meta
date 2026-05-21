@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: -7819981574190336942
     second: MulAttack_0
+  - first:
+      213: -5245249404573526092
+    second: MulAttack_locked
+  - first:
+      213: 7689742207133266237
+    second: MulAttack_unlocked
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +81,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +106,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MulAttack_gray
+      name: MulAttack_locked
       rect:
         serializedVersion: 2
         x: 0
@@ -113,16 +119,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: d0cd1912e6e3cec4a991aeea04627ded
-      internalID: -1450010803
+      spriteID: 4b7d01205712537b0800000000000000
+      internalID: -5245249404573526092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MulAttack_color
+      name: MulAttack_unlocked
       rect:
         serializedVersion: 2
         x: 32
@@ -135,10 +141,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 68ca605a3fbb0af4fabf33f772a1bcd1
-      internalID: -1103782247
+      spriteID: d31b18e9bc377ba60800000000000000
+      internalID: 7689742207133266237
       vertices: []
       indices: 
       edges: []
@@ -159,6 +165,8 @@ TextureImporter:
     nameFileIdTable:
       MulAttack_color: -1103782247
       MulAttack_gray: -1450010803
+      MulAttack_locked: -5245249404573526092
+      MulAttack_unlocked: 7689742207133266237
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

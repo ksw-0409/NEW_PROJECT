@@ -11,6 +11,12 @@ TextureImporter:
   - first:
       213: 2573736136048579658
     second: M_ManaShield_color
+  - first:
+      213: 7054326221994462082
+    second: M_ManaShield_locked
+  - first:
+      213: 1380734303403598043
+    second: M_ManaShield_unlocked
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -57,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -81,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,7 +112,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: M_ManaShield_gray
+      name: M_ManaShield_locked
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ae7cfc1f146d90c70800000000000000
-      internalID: 8937910514211604458
+      spriteID: 28b04bfc25006e160800000000000000
+      internalID: 7054326221994462082
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: M_ManaShield_color
+      name: M_ManaShield_unlocked
       rect:
         serializedVersion: 2
         x: 32
@@ -143,8 +149,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a4413c6216fb7b320800000000000000
-      internalID: 2573736136048579658
+      spriteID: bd06193988a592310800000000000000
+      internalID: 1380734303403598043
       vertices: []
       indices: 
       edges: []
@@ -153,7 +159,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -166,6 +172,8 @@ TextureImporter:
       M_ManaShield_0: 861862052543391780
       M_ManaShield_color: 2573736136048579658
       M_ManaShield_gray: 8937910514211604458
+      M_ManaShield_locked: 7054326221994462082
+      M_ManaShield_unlocked: 1380734303403598043
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

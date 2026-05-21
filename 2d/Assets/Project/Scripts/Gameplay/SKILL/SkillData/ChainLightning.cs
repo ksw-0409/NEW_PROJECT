@@ -1,12 +1,20 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class ChainLightning : MonoBehaviour
 {
     [Header("Visual Settings")]
-    public GameObject hitEffectPrefab; // ⭐ 적 위치에 생성할 번개 이미지 프리팹
+    public GameObject hitEffectPrefab; // 적 위치에 생성할 번개 폭발 이펙트
     private LineRenderer lineRenderer;
+
+    [Header("Lightning Texture (lightning_2_blue 6 frames)")]
+    [Tooltip("번개 라인에 입힐 텍스처 6장. 비어있으면 자동 로드.")]
+    public Sprite[] lightningFrames;
+
+    private Material lineMaterial;
+    private float frameTimer = 0f;
+    private int currentFrame = 0;
 
     private float damage;
     private int maxChainCount;
@@ -22,8 +30,60 @@ public class ChainLightning : MonoBehaviour
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        // 시작 시 선이 안 보이게 초기화
         lineRenderer.positionCount = 0;
+
+        // 자동 로드: lightning_2_blue_1 ~ _6
+        if (lightningFrames == null || lightningFrames.Length == 0)
+        {
+            lightningFrames = new Sprite[6];
+            for (int i = 0; i < 6; i++)
+            {
+                string path = "Assets/sanctum_pixel/lightning_2_package/Sprite/lightning_2/lightning_2_blue/lightning_2_blue_" + (i + 1) + ".png";
+#if UNITY_EDITOR
+                lightningFrames[i] = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>(path);
+#endif
+            }
+        }
+
+        // LineRenderer 설정: 더 굵게, 텍스처 적용
+        lineRenderer.startWidth = 0.45f;
+        lineRenderer.endWidth = 0.45f;
+        lineRenderer.numCapVertices = 2;
+        lineRenderer.numCornerVertices = 2;
+        lineRenderer.alignment = LineAlignment.View;
+        lineRenderer.textureMode = LineTextureMode.Stretch;
+        lineRenderer.sortingOrder = 200;
+
+        // 머티리얼: 첫 프레임 텍스처를 입혀서 굵은 번개 느낌
+        if (lightningFrames != null && lightningFrames.Length > 0 && lightningFrames[0] != null)
+        {
+            lineMaterial = new Material(Shader.Find("Sprites/Default"));
+            lineMaterial.mainTexture = lightningFrames[0].texture;
+            lineRenderer.material = lineMaterial;
+        }
+        else
+        {
+            // sprite 못 찾으면 fallback: 청백색 색상만
+            lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+            lineRenderer.startColor = new Color(0.4f, 0.85f, 1f, 1f);
+            lineRenderer.endColor = new Color(0.8f, 0.95f, 1f, 1f);
+        }
+    }
+
+    void Update()
+    {
+        // 6프레임 애니메이션 — 약 0.06초 간격으로 텍스처 교체
+        if (lineMaterial == null || lightningFrames == null || lightningFrames.Length == 0) return;
+        if (lineRenderer.positionCount < 2) return; // 그리는 중이 아니면 skip
+
+        frameTimer += Time.deltaTime;
+        if (frameTimer >= 0.06f)
+        {
+            frameTimer = 0f;
+            currentFrame = (currentFrame + 1) % lightningFrames.Length;
+            if (lightningFrames[currentFrame] != null)
+                lineMaterial.mainTexture = lightningFrames[currentFrame].texture;
+        }
     }
 
     public void Setup(float baseDamage, int chains, float range, Transform player)
@@ -46,37 +106,30 @@ public class ChainLightning : MonoBehaviour
     IEnumerator ChainRoutine(Transform target)
     {
         int currentChain = 0;
-        Transform previousPoint = playerTransform; // 시작은 플레이어
+        Transform previousPoint = playerTransform;
         Transform lastHitTarget = null;
 
         while (target != null && currentChain < maxChainCount)
         {
-            // 1. 데미지 입히기
             EnemyHealth health = target.GetComponent<EnemyHealth>();
             if (health != null)
             {
                 float hitDamage = damage;
                 if (overloadEnabled)
                     hitDamage *= 1f + (overloadPerJump * currentChain);
-
                 health.TakeDamage(hitDamage);
             }
             hitEnemies.Add(target);
             lastHitTarget = target;
 
-            // 2. ⭐ 적 위치에 번개 이미지 이펙트 생성
             if (hitEffectPrefab != null)
             {
-                // 적의 위치에 이펙트를 만들고 0.3초 뒤에 자동으로 사라지게 함
                 GameObject effect = Instantiate(hitEffectPrefab, target.position, Quaternion.identity);
                 Destroy(effect, 0.3f);
             }
 
-            // 3. 선 그리기 (이전 포인트와 현재 타겟 연결)
-            // 코루틴 안에서 또 코루틴을 기다림 (선이 유지되는 동안 멈춤)
             yield return StartCoroutine(DrawLineUpdate(previousPoint, target));
 
-            // 4. 다음 타겟 찾기
             previousPoint = target;
             target = FindNextTarget(target);
             currentChain++;
@@ -87,56 +140,91 @@ public class ChainLightning : MonoBehaviour
             TriggerFinalExplosion(lastHitTarget.position);
         }
 
-        // 모든 연쇄가 끝나면 선 지우고 이 스크립트가 붙은 오브젝트 삭제
         lineRenderer.positionCount = 0;
         Destroy(gameObject);
     }
 
-    // 두 지점 사이를 실시간으로 연결하는 로직
     IEnumerator DrawLineUpdate(Transform start, Transform end)
     {
-        float elapsed = 0;
-        float duration = 0.15f;
-        int segments = 5; // 선을 5개 구간으로 나눔
+        float duration = 0.22f;
+        int segments = 10;
         lineRenderer.positionCount = segments + 1;
+
+        // ✨ sprite 기반 추가 비주얼 — 두 점 사이에 lightning_2_blue sprite를 stretch
+        GameObject spriteGo = null;
+        SpriteRenderer spriteSr = null;
+        if (lightningFrames != null && lightningFrames.Length > 0 && start != null && end != null)
+        {
+            spriteGo = new GameObject("LightningBetween");
+            spriteSr = spriteGo.AddComponent<SpriteRenderer>();
+            spriteSr.sprite = lightningFrames[0];
+            spriteSr.sortingOrder = 199;
+        }
+
+        float elapsed = 0;
+        int spriteFrame = 0;
+        float spriteFrameTimer = 0f;
 
         while (elapsed < duration)
         {
             if (start != null && end != null)
             {
+                // 1) LineRenderer 굵은 지그재그 번개
                 lineRenderer.SetPosition(0, start.position);
                 for (int i = 1; i < segments; i++)
                 {
                     Vector3 pos = Vector3.Lerp(start.position, end.position, (float)i / segments);
-                    // 찌릿찌릿한 느낌을 위해 랜덤 오차 추가
-                    pos += (Vector3)Random.insideUnitCircle * 0.3f;
+                    pos += (Vector3)Random.insideUnitCircle * 0.6f;
                     lineRenderer.SetPosition(i, pos);
                 }
                 lineRenderer.SetPosition(segments, end.position);
+
+                // 2) sprite를 두 점 사이에 stretch
+                if (spriteGo != null && spriteSr != null)
+                {
+                    Vector3 mid = (start.position + end.position) * 0.5f;
+                    Vector3 dir = end.position - start.position;
+                    float length = dir.magnitude;
+
+                    spriteGo.transform.position = mid;
+                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                    spriteGo.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+                    // sprite 원본 너비를 length에 맞게 scale 조정
+                    // lightning_2_blue는 96x96 + PPU=32, native size 3 units
+                    // 두께는 0.7 정도 (적당히 굵게)
+                    spriteGo.transform.localScale = new Vector3(length / 3f, 0.7f, 1f);
+
+                    // sprite 프레임 애니메이션
+                    spriteFrameTimer += Time.deltaTime;
+                    if (spriteFrameTimer >= 0.05f)
+                    {
+                        spriteFrameTimer = 0f;
+                        spriteFrame = (spriteFrame + 1) % lightningFrames.Length;
+                        if (lightningFrames[spriteFrame] != null) spriteSr.sprite = lightningFrames[spriteFrame];
+                    }
+                }
             }
             elapsed += Time.deltaTime;
             yield return null;
         }
+
+        if (spriteGo != null) Destroy(spriteGo);
     }
 
     private Transform FindNextTarget(Transform currentTarget)
     {
-        // 원형 범위 안의 모든 충돌체 감지
         Collider2D[] nextEnemies = Physics2D.OverlapCircleAll(currentTarget.position, chainRadius);
         Transform bestTarget = null;
         float closeDist = Mathf.Infinity;
 
         foreach (var col in nextEnemies)
         {
-            if (!col.CompareTag("Enemy"))
-                continue;
-
+            if (!col.CompareTag("Enemy")) continue;
             EnemyHealth enemyHealth = col.GetComponentInParent<EnemyHealth>();
-            if (enemyHealth == null || !enemyHealth.gameObject.activeInHierarchy)
-                continue;
+            if (enemyHealth == null || !enemyHealth.gameObject.activeInHierarchy) continue;
 
             Transform enemyRoot = enemyHealth.transform;
-            // 현재 타겟 기준으로 가장 가까운 "아직 맞지 않은" 적을 연쇄
             if (!hitEnemies.Contains(enemyRoot))
             {
                 float dist = Vector2.Distance(currentTarget.position, enemyRoot.position);
@@ -165,14 +253,9 @@ public class ChainLightning : MonoBehaviour
         Collider2D[] targets = Physics2D.OverlapCircleAll(center, finalExplosionRadius);
         for (int i = 0; i < targets.Length; i++)
         {
-            if (!targets[i].CompareTag("Enemy"))
-                continue;
-
+            if (!targets[i].CompareTag("Enemy")) continue;
             EnemyHealth enemy = targets[i].GetComponentInParent<EnemyHealth>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damage * finalExplosionMultiplier);
-            }
+            if (enemy != null) enemy.TakeDamage(damage * finalExplosionMultiplier);
         }
     }
 
@@ -180,7 +263,6 @@ public class ChainLightning : MonoBehaviour
     {
         GameObject ring = new GameObject("LightningFinalExplosionRing");
         ring.transform.position = center;
-
         LineRenderer lr = ring.AddComponent<LineRenderer>();
         lr.useWorldSpace = true;
         lr.loop = true;
@@ -191,7 +273,6 @@ public class ChainLightning : MonoBehaviour
         lr.startColor = new Color(0.25f, 0.7f, 1f, 0.95f);
         lr.endColor = new Color(0.25f, 0.7f, 1f, 0.95f);
         lr.sortingOrder = 220;
-
         for (int i = 0; i < lr.positionCount; i++)
         {
             float t = (float)i / lr.positionCount;
@@ -199,7 +280,6 @@ public class ChainLightning : MonoBehaviour
             Vector3 p = center + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
             lr.SetPosition(i, p);
         }
-
         Destroy(ring, lifetime);
     }
 
@@ -219,7 +299,6 @@ public class ChainLightning : MonoBehaviour
     private Sprite CreateWhitePixelSprite()
     {
         if (cachedWhitePixel != null) return cachedWhitePixel;
-
         Texture2D tex = new Texture2D(1, 1, TextureFormat.RGBA32, false);
         tex.SetPixel(0, 0, Color.white);
         tex.Apply();

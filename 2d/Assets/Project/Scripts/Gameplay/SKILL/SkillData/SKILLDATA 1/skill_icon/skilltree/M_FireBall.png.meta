@@ -11,6 +11,12 @@ TextureImporter:
   - first:
       213: 7361193836766606449
     second: M_FireBall_color
+  - first:
+      213: -3273433910012909914
+    second: M_FireBall_locked
+  - first:
+      213: 3499800670664835457
+    second: M_FireBall_unlocked
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -57,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -81,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,7 +112,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: M_FireBall_gray
+      name: M_FireBall_locked
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a5ea15f8aaf812dd0800000000000000
-      internalID: -2512569154384318886
+      spriteID: 6a666f5c33d6292d0800000000000000
+      internalID: -3273433910012909914
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: M_FireBall_color
+      name: M_FireBall_unlocked
       rect:
         serializedVersion: 2
         x: 32
@@ -143,8 +149,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 174b4431bc6382660800000000000000
-      internalID: 7361193836766606449
+      spriteID: 181c6afca2ac19030800000000000000
+      internalID: 3499800670664835457
       vertices: []
       indices: 
       edges: []
@@ -153,7 +159,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -166,6 +172,8 @@ TextureImporter:
       M_FireBall_0: -1950597006589023730
       M_FireBall_color: 7361193836766606449
       M_FireBall_gray: -2512569154384318886
+      M_FireBall_locked: -3273433910012909914
+      M_FireBall_unlocked: 3499800670664835457
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

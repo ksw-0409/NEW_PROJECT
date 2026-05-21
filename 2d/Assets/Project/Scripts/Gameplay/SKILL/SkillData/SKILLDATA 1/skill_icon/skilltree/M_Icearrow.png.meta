@@ -11,6 +11,12 @@ TextureImporter:
   - first:
       213: -7101790215436202673
     second: M_Icearrow_color
+  - first:
+      213: -421297009773435285
+    second: M_Icearrow_locked
+  - first:
+      213: -5142824003680471717
+    second: M_Icearrow_unlocked
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -57,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -81,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,7 +112,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: M_Icearrow_gray
+      name: M_Icearrow_locked
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a48841a320abc6230800000000000000
-      internalID: 3633483518108272714
+      spriteID: b66258b0a90472af0800000000000000
+      internalID: -421297009773435285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: M_Icearrow_color
+      name: M_Icearrow_unlocked
       rect:
         serializedVersion: 2
         x: 32
@@ -143,8 +149,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f4d849b0d6f517d90800000000000000
-      internalID: -7101790215436202673
+      spriteID: b55f54601d401a8b0800000000000000
+      internalID: -5142824003680471717
       vertices: []
       indices: 
       edges: []
@@ -153,7 +159,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -166,6 +172,8 @@ TextureImporter:
       M_Icearrow_0: -1751588659196639732
       M_Icearrow_color: -7101790215436202673
       M_Icearrow_gray: 3633483518108272714
+      M_Icearrow_locked: -421297009773435285
+      M_Icearrow_unlocked: -5142824003680471717
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

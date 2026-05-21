@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: 7518141325337254756
     second: AttackSpeed++_0
+  - first:
+      213: 298604756903647819
+    second: AttackSpeed++_locked
+  - first:
+      213: 3850844066073471503
+    second: AttackSpeed++_unlocked
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +81,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +106,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AttackSpeed++_gray
+      name: AttackSpeed++_locked
       rect:
         serializedVersion: 2
         x: 0
@@ -113,16 +119,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2c79caf3395ebf74a9f36d2cdca4d6ad
-      internalID: -85603922
+      spriteID: b4adb7fb17bd42400800000000000000
+      internalID: 298604756903647819
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackSpeed++_color
+      name: AttackSpeed++_unlocked
       rect:
         serializedVersion: 2
         x: 32
@@ -135,10 +141,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: bf541eb85b8f0384d87a02682f259eb7
-      internalID: 658468401
+      spriteID: f0aeab38642f07530800000000000000
+      internalID: 3850844066073471503
       vertices: []
       indices: 
       edges: []
@@ -159,6 +165,8 @@ TextureImporter:
     nameFileIdTable:
       AttackSpeed++_color: 658468401
       AttackSpeed++_gray: -85603922
+      AttackSpeed++_locked: 298604756903647819
+      AttackSpeed++_unlocked: 3850844066073471503
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

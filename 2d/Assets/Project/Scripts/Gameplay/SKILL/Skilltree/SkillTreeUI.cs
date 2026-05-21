@@ -47,19 +47,45 @@ public class SkillTreeUI : MonoBehaviour
 
         infoPanel.SetActive(true);
 
+        var passive = selectedNode.GetComponent<PassiveSkillNode>();
+
         if (infoNodeNameText != null)
             infoNodeNameText.text = string.IsNullOrEmpty(selectedNode.nodeName)
                 ? selectedNode.name : selectedNode.nodeName;
 
         if (infoNodeDescText != null)
-            infoNodeDescText.text = selectedNode.nodeDescription;
+        {
+            if (passive != null)
+            {
+                string baseDesc = selectedNode.nodeDescription;
+                string curLine = passive.GetCurrentLevelEffectText();
+                string nextLine = passive.GetNextLevelEffectText();
+                infoNodeDescText.text = $"{baseDesc}\n\n<color=#7BCFFF>{curLine}</color>\n<color=#FFD700>{nextLine}</color>";
+            }
+            else
+            {
+                infoNodeDescText.text = selectedNode.nodeDescription;
+            }
+        }
 
         if (infoNodeCostText != null)
-            infoNodeCostText.text = $"<color=#FFD700>◆ 비용: {selectedNode.unlockCost}</color>";
+        {
+            int cost = passive != null ? passive.unlockCostPerLevel : selectedNode.unlockCost;
+            infoNodeCostText.text = $"<color=#FFD700>◆ 비용: {cost}</color>";
+        }
 
         if (infoNodeStatusText != null)
         {
-            if (selectedNode.IsUnlocked)
+            if (passive != null)
+            {
+                if (passive.IsMaxLevel)
+                    infoNodeStatusText.text = "<color=#FFD700><b>★ 최대 레벨 (Lv.6)</b></color>";
+                else if (passive.CurrentLevel == 0)
+                    infoNodeStatusText.text = "<color=#7BCFFF>☆ 해금 가능 (Lv.0 → Lv.1)</color>";
+                else
+                    infoNodeStatusText.text = $"<color=#7BCFFF>☆ 강화 가능 (Lv.{passive.CurrentLevel} → Lv.{passive.CurrentLevel + 1})</color>";
+            }
+            else if (selectedNode.IsUnlocked)
                 infoNodeStatusText.text = "<color=#FFD700><b>✔ 해금됨</b></color>";
             else if (selectedNode.IsBlockedByExclusive())
                 infoNodeStatusText.text = "<color=#666666>✕ 다른 분기 선택됨</color>";
@@ -84,10 +110,22 @@ public class SkillTreeUI : MonoBehaviour
     public void UpdateButtonState()
     {
         if (selectedNode == null)       { SetButtonInteractable(false); return; }
+
+        var passive = selectedNode.GetComponent<PassiveSkillNode>();
+        if (passive != null)
+        {
+#if UNITY_EDITOR
+            // 테스트: 재화 체크 없이 최대 레벨 도달 전에는 자유몁 강화 가능
+            SetButtonInteractable(!passive.IsMaxLevel);
+#else
+            SetButtonInteractable(passive.CanLevelUp());
+#endif
+            return;
+        }
+
         if (selectedNode.IsUnlocked)    { SetButtonInteractable(false); return; }
         if (!selectedNode.CanUnlock())  { SetButtonInteractable(false); return; }
 
-        // 테스트 모드: 재화 체크 없이 항상 활성화
 #if UNITY_EDITOR
         SetButtonInteractable(true);
         return;
@@ -110,11 +148,19 @@ public class SkillTreeUI : MonoBehaviour
     // ─── 해금 클릭 ─────────────────────────
     public void OnClickUnlockButton()
     {
-        if (selectedNode == null || !selectedNode.CanUnlock()) return;
+        if (selectedNode == null) return;
 
+        var passive = selectedNode.GetComponent<PassiveSkillNode>();
+        if (passive != null)
+        {
+            passive.TryLevelUp();
+            UpdateInfoPanel();
+            UpdateButtonState();
+            return;
+        }
+
+        if (!selectedNode.CanUnlock()) return;
         selectedNode.TryUnlock();
-
-        // 해금 후 패널 갱신만, 선택 유지
         UpdateInfoPanel();
         UpdateButtonState();
     }

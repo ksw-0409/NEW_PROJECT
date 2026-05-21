@@ -141,10 +141,8 @@ public class ShieldSkill : SkillBase
 
     private void SpawnEffect(Transform player)
     {
-        if (shieldEffect != null) return;
-        if (shieldData?.effectPrefab == null) return;
-        shieldEffect = Instantiate(shieldData.effectPrefab, player);
-        shieldEffect.transform.localPosition = Vector3.zero;
+        // ✨ 옛날 쉴드 비주얼 비활성화 — PlayerShieldVisual의 새 마법진이 통일된 비주얼 제공
+        // (shieldData.effectPrefab은 이제 안 씀)
     }
 
     private IEnumerator SanctuaryRegen()

@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: -2371918987940908397
     second: cooltime_0
+  - first:
+      213: 5446366135535631916
+    second: cooltime_locked
+  - first:
+      213: -2840465666568918962
+    second: cooltime_unlocked
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +81,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +106,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cooltime_gray
+      name: cooltime_locked
       rect:
         serializedVersion: 2
         x: 0
@@ -113,16 +119,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: b977d6a0851e25c48b0f56b56aa2663f
-      internalID: -1106903263
+      spriteID: c2e7159e421659b40800000000000000
+      internalID: 5446366135535631916
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cooltime_color
+      name: cooltime_unlocked
       rect:
         serializedVersion: 2
         x: 32
@@ -135,10 +141,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 6d706b67ef57f6f45b8573e25c602c9e
-      internalID: 657266260
+      spriteID: e4867739683a498d0800000000000000
+      internalID: -2840465666568918962
       vertices: []
       indices: 
       edges: []
@@ -159,6 +165,8 @@ TextureImporter:
     nameFileIdTable:
       cooltime_color: 657266260
       cooltime_gray: -1106903263
+      cooltime_locked: 5446366135535631916
+      cooltime_unlocked: -2840465666568918962
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

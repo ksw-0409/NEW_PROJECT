@@ -11,6 +11,12 @@ TextureImporter:
   - first:
       213: 2686499072331829005
     second: magicdunhwa_color
+  - first:
+      213: -4007819044765365595
+    second: magicdunhwa_locked
+  - first:
+      213: 8028656280883871693
+    second: magicdunhwa_unlocked
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -57,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -81,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,7 +112,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: magicdunhwa_gray
+      name: magicdunhwa_locked
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 41133ba628d9b8be0800000000000000
-      internalID: -1473911269572267756
+      spriteID: 5aa07b820dd5168c0800000000000000
+      internalID: -4007819044765365595
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: magicdunhwa_color
+      name: magicdunhwa_unlocked
       rect:
         serializedVersion: 2
         x: 32
@@ -143,8 +149,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d0f41cf2cac584520800000000000000
-      internalID: 2686499072331829005
+      spriteID: dcfbacd89548b6f60800000000000000
+      internalID: 8028656280883871693
       vertices: []
       indices: 
       edges: []
@@ -153,7 +159,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -166,6 +172,8 @@ TextureImporter:
       magicdunhwa_0: 8443981334908384127
       magicdunhwa_color: 2686499072331829005
       magicdunhwa_gray: -1473911269572267756
+      magicdunhwa_locked: -4007819044765365595
+      magicdunhwa_unlocked: 8028656280883871693
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

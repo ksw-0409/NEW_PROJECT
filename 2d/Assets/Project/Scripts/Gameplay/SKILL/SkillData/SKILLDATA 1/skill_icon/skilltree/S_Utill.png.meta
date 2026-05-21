@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: 8828417789656718110
     second: S_Utill_0
+  - first:
+      213: 4277058518591417955
+    second: S_Utill_locked
+  - first:
+      213: -964408876787090258
+    second: S_Utill_unlocked
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +81,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +106,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: S_Utill_gray
+      name: S_Utill_locked
       rect:
         serializedVersion: 2
         x: 0
@@ -113,16 +119,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 85a2c7b35bf2c4d459cc3fc00e33de68
-      internalID: -1554318932
+      spriteID: 36e2334df0a2b5b30800000000000000
+      internalID: 4277058518591417955
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: S_Utill_color
+      name: S_Utill_unlocked
       rect:
         serializedVersion: 2
         x: 32
@@ -135,10 +141,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: ce0a95656d26c1240b2e06084897d3df
-      internalID: 454773230
+      spriteID: eac3fd87c3bbd92f0800000000000000
+      internalID: -964408876787090258
       vertices: []
       indices: 
       edges: []
@@ -159,6 +165,8 @@ TextureImporter:
     nameFileIdTable:
       S_Utill_color: 454773230
       S_Utill_gray: -1554318932
+      S_Utill_locked: 4277058518591417955
+      S_Utill_unlocked: -964408876787090258
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

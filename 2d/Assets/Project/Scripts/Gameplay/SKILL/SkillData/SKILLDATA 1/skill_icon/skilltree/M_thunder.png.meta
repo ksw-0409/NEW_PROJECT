@@ -11,6 +11,12 @@ TextureImporter:
   - first:
       213: -97846887975631516
     second: M_thunder_color
+  - first:
+      213: 5515593521007008977
+    second: M_thunder_locked
+  - first:
+      213: 5681289999971251741
+    second: M_thunder_unlocked
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -57,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -81,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,7 +112,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: M_thunder_gray
+      name: M_thunder_locked
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 91ce18345550a9270800000000000000
-      internalID: 8257918730500172825
+      spriteID: 1dc9111a5135b8c40800000000000000
+      internalID: 5515593521007008977
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: M_thunder_color
+      name: M_thunder_unlocked
       rect:
         serializedVersion: 2
         x: 32
@@ -143,8 +149,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 465c5d716c064aef0800000000000000
-      internalID: -97846887975631516
+      spriteID: d16f34a772ff7de40800000000000000
+      internalID: 5681289999971251741
       vertices: []
       indices: 
       edges: []
@@ -153,7 +159,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -166,6 +172,8 @@ TextureImporter:
       M_thunder_0: 7300751828174074175
       M_thunder_color: -97846887975631516
       M_thunder_gray: 8257918730500172825
+      M_thunder_locked: 5515593521007008977
+      M_thunder_unlocked: 5681289999971251741
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

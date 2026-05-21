@@ -33,14 +33,13 @@ public class ArrowProjectile : MonoBehaviour
     private float  allowedAreaRadius;
 
     // ✨ 활쏘기 특수효과 필드
-    [HideInInspector] public float weakpointCritBoost = 0f;     // 다음 화살 치명타 데미지 +x
-    [HideInInspector] public bool  ricochetEnabled = false;     // 치명타 시 주변 적으로 도탄
-    [HideInInspector] public BowSkill bowSkillRef;              // 치명타 적중 알림 용
-    [HideInInspector] public bool  isRicochet = false;          // 이 화살이 도탄된 화살인지
+    [HideInInspector] public float weakpointCritBoost = 0f;
+    [HideInInspector] public bool  ricochetEnabled = false;
+    [HideInInspector] public BowSkill bowSkillRef;
+    [HideInInspector] public bool  isRicochet = false;
 
     private HashSet<EnemyHealth> alreadyHit = new HashSet<EnemyHealth>();
 
-    // ─── 초기화 ──────────────────────────────
     void Awake()
     {
         if (spriteRenderer == null)
@@ -54,7 +53,6 @@ public class ArrowProjectile : MonoBehaviour
 
     void Start() => Destroy(gameObject, lifeTime);
 
-    // ─── 세팅 ────────────────────────────────
     public void Setup(float baseDmg, float multiplier, float speed, Vector2 dir)
     {
         baseDamage = baseDmg * multiplier;
@@ -77,7 +75,6 @@ public class ArrowProjectile : MonoBehaviour
         allowedAreaRadius = Mathf.Max(0.1f, radius);
     }
 
-    // ─── 패시브 추가 ─────────────────────────
     public void AddPassive(SkillLevelData ld, string type, Color color, Sprite newSprite = null)
     {
         if (appliedPassives.Contains(type)) return;
@@ -116,7 +113,6 @@ public class ArrowProjectile : MonoBehaviour
         spriteRenderer.color = defaultArrowColor;
     }
 
-    // ─── 충돌 ────────────────────────────────
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (!col.CompareTag("Enemy")) return;
@@ -147,21 +143,18 @@ public class ArrowProjectile : MonoBehaviour
         if (isCrit)
         {
             float critMul = PlayerStats.Instance != null ? PlayerStats.Instance.CriticalDamage : 1.5f;
-            if (critMul < 1.01f) critMul = 1.5f; // 기본 치명타 배율
-            // ✨ 약점 사격 보너스 적용
+            if (critMul < 1.01f) critMul = 1.5f;
             critMul += weakpointCritBoost;
             dmg *= critMul;
         }
 
         enemy.TakeDamage(dmg);
 
-        // ✨ BowSkill에 치명타 알림 (약점 사격용)
         if (bowSkillRef != null && !isRicochet)
         {
             bowSkillRef.NotifyArrowHit(isCrit);
         }
 
-        // ✨ 화살 도탄: 치명타 시 주변 적으로 튕김 (도탄 화살은 다시 도탄 안 함)
         if (isCrit && ricochetEnabled && !isRicochet)
         {
             TriggerRicochet(enemy);
@@ -175,10 +168,8 @@ public class ArrowProjectile : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    // ✨ 도탄: 가장 가까운 다른 적에게 새 화살을 발사
     void TriggerRicochet(EnemyHealth currentTarget)
     {
-        // 반경 4유닛 내 다른 적 찾기
         float searchRadius = 4f;
         var hits = Physics2D.OverlapCircleAll(transform.position, searchRadius);
         EnemyHealth bestTarget = null;
@@ -193,38 +184,60 @@ public class ArrowProjectile : MonoBehaviour
         }
         if (bestTarget == null) return;
 
-        // 새 도탄 화살 인스턴스 생성
         GameObject ricochetGo = Instantiate(gameObject, transform.position, Quaternion.identity);
         ricochetGo.transform.localScale = transform.localScale;
 
         var ricoArrow = ricochetGo.GetComponent<ArrowProjectile>();
         if (ricoArrow != null)
         {
-            // 패시브 효과는 절반만 적용
             Vector2 toTarget = ((Vector2)bestTarget.transform.position - (Vector2)transform.position).normalized;
             ricoArrow.Setup(baseDamage * 0.5f, 1f, 12f, toTarget);
             ricoArrow.isRicochet = true;
-            ricoArrow.ricochetEnabled = false; // 한 번만 튕김
+            ricoArrow.ricochetEnabled = false;
             ricoArrow.weakpointCritBoost = weakpointCritBoost;
         }
 
-        // 방향 회전
         float angle = Mathf.Atan2(
             (bestTarget.transform.position.y - transform.position.y),
             (bestTarget.transform.position.x - transform.position.x)) * Mathf.Rad2Deg;
         ricochetGo.transform.rotation = Quaternion.Euler(0, 0, angle);
-
-        Debug.Log("[BowRicochet] 화살 도탄 → " + bestTarget.name);
     }
 
+    /// <summary>
+    /// 폭발화살 발동 시 화염구와 동일한 시각/판정 효과
+    /// </summary>
     void DoExplosion(Vector2 pos)
     {
+        // ⭐ 화염구의 폭발 이펙트와 동일한 방식으로 크기를 폭발 반경에 비례하게 스폰
         if (fireFieldPrefab != null)
-            Destroy(Instantiate(fireFieldPrefab, pos, Quaternion.identity), 1f);
+        {
+            GameObject fx = Instantiate(fireFieldPrefab, pos, Quaternion.identity);
+            const float spriteNative = 0.48f;
+            const float activeRatio  = 0.9f;
+            float fxSize = (explosionRadius * 2f) / (spriteNative * activeRatio);
+            fx.transform.localScale = new Vector3(fxSize, fxSize, 1f);
+            Destroy(fx, 0.55f);
+        }
 
+        // 카메라 흔들림 (있다면)
+        if (CameraShake.Instance != null)
+            CameraShake.ShakePreset(CameraShake.Preset.Light);
+
+        // 폭발 범위 시각화 (있다면)
+        SkillRangeIndicator.Spawn(
+            pos,
+            explosionRadius,
+            new Color(1f, 0.55f, 0.1f, 0.95f),
+            0.5f,
+            SkillRangeIndicator.Shape.Circle
+        );
+
+        // 폭발 데미지
         foreach (var col in Physics2D.OverlapCircleAll(pos, explosionRadius))
+        {
             if (col.CompareTag("Enemy"))
                 col.GetComponent<EnemyHealth>()?.TakeDamage(extraDamage);
+        }
     }
 
     void ApplyPoison(EnemyHealth enemy)
@@ -247,7 +260,7 @@ public class ArrowProjectile : MonoBehaviour
     void ApplyIce(EnemyHealth enemy)
     {
         var mv = enemy.GetComponent<EnemyAI>();
-        //   if (mv != null) mv.ApplySlow(iceSlowAmount, iceDuration);
-        Debug.Log($"{enemy.name} 빙결 둔화 {iceSlowAmount*100:F0}%");
+        // if (mv != null) mv.ApplySlow(iceSlowAmount, iceDuration);
+        // (얼음 둔화 적용 부분이 주석 처리되어 있어 실제 효과 없음 — EnemyAI에 ApplySlow가 있으면 활성화 필요)
     }
 }

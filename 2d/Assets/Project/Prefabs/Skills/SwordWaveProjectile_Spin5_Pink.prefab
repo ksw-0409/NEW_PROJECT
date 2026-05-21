@@ -160,7 +160,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 6, y: 6}
+  m_Size: {x: 1.06, y: 1.93}
   m_EdgeRadius: 0
 --- !u!114 &3337263607430579457
 MonoBehaviour:
@@ -181,3 +181,9 @@ MonoBehaviour:
   nativeSpriteWidth: 6
   nativeSpriteHeight: 6
   stretchToRange: 0
+  hitboxFitRatio: 0.31
+  firezoneDuration: 2
+  firezoneThicknessRatio: 0.7
+  firezoneDpsRatio: 0.1
+  firezonePatchSpacing: 0.7
+  casterTransform: {fileID: 0}

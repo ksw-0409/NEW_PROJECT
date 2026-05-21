@@ -27,6 +27,9 @@ public class PersistentData : ScriptableObject
     [Header("✨ 해금된 노드의 효과 데이터 (PlayerStats 재구성용 - 씬 전환 시 효과 복원)")]
     public List<UnlockedNodeEffect> unlockedEffects = new List<UnlockedNodeEffect>();
 
+    [Header("✨ 패시브 스킬 레벨 (id -> level)")]
+    public List<PassiveLevelEntry> passiveLevels = new List<PassiveLevelEntry>();
+
     public void ResetAll()
     {
         gold = 1000;
@@ -38,12 +41,20 @@ public class PersistentData : ScriptableObject
         unlockedSkillNodes.Clear();
         savedSkills.Clear();
         unlockedEffects.Clear();
+        passiveLevels.Clear();
     }
 }
 
 /// <summary>
 /// 해금된 스킬 노드 하나의 효과 데이터. 씬 전환 시 PlayerStats를 재구성하기 위한 직렬화 가능 구조.
 /// </summary>
+[System.Serializable]
+public class PassiveLevelEntry
+{
+    public string passiveID;
+    public int    level;
+}
+
 [System.Serializable]
 public class UnlockedNodeEffect
 {

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StageData
   floors:
   - floor: 1
-    stageDuration: 30
+    stageDuration: 100
   - floor: 2
     stageDuration: 10
   - floor: 3

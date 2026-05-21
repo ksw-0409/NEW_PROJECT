@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: 7919202221089008980
     second: AttackRange++_0
+  - first:
+      213: 2476162759994977046
+    second: AttackRange++_locked
+  - first:
+      213: -2866443681930975502
+    second: AttackRange++_unlocked
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +81,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +106,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AttackRange++_gray
+      name: AttackRange++_locked
       rect:
         serializedVersion: 2
         x: 0
@@ -113,16 +119,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: c1e1f2b6a55f8864f85c729bb2228322
-      internalID: -1807726634
+      spriteID: 61b2d8339e81d5220800000000000000
+      internalID: 2476162759994977046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackRange++_color
+      name: AttackRange++_unlocked
       rect:
         serializedVersion: 2
         x: 32
@@ -135,10 +141,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: a232d67324ff5ed4d8ee2ff42020d21d
-      internalID: -1594465269
+      spriteID: 2f667d988a85838d0800000000000000
+      internalID: -2866443681930975502
       vertices: []
       indices: 
       edges: []
@@ -159,6 +165,8 @@ TextureImporter:
     nameFileIdTable:
       AttackRange++_color: -1594465269
       AttackRange++_gray: -1807726634
+      AttackRange++_locked: 2476162759994977046
+      AttackRange++_unlocked: -2866443681930975502
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
