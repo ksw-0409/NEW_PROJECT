@@ -1,27 +1,35 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Orcs2 : EnemyAI
 {
-    [Header("¿ÀÅ© Æ¯È­ ¼³Á¤")]
-    public float attackRange = 3.0f;     // °¨Áö ¹× °ø°İ ½ÃÀÛ °Å¸®
-    public float skillRange = 5.0f;      // ºÎÃ¤²Ã °ø°İ »ç°Å¸®
-    public float skillAngle = 30.0f;     // ºÎÃ¤²Ã °¢µµ
-    public float attackDelay = 0.8f;     // Âï±â Àü ´ë±â ½Ã°£ (¸ğ¼Ç ½Ã°£)
-    public GameObject hitEffectPrefab; // ½ÇÁ¦ Å¸°İ ÀÌÆåÆ® 
+    [Header("ì˜¤í¬ íŠ¹í™” ì„¤ì •")]
+    public float attackRange = 3.0f;     // ê°ì§€ ë° ê³µê²© ì‹œì‘ ê±°ë¦¬
+    public float skillRange = 5.0f;      // ë¶€ì±„ê¼´ ê³µê²© ì‚¬ê±°ë¦¬
+    public float skillAngle = 30.0f;     // ë¶€ì±„ê¼´ ê°ë„
+    public float attackDelay = 0.8f;     // ì°ê¸° ì „ ëŒ€ê¸° ì‹œê°„ (ëª¨ì…˜ ì‹œê°„)
 
 
-    public float attackCoolDown = 3.0f; // °ø°İ ÄğÅ¸ÀÓ
-    public float attackAfterDelay = 0.3f; //°ø°İ ÈÄµô
+    public float attackCoolDown = 3.0f; // ê³µê²© ì¿¨íƒ€ì„
+    public float attackAfterDelay = 0.3f; //ê³µê²© í›„ë”œ
+
+    [Header("ë²”ìœ„ í‘œì‹œ ì„¤ì •")]
+    // ì¸ìŠ¤í™í„°ì—ì„œ ì•„ê¹Œ ë§Œë“  ê·¸ UI Imageë¥¼ ì—¬ê¸°ì— ë“œë˜ê·¸í•´ì„œ ì—°ê²°í•  ê²ë‹ˆë‹¤.
+    public Image indicatorImage;
 
     private Animator anim;
     private bool isActionRunning = false;
     private bool canAttack = true;
 
+    public GameObject dashEffectPrefab;
+    public float effectDestroyTime = 0.4f;
     protected override void Awake()
     {
         base.Awake();
         anim = GetComponent<Animator>();
+        indicatorImage.gameObject.SetActive(false);
+
     }
     public override void Init()
     {
@@ -39,14 +47,14 @@ public class Orcs2 : EnemyAI
 
         if (canAttack && distance <= attackRange)
         {
-            // °ø°İ ¹üÀ§ ¾ÈÀ¸·Î µé¾î¿À¸é °ø°İ ½ÃÄö½º ½ÃÀÛ
+            // ê³µê²© ë²”ìœ„ ì•ˆìœ¼ë¡œ ë“¤ì–´ì˜¤ë©´ ê³µê²© ì‹œí€€ìŠ¤ ì‹œì‘
             StartCoroutine(AttackSequence(playerPos));
         }
     }
 
     public override void MoveTaget(Vector2 targetPos)
     {
-        // ¾×¼Ç Áß(Â÷Â¡/µ¹Áø/ÈÄµô)¿¡´Â ÀÌµ¿ ·ÎÁ÷ Áß´Ü
+        // ì•¡ì…˜ ì¤‘(ì°¨ì§•/ëŒì§„/í›„ë”œ)ì—ëŠ” ì´ë™ ë¡œì§ ì¤‘ë‹¨
         if (isActionRunning) return;
         base.MoveTaget(targetPos);
     }
@@ -54,31 +62,34 @@ public class Orcs2 : EnemyAI
     {
         canAttack = false;
         isActionRunning = true;
-        rb.linearVelocity = Vector2.zero; // °ø°İ ½ÃÀÛ ½Ã Á¤Áö
+        rb.linearVelocity = Vector2.zero; // ê³µê²© ì‹œì‘ ì‹œ ì •ì§€
+        Vector2 attackDir = (targetPos - (Vector2)transform.position).normalized;
+        DrawSectorIndicator(attackDir);
+        yield return new WaitForSeconds(attackDelay*0.4f);
+        anim.SetTrigger("isSkill"); 
+        // ë•…ì„ ì°ëŠ” ì‹œì ê¹Œì§€ì˜ ë”œë ˆì´
+        yield return new WaitForSeconds(attackDelay*0.6f);
 
-        //  Âï´Â ¸ğ¼Ç ½ÇÇà Ãß°¡ ÇÊ¿ä 
-       //anim.SetTrigger("Attack");
-
-        // ¶¥À» Âï´Â ½ÃÁ¡±îÁöÀÇ µô·¹ÀÌ
-        yield return new WaitForSeconds(attackDelay);
-
-        // ºÎÃ¤²Ã °ø°İ ¼öÇà
+        // 3. ê³µê²© ìˆœê°„ ë²”ìœ„ í‘œì‹œ ë„ê¸° ë° ì‹¤ì œ íƒ€ê²©
+        indicatorImage.gameObject.SetActive(false);
+        // ë¶€ì±„ê¼´ ê³µê²© ìˆ˜í–‰
         PerformSectorAttack(targetPos);
 
-        // ÈÄµô·¹ÀÌ ¹× »óÅÂ º¹±¸
+        // í›„ë”œë ˆì´ ë° ìƒíƒœ ë³µêµ¬
         yield return StartCoroutine(PostAttackPhase());
 
-        // ÄğÅ¸ÀÓ (º°µµ ·çÆ¾À¸·Î ½ÇÇàÇÏ¿© ÀÌµ¿ °¡´ÉÇÏ°Ô ÇÔ)
+        // ì¿¨íƒ€ì„ (ë³„ë„ ë£¨í‹´ìœ¼ë¡œ ì‹¤í–‰í•˜ì—¬ ì´ë™ ê°€ëŠ¥í•˜ê²Œ í•¨)
         StartCoroutine(CoolDownPhase());
     }
 
     private void PerformSectorAttack(Vector2 targetPos)
     {
-        // °ø°İ ¹æÇâ °è»ê (ÇÃ·¹ÀÌ¾î ¹æÇâ)
+        GameObject effectInstance = Instantiate(dashEffectPrefab, transform.position, Quaternion.identity);
+        Destroy(effectInstance, effectDestroyTime);
+        // ê³µê²© ë°©í–¥ ê³„ì‚° (í”Œë ˆì´ì–´ ë°©í–¥)
         Vector2 attackDir = (targetPos - (Vector2)transform.position).normalized;
         float attackAngle = Mathf.Atan2(attackDir.y, attackDir.x) * Mathf.Rad2Deg;
-        Instantiate(hitEffectPrefab, transform.position, Quaternion.Euler(0, 0, attackAngle));
-        // ¹üÀ§ ³» ¸ğµç Collider2D °Ë»ç (·¹ÀÌ¾î ¸¶½ºÅ©¸¦ Player·Î ¼³Á¤ÇÏ´Â °ÍÀÌ ÃÖÀûÈ­¿¡ ÁÁ½À´Ï´Ù)
+        // ë²”ìœ„ ë‚´ ëª¨ë“  Collider2D ê²€ì‚¬ (ë ˆì´ì–´ ë§ˆìŠ¤í¬ë¥¼ Playerë¡œ ì„¤ì •í•˜ëŠ” ê²ƒì´ ìµœì í™”ì— ì¢‹ìŠµë‹ˆë‹¤)
         Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, skillRange);
 
         foreach (var col in targets)
@@ -87,14 +98,14 @@ public class Orcs2 : EnemyAI
             {
                 Vector2 dirToPlayer = ((Vector2)col.transform.position - (Vector2)transform.position).normalized;
                 float angle = Vector2.Angle(attackDir, dirToPlayer);
-                // ¼³Á¤ÇÑ °¢µµÀÇ Àı¹İ(15µµ) ÀÌ³»¿¡ ÀÖ´Ù¸é ºÎÃ¤²Ã ¹üÀ§ ¾ÈÀÓ
+                // ì„¤ì •í•œ ê°ë„ì˜ ì ˆë°˜(15ë„) ì´ë‚´ì— ìˆë‹¤ë©´ ë¶€ì±„ê¼´ ë²”ìœ„ ì•ˆì„
                 if (angle <= skillAngle * 0.5f)
                 {
                     PlayerStats pStats = col.GetComponent<PlayerStats>();
                     if (pStats != null)
                     {
                         pStats.TakeDamage(SkillDamage);
-                        Debug.Log($"¿ÀÅ©°¡ ºÎÃ¤²Ã °ø°İÀ¸·Î {SkillDamage} µ¥¹ÌÁö¸¦ ÀÔÇû½À´Ï´Ù.");
+                        Debug.Log($"ì˜¤í¬ê°€ ë¶€ì±„ê¼´ ê³µê²©ìœ¼ë¡œ {SkillDamage} ë°ë¯¸ì§€ë¥¼ ì…í˜”ìŠµë‹ˆë‹¤.");
                     }
                 }
             }
@@ -104,7 +115,7 @@ public class Orcs2 : EnemyAI
     private IEnumerator PostAttackPhase()
     {
         yield return new WaitForSeconds(attackAfterDelay);
-        isActionRunning = false; // ÀÌÁ¦ ´Ù½Ã MoveTagetÀÌ ÀÛµ¿ °¡´ÉÇÔ
+        isActionRunning = false; // ì´ì œ ë‹¤ì‹œ MoveTagetì´ ì‘ë™ ê°€ëŠ¥í•¨
     }
 
     private IEnumerator CoolDownPhase()
@@ -112,4 +123,36 @@ public class Orcs2 : EnemyAI
         yield return new WaitForSeconds(attackCoolDown);
         canAttack = true;
     }
+    private void DrawSectorIndicator(Vector2 attackDir)
+    {
+        if (indicatorImage == null) return;
+        indicatorImage.gameObject.SetActive(true);
+
+        // 1. ë¶€ëª¨(ì˜¤í¬) ìŠ¤ì¼€ì¼ ë° ë’¤ì§‘í˜ ì™„ë²½ ë¬´íš¨í™”
+        Transform canvasTr = indicatorImage.transform.parent;
+        Vector3 parentScale = transform.localScale;
+
+        canvasTr.localScale = new Vector3(
+            parentScale.x != 0 ? 1f / parentScale.x : 1f,
+            parentScale.y != 0 ? 1f / parentScale.y : 1f,
+            parentScale.z != 0 ? 1f / parentScale.z : 1f
+        );
+
+        // 2. ì‚¬ê±°ë¦¬ ë° ë¶€ì±„ê¼´ ë¹„ìœ¨ ì ìš©
+        RectTransform rt = indicatorImage.rectTransform;
+        float targetSize = skillRange * 2f;
+        rt.sizeDelta = new Vector2(targetSize, targetSize);
+        indicatorImage.fillAmount = skillAngle / 360f;
+
+        // 3. ğŸ”¥ íƒ€ê²Ÿ ë°©í–¥ ì™„ë²½ ì¡°ì¤€
+        float baseAngle = Mathf.Atan2(attackDir.y, attackDir.x) * Mathf.Rad2Deg;
+
+        // Originì„ Rightë¡œ ë§ì·„ìœ¼ë¯€ë¡œ, ì •ì¤‘ì•™ ì •ë ¬ì„ ìœ„í•´ ì ˆë°˜ ê°ë„ë¥¼ 'ë”í•´'ì¤ë‹ˆë‹¤.
+        float finalAngle = baseAngle + (skillAngle * 0.5f);
+
+        // ì ˆëŒ€ì ì¸ ì›”ë“œ ê°ë„ íšŒì „
+        indicatorImage.transform.rotation = Quaternion.Euler(0f, 0f, finalAngle);
+    }
 }
+
+

@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
 
     private int lastProcessedSecond = -1; //이거 스테이지 바뀔때마다 -1로 초기화 해야함
     private bool isBoss = false;
-    private int[] eliteId = {2,4,6,8,10,12,14,16}; //1층부터 9층까지 엘리트몬스터 ID 목록
+    private int[] eliteId = {2,4,6,8, -1, 10,12,14,16}; //1층부터 9층까지 엘리트몬스터 ID 목록
     private int eliteIndx = -1;
     private int currentFloor = -1;
     List<MonsterSpawnRate> targetRates; 
@@ -64,13 +64,8 @@ public class EnemySpawner : MonoBehaviour
         */
 
         //테스트용 로직
-        if (sec < 5) SpawnNormalWave(Random.Range(1, 2));
-        else if (sec == 5) { SpawnCircleWave(); }
-        else if (sec < 10) SpawnNormalWave(Random.Range(3, 4));
-        else if (sec == 10) { SpawnVerticalRush(); }
-        else if (sec < 15) SpawnNormalWave(4);
-        else if (sec == 20) SpawElite();
-        else return;
+        if (sec == 1) Spawn(16);
+
     }
 
     //일반소환
@@ -184,7 +179,7 @@ public class EnemySpawner : MonoBehaviour
     //각 층수 엘리트 몬스터 소환
     void SpawElite()
     {
-        Spawn(eliteId[(int)GameDataManager.Instance.CurrentFloor]-1);
+         Spawn(eliteId[(int)GameDataManager.Instance.CurrentFloor-1]);
     }
 
     void Spawn(int ID)

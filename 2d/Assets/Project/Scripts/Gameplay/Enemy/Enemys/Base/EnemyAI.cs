@@ -33,6 +33,7 @@ public class EnemyAI : MonoBehaviour
     protected bool isStun = false; //���� 
     private float stunTimer = 0f;   // ���� ���ӽð� Ÿ�̸�
 
+    protected bool isFlip=false;
 
     protected virtual void Awake()
     {
@@ -135,11 +136,13 @@ public class EnemyAI : MonoBehaviour
         // 0.1f�� �̼��� ���������� ���� �����Ÿ� ����
         if (horizontalDir < 0.1f) // ������ �̵�
         {
+            isFlip = false;
             // ���� ũ�� ����
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
         else if (horizontalDir > -0.1f) // ���� �̵�
         {
+            isFlip = true;
             // X���� ���̳ʽ���
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }

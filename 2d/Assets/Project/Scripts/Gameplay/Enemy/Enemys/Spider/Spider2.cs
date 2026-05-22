@@ -11,14 +11,20 @@ public class Spider2 : EnemyAI
     public float explosionDamage = 50f;    // 폭발 데미지
     public float coolDown = 2.0f;
 
-    public GameObject explosionEffect;
 
     private bool isActionRunning = false;
+
+    public GameObject dashEffectPrefab;
+    public float effectDestroyTime = 0.4f;
+
+    [Header("장판 설정")]
+    public GameObject indicatorObj;        // 자식으로 넣은 원형 스프라이트 오브젝트 연결
 
     public override void Init()
     {
         base.Init();
         isActionRunning = false;
+        indicatorObj.SetActive(false);
     }
 
     public override void OnUpdate(Vector2 playerPos)
@@ -48,8 +54,10 @@ public class Spider2 : EnemyAI
         rb.linearVelocity = Vector2.zero;
         // 2. 차징 단계: 1초간 번쩍거리며 경고
         Debug.Log("자폭 카운트다운 시작!");
+        DrawRange();
         yield return StartCoroutine(FlashEffect(chargeTime));
-        // 3. 폭발 실행 (이펙트 생성 및 데미지)
+
+        indicatorObj.SetActive(false);
         ExecuteExplosion();
         yield return new WaitForSeconds(coolDown);
         isActionRunning = false;
@@ -57,12 +65,10 @@ public class Spider2 : EnemyAI
 
     private void ExecuteExplosion()
     {
-        //  시각적 이펙트 생성
-        if (explosionEffect != null)
-        {
-            // 몬스터 위치에 폭발 이펙트 생성
-            Instantiate(explosionEffect, transform.position, Quaternion.identity);
-        }
+        // 몬스터 위치에 폭발 이펙트 생성
+        GameObject effectInstance = Instantiate(dashEffectPrefab, transform.position, Quaternion.identity);
+        Destroy(effectInstance, effectDestroyTime);
+        
         // 데미지 판정 (뎀감 없는 고정 피해)
         Collider2D hit = Physics2D.OverlapCircle(transform.position, explosionRange, LayerMask.GetMask("Player"));
 
@@ -86,5 +92,22 @@ public class Spider2 : EnemyAI
             elapsed += 0.1f;
         }
         sprite.color = origin;
+    }
+    private void DrawRange()
+    {
+        indicatorObj.SetActive(true);
+
+        // 부모의 절대 월드 스케일을 가져옵니다 (플립 -1 값 무시)
+        float parentScaleX = Mathf.Abs(transform.lossyScale.x);
+        float parentScaleY = Mathf.Abs(transform.lossyScale.y);
+
+        if (parentScaleX == 0f) parentScaleX = 1f;
+        if (parentScaleY == 0f) parentScaleY = 1f;
+
+        // 최종적으로 화면에 보여야 할 지름 = 반지름(explosionRange) * 2
+        float targetDiameter = explosionRange * 2f;
+
+        // 자식의 로컬 스케일 = (목표 지름) / (부모 스케일)
+        indicatorObj.transform.localScale = new Vector3(targetDiameter / parentScaleX, targetDiameter / parentScaleY, 1f);
     }
 }

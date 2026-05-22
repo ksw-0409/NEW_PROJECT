@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 3.5, y: 3.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   data: {fileID: 11400000, guid: 6ecc7532b69011f4e8ea2c771a01a717, type: 2}
+  currentHp: 0
 --- !u!50 &3440786406656036238
 Rigidbody2D:
   serializedVersion: 5
@@ -196,6 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Orcs1
   data: {fileID: 11400000, guid: 6ecc7532b69011f4e8ea2c771a01a717, type: 2}
   dataP: {fileID: 11400000, guid: 4a3763b71508d894a8654cc78558c1c3, type: 2}
+  isDie: 0
   usePooling: 1
 --- !u!95 &2776121423106148765
 Animator:

@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 7, y: 7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -4945684728018057118, guid: db85aa1d9a552f14cb1584811bc08923, type: 3}
+  m_Sprite: {fileID: -4351793228906837316, guid: 934e30a079313d54aa5046f543a06e17, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   data: {fileID: 11400000, guid: ced039b0ebbdf554591df35002629c1b, type: 2}
+  currentHp: 0
 --- !u!50 &3440786406656036238
 Rigidbody2D:
   serializedVersion: 5
@@ -174,7 +175,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 0.2, y: 0.26}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -196,12 +197,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GoblinArcher2
   data: {fileID: 11400000, guid: ced039b0ebbdf554591df35002629c1b, type: 2}
   dataP: {fileID: 11400000, guid: 4a3763b71508d894a8654cc78558c1c3, type: 2}
+  isDie: 0
   usePooling: 0
   arrowPrefab: {fileID: 4389706672037867357, guid: e1087a6ee4b03a64a85953a543bd3f3b, type: 3}
   detectRange: 6
   chargeTime: 1.5
   arrowSpeed: 20
   attackCoolDown: 3
+  attackAfterDelay: 0.3
   arrowCount: 5
   spreadAngle: 45
 --- !u!95 &5680301447796810974
@@ -214,7 +217,7 @@ Animator:
   m_GameObject: {fileID: 1695417322640460754}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 38a23a15c74533946a7ab6d3bff12a88, type: 2}
+  m_Controller: {fileID: 9100000, guid: 952284fe0647b414e833b529fa35cd56, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

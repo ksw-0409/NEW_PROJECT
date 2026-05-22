@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 934735a6d79ded148a30ee31ccc96a91
+guid: 72b931f3172b5154abe6f478720ebb6e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1018222670523368436
-    second: goblin stone_0
+      213: 4851764620759824967
+    second: goblin stone 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: goblin stone_0
+      name: goblin stone 1_0
       rect:
         serializedVersion: 2
         x: 3
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4f38bc2cf14712e00800000000000000
-      internalID: 1018222670523368436
+      spriteID: 74a7232873ee45340800000000000000
+      internalID: 4851764620759824967
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      goblin stone_0: 1018222670523368436
+      goblin stone 1_0: 4851764620759824967
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

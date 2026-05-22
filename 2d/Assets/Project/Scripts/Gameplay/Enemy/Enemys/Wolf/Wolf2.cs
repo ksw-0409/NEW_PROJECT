@@ -5,7 +5,7 @@ public class Wolf2 : EnemyAI
 {
     [Header("늑대 특화 설정")]
     public float detectRange = 3.0f; 
-    public float chargeTime = 2.0f;
+    public float chargeTime = 0.5f;
     public float dashDistance = 5.0f;
     public float dashSpeed = 15f;
     public float postDashDelay = 0.5f;
@@ -13,12 +13,24 @@ public class Wolf2 : EnemyAI
 
     private bool isActionRunning = false;
     private bool canDash = true;
- 
+
+    [Header("시각 효과 설정")]
+    public Transform spriteTransform;    // 흔들림 효과를 줄 부모/자식 스프라이트의 Transform
+    public float trembleIntensity = 0.25f; // 흔들림강도
+    public float trembleStepTime = 0.2f; 
+    public float indicatorWidth = 0.5f;   // 빨간색 범위 가이드선의 두께
+    private LineRenderer lineRenderer;
+    public GameObject dashEffectPrefab; 
+    public float effectDestroyTime = 1.0f;
     public override void Init()
     {
         base.Init();
         isActionRunning = false;
-        canDash = true;
+        canDash = true; 
+        
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.positionCount = 2;
+        lineRenderer.enabled = false; // 평소에는 숨김
     }
     public override void MoveTaget(Vector2 targetPos)
     {
@@ -29,7 +41,6 @@ public class Wolf2 : EnemyAI
     public override void OnUpdate(Vector2 playerPos)
     {
         base.OnUpdate(playerPos);
-        // 체크 조건: 죽지 않았고, 액션 중이 아니며, 쿨타임이 끝났을 때
         if (isDie || isActionRunning || !canDash) return;
 
         // 거리 계산 
@@ -46,33 +57,89 @@ public class Wolf2 : EnemyAI
         isActionRunning = true;
         canDash = false;
 
-        // 1단계: 차징 (준비)
-        yield return StartCoroutine(ChargePhase());
-
-        // EnemyManager 사용하여 실시간 위치 확보
+        // 돌진을 시작할 때 플레이어의 최신 위치를 기반으로 방향을 미리 확정합니다.
         Vector2 currentTargetPos = EnemyManager.Instance.player.position;
-        // 최신 위치를 기준으로 방향 계산
         Vector2 direction = (currentTargetPos - (Vector2)transform.position).normalized;
+
+        // 1단계: 차징 (준비 + 흔들림 + 범위 표시)
+        yield return StartCoroutine(ChargePhase(direction));
+
+        // 2단계: 돌진 실행 (범위 표시 끄고 돌격)
         yield return StartCoroutine(PerformDashPhase(direction));
 
-        // 3단계: 후딜레이 및 상태 복구 (이동 가능해짐)
+        // 3단계: 후딜레이 및 상태 복구
         yield return StartCoroutine(PostDashPhase());
 
-        // 4단계: 쿨타임 (별도 루틴으로 실행)
+        // 4단계: 쿨타임
         StartCoroutine(CoolDownPhase());
     }
 
-    private IEnumerator ChargePhase()
+    private IEnumerator ChargePhase(Vector2 dir)
     {
         rb.linearVelocity = Vector2.zero;
         Debug.Log("늑대: 돌진 준비 중...");
-        yield return new WaitForSeconds(chargeTime);
+        Vector3 originalSpritePos = spriteTransform != null ? spriteTransform.localPosition : Vector3.zero;
+        // 매번 new Material을 하지 않고, 이미 LineRenderer에 붙어있는 재질의 색상만 바꿉니다.
+        if (lineRenderer != null)
+        {
+            lineRenderer.startWidth = indicatorWidth;
+            lineRenderer.endWidth = indicatorWidth;
+
+            // 인스펙터에 등록된 기본 재질이 없다면 최초 1번만 생성하도록 예외처리하거나 
+            // 그냥 인스펙터에서 마우스로 Material을 넣어두는 것이 가장 좋습니다.
+            if (lineRenderer.sharedMaterial == null)
+            {
+                lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+            }
+
+            lineRenderer.startColor = new Color(1f, 0f, 0f, 0.6f);
+            lineRenderer.endColor = new Color(1f, 0f, 0f, 0.1f);
+            lineRenderer.enabled = true;
+            Vector2 startLine = transform.position;
+            Vector2 endLine = startLine + (dir * dashDistance);
+            lineRenderer.SetPosition(0, startLine);
+            lineRenderer.SetPosition(1, endLine);
+        }
+
+        //유니티의 프레임 밀림 현상을 무력화하기 위해 절대 시간 계산법 도입
+        float startTime = Time.time;
+        float endTime = startTime + chargeTime;
+
+        while (Time.time < endTime)
+        {
+            if (isDie) break;
+            if (spriteTransform != null)
+            {
+                // trembleIntensity를 인스펙터에서 0.3 ~ 0.5 정도로 줘보세요 (2D 유닛 기준)
+                float offsetX = Random.Range(-trembleIntensity, trembleIntensity);
+                float offsetY = Random.Range(-trembleIntensity, trembleIntensity);
+                spriteTransform.localPosition = originalSpritePos + new Vector3(offsetX, offsetY, 0);
+            }
+            
+            yield return null;
+        }
+
+        if (lineRenderer != null) lineRenderer.enabled = false;
     }
 
     private IEnumerator PerformDashPhase(Vector2 dir)
     {
         Debug.Log("늑대: 돌진!");
+
         HandleSpriteFlip(dir.x);
+        GameObject effectInstance = Instantiate(dashEffectPrefab, transform.position, Quaternion.identity);
+        Vector3 effectScale = effectInstance.transform.localScale;
+        if (isFlip)
+        {
+            effectScale.x = -Mathf.Abs(effectScale.x); // 왼쪽을 보고 있으면 이펙트도 마이너스
+        }
+        else
+        {
+            effectScale.x = Mathf.Abs(effectScale.x);  // 오른쪽을 보고 있으면 플러스
+        }
+        effectInstance.transform.localScale = effectScale;
+        // 이펙트가 무한히 남아 메모리를 갉아먹지 않도록 지정된 시간 뒤에 자동 삭제
+        Destroy(effectInstance, effectDestroyTime);
         Vector2 startPos = transform.position;
         float elapsed = 0f;
 
