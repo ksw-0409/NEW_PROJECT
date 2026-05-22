@@ -223,7 +223,7 @@ public class SkillNode : MonoBehaviour, IPointerClickHandler
             else if (blocked)
                 iconImage.color = new UnityEngine.Color(0.22f, 0.22f, 0.26f, 1f); // 영원 잠김 (거의 검정)
             else if (CanUnlock())
-                iconImage.color = new UnityEngine.Color(1.0f, 1.0f, 1.0f, 1f);
+                iconImage.color = new UnityEngine.Color(0.62f, 0.62f, 0.62f, 1f); // 해금 가능 (은은한 회색, 미선택 시 불 꺼짐)1f);
             else
                 iconImage.color = new UnityEngine.Color(0.5f, 0.5f, 0.5f, 1f);
         }
