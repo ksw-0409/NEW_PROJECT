@@ -26,7 +26,7 @@ public class Inventory : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // 아이템 추가 (던전에서 획득 시 미감정 상태로)
+    // 아이템 추가 — EquipmentData에서 변환 (던전 드랍, 미감정 상태)
     public void AddItem(EquipmentData data)
     {
         if (data == null) return;
@@ -35,6 +35,15 @@ public class Inventory : MonoBehaviour
         items.Add(item);
         OnInventoryChanged?.Invoke();
         Debug.Log($"[Inventory] 아이템 획득: {item.itemName} ({item.Grade})");
+    }
+
+    // ✨ InventoryItem 직접 추가 (장비 해제 시 isIdentified 상태 그대로 반환)
+    public void AddItem(InventoryItem item)
+    {
+        if (item == null) return;
+        items.Add(item);
+        OnInventoryChanged?.Invoke();
+        Debug.Log($"[Inventory] 아이템 반환: {item.itemName}");
     }
 
     // 아이템 제거
@@ -51,7 +60,6 @@ public class Inventory : MonoBehaviour
 
         int removeCount = Mathf.CeilToInt(items.Count * 0.5f);
 
-        // Fisher-Yates 셔플로 랜덤 인덱스 선택
         List<int> indices = new List<int>(items.Count);
         for (int i = 0; i < items.Count; i++) indices.Add(i);
 
@@ -61,7 +69,6 @@ public class Inventory : MonoBehaviour
             (indices[i], indices[j]) = (indices[j], indices[i]);
         }
 
-        // 높은 인덱스부터 제거 (인덱스 밀림 방지)
         List<int> toRemove = indices.GetRange(0, removeCount);
         toRemove.Sort((a, b) => b.CompareTo(a));
         foreach (int idx in toRemove)

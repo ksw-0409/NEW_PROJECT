@@ -1,19 +1,21 @@
-using System;
+ï»¿using System;
+using UnityEngine;
 
-// ¿ªÇÒ: ÀÎº¥Åä¸®¿¡ ÀúÀåµÇ´Â ¾ÆÀÌÅÛ ·±Å¸ÀÓ µ¥ÀÌÅÍ
-// ¹Ì°¨Á¤ »óÅÂ·Î È¹µæ, °ÅÁ¡¿¡¼­ °¨Á¤ ÈÄ ½ºÅÈ °ø°³
+// ì—­í• : ì¸ë²¤í† ë¦¬ì— ì €ì¥ë˜ëŠ” ì•„ì´í…œ ëŸ°íƒ€ì„ ë°ì´í„°
+// ë¯¸ê°ì • ìƒíƒœë¡œ íšë“, ê±°ì ì—ì„œ ê°ì • í›„ ìŠ¤íƒ¯ ê³µê°œ
 
 [Serializable]
 public class InventoryItem
 {
     public string itemName;
-    public int gradeInt;       // ItemGrade enum ¡æ int
-    public int itemTypeInt;    // ItemType enum ¡æ int
-    public int slotInt;        // EquipmentSlot enum ¡æ int
-    public string iconName;    // Resources/Icons/ ±âÁØ
-    public bool isIdentified;  // °¨Á¤ ¿©ºÎ
+    public int gradeInt;       // ItemGrade enum â†’ int
+    public int itemTypeInt;    // ItemType enum â†’ int
+    public int slotInt;        // EquipmentSlot enum â†’ int
+    public string iconName;    // Resources/Icons/ ê¸°ì¤€
+    public Sprite iconSprite;  // âœ¨ ìŠ¤í”„ë¼ì´íŠ¸ ì§ì ‘ ë³´ê´€ (Resources.Load ë¶ˆí•„ìš”)
+    public bool isIdentified;  // ê°ì • ì—¬ë¶€
 
-    // ½ºÅÈ (°¨Á¤ ÈÄ °ø°³)
+    // ìŠ¤íƒ¯ (ê°ì • í›„ ê³µê°œ)
     public float physicalDamage;
     public float magicDamage;
     public float criticalChance;
@@ -23,7 +25,7 @@ public class InventoryItem
     public float moveSpeed;
     public float attackcooldown;
 
-    // EquipmentData ¡æ InventoryItem º¯È¯
+    // EquipmentData â†’ InventoryItem ë³€í™˜
     public static InventoryItem FromEquipmentData(EquipmentData data, bool identified = false)
     {
         return new InventoryItem
@@ -33,6 +35,7 @@ public class InventoryItem
             itemTypeInt = (int)data.itemType,
             slotInt = (int)data.slot,
             iconName = data.icon != null ? data.icon.name : "",
+            iconSprite = data.icon,
             isIdentified = identified,
             physicalDamage = data.physicalDamage,
             magicDamage = data.magicDamage,
@@ -43,6 +46,27 @@ public class InventoryItem
             moveSpeed = data.moveSpeed,
             attackcooldown = data.attackcooldown,
         };
+    }
+
+    // âœ¨ InventoryItem â†’ EquipmentData ëŸ°íƒ€ì„ ë³€í™˜ (ì¥ì°© ì‹œ PlayerStatsì— ë„˜ê¸°ê¸° ìœ„í•´ ì‚¬ìš©)
+    public EquipmentData ToEquipmentData()
+    {
+        var data = ScriptableObject.CreateInstance<EquipmentData>();
+        data.itemName = itemName;
+        data.grade = (ItemGrade)gradeInt;
+        data.itemType = (ItemType)itemTypeInt;
+        data.slot = (EquipmentSlot)slotInt;
+        data.physicalDamage = physicalDamage;
+        data.magicDamage = magicDamage;
+        data.criticalChance = criticalChance;
+        data.criticalDamage = criticalDamage;
+        data.maxHealth = maxHealth;
+        data.physicalDefense = physicalDefense;
+        data.moveSpeed = moveSpeed;
+        data.attackcooldown = attackcooldown;
+
+        data.icon = iconSprite;
+        return data;
     }
 
     public ItemGrade Grade => (ItemGrade)gradeInt;

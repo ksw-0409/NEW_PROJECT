@@ -2,6 +2,7 @@
 using UnityEngine.InputSystem;
 
 // 역할: 인벤토리 UI (Tab 키 열고 닫기, 슬롯 표시)
+// ✨ 장비창(CharacterEquipmentUI)과 함께 열리고 닫힘
 // 전투 중(스테이지 진행 중)에는 열 수 없음
 
 public class InventoryUI : MonoBehaviour
@@ -9,6 +10,9 @@ public class InventoryUI : MonoBehaviour
     [Header("연결")]
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private InventorySlot[] slots; // 4x7 = 28슬롯
+
+    [Header("✨ 장비창 패널 (같이 열고 닫힘)")]
+    [SerializeField] private GameObject equipmentPanel;
 
     void OnEnable()
     {
@@ -19,10 +23,10 @@ public class InventoryUI : MonoBehaviour
     {
         Inventory.OnInventoryChanged -= RefreshSlots;
 
-        // UI 닫힐 때 IsUIOpen 초기화
         if (inventoryPanel != null && inventoryPanel.activeSelf)
         {
             inventoryPanel.SetActive(false);
+            if (equipmentPanel != null) equipmentPanel.SetActive(false);
             BaseInteractable.IsUIOpen = false;
         }
     }
@@ -33,7 +37,7 @@ public class InventoryUI : MonoBehaviour
         {
             if (inventoryPanel.activeSelf)
             {
-                ToggleInventory();
+                CloseAll();
                 return;
             }
 
@@ -46,18 +50,27 @@ public class InventoryUI : MonoBehaviour
                 return;
             }
 
-            ToggleInventory();
+            OpenAll();
         }
     }
 
-    private void ToggleInventory()
+    private void OpenAll()
     {
-        bool isOpen = !inventoryPanel.activeSelf;
-        inventoryPanel.SetActive(isOpen);
-        BaseInteractable.IsUIOpen = isOpen;
-
-        if (isOpen) RefreshSlots();
+        inventoryPanel.SetActive(true);
+        if (equipmentPanel != null) equipmentPanel.SetActive(true);
+        BaseInteractable.IsUIOpen = true;
+        RefreshSlots();
     }
+
+    private void CloseAll()
+    {
+        inventoryPanel.SetActive(false);
+        if (equipmentPanel != null) equipmentPanel.SetActive(false);
+        BaseInteractable.IsUIOpen = false;
+    }
+
+    // ✨ CharacterEquipmentUI에서 장착/해제 후 슬롯 갱신 요청 시 사용
+    public void ForceRefresh() => RefreshSlots();
 
     private void RefreshSlots()
     {
@@ -69,12 +82,9 @@ public class InventoryUI : MonoBehaviour
         {
             if (slots[i] == null) continue;
 
-            if (i < items.Count)
-                slots[i].Setup(items[i]);
-            else
-                slots[i].Setup(null);
+            slots[i].Setup(i < items.Count ? items[i] : null);
         }
-        Debug.Log($"[InventoryUI] RefreshSlots 호출 — 아이템 수: {Inventory.Instance?.Items.Count}");
-        if (slots == null || Inventory.Instance == null) return;
+
+        Debug.Log($"[InventoryUI] RefreshSlots — 아이템 수: {Inventory.Instance?.Items.Count}");
     }
 }

@@ -4,9 +4,9 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 // 역할: Tab 인벤토리 슬롯
-// RectTransform 범위 체크로 툴팁 표시
+// 호버 툴팁 + 좌클릭 장착
 
-public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private Image iconImage;
 
@@ -30,9 +30,8 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         if (iconImage != null)
         {
-            Sprite icon = Resources.Load<Sprite>("Icons/" + item.iconName);
-            iconImage.sprite = icon;
-            iconImage.color = icon != null
+            iconImage.sprite = item.iconSprite;
+            iconImage.color = item.iconSprite != null
                 ? new Color(1f, 1f, 1f, 1f)
                 : new Color(1f, 1f, 1f, 0f);
         }
@@ -46,8 +45,22 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (InventoryTooltip.Instance != null)
-            InventoryTooltip.Instance.Hide();
+        InventoryTooltip.Instance?.Hide();
+    }
+
+    // ✨ 좌클릭 → 장비 장착 시도
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (slotItem == null) return;
+        if (eventData.button != PointerEventData.InputButton.Left) return;
+
+        if (CharacterEquipmentUI.Instance == null)
+        {
+            Debug.LogWarning("[InventorySlot] CharacterEquipmentUI.Instance가 없습니다.");
+            return;
+        }
+
+        CharacterEquipmentUI.Instance.TryEquip(slotItem);
     }
 
     private string BuildTooltipText(InventoryItem item)
@@ -59,6 +72,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (!item.isIdentified)
         {
             sb.AppendLine("미감정 아이템");
+            sb.Append("\n<color=#888>감정 후 장착 가능</color>");
         }
         else
         {
@@ -70,7 +84,10 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             if (item.maxHealth > 0) sb.AppendLine($"최대 체력: {item.maxHealth:F1}");
             if (item.physicalDefense > 0) sb.AppendLine($"방어력: {item.physicalDefense:F1}");
             if (item.moveSpeed > 0) sb.AppendLine($"이동속도: {item.moveSpeed:F2}");
+            if (item.attackcooldown > 0) sb.AppendLine($"쿨타임 감소: {item.attackcooldown:F2}배");
+            sb.Append("\n<color=#aaa>클릭: 장착</color>");
         }
+
         return sb.ToString();
     }
 
