@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Arrow Rain Data
   m_EditorClassIdentifier: Assembly-CSharp::ArrowRainData
   skillName: "\uD654\uC0B4\uBE44"
-  icon: {fileID: -1079795458671647714, guid: 0c98ac9fdf7aea240be023751843f2f2, type: 3}
+  icon: {fileID: 21300000, guid: 0c98ac9fdf7aea240be023751843f2f2, type: 3}
   description: 
   levels:
   - cooldown: 10
@@ -94,6 +94,9 @@ MonoBehaviour:
     duration: 5
     tickInterval: 0
     pierce: 0
+  card: {fileID: 7887769717022316169, guid: 385e85c0fc5a1d548a05a6007be03979, type: 3}
+  gem: {fileID: -275294629493481588, guid: 44e3f8240d0249b4bafeaa983c12f30e, type: 3}
+  maxGem: {fileID: -6915877380695973674, guid: 30aa041cfe781ae4dbeeac00c6ac0354, type: 3}
   projectilePrefab: {fileID: 2493754749878858455, guid: 035fdb682d7c5914eb69a40d51852a01, type: 3}
   effectPrefab: {fileID: 2493754749878858455, guid: 035fdb682d7c5914eb69a40d51852a01, type: 3}
   homingRange: 15

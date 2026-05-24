@@ -21,6 +21,10 @@ public class EnemyManager : MonoBehaviour
     [Header("다양한 몬스터 프리팹 리스트")]
     public List<EnemyAI> enemyPrefabs;
 
+    [Header("게임 통계 (Statistics)")]
+    public int totalKillCount { get; private set; } = 0;
+    public float totalDamageDealt { get; private set; } = 0f;
+
     void Awake()
     {
         Instance = this; // 싱글톤 초기화
@@ -57,6 +61,9 @@ public class EnemyManager : MonoBehaviour
 
             poolDict.Add(currentID, pool);
         }
+
+        totalKillCount = 0;
+        totalDamageDealt= 0f;   
     }
 
     private void OnGetEnemy(EnemyAI ai)
@@ -173,4 +180,11 @@ public class EnemyManager : MonoBehaviour
             }
         }
     }
+    //데미지 누적 코드 
+    public void AddDamage(float damageAmount)
+    {
+        totalDamageDealt += damageAmount;
+    }
+    //킬 누적 코드
+    public void AddKill() { totalKillCount+= 1; }
 }

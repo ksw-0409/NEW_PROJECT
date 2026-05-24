@@ -94,6 +94,9 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
+  card: {fileID: 2370750633436981774, guid: 05dbc1076be610c469eb578de79dff2c, type: 3}
+  gem: {fileID: -3273216748401862306, guid: c014314225a7a42429caed03e598038a, type: 3}
+  maxGem: {fileID: 3273761095418258225, guid: 7562f5a6e38772742a599f05a01ce596, type: 3}
   range: 2
   angle: 140
   effectPrefab: {fileID: 30316419374980630, guid: b18de5af77bd21d4db6309edb90c4732, type: 3}

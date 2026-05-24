@@ -94,5 +94,8 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
+  card: {fileID: -4888357697674137919, guid: b1f27557d21675a48934036297247804, type: 3}
+  gem: {fileID: -8980381107765330217, guid: 2d082a832c22f7045b7ea115605c8dda, type: 3}
+  maxGem: {fileID: -5374507778547345140, guid: 3aaada770fbfad149b6afe0a2c247b4d, type: 3}
   cooldown: 10
   effectPrefab: {fileID: 30316419374980630, guid: bd7353ba3c21c6842a22036481c73f6d, type: 3}

@@ -14,6 +14,7 @@ public class EnemyHealth : MonoBehaviour
     {
         GetComponent<EnemyAI>().ApplyHitEffect(EnemyManager.Instance.player.transform.position);
         currentHp -= amount;
+        EnemyManager.Instance.AddDamage(amount);
         if (currentHp <= 0)
         {
             GetComponent<EnemyAI>().Die();

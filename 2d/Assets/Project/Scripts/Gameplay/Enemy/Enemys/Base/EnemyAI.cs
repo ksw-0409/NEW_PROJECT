@@ -116,7 +116,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (isDie) return;
         isDie = true;
-
+        EnemyManager.Instance.AddKill();
         // ✨ 적 처치 이펙트 — 보스면 elite 폭발
         bool isElite = gameObject.name.Contains("Boss") || gameObject.name.Contains("Elite");
         VFXManager.SpawnDeathBurst(transform.position, isElite);

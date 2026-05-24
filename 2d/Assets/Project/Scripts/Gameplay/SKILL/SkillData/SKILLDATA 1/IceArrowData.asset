@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IceArrowData
   m_EditorClassIdentifier: Assembly-CSharp::ArrowPassiveData
   skillName: "\uC5BC\uC74C\uD654\uC0B4"
-  icon: {fileID: 4025852118320482988, guid: 0222f0afe19872849b77c3383337d506, type: 3}
+  icon: {fileID: 21300000, guid: 0222f0afe19872849b77c3383337d506, type: 3}
   description: 
   levels:
   - cooldown: 0
@@ -94,5 +94,8 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
+  card: {fileID: 7887769717022316169, guid: 385e85c0fc5a1d548a05a6007be03979, type: 3}
+  gem: {fileID: -275294629493481588, guid: 44e3f8240d0249b4bafeaa983c12f30e, type: 3}
+  maxGem: {fileID: -6915877380695973674, guid: 30aa041cfe781ae4dbeeac00c6ac0354, type: 3}
   arrowSprite: {fileID: 21300000, guid: 4adb10f0ee361ff47ade45254fb4497e, type: 3}
   arrowColor: {r: 1, g: 1, b: 1, a: 1}

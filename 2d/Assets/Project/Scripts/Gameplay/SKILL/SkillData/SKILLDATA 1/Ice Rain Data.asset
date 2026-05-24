@@ -94,3 +94,6 @@ MonoBehaviour:
     duration: 5
     tickInterval: 1
     pierce: 0
+  card: {fileID: -5561769563046938044, guid: 11c637c09f2239241a205cc1c58d337e, type: 3}
+  gem: {fileID: -6604126954763643667, guid: 009403c00757f8b4799d0f0490c4208c, type: 3}
+  maxGem: {fileID: -2632305640189647874, guid: 7c9288b60482312468dfe4b478a17373, type: 3}

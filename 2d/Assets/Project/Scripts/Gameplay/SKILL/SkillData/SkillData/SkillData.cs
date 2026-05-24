@@ -7,4 +7,8 @@ public abstract class SkillData : ScriptableObject
     public string description;
 
     public SkillLevelData[] levels;
+
+    public Sprite card;
+    public Sprite gem;
+    public Sprite maxGem;
 }
