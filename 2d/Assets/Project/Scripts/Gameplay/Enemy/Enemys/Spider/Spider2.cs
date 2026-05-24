@@ -43,7 +43,11 @@ public class Spider2 : EnemyAI
     public override void MoveTaget(Vector2 targetPos)
     {
         // 자폭 준비 중에는 이동 불가
-        if (isActionRunning) return;
+        if (isActionRunning)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
         base.MoveTaget(targetPos);
     }
 

@@ -198,6 +198,10 @@ MonoBehaviour:
   dataP: {fileID: 11400000, guid: 4a3763b71508d894a8654cc78558c1c3, type: 2}
   isDie: 0
   usePooling: 0
+  knockbackForce: 5
+  knockbackDuration: 0.15
+  flashDuration: 0.1
+  flashMaterial: {fileID: 2100000, guid: 560da2cdbddbde44681b14c6ee04389b, type: 2}
   rockCount: 8
   DieDealy: 1
   rockSpeed: 10
@@ -206,3 +210,4 @@ MonoBehaviour:
   rockEffectPrefab: {fileID: 2785522838048479002, guid: 4decbf1944c61884b9b2844997cb9c02, type: 3}
   attackRadius: 1
   warningTime: 1
+  rockFallInterval: 2

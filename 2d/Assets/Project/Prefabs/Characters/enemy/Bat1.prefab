@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   data: {fileID: 11400000, guid: f5d944ba8849bc941be3bcdba20a9756, type: 2}
+  currentHp: 0
 --- !u!50 &3440786406656036238
 Rigidbody2D:
   serializedVersion: 5
@@ -196,7 +197,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bat1
   data: {fileID: 11400000, guid: f5d944ba8849bc941be3bcdba20a9756, type: 2}
   dataP: {fileID: 11400000, guid: 4a3763b71508d894a8654cc78558c1c3, type: 2}
+  isDie: 0
   usePooling: 1
+  knockbackForce: 5
+  knockbackDuration: 0.15
+  flashDuration: 0.1
+  flashMaterial: {fileID: 2100000, guid: 560da2cdbddbde44681b14c6ee04389b, type: 2}
 --- !u!95 &306700872191489848
 Animator:
   serializedVersion: 7

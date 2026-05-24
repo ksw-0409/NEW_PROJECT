@@ -290,6 +290,10 @@ MonoBehaviour:
   dataP: {fileID: 11400000, guid: 4a3763b71508d894a8654cc78558c1c3, type: 2}
   isDie: 0
   usePooling: 0
+  knockbackForce: 5
+  knockbackDuration: 0.15
+  flashDuration: 0.1
+  flashMaterial: {fileID: 2100000, guid: 560da2cdbddbde44681b14c6ee04389b, type: 2}
   explosionRange: 3
   detectRange: 2.5
   chargeTime: 1

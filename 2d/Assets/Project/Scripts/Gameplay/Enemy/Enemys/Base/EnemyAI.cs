@@ -35,10 +35,29 @@ public class EnemyAI : MonoBehaviour
 
     protected bool isFlip=false;
 
+    [Header("Hit Effect Settings")]
+    [SerializeField] private float knockbackForce = 5f;       // 넉백 세기
+    [SerializeField] private float knockbackDuration = 0.15f; // 넉백 지속 시간
+    [SerializeField] private float flashDuration = 0.1f;      // 하얗게 번쩍이는 시간
+    [SerializeField] private Material flashMaterial;          // 흰색 마테리얼
+    protected bool isKnockedBack = false;
+    private float knockbackTimer = 0f;
+    private bool isFlashing = false;
+    private float flashTimer = 0f;
+    private Material originalMaterial;
+    private SpriteRenderer spriteRenderer;
+    //--------------------------------------------------------
+
     protected virtual void Awake()
     {
         rb =GetComponent<Rigidbody2D>();
         health=GetComponent<EnemyHealth>();
+
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            originalMaterial = spriteRenderer.material;
+        }
     }
    
     //ó�� �����Ҷ� pool ���� �޴������� ����� 
@@ -72,6 +91,16 @@ public class EnemyAI : MonoBehaviour
         
         moveSpeed = data.moveSpeed * dataP.moveSpeed;
         DropWeapon = data.DropWeapon;
+
+        // [추가됨] 풀링에서 꺼낼 때 넉백/깜빡임 상태 초기화
+        isKnockedBack = false;
+        knockbackTimer = 0f;
+        isFlashing = false;
+        flashTimer = 0f;
+        if (spriteRenderer != null && originalMaterial != null)
+        {
+            spriteRenderer.material = originalMaterial;
+        }
     }
     // ���� ��� ���� ����, �����ӵ�����/hp����/������������ Y��
     public void SetRushMode(Vector2 dir, float speed, float hpMultiplier, float limitY)
@@ -108,6 +137,8 @@ public class EnemyAI : MonoBehaviour
     {
         HandleSlowTimer();
         HandleStunTimer();
+        HandleKnockbackTimer();
+        HandleFlashTimer();
         if (isStun) return;
         if (isDie) return;
     }
@@ -116,6 +147,7 @@ public class EnemyAI : MonoBehaviour
         if (data == null) return;
         if (isStun) return;
         if (isDie) return;
+        if (isKnockedBack) return;  
         if (isRushMode) {
             rb.linearVelocity = rushDir * moveSpeed;
             if (transform.position.y < rushLimitY) {
@@ -136,6 +168,30 @@ public class EnemyAI : MonoBehaviour
             HandleSpriteFlip(dir.x);
         }
         
+    }
+
+
+    // --- 무기나 플레이어에게 맞았을 때 외부에서 호출할 함수 ---
+    public void ApplyHitEffect(Vector2 attackerPos)
+    {
+        if (isDie) return;
+
+        // 1. 넉백 적용 (플레이어 -> 몬스터 방향)
+        Vector2 knockbackDir = ((Vector2)transform.position - attackerPos).normalized;
+
+        rb.linearVelocity = Vector2.zero; // AI 이동 속도를 지우고
+        rb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse); // 뒤로 밀어냄
+
+        isKnockedBack = true;
+        knockbackTimer = knockbackDuration;
+
+        // 2. 하얗게 깜빡임 적용
+        if (spriteRenderer != null && flashMaterial != null)
+        {
+            spriteRenderer.material = flashMaterial;
+            isFlashing = true;
+            flashTimer = flashDuration;
+        }
     }
 
     protected void HandleSpriteFlip(float horizontalDir)
@@ -231,5 +287,35 @@ public class EnemyAI : MonoBehaviour
         isStun = false;
         stunTimer = 0f;
         Debug.Log("���� ����, ���� ����");
+    }
+
+    // --- [추가됨] 넉백 & 깜빡임 타이머 핸들러 ---
+    private void HandleKnockbackTimer()
+    {
+        if (isKnockedBack)
+        {
+            knockbackTimer -= Time.deltaTime;
+            if (knockbackTimer <= 0)
+            {
+                isKnockedBack = false;
+                rb.linearVelocity = Vector2.zero; // 밀려난 후 미끄러짐 방지
+            }
+        }
+    }
+
+    private void HandleFlashTimer()
+    {
+        if (isFlashing)
+        {
+            flashTimer -= Time.deltaTime;
+            if (flashTimer <= 0)
+            {
+                isFlashing = false;
+                if (spriteRenderer != null && originalMaterial != null)
+                {
+                    spriteRenderer.material = originalMaterial; // 원상 복구
+                }
+            }
+        }
     }
 }

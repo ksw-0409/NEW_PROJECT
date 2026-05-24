@@ -40,8 +40,11 @@ public class Spider1 : EnemyAI
 
     public override void MoveTaget(Vector2 targetPos)
     {
-        // 자폭 준비 중에는 이동 불가
-        if (isActionRunning) return;
+        if (isActionRunning)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
         base.MoveTaget(targetPos);
     }
 
@@ -57,8 +60,10 @@ public class Spider1 : EnemyAI
         yield return StartCoroutine(FlashEffect(chargeTime));
 
         indicatorObj.SetActive(false);
+        anim.SetTrigger("is_boom");
         // 폭발 실행 (이펙트 생성 및 데미지)
         ExecuteExplosion();
+        yield return new WaitForSeconds(0.3f);
         // 즉시 사망 처리
         base.Despawn();
     }
@@ -67,8 +72,8 @@ public class Spider1 : EnemyAI
     {
 
         // 몬스터 위치에 폭발 이펙트 생성
-       // GameObject effectInstance = Instantiate(dashEffectPrefab, transform.position, Quaternion.identity);
-       // Destroy(effectInstance, effectDestroyTime);
+       GameObject effectInstance = Instantiate(dashEffectPrefab, transform.position, Quaternion.identity);
+        Destroy(effectInstance, effectDestroyTime);
         // 데미지 판정 (뎀감 없는 고정 피해)
         Collider2D hit = Physics2D.OverlapCircle(transform.position, explosionRange, LayerMask.GetMask("Player"));
 
@@ -92,10 +97,6 @@ public class Spider1 : EnemyAI
             elapsed += 0.1f;
         }
 
-        if (elapsed < duration * 0.8f)
-        {
-            anim.SetTrigger("is_boom");
-        }
         sprite.color = origin;
     }
 
