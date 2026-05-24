@@ -55,10 +55,11 @@ public class RockGolem2 : EnemyAI
     }
     private void SpawnDeathRocks()
     {
-        float angleStep = 360f / rockCount; // 45도 간격
+        float angleStep = 360f / rockCount;
+        float randomAngle = Random.Range(0, 360f);
         for (int i = 0; i < rockCount; i++)
         {
-            float targetAngle = i * angleStep;
+            float targetAngle = i * angleStep + randomAngle;
             // 각도를 방향 벡터로 변환
             float radian = targetAngle * Mathf.Deg2Rad;
             Vector2 dir = new Vector2(Mathf.Cos(radian), Mathf.Sin(radian));
@@ -71,7 +72,7 @@ public class RockGolem2 : EnemyAI
             }
         }
     }
-    
+
     private IEnumerator DieRoutine()
     {
         RockDie = true;

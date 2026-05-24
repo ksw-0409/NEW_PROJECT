@@ -62,9 +62,9 @@ public class EnemySpawner : MonoBehaviour
         else if (sec == 180) SpawElite();
         else return;
         */
-
         //테스트용 로직
-        if (sec == 1) Spawn(16);
+        if (sec == 1) Spawn(13);
+        if (sec == 1) Spawn(13);
 
     }
 
@@ -179,7 +179,9 @@ public class EnemySpawner : MonoBehaviour
     //각 층수 엘리트 몬스터 소환
     void SpawElite()
     {
-         Spawn(eliteId[(int)GameDataManager.Instance.CurrentFloor-1]);
+        int thisFloor = GameDataManager.Instance.CurrentFloor;
+        if (thisFloor == 5 || thisFloor == 10) return;
+         Spawn(eliteId[thisFloor - 1]);
     }
 
     void Spawn(int ID)

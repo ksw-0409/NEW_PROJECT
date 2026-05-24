@@ -17,6 +17,7 @@ public class Spider1 : EnemyAI
     [Header("장판 설정")]
     public GameObject indicatorObj;        // 자식으로 넣은 원형 스프라이트 오브젝트 연결
 
+    public Animator anim;
     public override void Init()
     {
         base.Init();
@@ -49,23 +50,25 @@ public class Spider1 : EnemyAI
         isActionRunning = true;
         // 1. 즉시 정지 및 물리 고정
         rb.linearVelocity = Vector2.zero;
+        anim.SetTrigger("is_ready");
         // 2. 차징 단계: 1초간 번쩍거리며 경고
         Debug.Log("자폭 카운트다운 시작!");
         DrawRange();
         yield return StartCoroutine(FlashEffect(chargeTime));
 
         indicatorObj.SetActive(false);
-        // 3. 폭발 실행 (이펙트 생성 및 데미지)
+        // 폭발 실행 (이펙트 생성 및 데미지)
         ExecuteExplosion();
-        // 4. 즉시 사망 처리 (부모의 Die 호출)
-        base.Die();
+        // 즉시 사망 처리
+        base.Despawn();
     }
 
     private void ExecuteExplosion()
     {
+
         // 몬스터 위치에 폭발 이펙트 생성
-        GameObject effectInstance = Instantiate(dashEffectPrefab, transform.position, Quaternion.identity);
-        Destroy(effectInstance, effectDestroyTime);
+       // GameObject effectInstance = Instantiate(dashEffectPrefab, transform.position, Quaternion.identity);
+       // Destroy(effectInstance, effectDestroyTime);
         // 데미지 판정 (뎀감 없는 고정 피해)
         Collider2D hit = Physics2D.OverlapCircle(transform.position, explosionRange, LayerMask.GetMask("Player"));
 
@@ -88,13 +91,18 @@ public class Spider1 : EnemyAI
             yield return new WaitForSeconds(0.1f);
             elapsed += 0.1f;
         }
+
+        if (elapsed < duration * 0.8f)
+        {
+            anim.SetTrigger("is_boom");
+        }
         sprite.color = origin;
     }
 
     private void DrawRange()
     {
         indicatorObj.SetActive(true);
-
+        
         // 부모의 절대 월드 스케일을 가져옵니다 (플립 -1 값 무시)
         float parentScaleX = Mathf.Abs(transform.lossyScale.x);
         float parentScaleY = Mathf.Abs(transform.lossyScale.y);

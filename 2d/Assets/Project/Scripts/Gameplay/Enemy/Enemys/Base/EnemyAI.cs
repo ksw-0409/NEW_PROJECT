@@ -97,6 +97,13 @@ public class EnemyAI : MonoBehaviour
 
         EnemyManager.Instance.EnqueueToRelease(this);
     }
+    public virtual void Despawn()
+    {
+        if (isDie) return;
+        isDie = true;
+
+        EnemyManager.Instance.EnqueueToRelease(this);
+    }
     public virtual void OnUpdate(Vector2 playerPos)
     {
         HandleSlowTimer();
