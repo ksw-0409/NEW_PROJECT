@@ -32,9 +32,13 @@ public class GameDataManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // ✨ ResetAll 제거 — 이제 해금 데이터가 영구 저장됨
-        //   게임 완전 리셋이 필요하면 ContextMenu의 명령이나 메뉴에서 명시적으로 호출
-        Debug.Log($"[GameDataManager] 아이템 더미 로드 완료 — unlocked 노드: {persistentData.unlockedSkillNodes.Count}, 골드: {persistentData.gold}");
+        // ✨ 에셋 원본을 건드리지 않도록 런타임 복사본 생성
+        // 해금 데이터(스킬 트리/패시브)는 복사본에 유지되고,
+        // 골드/층수 등 인게임 데이터는 매 실행마다 초기화됨
+        persistentData = Instantiate(persistentData);
+        persistentData.ResetRuntimeData();
+
+        Debug.Log($"[GameDataManager] 로드 완료 — unlocked 노드: {persistentData.unlockedSkillNodes.Count}, 골드: {persistentData.gold}");
     }
 
     // 명시적 리셋 (메뉴에서 호출)
@@ -102,23 +106,18 @@ public class GameDataManager : MonoBehaviour
         return persistentData.unlockedEffects;
     }
 
-    // ✨ 패시브 레벨 저장/복원
     public void SavePassiveLevels(System.Collections.Generic.Dictionary<string, int> levels)
     {
         persistentData.passiveLevels.Clear();
         foreach (var kv in levels)
-        {
             persistentData.passiveLevels.Add(new PassiveLevelEntry { passiveID = kv.Key, level = kv.Value });
-        }
     }
 
     public System.Collections.Generic.Dictionary<string, int> GetPassiveLevels()
     {
         var d = new System.Collections.Generic.Dictionary<string, int>();
         foreach (var e in persistentData.passiveLevels)
-        {
             if (!string.IsNullOrEmpty(e.passiveID)) d[e.passiveID] = e.level;
-        }
         return d;
     }
 
@@ -166,30 +165,22 @@ public class GameDataManager : MonoBehaviour
         SetFloor(1);
     }
 
-    // 리롤된 아이템 저장 (슬롯 인덱스 기준)
     public void SaveRuntimeItem(int slotIndex, EquipmentData data)
     {
         var list = persistentData.runtimeItems;
-
-        while (list.Count <= slotIndex)
-            list.Add(null);
-
+        while (list.Count <= slotIndex) list.Add(null);
         list[slotIndex] = RuntimeItemData.FromEquipmentData(data);
         Debug.Log($"[GameDataManager] 슬롯 {slotIndex} 아이템 저장: {data.itemName}");
     }
 
-    // 저장된 아이템을 EquipmentData에 덮어씌우기
     public void LoadRuntimeItem(int slotIndex, EquipmentData target)
     {
         var list = persistentData.runtimeItems;
-
         if (slotIndex >= list.Count || list[slotIndex] == null) return;
-
         list[slotIndex].ApplyTo(target);
         Debug.Log($"[GameDataManager] 슬롯 {slotIndex} 아이템 불러오기: {target.itemName}");
     }
 
-    // 해당 슬롯에 저장된 리롤 데이터가 있는지 확인
     public bool HasRuntimeItem(int slotIndex)
     {
         var list = persistentData.runtimeItems;

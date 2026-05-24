@@ -9,54 +9,54 @@ public class SkillNode : MonoBehaviour, IPointerClickHandler
 
     [Header("노드 기본 정보")]
     public string nodeName;
-    [TextArea(2,4)] public string nodeDescription;
+    [TextArea(2, 4)] public string nodeDescription;
 
     [Header("스킬 연결 정보")]
     public SkillData targetSkill;
     public NodeType nodeType;
 
     [Header("스탯 보너스")]
-    public float damageMultiplier   = 1.0f;
-    public float rangeMultiplier    = 1.0f;
+    public float damageMultiplier = 1.0f;
+    public float rangeMultiplier = 1.0f;
     public float cooldownMultiplier = 1.0f;
-    public int   countBonus         = 0;
+    public int countBonus = 0;
 
     [Header("CC / 지속 보너스")]
     public float slowPercentMultiplier = 1f;
-    public float durationMultiplier    = 1f;
+    public float durationMultiplier = 1f;
 
     [Header("특수 효과 (Specialty 노드)")]
     public string specialtyTag;
 
     [Header("노드 설정")]
     public string skillNodeID;
-    public int    unlockCost = 1;
+    public int unlockCost = 1;
 
     [Header("선행 조건")]
-    public SkillNode[]      prerequisites;
+    public SkillNode[] prerequisites;
     public SkillConnector[] outgoingLinks;
 
     [Header("✨ 배타 제약 (3갈래 분기)")]
     [Tooltip("이 노드와 서로 배타적인 노드들. 이 노드가 해금되면 exclusiveWith의 모든 노드는 영원히 잠김됩니다.\n例: 공격/유틸/변칙 중 하나를 고르면 나머지 둘은 선택 불가.")]
-    public SkillNode[]      exclusiveWith;
+    public SkillNode[] exclusiveWith;
 
     [Header("색상")]
-    public Color lockedColor    = new Color(0.25f, 0.25f, 0.25f, 1f);
-    public Color unlockedColor  = new Color(1f, 0.85f, 0f, 1f);
-    public Color selectedColor  = new Color(0.2f, 1f, 0.2f, 1f);
+    public Color lockedColor = new Color(0.25f, 0.25f, 0.25f, 1f);
+    public Color unlockedColor = new Color(1f, 0.85f, 0f, 1f);
+    public Color selectedColor = new Color(0.2f, 1f, 0.2f, 1f);
     public Color availableColor = new Color(0.55f, 0.8f, 1f, 1f);
 
     [Header("UI")]
-    public Image            iconImage;
+    public Image iconImage;
 
     [Header("✨ 아이콘 상태별 스프라이트")]
     [Tooltip("잠김 상태일 때 표시할 스프라이트 (회색). 비워두면 iconImage의 기본 sprite가 그대로 사용됩니다.")]
-    public Sprite           iconLocked;
+    public Sprite iconLocked;
     [Tooltip("해금되었거나 해금 가능한 상태일 때 표시할 스프라이트 (파란/컴러).")]
-    public Sprite           iconUnlocked;
+    public Sprite iconUnlocked;
 
-    public Image            frameImage;
-    public TextMeshProUGUI  costText;
+    public Image frameImage;
+    public TextMeshProUGUI costText;
 
     // ─── 상태 ───────────────────────────────
     public bool IsUnlocked { get; private set; } = false;
@@ -125,7 +125,7 @@ public class SkillNode : MonoBehaviour, IPointerClickHandler
         return;
 #endif
         if (GameDataManager.Instance != null
-            && !GameDataManager.Instance.SpendNormalCurrency(unlockCost))
+            && !GameDataManager.Instance.SpendGold(unlockCost))
         {
             Debug.Log("[SkillNode] 재화 부족");
             return;
@@ -141,7 +141,8 @@ public class SkillNode : MonoBehaviour, IPointerClickHandler
         {
             GameDataManager.Instance.SaveUnlockedNode(skillNodeID);
 
-            var effect = new UnlockedNodeEffect {
+            var effect = new UnlockedNodeEffect
+            {
                 skillNodeID = skillNodeID,
                 targetSkillAssetName = targetSkill != null ? targetSkill.name : "",
                 nodeType = (int)nodeType,
@@ -230,19 +231,19 @@ public class SkillNode : MonoBehaviour, IPointerClickHandler
 
         if (frameImage != null)
         {
-            if (isSelected)         frameImage.color = selectedColor;
-            else if (IsUnlocked)    frameImage.color = unlockedColor;
-            else if (blocked)       frameImage.color = new UnityEngine.Color(0.15f, 0.15f, 0.18f, 1f);
-            else if (CanUnlock())   frameImage.color = availableColor;
-            else                    frameImage.color = lockedColor;
+            if (isSelected) frameImage.color = selectedColor;
+            else if (IsUnlocked) frameImage.color = unlockedColor;
+            else if (blocked) frameImage.color = new UnityEngine.Color(0.15f, 0.15f, 0.18f, 1f);
+            else if (CanUnlock()) frameImage.color = availableColor;
+            else frameImage.color = lockedColor;
         }
         else if (iconImage != null && iconLocked == null && iconUnlocked == null)
         {
-            if (isSelected)         iconImage.color = selectedColor;
-            else if (IsUnlocked)    iconImage.color = unlockedColor;
-            else if (blocked)       iconImage.color = new UnityEngine.Color(0.15f, 0.15f, 0.18f, 1f);
-            else if (CanUnlock())   iconImage.color = availableColor;
-            else                    iconImage.color = lockedColor;
+            if (isSelected) iconImage.color = selectedColor;
+            else if (IsUnlocked) iconImage.color = unlockedColor;
+            else if (blocked) iconImage.color = new UnityEngine.Color(0.15f, 0.15f, 0.18f, 1f);
+            else if (CanUnlock()) iconImage.color = availableColor;
+            else iconImage.color = lockedColor;
         }
 
         if (costText != null)

@@ -52,7 +52,7 @@ public class PassiveSkillNode : MonoBehaviour
     {
         if (IsMaxLevel) return false;
         if (GameDataManager.Instance == null) return false;
-        return GameDataManager.Instance.NormalCurrency >= unlockCostPerLevel;
+        return GameDataManager.Instance.Gold >= unlockCostPerLevel;
     }
 
     /// <summary>강화 실행 (재화 차감 + 레벨업).</summary>
@@ -71,11 +71,11 @@ public class PassiveSkillNode : MonoBehaviour
 
 #if UNITY_EDITOR
         // 에디터: 재화 체크 우회하여 자유롭게 테스트 가능
-        if (GameDataManager.Instance != null && GameDataManager.Instance.NormalCurrency >= unlockCostPerLevel)
-            GameDataManager.Instance.SpendNormalCurrency(unlockCostPerLevel);
+        if (GameDataManager.Instance != null && GameDataManager.Instance.Gold >= unlockCostPerLevel)
+            GameDataManager.Instance.SpendGold(unlockCostPerLevel);
 #else
         if (GameDataManager.Instance == null) return false;
-        if (!GameDataManager.Instance.SpendNormalCurrency(unlockCostPerLevel))
+        if (!GameDataManager.Instance.SpendGold(unlockCostPerLevel))
         {
             Debug.LogWarning($"[PassiveNode] {passiveID} 강화 실패: 재화 부족");
             return false;

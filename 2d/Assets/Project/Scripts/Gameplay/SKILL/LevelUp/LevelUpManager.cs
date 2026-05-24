@@ -10,7 +10,7 @@ public class LevelUpManager : MonoBehaviour
     public PlayerStats playerStats;
     public PlayerSkillController skillController;
 
-    private static bool startUIShown = false; // 같은 세션에서 두 번 뜨지 않게 정적 플래그
+    private bool startUIShown = false;
 
     void Start()
     {

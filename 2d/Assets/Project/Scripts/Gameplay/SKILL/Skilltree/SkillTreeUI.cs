@@ -12,14 +12,14 @@ public class SkillTreeUI : MonoBehaviour
     public Button unlockButton;
 
     [Header("정보 패널")]
-    public GameObject      infoPanel;
+    public GameObject infoPanel;
     public TextMeshProUGUI infoNodeNameText;
     public TextMeshProUGUI infoNodeDescText;
     public TextMeshProUGUI infoNodeCostText;
     public TextMeshProUGUI infoNodeStatusText;
 
     [Tooltip("선택된 노드의 아이콘을 표시할 Image (선택사항 — InfoPanel 안의 Icon)")]
-    public Image           infoNodeIcon;
+    public Image infoNodeIcon;
 
     void Awake() => Instance = this;
 
@@ -109,7 +109,7 @@ public class SkillTreeUI : MonoBehaviour
     // ─── 버튼 상태 ─────────────────────────
     public void UpdateButtonState()
     {
-        if (selectedNode == null)       { SetButtonInteractable(false); return; }
+        if (selectedNode == null) { SetButtonInteractable(false); return; }
 
         var passive = selectedNode.GetComponent<PassiveSkillNode>();
         if (passive != null)
@@ -123,14 +123,14 @@ public class SkillTreeUI : MonoBehaviour
             return;
         }
 
-        if (selectedNode.IsUnlocked)    { SetButtonInteractable(false); return; }
-        if (!selectedNode.CanUnlock())  { SetButtonInteractable(false); return; }
+        if (selectedNode.IsUnlocked) { SetButtonInteractable(false); return; }
+        if (!selectedNode.CanUnlock()) { SetButtonInteractable(false); return; }
 
 #if UNITY_EDITOR
         SetButtonInteractable(true);
         return;
 #endif
-        int cur = GameDataManager.Instance != null ? GameDataManager.Instance.NormalCurrency : 0;
+        int cur = GameDataManager.Instance != null ? GameDataManager.Instance.Gold : 0;
         SetButtonInteractable(cur >= selectedNode.unlockCost);
     }
 
@@ -142,7 +142,7 @@ public class SkillTreeUI : MonoBehaviour
         // 버튼 텍스트 색도 같이 변경
         var txt = unlockButton.GetComponentInChildren<TextMeshProUGUI>();
         if (txt != null)
-            txt.color = v ? UnityEngine.Color.white : new UnityEngine.Color(0.5f,0.5f,0.5f,0.6f);
+            txt.color = v ? UnityEngine.Color.white : new UnityEngine.Color(0.5f, 0.5f, 0.5f, 0.6f);
     }
 
     // ─── 해금 클릭 ─────────────────────────

@@ -30,6 +30,7 @@ public class PersistentData : ScriptableObject
     [Header("✨ 패시브 스킬 레벨 (id -> level)")]
     public List<PassiveLevelEntry> passiveLevels = new List<PassiveLevelEntry>();
 
+    // 전체 초기화 (스킬 트리 포함)
     public void ResetAll()
     {
         gold = 1000;
@@ -43,29 +44,38 @@ public class PersistentData : ScriptableObject
         unlockedEffects.Clear();
         passiveLevels.Clear();
     }
+
+    // ✨ 인게임 데이터만 초기화 (스킬 트리 해금/패시브는 유지)
+    public void ResetRuntimeData()
+    {
+        gold = 1000;
+        normalCurrency = 10;
+        specialCurrency = 10;
+        equippedItems.Clear();
+        currentFloor = 1;
+        runtimeItems.Clear();
+        savedSkills.Clear();
+    }
 }
 
-/// <summary>
-/// 해금된 스킬 노드 하나의 효과 데이터. 씬 전환 시 PlayerStats를 재구성하기 위한 직렬화 가능 구조.
-/// </summary>
 [System.Serializable]
 public class PassiveLevelEntry
 {
     public string passiveID;
-    public int    level;
+    public int level;
 }
 
 [System.Serializable]
 public class UnlockedNodeEffect
 {
     public string skillNodeID;
-    public string targetSkillAssetName;   // SkillData ScriptableObject 에셋 이름 (AssetDatabase 검색용)
-    public int    nodeType;               // 0 = StatBoost, 1 = Specialty
+    public string targetSkillAssetName;
+    public int nodeType;
     public string specialtyTag;
-    public float  damageMultiplier = 1f;
-    public float  rangeMultiplier = 1f;
-    public float  cooldownMultiplier = 1f;
-    public int    countBonus = 0;
-    public float  slowPercentMultiplier = 1f;
-    public float  durationMultiplier = 1f;
+    public float damageMultiplier = 1f;
+    public float rangeMultiplier = 1f;
+    public float cooldownMultiplier = 1f;
+    public int countBonus = 0;
+    public float slowPercentMultiplier = 1f;
+    public float durationMultiplier = 1f;
 }
