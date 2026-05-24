@@ -60,9 +60,14 @@ public class GameOverUI : MonoBehaviour
         yield return new WaitForSecondsRealtime(clipLength);
 
         gameOverAnimator.enabled = false;
-        SetUIVisible(true);
 
-        // 아이템 그리드 생성 후 페이드아웃
+        // 0.5초 간격으로 순차 표시
+        foreach (var obj in uiElementsToShow)
+        {
+            if (obj != null) obj.SetActive(true);
+            yield return new WaitForSecondsRealtime(0.5f);
+        }
+
         BuildItemGrid(cachedData);
     }
 
