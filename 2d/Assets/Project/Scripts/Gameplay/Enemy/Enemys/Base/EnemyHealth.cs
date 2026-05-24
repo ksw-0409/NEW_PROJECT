@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -11,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
     private IObjectPool<EnemyAI> managedPool;
     public void TakeDamage(float amount)
     {
+        GetComponent<EnemyAI>().ApplyHitEffect(EnemyManager.Instance.player.transform.position);
         currentHp -= amount;
         if (currentHp <= 0)
         {

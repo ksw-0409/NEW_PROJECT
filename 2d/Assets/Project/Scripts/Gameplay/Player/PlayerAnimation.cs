@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
@@ -5,7 +6,7 @@ public class PlayerAnimation : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb; 
     private Vector3 initialScale; // 원본 크기 저장용
-
+    private bool isDie = false;
     // 문자열 오타 방지를 위해 미리 Hash로 변환 
     private readonly int hashMoving = Animator.StringToHash("isMoving");
     private readonly int hashDie = Animator.StringToHash("doDie");
@@ -17,6 +18,7 @@ public class PlayerAnimation : MonoBehaviour
     }
     void Update()
     {
+        if (isDie) return;
         // 이동 애니메이션 제어
         // 물리적인 속도가 0.1보다 크면 걷는 것으로 판단
         bool isMoving = rb.linearVelocity.magnitude > 0.1f;
@@ -34,6 +36,8 @@ public class PlayerAnimation : MonoBehaviour
     // 외부(이동/전투 스크립트)에서 호출할 죽음 함수
     public void PlayDie()
     {
+        isDie=true; 
         anim.SetTrigger(hashDie);
+        Debug.Log("animation Die");
     }
 }

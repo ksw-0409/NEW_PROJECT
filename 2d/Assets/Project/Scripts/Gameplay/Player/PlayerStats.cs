@@ -358,6 +358,14 @@ public class PlayerStats : MonoBehaviour
     {
         Debug.Log("사망");
         OnPlayerDied?.Invoke();
+        //  관성 제거 및 물리 연산 완전 차단
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero; // 미끄러짐 방지 (즉시 정지)
+            rb.simulated = false;             // 물리 엔진 개입 차단 (적에게 밀리지 않음)
+        }
+
         GetComponent<PlayerAnimation>()?.PlayDie();
     }
 }
