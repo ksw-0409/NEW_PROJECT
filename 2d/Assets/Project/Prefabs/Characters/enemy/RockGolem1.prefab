@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   data: {fileID: 11400000, guid: ca53a3c896e9bd1428567c494278f9df, type: 2}
+  currentHp: 0
 --- !u!50 &3440786406656036238
 Rigidbody2D:
   serializedVersion: 5
@@ -195,8 +196,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RockGolem1
   data: {fileID: 11400000, guid: ca53a3c896e9bd1428567c494278f9df, type: 2}
   dataP: {fileID: 11400000, guid: 4a3763b71508d894a8654cc78558c1c3, type: 2}
+  isDie: 0
   usePooling: 1
-  rockCount: 8
+  rockCount: 4
   DieDealy: 1
   rockSpeed: 10
   rockPrefab: {fileID: 5388222843696298285, guid: b086d7fdd4c33a14ba1b519c84fcc7de, type: 3}
