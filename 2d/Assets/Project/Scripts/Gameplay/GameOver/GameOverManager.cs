@@ -15,7 +15,7 @@ public class GameOverManager : MonoBehaviour
 
     private float playTime = 0f;
     private bool isPlaying = false;
-    private bool isGameOver = false; // 중복 실행 방지
+    private bool isGameOver = false;
 
     void Awake()
     {
@@ -43,7 +43,7 @@ public class GameOverManager : MonoBehaviour
         if (GameDataManager.Instance.CurrentFloor == 1)
             playTime = 0f;
 
-        isGameOver = false; // 새 던전 시작 시 초기화
+        isGameOver = false;
         isPlaying = true;
     }
 
@@ -60,7 +60,7 @@ public class GameOverManager : MonoBehaviour
 
     private void HandlePlayerDied()
     {
-        if (isGameOver) return; // 중복 방지
+        if (isGameOver) return;
         isGameOver = true;
 
         isPlaying = false;
@@ -71,29 +71,9 @@ public class GameOverManager : MonoBehaviour
     private IEnumerator GameOverRoutine()
     {
         yield return new WaitForSeconds(deathDelay);
-
-        int goldBefore = GameDataManager.Instance.Gold;
-        int itemsBefore = Inventory.Instance.Items.Count;
-
-        GameDataManager.Instance.ApplyGameOverPenalty();
-        Inventory.Instance.ApplyDeathPenalty();
-        GameDataManager.Instance.ClearSavedSkills();
-
-        int goldAfter = GameDataManager.Instance.Gold;
-        int itemsAfter = Inventory.Instance.Items.Count;
-
-        GameOverData data = new GameOverData
-        {
-            floor = GameDataManager.Instance.CurrentFloor,
-            playTime = playTime,
-            goldBefore = goldBefore,
-            goldAfter = goldAfter,
-            itemsBefore = itemsBefore,
-            itemsAfter = itemsAfter
-        };
-
-        OnGameOver?.Invoke(data);
+        OnGameOver?.Invoke(BuildGameOverData());
     }
+
     public void TriggerGameOver()
     {
         if (isGameOver) return;
@@ -101,34 +81,53 @@ public class GameOverManager : MonoBehaviour
 
         isPlaying = false;
         BaseInteractable.IsUIOpen = true;
-        StartCoroutine(GameOverRoutineImmediate()); // 딜레이 없는 버전
+        StartCoroutine(GameOverRoutineImmediate());
     }
 
     private IEnumerator GameOverRoutineImmediate()
     {
-        yield return null; // 한 프레임만 대기
+        yield return null;
+        OnGameOver?.Invoke(BuildGameOverData());
+    }
 
+    private GameOverData BuildGameOverData()
+    {
         int goldBefore = GameDataManager.Instance.Gold;
-        int itemsBefore = Inventory.Instance.Items.Count;
+
+        // 패널티 전 아이템 목록 복사
+        var allItems = new System.Collections.Generic.List<InventoryItem>(Inventory.Instance.Items);
 
         GameDataManager.Instance.ApplyGameOverPenalty();
         Inventory.Instance.ApplyDeathPenalty();
         GameDataManager.Instance.ClearSavedSkills();
 
-        int goldAfter = GameDataManager.Instance.Gold;
-        int itemsAfter = Inventory.Instance.Items.Count;
+        // 패널티 후 살아남은 아이템
+        var survivedItems = new System.Collections.Generic.List<InventoryItem>(Inventory.Instance.Items);
 
-        GameOverData data = new GameOverData
+        // 사라진 아이템 = 전체 - 살아남은 것
+        var lostItems = new System.Collections.Generic.List<InventoryItem>();
+        var survivedCopy = new System.Collections.Generic.List<InventoryItem>(survivedItems);
+        foreach (var item in allItems)
+        {
+            if (survivedCopy.Contains(item))
+                survivedCopy.Remove(item);
+            else
+                lostItems.Add(item);
+        }
+
+        return new GameOverData
         {
             floor = GameDataManager.Instance.CurrentFloor,
             playTime = playTime,
             goldBefore = goldBefore,
-            goldAfter = goldAfter,
-            itemsBefore = itemsBefore,
-            itemsAfter = itemsAfter
+            goldAfter = GameDataManager.Instance.Gold,
+            itemsBefore = allItems.Count,
+            itemsAfter = survivedItems.Count,
+            monstersKilled = EnemyManager.Instance != null ? EnemyManager.Instance.totalKillCount : 0,
+            totalDamageDealt = EnemyManager.Instance != null ? EnemyManager.Instance.totalDamageDealt : 0f,
+            allItems = allItems,
+            lostItems = lostItems,
         };
-
-        OnGameOver?.Invoke(data);
     }
 }
 
@@ -140,4 +139,8 @@ public class GameOverData
     public int goldAfter;
     public int itemsBefore;
     public int itemsAfter;
+    public int monstersKilled;
+    public float totalDamageDealt;
+    public System.Collections.Generic.List<InventoryItem> allItems;
+    public System.Collections.Generic.List<InventoryItem> lostItems;
 }
