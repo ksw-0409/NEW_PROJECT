@@ -33,9 +33,11 @@ public class InventoryItemSlot : MonoBehaviour
 
         if (iconImage != null)
         {
-            Sprite icon = Resources.Load<Sprite>("Icons/" + item.iconName);
-            iconImage.sprite = icon;
-            iconImage.enabled = icon != null;
+            iconImage.sprite = item.iconSprite;
+            iconImage.color = item.iconSprite != null
+                ? Color.white
+                : new Color(1f, 1f, 1f, 0f);
+            iconImage.enabled = true;
         }
 
         if (itemNameText != null)
@@ -49,7 +51,7 @@ public class InventoryItemSlot : MonoBehaviour
 
     private void ClearSlot()
     {
-        if (iconImage != null) iconImage.enabled = false;
+        if (iconImage != null) { iconImage.sprite = null; iconImage.enabled = false; }
         if (itemNameText != null) itemNameText.text = "";
         button.interactable = false;
     }

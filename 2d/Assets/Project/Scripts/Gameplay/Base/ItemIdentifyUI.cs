@@ -16,6 +16,7 @@ public class ItemIdentifyUI : BaseCanvasUI
     [SerializeField] private TextMeshProUGUI currentGoldText;
 
     [Header("선택된 아이템 표시")]
+    [SerializeField] private Image selectedItemIcon;
     [SerializeField] private TextMeshProUGUI selectedItemName;
 
     [Header("옵션 표시 TMP 배열 (옵션 하나당 TMP 하나)")]
@@ -57,10 +58,7 @@ public class ItemIdentifyUI : BaseCanvasUI
         if (inventorySlots != null)
         {
             foreach (var slot in inventorySlots)
-            {
-                if (slot != null)
-                    slot.OnSlotClicked -= OnItemSelected;
-            }
+                if (slot != null) slot.OnSlotClicked -= OnItemSelected;
         }
     }
 
@@ -90,13 +88,17 @@ public class ItemIdentifyUI : BaseCanvasUI
         if (selectedItemName != null)
             selectedItemName.text = item != null ? item.itemName : "아이템을 선택하세요";
 
-        // 이미 감정된 아이템이면 옵션 표시
+        if (selectedItemIcon != null)
+        {
+            selectedItemIcon.sprite = item?.iconSprite;
+            selectedItemIcon.color = item?.iconSprite != null ? Color.white : new Color(1f, 1f, 1f, 0f);
+        }
+
         if (item != null && item.isIdentified)
             RefreshOptionTexts(item);
         else
             ClearOptionTexts();
 
-        // 미감정 아이템만 버튼 활성화
         identifyButton.interactable = (item != null && !item.isIdentified);
     }
 
@@ -160,6 +162,7 @@ public class ItemIdentifyUI : BaseCanvasUI
     {
         selectedItem = null;
         if (selectedItemName != null) selectedItemName.text = "아이템을 선택하세요";
+        if (selectedItemIcon != null) selectedItemIcon.color = new Color(1f, 1f, 1f, 0f);
         identifyButton.interactable = false;
     }
 }
