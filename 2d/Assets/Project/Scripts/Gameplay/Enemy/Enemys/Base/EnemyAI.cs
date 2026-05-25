@@ -123,6 +123,7 @@ public class EnemyAI : MonoBehaviour
 
         ExpManager.Instance.DropExp(this.transform.position, expAmount);
         ItemManager.Instance.DropItem(this.transform.position, DropWeapon, false);
+        GoldManager.Instance.DropGold(this.transform.position, Random.Range(data.goldMin, data.goldMax));
 
         EnemyManager.Instance.EnqueueToRelease(this);
     }

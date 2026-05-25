@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6484456702506997187}
   - component: {fileID: 3129268264055216866}
-  - component: {fileID: 2881686041224916382}
-  - component: {fileID: 8510623288870686627}
+  - component: {fileID: 4695185472272160028}
+  - component: {fileID: 5342859514986319187}
+  - component: {fileID: 3586948261511890898}
   m_Layer: 0
-  m_Name: Exp
+  m_Name: Gold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 8325082617411843335, guid: beb61a77873b7c94ab837be8a7bf448f, type: 3}
+  m_Sprite: {fileID: 5935712787790144102, guid: fd1ea4b1fa7117a42a879ca5f721a45b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,7 +94,29 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &2881686041224916382
+--- !u!95 &4695185472272160028
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197457025419246133}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1d4cbdf6cacde244487ce082f5bde28a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5342859514986319187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,17 +125,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1197457025419246133}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8346fb79975d894eb59f7f27aeaf752, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a8576d39e095334d850f6793dfb6a5e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item
-  expAmount: 1
-  expSprite:
-  - {fileID: 8325082617411843335, guid: beb61a77873b7c94ab837be8a7bf448f, type: 3}
-  - {fileID: -4583024575202046824, guid: beb61a77873b7c94ab837be8a7bf448f, type: 3}
-  - {fileID: -2219830316689641173, guid: beb61a77873b7c94ab837be8a7bf448f, type: 3}
-  - {fileID: -5101704257903410991, guid: beb61a77873b7c94ab837be8a7bf448f, type: 3}
---- !u!61 &8510623288870686627
-BoxCollider2D:
+  m_EditorClassIdentifier: Assembly-CSharp::Gold
+  goldAmount: 1
+--- !u!58 &3586948261511890898
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -146,14 +164,4 @@ BoxCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.14, y: 0.16}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.14, y: 0.2}
-  m_EdgeRadius: 0
+  m_Radius: 0.08

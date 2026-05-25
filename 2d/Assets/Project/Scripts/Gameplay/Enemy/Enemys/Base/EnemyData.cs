@@ -17,4 +17,7 @@ public class EnemyData : ScriptableObject
 
     public int startfloor; //µîÀå Ãş
     public float moveSpeed; //ÀÌµ¿¼Óµµ
+
+    public float goldMin; // °ñµå
+    public float goldMax; // °ñµå 
 }

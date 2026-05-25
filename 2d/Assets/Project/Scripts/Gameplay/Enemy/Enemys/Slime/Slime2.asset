@@ -24,3 +24,5 @@ MonoBehaviour:
   DropNormalEnhancement: 3
   startfloor: 1
   moveSpeed: 0.6
+  goldMin: 30
+  goldMax: 40

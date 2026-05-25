@@ -12674,6 +12674,7 @@ GameObject:
   - component: {fileID: 1768684259}
   - component: {fileID: 1768684261}
   - component: {fileID: 1768684262}
+  - component: {fileID: 1768684263}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -12777,6 +12778,21 @@ MonoBehaviour:
   equipmentPrefab: {fileID: 2589969546242863035, guid: e56047ea3e6308d48afc370d9fe658fb, type: 3}
   player: {fileID: 611033601}
   activeItems: []
+--- !u!114 &1768684263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768684257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52a0b596c8bf994fa6f9d18dc533e2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoldManager
+  GoldPrefab: {fileID: 1197457025419246133, guid: 594b02b3a82105f4e8349a3a8e68ff9e, type: 3}
+  player: {fileID: 611033601}
+  activeGolds: []
 --- !u!1 &1828523928
 GameObject:
   m_ObjectHideFlags: 0

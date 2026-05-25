@@ -63,10 +63,10 @@ public class EnemySpawner : MonoBehaviour
         else return;
         */
         //테스트용 로직
-        if (sec == 1) Spawn(13);
-        if (sec == 1) Spawn(13);
-        if (sec == 1) Spawn(13);
-        if (sec == 1) Spawn(13);
+        if (sec == 1) Spawn(1);
+        if (sec == 1) Spawn(1);
+        if (sec == 1) Spawn(1);
+        if (sec == 1) Spawn(1);
 
     }
 
