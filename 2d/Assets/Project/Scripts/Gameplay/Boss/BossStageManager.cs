@@ -15,6 +15,10 @@ public class BossStageManager : MonoBehaviour
     [SerializeField] private GameObject portalPrefab;
     [SerializeField] private float portalSpawnRadius = 3f;
 
+    [Header("✨ 룰렛 설정")]
+    [SerializeField] private GameObject roulettePrefab;
+    [SerializeField] private float rouletteSpawnRadius = 5f;
+
     [Header("연결")]
     [SerializeField] private EnemySpawner normalSpawner;
     [SerializeField] private StageManager stageManager;
@@ -117,6 +121,7 @@ public class BossStageManager : MonoBehaviour
                 bossDefeated = true;
                 yield return new WaitForSeconds(1.5f);
                 SpawnPortal();
+                SpawnRoulette();
                 yield break;
             }
         }
@@ -134,5 +139,16 @@ public class BossStageManager : MonoBehaviour
         Portal ps = portal.GetComponent<Portal>();
         if (ps != null) ps.SetNextScene(SceneController.SceneName.Base);
         Debug.Log("[BossStageManager] 보스 처치 — 베이스로 가는 포탈 생성");
+    }
+    private void SpawnRoulette()
+    {
+        if (roulettePrefab == null || player == null)
+        {
+            Debug.LogError("[BossStageManager] roulettePrefab/player 미할당");
+            return;
+        }
+        Vector3 roulettePos = player.position + new Vector3(-rouletteSpawnRadius, 0f, 0f);
+        Instantiate(roulettePrefab, roulettePos, Quaternion.identity);
+        Debug.Log("[BossStageManager] 룰렛 오브젝트 생성");
     }
 }
