@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   id: 999
   Name: Sylvanus
-  hp: 1500
+  hp: 30
   skillDamage: 1
   contactDamage: 1
   Defense: 5
@@ -24,3 +24,5 @@ MonoBehaviour:
   DropNormalEnhancement: 5
   startfloor: 5
   moveSpeed: 0
+  goldMin: 0
+  goldMax: 0

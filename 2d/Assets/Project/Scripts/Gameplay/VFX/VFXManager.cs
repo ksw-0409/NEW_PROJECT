@@ -173,7 +173,65 @@ public static class VFXManager
     }
 
     // ============================================================
-    // 채무자 낙인 활성 시 보라 디버프 오라 (지속)
+        // ============================================================
+    // 보스 처치 연출 — 화려한 폭죽(다중 색 폭발) + 대형 충격파 + 빛기둥
+    // 슬로우 모션과 함께 쓰면 폭죽이 천천히 터지는 연출이 됨
+    // ============================================================
+    public static void SpawnBossDeath(Vector3 worldPos)
+    {
+        // 1) 대형 중앙 섬광
+        SpawnFlash(worldPos,
+            color: new Color(1f, 0.97f, 0.8f, 1f),
+            startScale: 0.5f,
+            endScale: 4.0f,
+            duration: 0.5f);
+
+        // 2) 하늘과 연결된 굵은 빛줄기 여러 개 (메인 연출)
+        //    중앙에 가장 굵고 높은 빛, 양옆으로 색이 다른 빛줄기들
+        SpawnTallLightBeam(worldPos,                              width: 1.6f, height: 14f, duration: 1.6f, color: new Color(1f, 0.95f, 0.55f, 0.9f));  // 중앙 금빛
+        SpawnTallLightBeam(worldPos + new Vector3(-1.1f, 0f, 0f), width: 0.9f, height: 10f, duration: 1.4f, color: new Color(1f, 0.8f, 0.3f, 0.8f));   // 왼쪽 주황
+        SpawnTallLightBeam(worldPos + new Vector3( 1.1f, 0f, 0f), width: 0.9f, height: 10f, duration: 1.4f, color: new Color(0.7f, 0.9f, 1f, 0.8f));   // 오른쪽 하늘
+        SpawnTallLightBeam(worldPos + new Vector3(-2.0f, 0f, 0f), width: 0.6f, height: 7.5f, duration: 1.2f, color: new Color(0.85f, 0.6f, 1f, 0.75f)); // 보라
+        SpawnTallLightBeam(worldPos + new Vector3( 2.0f, 0f, 0f), width: 0.6f, height: 7.5f, duration: 1.2f, color: new Color(1f, 0.95f, 0.7f, 0.75f)); // 노랑
+
+        // 3) 빛줄기 주변으로 위로 흩어지는 약간의 반짝임 (과하지 않게)
+        SpawnUpwardParticles(worldPos,
+            count: 18,
+            upwardSpeed: 7f,
+            spread: 3f,
+            lifetime: 1.2f,
+            startSize: 0.16f,
+            endSize: 0.0f,
+            startColor: new Color(1f, 0.95f, 0.6f, 1f),
+            endColor: new Color(1f, 0.7f, 0.2f, 0f));
+    }
+    // 위로 솟구쳐 올라가는 빛줄기 파티클 (빛기둥 연출용)
+    private static void SpawnUpwardParticles(Vector3 pos, int count, float upwardSpeed, float spread,
+                                             float lifetime, float startSize, float endSize,
+                                             Color startColor, Color endColor)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            // 360도 전방향으로 발사하되, 위쪽(+y)으로 치우쳐진 분수 모양
+            float angle = Random.Range(0f, Mathf.PI * 2f);
+            float power = Random.Range(0.5f, 1.3f);
+
+            // 수평 성분: 사방으로 퍼짐 (spread로 강도 조절)
+            float horiz = Mathf.Cos(angle) * spread * power;
+            // 수직 성분: 기본으로 위로 솔구치되, 일부는 앞뒤 기울기(sin)도 섞임
+            float up = upwardSpeed * power + Mathf.Sin(angle) * spread * 0.5f;
+            // 너무 아래로는 가지 않도록 최소 상승 보장 (분수답게)
+            if (up < upwardSpeed * 0.25f) up = upwardSpeed * 0.25f;
+
+            Vector2 velocity = new Vector2(horiz, up);
+            Vector3 startPos = pos + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.2f, 0.3f), 0f);
+            SpawnSingleParticle(startPos, velocity, lifetime,
+                startSize * Random.Range(0.7f, 1.3f),
+                endSize, startColor, endColor, withGravity: true);
+        }
+    }
+
+// 채무자 낙인 활성 시 보라 디버프 오라 (지속)
     // — 자동 활성/비활성은 PlayerDebtMarkVisual이 처리
     // ============================================================
     public static GameObject CreateDebtAura(Transform parent)
@@ -329,6 +387,64 @@ public static class VFXManager
         anim.yScale = height;
     }
 
+    // 하늘과 연결된 굵은 빛줄기 (세로로 길게 솔구치는 직사각형 빔). worldPos 바닥에서 위로 뻗음.
+    public static void SpawnTallLightBeam(Vector3 basePos, float width, float height, float duration, Color color)
+    {
+        var go = new GameObject("VFXTallLightBeam");
+        // 빔은 바닥(basePos)에서 위로 솔아오르므로, 피봇을 아래(0,0)으로 둔 스프라이트 사용
+        go.transform.position = basePos;
+
+        var sr = go.AddComponent<SpriteRenderer>();
+        sr.sprite = GetBeamSprite();
+        sr.color = color;
+        sr.sortingOrder = 108;
+
+        // 세로로 길게 (height), 가로는 width
+        go.transform.localScale = new Vector3(width, height, 1f);
+
+        var anim = go.AddComponent<VFXBeamAnimator>();
+        anim.sr = sr;
+        anim.duration = duration;
+        anim.baseWidth = width;
+        anim.height = height;
+        anim.startColor = color;
+        anim.endColor = new Color(color.r, color.g, color.b, 0f);
+    }
+
+    // 세로 빛줄기용 스프라이트 (아래가 밝고 위로 갈수록 흐릿해지며, 좌우 가장자리 부드러움). 피봇은 하단 중앙.
+    private static Sprite _beamSprite;
+    private static Sprite GetBeamSprite()
+    {
+        if (_beamSprite != null) return _beamSprite;
+        const int W = 32;
+        const int H = 256;
+        var tex = new Texture2D(W, H, TextureFormat.RGBA32, false);
+        tex.wrapMode = TextureWrapMode.Clamp;
+        tex.filterMode = FilterMode.Bilinear;
+        float cx = (W - 1) * 0.5f;
+        for (int y = 0; y < H; y++)
+        {
+            // 세로: 아래(y=0) 불투명, 위(y=H)로 갈수록 투명 (하늘로 트이는 느낌)
+            float vy = (float)y / (H - 1);
+            float vAlpha = Mathf.Pow(1f - vy, 0.7f);
+            for (int x = 0; x < W; x++)
+            {
+                // 가로: 중앙 밝고 양끝 흐릿 (굵은 빛기둥 느낌)
+                float dx = Mathf.Abs(x - cx) / cx;
+                float hAlpha = Mathf.Clamp01(1f - dx);
+                hAlpha = Mathf.Pow(hAlpha, 1.6f);
+                float a = vAlpha * hAlpha;
+                tex.SetPixel(x, y, new Color(1f, 1f, 1f, a));
+            }
+        }
+        tex.Apply();
+        // 피봇을 하단 중앙(0.5, 0)으로 두어 basePos에서 위로 솔아오르게
+        _beamSprite = Sprite.Create(tex, new Rect(0, 0, W, H), new Vector2(0.5f, 0f), 64f);
+        _beamSprite.name = "TallBeamSprite";
+        return _beamSprite;
+    }
+
+
     // 원형 sprite 캐시 (코드로 만든 32x32 흰 원)
     private static Sprite _circleSprite;
     private static Sprite GetCircleSprite()
@@ -442,5 +558,36 @@ public class VFXFlashAnimator : MonoBehaviour
             transform.localScale = new Vector3(scale, scale, 1f);
 
         sr.color = Color.Lerp(startColor, endColor, t);
+    }
+}
+
+// 하늘로 솟구치는 빛줄기 애니메이션 — 솟아오르며 흔들리고 서서히 사라짐
+public class VFXBeamAnimator : MonoBehaviour
+{
+    public SpriteRenderer sr;
+    public float duration;
+    public float baseWidth;
+    public float height;
+    public Color startColor, endColor;
+
+    private float timer = 0f;
+
+    void Update()
+    {
+        timer += Time.deltaTime;
+        float t = timer / duration;
+        if (t >= 1f) { Destroy(gameObject); return; }
+
+        // 솟아오르는 느낌: 처음 25%는 위로 빠르게 자라남
+        float grow = t < 0.25f ? Mathf.SmoothStep(0f, 1f, t / 0.25f) : 1f;
+        // 가로는 살짝 두근거리듯 흔들림
+        float widthPulse = baseWidth * (1f + Mathf.Sin(timer * 18f) * 0.12f);
+        transform.localScale = new Vector3(widthPulse, height * grow, 1f);
+
+        // 알파: 끝으로 갈수록 사라짐 (뒤쪽 40%에서 페이드아웃)
+        float fade = t < 0.6f ? 1f : 1f - ((t - 0.6f) / 0.4f);
+        Color c = Color.Lerp(startColor, endColor, 1f - fade);
+        c.a = startColor.a * fade;
+        sr.color = c;
     }
 }

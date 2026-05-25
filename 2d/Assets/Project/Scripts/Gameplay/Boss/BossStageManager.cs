@@ -112,14 +112,24 @@ public class BossStageManager : MonoBehaviour
 
     private IEnumerator WatchBossDeath()
     {
+        Vector3 lastBossPos = spawnedBoss != null ? spawnedBoss.transform.position : Vector3.zero;
         while (spawnedBoss != null && !bossDefeated)
         {
-            yield return new WaitForSeconds(0.3f);
+            // 보스가 살아있는 동안 계속 마지막 위치 기록 (죽어서 Destroy돼도 이 위치 사용)
+            if (spawnedBoss != null) lastBossPos = spawnedBoss.transform.position;
+
+            yield return new WaitForSeconds(0.1f);
             var hp = spawnedBoss != null ? spawnedBoss.GetComponent<EnemyHealth>() : null;
             if (spawnedBoss == null || (hp != null && hp.currentHp <= 0))
             {
                 bossDefeated = true;
-                yield return new WaitForSeconds(1.5f);
+
+                // 머지막으로 기록된 보스 위치 사용 (Destroy 이후에도 안전)
+                Vector3 bossPos = lastBossPos;
+
+                // 화려한 처치 연출 (슬로우 + 폭죽 + 흔들림 + 골드 폭발) — 끝나면 증표 지급
+                yield return StartCoroutine(BossDeathSequence(bossPos));
+
                 SpawnPortal();
                 SpawnRoulette();
                 yield break;
@@ -127,7 +137,66 @@ public class BossStageManager : MonoBehaviour
         }
     }
 
-    private void SpawnPortal()
+        // 🎆 보스 처치 연출 시퀀스 (슬로우 + 폭죽 + 화면흔들림 + 골드 폭발)
+    private IEnumerator BossDeathSequence(Vector3 bossPos)
+    {
+        // 1) 순간 강한 화면 흔들림
+        CameraShake.ShakePreset(CameraShake.Preset.Epic);
+
+        // 2) 시간을 천천히 (슬로우 모션) — 이펙트도 같이 느려져 폭죽이 천천히 터짐
+        Time.timeScale = 0.25f;
+
+        // 3) 보스 폭죽 이펙트
+        VFXManager.SpawnBossDeath(bossPos);
+
+        // 4) 골드 500 사방 폭발 산개
+        ExplodeGold(bossPos, 500);
+
+        // 슬로우 유지 (실시간 기준 — timeScale 영향 안 받음)
+        yield return new WaitForSecondsRealtime(0.5f);
+        CameraShake.ShakePreset(CameraShake.Preset.Heavy); // 두 번째 여진
+        yield return new WaitForSecondsRealtime(0.7f);
+
+        // 5) 시간을 부드럽게 원복
+        float rt = 0f;
+        float from = Time.timeScale;
+        while (rt < 0.4f)
+        {
+            rt += Time.unscaledDeltaTime;
+            Time.timeScale = Mathf.Lerp(from, 1f, rt / 0.4f);
+            yield return null;
+        }
+        Time.timeScale = 1f;
+
+        // 6) 보스 처치 증표 지급 (+1)
+        if (GameDataManager.Instance != null)
+            GameDataManager.Instance.AddBossToken(1);
+
+        yield return new WaitForSecondsRealtime(0.4f);
+    }
+
+    // 골드를 여러 덩어리로 사방에 터트려 떨어뜨린다
+    private void ExplodeGold(Vector3 center, int totalGold)
+    {
+        if (GoldManager.Instance == null)
+        {
+            if (GameDataManager.Instance != null) GameDataManager.Instance.AddGold(totalGold);
+            return;
+        }
+
+        int chunks = 20;
+        int per = Mathf.Max(1, totalGold / chunks);
+        for (int i = 0; i < chunks; i++)
+        {
+            float ang = (i / (float)chunks) * Mathf.PI * 2f + Random.Range(-0.2f, 0.2f);
+            float dist = Random.Range(1.2f, 3.5f);
+            Vector2 offset = new Vector2(Mathf.Cos(ang), Mathf.Sin(ang)) * dist;
+            Vector3 dropPos = center + (Vector3)offset;
+            GoldManager.Instance.DropGold(dropPos, per);
+        }
+    }
+
+private void SpawnPortal()
     {
         if (portalPrefab == null || player == null)
         {

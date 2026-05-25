@@ -8,6 +8,7 @@ public class PersistentData : ScriptableObject
     public int gold = 1000;
     public int normalCurrency = 10;
     public int specialCurrency = 10;
+    public int bossTokens = 0;       // 보스 처치 증표 (골드처럼 카운트 저장, 추후 조정 가능)
 
     [Header("장비")]
     public List<string> equippedItems = new List<string>();

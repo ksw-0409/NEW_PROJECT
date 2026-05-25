@@ -12,6 +12,7 @@ public class GameDataManager : MonoBehaviour
     public static event Action<int> OnSpecialCurrencyChanged;
     public static event Action<List<string>> OnItemsChanged;
     public static event Action<int> OnFloorChanged;
+    public static event Action<int> OnBossTokensChanged;
 
     [SerializeField] private PersistentData persistentData;
 
@@ -21,6 +22,7 @@ public class GameDataManager : MonoBehaviour
     public IReadOnlyList<string> Items => persistentData.equippedItems;
     public IReadOnlyList<string> EquippedSkills => persistentData.savedSkills;
     public int CurrentFloor => persistentData.currentFloor;
+    public int BossTokens => persistentData.bossTokens;
 
     void Awake()
     {
@@ -128,7 +130,24 @@ public class GameDataManager : MonoBehaviour
         OnSpecialCurrencyChanged?.Invoke(persistentData.specialCurrency);
     }
 
-    public bool SpendSpecialCurrency(int amount)
+        // 보스 처치 증표 (골드처럼 카운트로 저장 — 추후 인벤토리 아이템 등으로 조정 가능)
+    public void AddBossToken(int amount)
+    {
+        if (amount <= 0) return;
+        persistentData.bossTokens += amount;
+        OnBossTokensChanged?.Invoke(persistentData.bossTokens);
+        Debug.Log($"<color=yellow>[BossToken]</color> +{amount} → 총 {persistentData.bossTokens}개");
+    }
+
+    public bool SpendBossToken(int amount)
+    {
+        if (persistentData.bossTokens < amount) return false;
+        persistentData.bossTokens -= amount;
+        OnBossTokensChanged?.Invoke(persistentData.bossTokens);
+        return true;
+    }
+
+public bool SpendSpecialCurrency(int amount)
     {
         if (persistentData.specialCurrency < amount) return false;
         persistentData.specialCurrency -= amount;
