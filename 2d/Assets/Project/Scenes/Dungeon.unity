@@ -7635,6 +7635,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 35d59dd5a89f2f843a315159958c0938, type: 2}
   - {fileID: 11400000, guid: 04ce3a64b7ffb95418ec1fc201b62fff, type: 2}
   - {fileID: 11400000, guid: 195312dbbdcc03840b660f6af8e6bf26, type: 2}
+  allPassives:
+  - {fileID: 11400000, guid: 349ea58db79f9304aa0bc0f398e67635, type: 2}
+  - {fileID: 11400000, guid: 62a7fd79dc66eaa44b605ed824b24de1, type: 2}
+  - {fileID: 11400000, guid: 7bf26215d1377e149b617d6817756dbf, type: 2}
+  - {fileID: 11400000, guid: 582d93106e650f941b8f518937286535, type: 2}
+  - {fileID: 11400000, guid: f6ae6ba2f16184549af0f706cbe19dfa, type: 2}
+  - {fileID: 11400000, guid: a95dea726b8727a45ae1864b77f16423, type: 2}
+  - {fileID: 11400000, guid: 343f3551717a1144ca56438edc9823cf, type: 2}
   uiButtons:
   - {fileID: 779107652}
   - {fileID: 1367183686}

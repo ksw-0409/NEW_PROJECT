@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shield Data
   m_EditorClassIdentifier: Assembly-CSharp::ShieldData
   skillName: Shield
-  icon: {fileID: 21300000, guid: 979f272921934d941a4c77d92f9950fd, type: 3}
+  icon: {fileID: -7266265047713534792, guid: 95dc68bf07706894a8edb580413508a0, type: 3}
   description: 
   levels:
   - cooldown: 10

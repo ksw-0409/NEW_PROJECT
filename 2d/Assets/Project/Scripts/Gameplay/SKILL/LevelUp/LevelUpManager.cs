@@ -4,9 +4,11 @@ using System.Linq;
 
 public class LevelUpManager : MonoBehaviour
 {
-    public List<SkillData> allSkills;       // 전체 스킬 풀
-    public SkillButton[] uiButtons;         // UI 버튼 3개
-    public GameObject levelUpUI;            // UI 패널
+    public List<SkillData> allSkills;        // 전체 스킬 풀
+    [Header("패시브 카드 풀 (화살 제외: hp/defense/phys/mag/speed/exp/gold/crit)")]
+    public List<PassiveCardData> allPassives; // 전체 패시브 카드 풀
+    public SkillButton[] uiButtons;          // UI 버튼 3개
+    public GameObject levelUpUI;             // UI 패널
     public PlayerStats playerStats;
     public PlayerSkillController skillController;
 
@@ -19,9 +21,6 @@ public class LevelUpManager : MonoBehaviour
         int floor = GameDataManager.Instance.CurrentFloor;
         Debug.Log($"[LevelUpManager] Start - CurrentFloor={floor} startUIShown={startUIShown} isBossMode={isBossMode}");
 
-        // ⭐ 던전 진입 시 시작 스킬창 단 한 번 표시
-        // - 일반 진입: 1층에서 한 번
-        // - 보스 진입: 보스 모드에서도 한 번 (스킬 없이 보스 못 잡으니까)
         bool shouldShow = !startUIShown && (floor == 1 || isBossMode);
         if (shouldShow)
         {
@@ -44,70 +43,104 @@ public class LevelUpManager : MonoBehaviour
         playerStats.OnLevelUp -= ShowLevelUpUI;
     }
 
-    // 🟢 시작 스킬 선택
+    // 🟢 시작 스킬 선택 (시작창에서는 스킬만 — 무기를 먼저 골라야 하므로)
     public void ShowStartSkillUI()
     {
         Debug.Log("[LevelUpManager] ShowStartSkillUI invoked");
         levelUpUI.SetActive(true);
         Time.timeScale = 0f;
-
-        ShowRandomSkills();
+        ShowRandomCards(includePassives: false);
     }
 
-    // 🟢 레벨업 시 호출
+    // 🟢 레벨업 시 호출 (스킬 + 패시브 섞어서 등장)
     public void ShowLevelUpUI()
     {
         Debug.Log("[LevelUpManager] ShowLevelUpUI invoked (from level up event)");
         levelUpUI.SetActive(true);
         Time.timeScale = 0f;
-
-        ShowRandomSkills();
+        ShowRandomCards(includePassives: true);
     }
 
-    // 🎯 핵심 랜덤 로직
-    private void ShowRandomSkills()
+    // 🎯 핵심 랜덤 로직 (스킬 + 패시브 통합 풀)
+    private void ShowRandomCards(bool includePassives)
     {
-        // 활 스킬 보유 중인지 확인
-        // allskills 리스트안에 bowskilldata타입을 가진 스킬 있는지 확인
+        // ---- 스킬 후보 ----
         bool hasBowSkill = allSkills.OfType<BowSkillData>().Any(bowData => skillController.HasSkill(bowData));
 
         var availableSkills = allSkills
             .Where(skill =>
             {
                 if (skill == null) return false;
-
                 if (skill is ArrowPassiveData || skill is ArrowRainData)
                 {
-                    // 2. 기본 활 스킬이 없을 경우 리스트에서 제외(false 반환)
-                    if (!hasBowSkill) return false;
+                    if (!hasBowSkill) return false; // 활 없으면 화살계열 제외
                 }
-
-                if (!skillController.HasSkill(skill))
-                    return true;
-
+                if (!skillController.HasSkill(skill)) return true;
                 return !skillController.IsMaxLevel(skill);
             })
+            .Cast<object>()
             .ToList();
 
-        // 스킬이 부족하면 예외 처리
-        if (availableSkills.Count == 0)
+        // ---- 패시브 후보 ----
+        var passivePool = new List<object>();
+        if (includePassives && allPassives != null)
         {
-            Debug.LogWarning("선택 가능한 스킬 없음");
+            passivePool = allPassives
+                .Where(p => p != null && !p.IsMaxLevel)  // 최대(6) 도달한 패시브는 제외
+                .Cast<object>()
+                .ToList();
+        }
+
+        if (availableSkills.Count == 0 && passivePool.Count == 0)
+        {
+            Debug.LogWarning("선택 가능한 카드 없음");
             CloseUI();
             return;
         }
 
-        var randomSkills = availableSkills
-            .OrderBy(x => Random.value)
-            .Take(3)
-            .ToList();
+        // 🎯 패시브 등장 확률을 높이는 가중치 뽑기
+        //   - PASSIVE_GUARANTEE_CHANCE 확률로 첫 장을 패시브로 보장
+        //   - 나머지는 스킬+패시브 혼합 풀에서 뽑되, 패시브를 PASSIVE_WEIGHT배 중복 투입해 가중치 부여
+        const float PASSIVE_GUARANTEE_CHANCE = 0.45f; // 레벨업 시 약 45% 확률로 패시브 1장 보장
+        const int PASSIVE_WEIGHT = 3;                 // 패시브를 풀에 3배 넣어 뽑힐 확률 상승
+
+        var chosen = new List<object>();
+
+        // 1) 패시브 1장 보장 (확률적으로)
+        if (passivePool.Count > 0 && Random.value < PASSIVE_GUARANTEE_CHANCE)
+        {
+            var guaranteed = passivePool[Random.Range(0, passivePool.Count)];
+            chosen.Add(guaranteed);
+        }
+
+        // 2) 가중치 풀 구성 (이미 뽑힌 건 제외)
+        var weightedPool = new List<object>();
+        foreach (var s in availableSkills)
+            if (!chosen.Contains(s)) weightedPool.Add(s);
+        foreach (var p in passivePool)
+            if (!chosen.Contains(p))
+                for (int w = 0; w < PASSIVE_WEIGHT; w++) weightedPool.Add(p); // 패시브 가중치
+
+        // 3) 남은 자리 채우기 (중복 없이)
+        weightedPool = weightedPool.OrderBy(x => Random.value).ToList();
+        foreach (var item in weightedPool)
+        {
+            if (chosen.Count >= 3) break;
+            if (!chosen.Contains(item)) chosen.Add(item);
+        }
+
+        // 최종 순서도 섞기 (보장 패시브가 항상 첫 칸에 오지 않도록)
+        chosen = chosen.OrderBy(x => Random.value).Take(3).ToList();
 
         for (int i = 0; i < uiButtons.Length; i++)
         {
-            if (i < randomSkills.Count)
+            if (i < chosen.Count)
             {
                 uiButtons[i].gameObject.SetActive(true);
-                uiButtons[i].Setup(randomSkills[i], this);
+                if (chosen[i] is PassiveCardData passive)
+                    uiButtons[i].Setup(passive, this);
+                else if (chosen[i] is SkillData skill)
+                    uiButtons[i].Setup(skill, this);
             }
             else
             {
@@ -116,18 +149,22 @@ public class LevelUpManager : MonoBehaviour
         }
     }
 
-    // 🟢 선택 시 호출
+    // 🟢 스킬 선택 시 호출
     public void OnSkillSelected(SkillData selected)
     {
         if (!skillController.HasSkill(selected))
-        {
             skillController.AddNewSkill(selected);
-        }
         else
-        {
             skillController.LevelUpSkill(selected);
-        }
 
+        CloseUI();
+    }
+
+    // 🟢 패시브 선택 시 호출 — PassiveSystem 레벨 +1
+    public void OnPassiveSelected(PassiveCardData selected)
+    {
+        if (selected == null) { CloseUI(); return; }
+        selected.Apply(); // 내부에서 PassiveSystem.Instance.LevelUp(passiveID)
         CloseUI();
     }
 
@@ -139,10 +176,7 @@ public class LevelUpManager : MonoBehaviour
 
     public void OnPlayerDie()
     {
-        // 인게임 스킬 인스턴스 초기화
         skillController.ResetSkills();
-
-        // 하지만 SkillNode(스킬 트리)의 IsUnlocked는 유지됨
         Debug.Log("인게임 레벨 초기화. 스킬 트리 능력치는 보존됩니다.");
     }
 }

@@ -11,7 +11,7 @@ public class Gold : MonoBehaviour
     public void SetPool(IObjectPool<Gold> pool)
     {
         managedPool = pool;
-        IsEaten = false; // Ǯ���� ���� �� �ʱ�ȭ
+        IsEaten = false; // Ǯ���� ���� �� �ʱ�ȭ
     }
 
     public void SetGold(float amount)
@@ -24,7 +24,11 @@ public class Gold : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             IsEaten = true;
-            GameDataManager.Instance.AddGold(Mathf.FloorToInt(goldAmount));
+            // 골드 획득 패시브 적용: passive_gold 레벨에 따라 획득량 증가
+            float finalGold = goldAmount;
+            if (PassiveSystem.Instance != null)
+                finalGold *= PassiveSystem.Instance.GetMultiplier(PassiveSystem.ID_GOLD);
+            GameDataManager.Instance.AddGold(Mathf.FloorToInt(finalGold));
             GoldManager.Instance.EnqueueToRelease(this);
         }
     }

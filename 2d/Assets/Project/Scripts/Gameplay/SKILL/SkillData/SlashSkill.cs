@@ -16,6 +16,14 @@ public class SlashSkill : SkillBase
 
         float range = levelData.range * bonus.rng;
         float angle = levelData.angle;
+
+        // ⭐ 타격 판정만 확대 (이펙트 이미지 크기는 range/angle 그대로라 변하지 않음)
+        //   - HIT_RANGE_MULT: 칼 닿는 거리(반경)를 늘려 칼끝까지 판정
+        //   - HIT_ANGLE_MULT: 부채꼴 각도를 넓혀 좌우로 더 넓게 판정
+        const float HIT_RANGE_MULT = 1.25f;
+        const float HIT_ANGLE_MULT = 1.35f;
+        float hitRange = range * HIT_RANGE_MULT;
+        float hitAngle = Mathf.Min(angle * HIT_ANGLE_MULT, 360f);
         float damage = levelData.damage * levelData.multiplier * bonus.dmg;
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
@@ -36,11 +44,11 @@ public class SlashSkill : SkillBase
         // [변칙] 패링 베기: 주변 투사체 제거
         if (PlayerStats.Instance.HasSpecialty("SL_parry"))
         {
-            var projectiles = Physics2D.OverlapCircleAll(player.position, range, LayerMask.GetMask("Projectile"));
+            var projectiles = Physics2D.OverlapCircleAll(player.position, hitRange, LayerMask.GetMask("Projectile"));
             foreach (var p in projectiles) Destroy(p.gameObject);
         }
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(player.position, range);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(player.position, hitRange);
         bool hasPhantom = PlayerStats.Instance.HasSpecialty("SL_phantom");
         bool hasBloodbath = PlayerStats.Instance.HasSpecialty("SL_bloodbath");
 
@@ -50,7 +58,7 @@ public class SlashSkill : SkillBase
 
             Vector2 toEnemy = (hit.transform.position - player.position).normalized;
             float dot = Vector2.Dot(dir, toEnemy);
-            float threshold = Mathf.Cos(angle * 0.5f * Mathf.Deg2Rad);
+            float threshold = Mathf.Cos(hitAngle * 0.5f * Mathf.Deg2Rad);
             if (dot < threshold) continue;
 
             var enemy = hit.GetComponent<EnemyHealth>();
