@@ -4308,6 +4308,8 @@ MonoBehaviour:
   player: {fileID: 2026055320}
   portalPrefab: {fileID: 3424542349691123839, guid: acf6ebc6717f39b408acd6a904d68514, type: 3}
   portalSpawnRadius: 3
+  roulettePrefab: {fileID: 6918812307052611652, guid: 4d9617c8407fbaa4cb43942de1a420c5, type: 3}
+  rouletteSpawnRadius: 5
   normalSpawner: {fileID: 1768684259}
   stageManager: {fileID: 1669466175}
   enemyManager: {fileID: 1768684260}
