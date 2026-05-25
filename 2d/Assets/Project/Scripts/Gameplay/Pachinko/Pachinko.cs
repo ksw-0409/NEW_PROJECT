@@ -15,18 +15,45 @@ public class Pachinko : MonoBehaviour
 
     //릴 조작 
     public GameObject[] Reals;
-    
+
+    private int savedBetAmount = 0; // 배팅 매니저가 넘겨준 금액을 임시 저장
+    private bool isGameReady = false; // 레버를 당길 수 있는 상태인지 체크
+
     void OnEnable()
     {
         value = 0;
         for (int i = 0; i < 3; i++) values[i] = 0;
     }
 
+    public void SetupBetAmount(int betAmount)
+    {
+        savedBetAmount = betAmount;
+        // 데이터 매니저에 골드 반영
+        GameDataManager.Instance.PachinkoAddGold(savedBetAmount);
+        isGameReady = true;
+        Debug.Log($"[파칭코 기계] {savedBetAmount}골드 세팅 완료! 레버를 당겨주세요.");
+    }
+
     public void StartPachinko()
     {
+        if (!isGameReady) return;
+        isGameReady = false; // 중복 실행 방지
         StartReal();
         value=GetRandomValue();
         StopAllReels();
+
+
+        // -----------추가적인 이펙트 -------------
+        
+
+        int rewardGold = savedBetAmount * value;
+        Debug.Log($"[파칭코 정산] 배팅: {savedBetAmount} x 배율: {value} = 획득: {rewardGold}");
+
+        // 데이터 매니저에 골드 반영
+        GameDataManager.Instance.PachinkoAddGold(rewardGold);
+
+        // 게임이 끝났으므로 킵해둔 금액 리셋
+        savedBetAmount = 0;
     }
 
     //랜덤 당첨

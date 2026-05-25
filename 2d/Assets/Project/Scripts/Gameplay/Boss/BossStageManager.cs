@@ -16,8 +16,7 @@ public class BossStageManager : MonoBehaviour
     [SerializeField] private float portalSpawnRadius = 3f;
 
     [Header("✨ 룰렛 설정")]
-    [SerializeField] private GameObject roulettePrefab;
-    [SerializeField] private float rouletteSpawnRadius = 5f;
+    [SerializeField] private GameObject Betting;
 
     [Header("연결")]
     [SerializeField] private EnemySpawner normalSpawner;
@@ -211,13 +210,11 @@ private void SpawnPortal()
     }
     private void SpawnRoulette()
     {
-        if (roulettePrefab == null || player == null)
+        if (Betting == null || player == null)
         {
             Debug.LogError("[BossStageManager] roulettePrefab/player 미할당");
             return;
         }
-        Vector3 roulettePos = player.position + new Vector3(-rouletteSpawnRadius, 0f, 0f);
-        Instantiate(roulettePrefab, roulettePos, Quaternion.identity);
-        Debug.Log("[BossStageManager] 룰렛 오브젝트 생성");
+        Betting.gameObject.SetActive(true);
     }
 }

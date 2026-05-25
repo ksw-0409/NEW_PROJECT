@@ -8,13 +8,13 @@ public class Pachinko_Real : MonoBehaviour
     //벨류당 멈출 위치 저장 
     Dictionary<int, float> positionMap = new Dictionary<int, float>()
     {
-    { 0, 0f },
-    { 1, -1f },
-    { 2, -2f },
-    { 3, -3f },
-    { -3, -4f },
-    { -2, -5f },
-    { -1, -6f }
+    { 0, 2.14f },
+    { 1, 1.14f },
+    { 2, 0.14f },
+    { 3, -0.86f },
+    { -3, -1.86f },
+    { -2, -2.86f },
+    { -1, -3.86f }
     };
 
     private bool spinning = false;

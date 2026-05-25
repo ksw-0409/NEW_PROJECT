@@ -62,6 +62,12 @@ public class GameDataManager : MonoBehaviour
         OnGoldChanged?.Invoke(persistentData.gold);
     }
 
+    public void PachinkoAddGold(int amount)
+    {
+        persistentData.gold += amount;
+        OnGoldChanged?.Invoke(persistentData.gold);
+    }
+
     public bool SpendGold(int amount)
     {
         if (persistentData.gold < amount) return false;

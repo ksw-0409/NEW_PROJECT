@@ -41,18 +41,21 @@ public class StageManager : MonoBehaviour
 
         if (GameOverManager.Instance != null)
             GameOverManager.Instance.StartTimer();
-
-
-        //강 추가
-        enemySpawner.startInit();
-        /*
+        
         // 5층, 10층은 보스 층 — 일반 몬스터 스폰 비활성화
         if (floor == 5 || floor == 10)
         {
             if (enemySpawner != null)
                 enemySpawner.gameObject.SetActive(false);
         }
-        */
+        else
+        {
+            // 보스층이 아닐 때만 안전하게 일반 몬스터 데이터 초기화 실행
+            if (enemySpawner != null)
+            {
+                enemySpawner.startInit();
+            }
+        }
         Debug.Log($"[StageManager] {floor}층 시작 / 제한시간: {currentFloorData.stageDuration}초");
     }
 
