@@ -108,6 +108,7 @@ public class ItemEnhanceUI : BaseCanvasUI
         }
 
         enhanceButton.interactable = (item != null && item.isIdentified);
+        CheckEnhanceButtonState();
     }
 
     private void OnClickEnhance()
@@ -122,6 +123,22 @@ public class ItemEnhanceUI : BaseCanvasUI
 
         selectedItem.options[index].isLocked = !selectedItem.options[index].isLocked;
         RefreshLockButtonVisual(index);
+        CheckEnhanceButtonState();
+    }
+
+    private void CheckEnhanceButtonState()
+    {
+        if (selectedItem == null || !selectedItem.isIdentified || selectedItem.options == null)
+        {
+            enhanceButton.interactable = false;
+            return;
+        }
+
+        bool allLocked = true;
+        foreach (var opt in selectedItem.options)
+            if (!opt.isLocked) { allLocked = false; break; }
+
+        enhanceButton.interactable = !allLocked;
     }
 
     private void RefreshLockButtons()
