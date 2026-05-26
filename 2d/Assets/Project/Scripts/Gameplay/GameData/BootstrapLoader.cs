@@ -1,23 +1,41 @@
-using UnityEngine;
+ï»¿using UnityEngine;
+using UnityEngine.UI;
 
-// ¿ªÇÒ: °ÔÀÓ ½ÃÀÛ ½Ã 1È¸¸¸ ½ÇÇàµÇ´Â ÃÊ±âÈ­ ÁøÀÔÁ¡
+// ì—­í• : íƒ€ì´í‹€ í™”ë©´ â€” ë²„íŠ¼ í´ë¦­ ì‹œ ê±°ì  ì”¬ìœ¼ë¡œ ì´ë™
 
 public class BootstrapLoader : MonoBehaviour
 {
-    void Awake()
+    [SerializeField] private Button startButton;
+    [SerializeField] private Button quitButton;
+
+    void Start()
     {
         if (SceneController.Instance == null)
         {
-            Debug.LogError("[Bootstrap] SceneController°¡ ¾ø½À´Ï´Ù. GameObject ¼¼ÆÃÀ» È®ÀÎÇÏ¼¼¿ä.");
+            Debug.LogError("[Bootstrap] SceneControllerê°€ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
         if (GameDataManager.Instance == null)
         {
-            Debug.LogError("[Bootstrap] GameDataManager°¡ ¾ø½À´Ï´Ù. GameObject ¼¼ÆÃÀ» È®ÀÎÇÏ¼¼¿ä.");
+            Debug.LogError("[Bootstrap] GameDataManagerê°€ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
+        if (startButton != null)
+            startButton.onClick.AddListener(OnClickStart);
+
+        if (quitButton != null)
+            quitButton.onClick.AddListener(OnClickQuit);
+    }
+
+    private void OnClickStart()
+    {
         SceneController.Instance.LoadBase();
+    }
+
+    private void OnClickQuit()
+    {
+        Application.Quit();
     }
 }

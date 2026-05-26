@@ -1,24 +1,26 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Search;
 using UnityEngine;
+using DG.Tweening; // DOTween ì‚¬ìš©
 
 public class Pachinko : MonoBehaviour
 {
-    //µ¥ÀÌÅÍ ÀúÀå¿ë 
+    //ë°ì´í„° ì €ì¥ìš© 
     public Pachinko_data items;
 
-    //¸ØÃâ ¼ıÀÚ ÀúÀå¿ë
+    //ë©ˆì¶œ ìˆ«ì ì €ì¥ìš©
     private int[] values = new int[3];
 
     private int value=0;
 
-    //¸± Á¶ÀÛ 
+    //ë¦´ ì¡°ì‘ 
     public GameObject[] Reals;
 
-    private int savedBetAmount = 0; // ¹èÆÃ ¸Å´ÏÀú°¡ ³Ñ°ÜÁØ ±İ¾×À» ÀÓ½Ã ÀúÀå
-    private bool isGameReady = false; // ·¹¹ö¸¦ ´ç±æ ¼ö ÀÖ´Â »óÅÂÀÎÁö Ã¼Å©
+    private int savedBetAmount = 0; // ë°°íŒ… ë§¤ë‹ˆì €ê°€ ë„˜ê²¨ì¤€ ê¸ˆì•¡ì„ ì„ì‹œ ì €ì¥
+    private bool isGameReady = false; // ë ˆë²„ë¥¼ ë‹¹ê¸¸ ìˆ˜ ìˆëŠ” ìƒíƒœì¸ì§€ ì²´í¬
 
+    public GameObject pachin;
     void OnEnable()
     {
         value = 0;
@@ -28,35 +30,24 @@ public class Pachinko : MonoBehaviour
     public void SetupBetAmount(int betAmount)
     {
         savedBetAmount = betAmount;
-        // µ¥ÀÌÅÍ ¸Å´ÏÀú¿¡ °ñµå ¹İ¿µ
-        GameDataManager.Instance.PachinkoAddGold(savedBetAmount);
+        // ë°ì´í„° ë§¤ë‹ˆì €ì— ê³¨ë“œ ë°˜ì˜
+        GameDataManager.Instance.PachinkoAddGold(-savedBetAmount);
         isGameReady = true;
-        Debug.Log($"[ÆÄÄªÄÚ ±â°è] {savedBetAmount}°ñµå ¼¼ÆÃ ¿Ï·á! ·¹¹ö¸¦ ´ç°ÜÁÖ¼¼¿ä.");
+        Debug.Log($"[íŒŒì¹­ì½” ê¸°ê³„] {savedBetAmount}ê³¨ë“œ ì„¸íŒ… ì™„ë£Œ! ë ˆë²„ë¥¼ ë‹¹ê²¨ì£¼ì„¸ìš”.");
     }
 
     public void StartPachinko()
     {
         if (!isGameReady) return;
-        isGameReady = false; // Áßº¹ ½ÇÇà ¹æÁö
-        StartReal();
-        value=GetRandomValue();
+        isGameReady = false; // ì¤‘ë³µ ì‹¤í–‰ ë°©ì§€
+        StartReal(); 
+        value = GetRandomValue();
         StopAllReels();
-
-
-        // -----------Ãß°¡ÀûÀÎ ÀÌÆåÆ® -------------
-        
-
-        int rewardGold = savedBetAmount * value;
-        Debug.Log($"[ÆÄÄªÄÚ Á¤»ê] ¹èÆÃ: {savedBetAmount} x ¹èÀ²: {value} = È¹µæ: {rewardGold}");
-
-        // µ¥ÀÌÅÍ ¸Å´ÏÀú¿¡ °ñµå ¹İ¿µ
-        GameDataManager.Instance.PachinkoAddGold(rewardGold);
-
-        // °ÔÀÓÀÌ ³¡³µÀ¸¹Ç·Î ÅµÇØµĞ ±İ¾× ¸®¼Â
-        savedBetAmount = 0;
+        // ë¦´ì´ ë‹¤ ë©ˆì¶”ëŠ” ì‹œê°„ ì— ì •ì‚° ë° ë‹«ê¸° ì—°ì¶œ ì‹œì‘
+        Invoke(nameof(RewardAndCloseRoutine), 10);
     }
 
-    //·£´ı ´çÃ·
+    //ëœë¤ ë‹¹ì²¨
     private int GetRandomValue()
     {
         int value = 1;
@@ -94,4 +85,26 @@ public class Pachinko : MonoBehaviour
         }
     }
 
+    private void RewardAndCloseRoutine()
+    {
+        // 1. ëª¨ë“  ë¦´ì´ ë©ˆì¶˜ ì´ ì‹œì ì— ìµœì¢… ê³¨ë“œë¥¼ ì •ì‚°í•˜ì—¬ ë°˜ì˜í•©ë‹ˆë‹¤!
+        int rewardGold = savedBetAmount * value;
+        Debug.Log($"[íŒŒì¹­ì½” ì •ì‚°] ë°°íŒ…: {savedBetAmount} x ë°°ìœ¨: {value} = íšë“: {rewardGold}");
+
+        GameDataManager.Instance.PachinkoAddGold(rewardGold);
+
+        // ì‚¬ìš©í•œ ë°°íŒ… ê¸ˆì•¡ ë¦¬ì…‹
+        savedBetAmount = 0;
+
+        // 2. ê³¨ë“œ ë°˜ì˜ê³¼ ë™ì‹œì— ì°½ì´ ì†© ì¤„ì–´ë“¤ë©° ì‚¬ë¼ì§‘ë‹ˆë‹¤.
+        pachin.transform.DOScale(Vector3.zero, 0.4f)
+            .SetEase(Ease.InBack)
+            .OnComplete(() =>
+            {
+                pachin.SetActive(false);
+            });
+        // ê²Œì„ì´ ëë‚¬ìœ¼ë¯€ë¡œ í‚µí•´ë‘” ê¸ˆì•¡ ë¦¬ì…‹
+        savedBetAmount = 0;
+        GameDataManager.Instance.isPachinkoActive = false;
+    }
 }

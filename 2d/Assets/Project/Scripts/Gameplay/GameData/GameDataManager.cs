@@ -24,6 +24,7 @@ public class GameDataManager : MonoBehaviour
     public int CurrentFloor => persistentData.currentFloor;
     public int BossTokens => persistentData.bossTokens;
 
+    public bool isPachinkoActive=false;
     void Awake()
     {
         if (Instance != null && Instance != this)

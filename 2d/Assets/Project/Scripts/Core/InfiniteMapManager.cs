@@ -7,7 +7,8 @@ public class SimpleInfiniteMap : MonoBehaviour
     [SerializeField] private Transform playerTransform; // 플레이어 위치
 
     [Header("9 Random Floor Sprites")]
-    [SerializeField] private Sprite[] floorSprites = new Sprite[9]; // 인스펙터에서 9개 스프라이트 등록
+    [SerializeField] private Sprite[] floorSprites1; // 인스펙터에서 9개 스프라이트 등록
+    [SerializeField] private Sprite[] floorSprites2; // 인스펙터에서 9개 스프라이트 등록
 
     [Header("Settings")]
     [SerializeField] private Vector2 chunkSize = new Vector2(40f, 40f); // 스프라이트(바닥) 크기에 맞춤
@@ -15,6 +16,14 @@ public class SimpleInfiniteMap : MonoBehaviour
     private Vector2Int currentCenterChunk = new Vector2Int(-999, -999);
     private Dictionary<Vector2Int, GameObject> activeChunks = new Dictionary<Vector2Int, GameObject>();
 
+    private Sprite[] floorSprites; // 그층에 맞는걸로 
+
+    public void FloorStart(int floor)
+    {
+        if (floor == 1 || floor == 2 || floor == 3 || floor == 4) floorSprites = floorSprites1;
+        else if (floor == 6 || floor == 7 || floor == 8 || floor == 9) floorSprites = floorSprites2;
+        else Debug.Log("잘못된층");
+    }
     void Update()
     {
         if (playerTransform == null || floorSprites.Length == 0) return;
