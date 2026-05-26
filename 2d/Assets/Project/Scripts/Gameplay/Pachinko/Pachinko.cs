@@ -20,6 +20,7 @@ public class Pachinko : MonoBehaviour
     private int savedBetAmount = 0; // 배팅 매니저가 넘겨준 금액을 임시 저장
     private bool isGameReady = false; // 레버를 당길 수 있는 상태인지 체크
 
+    public GameObject pachin;
     void OnEnable()
     {
         value = 0;
@@ -98,11 +99,11 @@ public class Pachinko : MonoBehaviour
         savedBetAmount = 0;
 
         // 2. 골드 반영과 동시에 창이 솩 줄어들며 사라집니다.
-        transform.DOScale(Vector3.zero, 0.4f)
+        pachin.transform.DOScale(Vector3.zero, 0.4f)
             .SetEase(Ease.InBack)
             .OnComplete(() =>
             {
-                gameObject.SetActive(false);
+                pachin.SetActive(false);
             });
     }
 }

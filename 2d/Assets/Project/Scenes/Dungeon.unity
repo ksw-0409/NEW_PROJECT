@@ -17488,6 +17488,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1551157770114427971, guid: 4d9617c8407fbaa4cb43942de1a420c5, type: 3}
+      propertyPath: pachin
+      value: 
+      objectReference: {fileID: 2010960781}
     - target: {fileID: 2027829700867200924, guid: 4d9617c8407fbaa4cb43942de1a420c5, type: 3}
       propertyPath: m_SortingOrder
       value: 2
