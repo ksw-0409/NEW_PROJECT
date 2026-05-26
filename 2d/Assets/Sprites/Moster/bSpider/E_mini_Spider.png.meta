@@ -1,25 +1,10 @@
 fileFormatVersion: 2
-guid: 8b887d0459de804458674343e8c385ec
+guid: 26a2cbceda5067c498be6954100ad3b4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5128742201064540422
-    second: big_spider(walk)_0
-  - first:
-      213: -7360777998455864039
-    second: big_spider(walk)_1
-  - first:
-      213: 5780854260320716773
-    second: big_spider(walk)_2
-  - first:
-      213: -3125116425553450819
-    second: big_spider(walk)_3
-  - first:
-      213: 385555930018451698
-    second: big_spider(walk)_4
-  - first:
-      213: 8517571516516711947
-    second: big_spider(walk)_5
+      213: -5537400739378083409
+    second: E_mini_Spider_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -90,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -115,13 +100,35 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: big_spider(walk)_0
+      name: E_mini_Spider_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa9426ead533723b0800000000000000
+      internalID: -5537400739378083409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: E_mini_Spider_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2cf193009fe35d442800240c93dfce69
-      internalID: -5128742201064540422
+      spriteID: f7d1e81da90bcf6469e0081832085856
+      internalID: -1607898940
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: big_spider(walk)_1
+      name: E_mini_Spider_2
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +159,42 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9aaffa134c300f045921273c045c0726
-      internalID: -7360777998455864039
+      spriteID: 4e524ecc31dc6e142a352f451f980434
+      internalID: 1331238100
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: big_spider(walk)_2
+      name: E_mini_Spider_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab928f67ced7333479b8f5a5b6b1e8e4
+      internalID: 1635804598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: E_mini_Spider_4
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +203,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a748a7ad3073e5a499fe4af562f407ed
-      internalID: 5780854260320716773
+      spriteID: 3841298c4cd5ded4992f4cd2f21fd4a4
+      internalID: -467452887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: big_spider(walk)_3
+      name: E_mini_Spider_5
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,52 +225,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0983d2c5da529c41adfc3b38f5e54b8
-      internalID: -3125116425553450819
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: big_spider(walk)_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5c13e34888c6bfd47b96eda0a93522ce
-      internalID: 385555930018451698
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: big_spider(walk)_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 047cd9447efbe2349bfdecb22731472b
-      internalID: 8517571516516711947
+      spriteID: 02ba01bb9eaab5046bcb3e6e51b4694f
+      internalID: 1780368690
       vertices: []
       indices: 
       edges: []
@@ -250,7 +235,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 242a72c741e15a349bfd81da01305b72
+    spriteID: 9a1012866b57e7e4c97075e21a73282c
     internalID: 0
     vertices: []
     indices: 
@@ -260,14 +245,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      big_spider(walk)_0: -5128742201064540422
-      big_spider(walk)_1: -7360777998455864039
-      big_spider(walk)_2: 5780854260320716773
-      big_spider(walk)_3: -3125116425553450819
-      big_spider(walk)_4: 385555930018451698
-      big_spider(walk)_5: 8517571516516711947
+      E_mini_Spider_0: -5537400739378083409
+      E_mini_Spider_1: -1607898940
+      E_mini_Spider_2: 1331238100
+      E_mini_Spider_3: 1635804598
+      E_mini_Spider_4: -467452887
+      E_mini_Spider_5: 1780368690
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

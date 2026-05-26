@@ -20,6 +20,7 @@ public class Spider2 : EnemyAI
     [Header("장판 설정")]
     public GameObject indicatorObj;        // 자식으로 넣은 원형 스프라이트 오브젝트 연결
 
+    public Animator anim;
     public override void Init()
     {
         base.Init();
@@ -56,14 +57,19 @@ public class Spider2 : EnemyAI
         isActionRunning = true;
         // 1. 즉시 정지 및 물리 고정
         rb.linearVelocity = Vector2.zero;
+        anim.SetTrigger("is_ready");
         // 2. 차징 단계: 1초간 번쩍거리며 경고
         Debug.Log("자폭 카운트다운 시작!");
         DrawRange();
         yield return StartCoroutine(FlashEffect(chargeTime));
 
         indicatorObj.SetActive(false);
+        anim.SetTrigger("is_boom");
         ExecuteExplosion();
-        yield return new WaitForSeconds(coolDown);
+        yield return new WaitForSeconds(0.3f);
+        anim.SetTrigger("is_cool");
+        yield return new WaitForSeconds(coolDown-0.3f);
+        anim.SetTrigger("is_walk");
         isActionRunning = false;
     }
 

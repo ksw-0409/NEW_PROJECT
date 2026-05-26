@@ -9,7 +9,10 @@ public class RockGolem1 : EnemyAI
     public float rockSpeed = 10f;
     public GameObject rockPrefab;
     private bool RockDie = false;
-  
+
+
+    public Animator animator;
+
     public override void Init()
     {
         base.Init();
@@ -49,10 +52,14 @@ public class RockGolem1 : EnemyAI
     private IEnumerator DieRoutine()
     {
         RockDie = true;
+        yield return new WaitForSeconds(DieDealy);
+        animator.SetTrigger("is_boom");
+       /*
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
         Color originalColor = sprite.color;
         Color flashColor = Color.red; // ¹øÂ½ÀÏ »ö»ó (Èò»ö ¿øÇÏ¸é Color.white)
 
+      
         float elapsed = 0f;
         float flashInterval = 0.1f; // ±ôºýÀÌ´Â ¼Óµµ (³·À»¼ö·Ï ºü¸§)
 
@@ -64,7 +71,7 @@ public class RockGolem1 : EnemyAI
 
             yield return new WaitForSeconds(flashInterval);
             elapsed += flashInterval;
-        }
+        }*/
         SpawnDeathRocks();
         base.Die();
     }

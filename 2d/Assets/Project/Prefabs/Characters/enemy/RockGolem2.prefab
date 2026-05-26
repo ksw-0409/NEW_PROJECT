@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3440786406656036238}
   - component: {fileID: 9005891388612825590}
   - component: {fileID: -1332612428968303079}
+  - component: {fileID: 3035261972149246745}
   m_Layer: 0
   m_Name: RockGolem2
   m_TagString: Enemy
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 7, y: 7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,7 +86,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: -6982144489665573958, guid: c9bbc804bd2d0da45b924c2f027677a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -135,7 +136,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &9005891388612825590
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -170,17 +171,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.21133333}
+  m_Offset: {x: -0.011205584, y: 0.0014163852}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.48, y: 0.48}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.32752335, y: 0.4266783}
   m_EdgeRadius: 0
 --- !u!114 &-1332612428968303079
 MonoBehaviour:
@@ -205,9 +206,32 @@ MonoBehaviour:
   rockCount: 8
   DieDealy: 1
   rockSpeed: 10
-  rockPrefab: {fileID: 5388222843696298285, guid: b086d7fdd4c33a14ba1b519c84fcc7de, type: 3}
+  rockPrefab: {fileID: 5388222843696298285, guid: 236a4a348c3b8464ead774c810851dcf, type: 3}
   warningPrefab: {fileID: 651873762938610445, guid: e07ffd5d1ec586f45ae43d030f0b04a7, type: 3}
   rockEffectPrefab: {fileID: 2785522838048479002, guid: 4decbf1944c61884b9b2844997cb9c02, type: 3}
   attackRadius: 1
   warningTime: 1
   rockFallInterval: 2
+  animator: {fileID: 3035261972149246745}
+--- !u!95 &3035261972149246745
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695417322640460754}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6c1d30456603f9049a3aabd4ca84ec2f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

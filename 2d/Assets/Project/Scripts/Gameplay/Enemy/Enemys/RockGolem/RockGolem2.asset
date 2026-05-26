@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   id: 16
   Name: RackGolem2
-  hp: 1
+  hp: 600
   skillDamage: 150
   contactDamage: 150
   Defense: 40

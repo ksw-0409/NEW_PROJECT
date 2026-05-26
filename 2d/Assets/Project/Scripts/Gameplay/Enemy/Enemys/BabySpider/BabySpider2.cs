@@ -24,6 +24,9 @@ public class BabySpider2 : EnemyAI
     private LineRenderer lineRenderer; 
     public GameObject dashEffectPrefab; 
     public float effectDestroyTime = 1.0f;
+
+    public Animator animator;
+
     public override void Init()
     {
         base.Init();
@@ -63,15 +66,19 @@ public class BabySpider2 : EnemyAI
         Vector2 currentTargetPos = EnemyManager.Instance.player.position;
         Vector2 direction = (currentTargetPos - (Vector2)transform.position).normalized;
 
+        animator.SetTrigger("is_ready");
         // 1단계: 차징 (준비 + 흔들림 + 범위 표시)
         yield return StartCoroutine(ChargePhase(direction));
 
+        animator.SetTrigger("is_d");
         // 2단계: 돌진 실행 (범위 표시 끄고 돌격)
         yield return StartCoroutine(PerformDashPhase(direction));
 
+        animator.SetTrigger("is_dend");
         // 3단계: 후딜레이 및 상태 복구
         yield return StartCoroutine(PostDashPhase());
 
+        animator.SetTrigger("is_cool");
         // 4단계: 쿨타임
         StartCoroutine(CoolDownPhase());
     }
