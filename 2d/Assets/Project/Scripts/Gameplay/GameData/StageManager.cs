@@ -13,6 +13,8 @@ public class StageManager : MonoBehaviour
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private GameObject portalPrefab;
+    [SerializeField] private GameObject bossPortalPrefab5;  // 5층 보스 포탈 (4층 클리어 시)
+    [SerializeField] private GameObject bossPortalPrefab10; // 10층 보스 포탈 (9층 클리어 시)
     [SerializeField] private Transform player;
     [SerializeField] private SimpleInfiniteMap mapM;
 
@@ -26,7 +28,6 @@ public class StageManager : MonoBehaviour
     private StageData.FloorData currentFloorData;
     private PlayerSkillController skillController;
 
-    // 타이머 UI에 남은 시간 전달
     public static event Action<float> OnTimerUpdated;
     public static bool IsStageOver { get; private set; } = false;
     public static bool IsStageActive { get; private set; } = false;
@@ -42,29 +43,18 @@ public class StageManager : MonoBehaviour
 
         if (GameOverManager.Instance != null)
             GameOverManager.Instance.StartTimer();
-        
-        // 5층, 10층은 보스 층 — 일반 몬스터 스폰 비활성화 맵 비활성화 + 추가로 5층 10층 보스맵 추가해야할듯?
+
         if (floor == 5 || floor == 10)
         {
-            if (enemySpawner != null)
-                enemySpawner.gameObject.SetActive(false);
-
-            if (mapM != null)           
-                mapM.gameObject.SetActive(false);          
-           
+            if (enemySpawner != null) enemySpawner.gameObject.SetActive(false);
+            if (mapM != null) mapM.gameObject.SetActive(false);
         }
         else
         {
-            // 보스층이 아닐 때만 안전하게 일반 몬스터 데이터 초기화 실행
-            if (enemySpawner != null)
-            {
-                enemySpawner.startInit();
-            }
-            // 맵 생성 알고리즘에 층 입력(1~4/6~9 층 다른 스프라이트)
-            if (mapM != null) { 
-                mapM.FloorStart(floor);
-            }
+            if (enemySpawner != null) enemySpawner.startInit();
+            if (mapM != null) mapM.FloorStart(floor);
         }
+
         Debug.Log($"[StageManager] {floor}층 시작 / 제한시간: {currentFloorData.stageDuration}초");
     }
 
@@ -74,7 +64,6 @@ public class StageManager : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        // 남은 시간 계산 후 이벤트 발생
         float remaining = Mathf.Max(0f, currentFloorData.stageDuration - timer);
         OnTimerUpdated?.Invoke(remaining);
 
@@ -97,48 +86,70 @@ public class StageManager : MonoBehaviour
             Debug.Log("[StageManager] 적 제거 완료");
         }
 
-        // 플레이어 비활성화 -> 스킬 코루틴 강제 종료
-        if (player != null)
-            player.gameObject.SetActive(false);
-
+        if (player != null) player.gameObject.SetActive(false);
         yield return null;
-
         SpawnPortal();
-
-        // 플레이어 재활성화
-        if (player != null)
-            player.gameObject.SetActive(true);
+        if (player != null) player.gameObject.SetActive(true);
     }
 
     private void SpawnPortal()
     {
-        if (portalPrefab == null || player == null)
+        if (player == null)
         {
-            Debug.LogError("[StageManager] portalPrefab 또는 player가 없습니다.");
+            Debug.LogError("[StageManager] player가 없습니다.");
             return;
         }
 
+        int floor = GameDataManager.Instance.CurrentFloor;
         Vector3 portalPos = player.position + new Vector3(portalSpawnRadius, 0f, 0f);
-        GameObject portal = Instantiate(portalPrefab, portalPos, Quaternion.identity);
 
+        // 4층 클리어 → 5층 보스 포탈
+        if (floor == 4)
+        {
+            if (bossPortalPrefab5 == null)
+            {
+                Debug.LogError("[StageManager] bossPortalPrefab5가 없습니다.");
+                return;
+            }
+            Instantiate(bossPortalPrefab5, portalPos, Quaternion.identity);
+            Debug.Log("[StageManager] 4층 클리어 — 5층 보스 포탈 생성");
+            return;
+        }
+
+        // 9층 클리어 → 10층 보스 포탈
+        if (floor == 9)
+        {
+            if (bossPortalPrefab10 == null)
+            {
+                Debug.LogError("[StageManager] bossPortalPrefab10가 없습니다.");
+                return;
+            }
+            Instantiate(bossPortalPrefab10, portalPos, Quaternion.identity);
+            Debug.Log("[StageManager] 9층 클리어 — 10층 보스 포탈 생성");
+            return;
+        }
+
+        // 일반 포탈
+        if (portalPrefab == null)
+        {
+            Debug.LogError("[StageManager] portalPrefab이 없습니다.");
+            return;
+        }
+
+        GameObject portal = Instantiate(portalPrefab, portalPos, Quaternion.identity);
         Portal portalScript = portal.GetComponent<Portal>();
         if (portalScript != null)
         {
-            int floor = GameDataManager.Instance.CurrentFloor;
             string nextScene = floor >= MAX_DUNGEON_FLOOR
                 ? SceneController.SceneName.Base
                 : SceneController.SceneName.Dungeon;
-
             portalScript.SetNextScene(nextScene);
         }
 
         Debug.Log("[StageManager] 포탈 생성 완료");
     }
 
-    void OnDestroy()
-    {
-        IsStageActive = false;
-    }
+    void OnDestroy() { IsStageActive = false; }
 
-    public float getTimer() { return timer; }   
+    public float getTimer() { return timer; }
 }

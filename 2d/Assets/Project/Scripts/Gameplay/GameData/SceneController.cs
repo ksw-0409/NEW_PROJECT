@@ -29,6 +29,10 @@ public class SceneController : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+    public void LoadDungeonBoss()
+    {
+        StartCoroutine(LoadSceneRoutine(SceneName.Dungeon));
+    }
 
     public void LoadBase() => StartCoroutine(LoadSceneRoutine(SceneName.Base));
     public void LoadDungeon()

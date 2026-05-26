@@ -9,11 +9,12 @@ using UnityEngine;
 public class BossStageManager : MonoBehaviour
 {
     [Header("보스 설정")]
-        [SerializeField] private GameObject bossPrefab;          // 5층 보스 (실바누스)
+    [SerializeField] private GameObject bossPrefab;          // 5층 보스 (실바누스)
     [SerializeField] private GameObject voidPriestPrefab;    // 10층 보스 (공허의 대사제)
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform player;
-    [SerializeField] private GameObject portalPrefab;
+    [SerializeField] private GameObject portalPrefab;       // 다음 층 포탈
+    [SerializeField] private GameObject recallPortalPrefab; // 거점 귀환 포탈
     [SerializeField] private float portalSpawnRadius = 3f;
 
     [Header("✨ 룰렛 설정")]
@@ -32,7 +33,7 @@ public class BossStageManager : MonoBehaviour
 
     private GameObject spawnedBoss;
     private bool bossDefeated = false;
-        private bool isBossStage = false;
+    private bool isBossStage = false;
     private int requestedBossId = 5; // 진입 시 요청된 보스 ID (5=실바누스, 10=공허의 대사제);
     private static bool hasInitialized = false; // ⭐ 이중 초기화 방지
 
@@ -47,7 +48,7 @@ public class BossStageManager : MonoBehaviour
         hasInitialized = true;
 
         bool requested = BossPortal.BossEntryRequested;
-                BossPortal.BossEntryRequested = false; // 즉시 소비
+        BossPortal.BossEntryRequested = false; // 즉시 소비
         requestedBossId = BossPortal.RequestedBossId; // 요청된 보스 ID 저장 // 즉시 소비
 
         isBossStage = requested;
@@ -97,7 +98,7 @@ public class BossStageManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
-                // 요청된 보스 ID에 따라 스폰할 프리팹 선택 (10 = 공허의 대사제, 그 외 = 기본 보스)
+        // 요청된 보스 ID에 따라 스폰할 프리팹 선택 (10 = 공허의 대사제, 그 외 = 기본 보스)
         GameObject selectedBoss = (requestedBossId == 10 && voidPriestPrefab != null) ? voidPriestPrefab : bossPrefab;
         Debug.Log($"[BossStageManager] requestedBossId={requestedBossId} -> spawn {(selectedBoss != null ? selectedBoss.name : "NULL")}");
 
@@ -157,13 +158,13 @@ public class BossStageManager : MonoBehaviour
                 SpawnPortal();
                 //룰렛 상호작용 룰렛 
                 //함수 상호작용 밑에꺼  
-                    SpawnRoulette();
+                SpawnRoulette();
                 yield break;
             }
         }
     }
 
-        // 🎆 보스 처치 연출 시퀀스 (슬로우 + 폭죽 + 화면흔들림 + 골드 폭발)
+    // 🎆 보스 처치 연출 시퀀스 (슬로우 + 폭죽 + 화면흔들림 + 골드 폭발)
     private IEnumerator BossDeathSequence(Vector3 bossPos)
     {
         // 1) 순간 강한 화면 흔들림
@@ -224,16 +225,36 @@ public class BossStageManager : MonoBehaviour
 
     private void SpawnPortal()
     {
-        if (portalPrefab == null || player == null)
+        if (player == null)
         {
-            Debug.LogError("[BossStageManager] portalPrefab/player 미할당");
+            Debug.LogError("[BossStageManager] player 미할당");
             return;
         }
+
         Vector3 portalPos = player.position + new Vector3(portalSpawnRadius, 0f, 0f);
-        GameObject portal = Instantiate(portalPrefab, portalPos, Quaternion.identity);
-        Portal ps = portal.GetComponent<Portal>();
-        if (ps != null) ps.SetNextScene(SceneController.SceneName.Base);
-        Debug.Log("[BossStageManager] 보스 처치 — 베이스로 가는 포탈 생성");
+        Vector3 recallPortalPos = player.position + new Vector3(-portalSpawnRadius, 0f, 0f);
+
+        if (requestedBossId == 5)
+        {
+            // 5층 보스 처치 → 다음 층 포탈 + 거점 귀환 포탈
+            if (portalPrefab != null)
+            {
+                var portal = Instantiate(portalPrefab, portalPos, Quaternion.identity);
+                portal.GetComponent<Portal>()?.SetNextScene(SceneController.SceneName.Dungeon);
+            }
+            if (recallPortalPrefab != null)
+                Instantiate(recallPortalPrefab, recallPortalPos, Quaternion.identity);
+
+            Debug.Log("[BossStageManager] 5층 보스 처치 — 다음 층 포탈 + 거점 포탈 생성");
+        }
+        else
+        {
+            // 10층 보스 처치 → 거점 귀환 포탈만
+            if (recallPortalPrefab != null)
+                Instantiate(recallPortalPrefab, portalPos, Quaternion.identity);
+
+            Debug.Log("[BossStageManager] 10층 보스 처치 — 거점 포탈 생성");
+        }
     }
 
 

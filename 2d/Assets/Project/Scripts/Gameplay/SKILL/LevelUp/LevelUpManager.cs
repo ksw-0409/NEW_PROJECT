@@ -21,7 +21,7 @@ public class LevelUpManager : MonoBehaviour
         int floor = GameDataManager.Instance.CurrentFloor;
         Debug.Log($"[LevelUpManager] Start - CurrentFloor={floor} startUIShown={startUIShown} isBossMode={isBossMode}");
 
-        bool shouldShow = !startUIShown && (floor == 1 || isBossMode);
+        bool shouldShow = !startUIShown && floor == 1 && !isBossMode;
         if (shouldShow)
         {
             startUIShown = true;

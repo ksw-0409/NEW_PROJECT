@@ -30,7 +30,7 @@ public class BossPortal : BaseInteractable
         Debug.Log($"[BossPortal] 보스 모드로 던전 진입 요청 - bossId={bossId}");
         BossEntryRequested = true;
         RequestedBossId = bossId;
-        // ⭐ 일반 LoadDungeon을 그대로 호출 — 내부에서 SetFloor(1) 처리
-        SceneController.Instance.LoadDungeon();
+        GameDataManager.Instance.SetFloor(bossId);
+        SceneController.Instance.LoadDungeonBoss();
     }
 }

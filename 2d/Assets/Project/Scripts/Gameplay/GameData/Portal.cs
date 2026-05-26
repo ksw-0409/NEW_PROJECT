@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// 역할: 스테이지 클리어 후 생성되는 포탈
+// 역할: 스테이지 클리어 후 다음 층으로 이동하는 포탈
 
 public class Portal : BaseInteractable
 {
@@ -30,12 +30,6 @@ public class Portal : BaseInteractable
         // 다음 층으로 이동 전 층 증가
         if (nextScene == SceneController.SceneName.Dungeon)
             GameDataManager.Instance.NextFloor();
-
-        else if (nextScene == SceneController.SceneName.Base)
-        {
-            // 거점으로 돌아갈 때 스킬 초기화
-            GameDataManager.Instance.ClearSavedSkills();
-        }
 
         SceneController.Instance.LoadScene(nextScene);
     }
