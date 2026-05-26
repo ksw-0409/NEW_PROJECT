@@ -24,6 +24,12 @@ public class BossStageManager : MonoBehaviour
     [SerializeField] private StageManager stageManager;
     [SerializeField] private EnemyManager enemyManager;
 
+    [Header("보스 체력바")]
+    [SerializeField] private BossHealthBarUI bossHealthBar;
+
+    [Header("숨길 UI")]
+    [SerializeField] private GameObject stageTimerUI;
+
     private GameObject spawnedBoss;
     private bool bossDefeated = false;
         private bool isBossStage = false;
@@ -66,6 +72,12 @@ public class BossStageManager : MonoBehaviour
             // EnemySpawner는 EnemyManager와 같은 GameObject에 있을 수 있으니 컴포넌트만 파괴
             Destroy(normalSpawner);
             Debug.Log("[BossStageManager] EnemySpawner component destroyed (boss mode)");
+        }
+
+        if (stageTimerUI != null)
+        {
+            stageTimerUI.SetActive(false);
+            Debug.Log("[BossStageManager] StageTimerUI 숨김");
         }
     }
 
@@ -111,6 +123,12 @@ public class BossStageManager : MonoBehaviour
         {
             enemyManager.activeEnemies.Add(ai);
             Debug.Log("[BossStageManager] Boss registered in EnemyManager");
+        }
+
+        if (bossHealthBar != null)
+        {
+            var bossHp = spawnedBoss.GetComponent<EnemyHealth>();
+            if (bossHp != null) bossHealthBar.SetTarget(bossHp);
         }
 
         StartCoroutine(WatchBossDeath());
