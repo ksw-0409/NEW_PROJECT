@@ -68,7 +68,12 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (GameDataManager.Instance.isPachinkoActive) return;
+        if (GameDataManager.Instance.isPachinkoActive)
+        {
+            // 1. 속도를 완전히 0으로 초기화
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
         rb.linearVelocity = moveInput * stats.MoveSpeed;
     }
 }

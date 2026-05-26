@@ -14,6 +14,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private GameObject portalPrefab;
     [SerializeField] private Transform player;
+    [SerializeField] private SimpleInfiniteMap mapM;
 
     [Header("포탈 스폰 거리")]
     [SerializeField] private float portalSpawnRadius = 3f;
@@ -42,11 +43,15 @@ public class StageManager : MonoBehaviour
         if (GameOverManager.Instance != null)
             GameOverManager.Instance.StartTimer();
         
-        // 5층, 10층은 보스 층 — 일반 몬스터 스폰 비활성화
+        // 5층, 10층은 보스 층 — 일반 몬스터 스폰 비활성화 맵 비활성화 + 추가로 5층 10층 보스맵 추가해야할듯?
         if (floor == 5 || floor == 10)
         {
             if (enemySpawner != null)
                 enemySpawner.gameObject.SetActive(false);
+
+            if (mapM != null)           
+                mapM.gameObject.SetActive(false);          
+           
         }
         else
         {
@@ -54,6 +59,10 @@ public class StageManager : MonoBehaviour
             if (enemySpawner != null)
             {
                 enemySpawner.startInit();
+            }
+            // 맵 생성 알고리즘에 층 입력(1~4/6~9 층 다른 스프라이트)
+            if (mapM != null) { 
+                mapM.FloorStart(floor);
             }
         }
         Debug.Log($"[StageManager] {floor}층 시작 / 제한시간: {currentFloorData.stageDuration}초");

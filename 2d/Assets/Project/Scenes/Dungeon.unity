@@ -15013,6 +15013,7 @@ MonoBehaviour:
   enemyManager: {fileID: 1768684260}
   portalPrefab: {fileID: 3424542349691123839, guid: acf6ebc6717f39b408acd6a904d68514, type: 3}
   player: {fileID: 2026055320}
+  mapM: {fileID: 1669466177}
   portalSpawnRadius: 3
 --- !u!4 &1669466176
 Transform:
@@ -15042,16 +15043,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimpleInfiniteMap
   playerTransform: {fileID: 2026055320}
-  floorSprites:
+  floorSprites1:
   - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
-  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
-  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
-  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
-  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
-  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
-  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
-  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
-  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
+  floorSprites2:
+  - {fileID: -6888756438569675735, guid: 50af276dff6e18845bd6091f974bd487, type: 3}
   chunkSize: {x: 40, y: 40}
 --- !u!1 &1680507855
 GameObject:

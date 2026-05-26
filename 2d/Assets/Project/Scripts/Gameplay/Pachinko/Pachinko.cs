@@ -45,8 +45,6 @@ public class Pachinko : MonoBehaviour
         StopAllReels();
         // 릴이 다 멈추는 시간 에 정산 및 닫기 연출 시작
         Invoke(nameof(RewardAndCloseRoutine), 10);
-        // 게임이 끝났으므로 킵해둔 금액 리셋
-        savedBetAmount = 0;
     }
 
     //랜덤 당첨
@@ -105,5 +103,8 @@ public class Pachinko : MonoBehaviour
             {
                 pachin.SetActive(false);
             });
+        // 게임이 끝났으므로 킵해둔 금액 리셋
+        savedBetAmount = 0;
+        GameDataManager.Instance.isPachinkoActive = false;
     }
 }
