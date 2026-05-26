@@ -15044,7 +15044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimpleInfiniteMap
   playerTransform: {fileID: 2026055320}
   floorSprites1:
-  - {fileID: -6888756438569675735, guid: ed96ca1e58a78b34ba0744a936ca2bdb, type: 3}
+  - {fileID: 4804446361586417100, guid: 2ae9dd975a3fd1a4f9d2dd5bf98c470f, type: 3}
   floorSprites2:
   - {fileID: -6888756438569675735, guid: 50af276dff6e18845bd6091f974bd487, type: 3}
   chunkSize: {x: 40, y: 40}
