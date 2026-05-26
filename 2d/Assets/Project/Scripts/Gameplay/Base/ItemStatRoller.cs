@@ -42,7 +42,7 @@ public static class ItemStatRoller
                 speedMin = 0.5f; speedMax = 2f;
                 break;
 
-            default: // Common
+            default:
                 physMin = 1f; physMax = 10f;
                 magMin = 0f; magMax = 5f;
                 critMin = 0f; critMax = 0.05f;
@@ -53,12 +53,21 @@ public static class ItemStatRoller
                 break;
         }
 
-        target.physicalDamage = Random.Range(physMin, physMax);
-        target.magicDamage = Random.Range(magMin, magMax);
-        target.criticalChance = Random.Range(critMin, critMax);
-        target.criticalDamage = Random.Range(critDmgMin, critDmgMax);
-        target.maxHealth = Random.Range(hpMin, hpMax);
-        target.physicalDefense = Random.Range(defMin, defMax);
-        target.moveSpeed = Random.Range(speedMin, speedMax);
+        // 잠긴 옵션은 스킵, 나머지만 리롤
+        bool IsLocked(string statName)
+        {
+            if (target.options == null) return false;
+            foreach (var opt in target.options)
+                if (opt.statName == statName && opt.isLocked) return true;
+            return false;
+        }
+
+        if (!IsLocked("physicalDamage")) target.physicalDamage = Random.Range(physMin, physMax);
+        if (!IsLocked("magicDamage")) target.magicDamage = Random.Range(magMin, magMax);
+        if (!IsLocked("criticalChance")) target.criticalChance = Random.Range(critMin, critMax);
+        if (!IsLocked("criticalDamage")) target.criticalDamage = Random.Range(critDmgMin, critDmgMax);
+        if (!IsLocked("maxHealth")) target.maxHealth = Random.Range(hpMin, hpMax);
+        if (!IsLocked("physicalDefense")) target.physicalDefense = Random.Range(defMin, defMax);
+        if (!IsLocked("moveSpeed")) target.moveSpeed = Random.Range(speedMin, speedMax);
     }
 }

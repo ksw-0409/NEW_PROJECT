@@ -2,8 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 
-// 역할: 아이템 강화 UI (아이템 선택 + 강화 버튼 + 골드/비용 표시)
-// BaseCanvasUI 상속으로 ESC, IsUIOpen, PlayerInput 처리 자동화
+// 역할: 아이템 강화 UI
 
 public class ItemEnhanceUI : BaseCanvasUI
 {
@@ -19,8 +18,15 @@ public class ItemEnhanceUI : BaseCanvasUI
     [SerializeField] private Image selectedItemIcon;
     [SerializeField] private TextMeshProUGUI selectedItemName;
 
-    [Header("옵션 표시 TMP 배열 (옵션 하나당 TMP 하나)")]
+    [Header("옵션 표시 TMP 배열")]
     [SerializeField] private TextMeshProUGUI[] optionTexts;
+
+    [Header("옵션 잠금 버튼 배열 (optionTexts와 순서 동일)")]
+    [SerializeField] private Button[] lockButtons;
+
+    [Header("잠금/풀림 이미지")]
+    [SerializeField] private Sprite lockedSprite;
+    [SerializeField] private Sprite unlockedSprite;
 
     [Header("인벤토리 슬롯")]
     [SerializeField] private InventoryItemSlot[] inventorySlots;
@@ -42,6 +48,7 @@ public class ItemEnhanceUI : BaseCanvasUI
         if (costText != null)
             costText.text = $"{enhanceManager.GetEnhanceCost()}G";
 
+        HideAllLockButtons();
         ClearSelection();
         ClearOptionTexts();
         SetupSlots();
@@ -50,34 +57,28 @@ public class ItemEnhanceUI : BaseCanvasUI
     protected override void OnClose()
     {
         enhanceButton.onClick.RemoveAllListeners();
-
         enhanceManager.OnEnhanceSuccess -= HandleSuccess;
         enhanceManager.OnEnhanceFailed -= HandleFailed;
         GameDataManager.OnGoldChanged -= RefreshGoldUI;
 
+        if (lockButtons != null)
+            foreach (var btn in lockButtons)
+                if (btn != null) btn.onClick.RemoveAllListeners();
+
         if (inventorySlots != null)
-        {
             foreach (var slot in inventorySlots)
                 if (slot != null) slot.OnSlotClicked -= OnItemSelected;
-        }
     }
 
     private void SetupSlots()
     {
         if (inventorySlots == null || Inventory.Instance == null) return;
-
         var items = Inventory.Instance.Items;
-
         for (int i = 0; i < inventorySlots.Length; i++)
         {
             if (inventorySlots[i] == null) continue;
-
             inventorySlots[i].OnSlotClicked += OnItemSelected;
-
-            if (i < items.Count)
-                inventorySlots[i].Setup(items[i]);
-            else
-                inventorySlots[i].Setup(null);
+            inventorySlots[i].Setup(i < items.Count ? items[i] : null);
         }
     }
 
@@ -95,9 +96,16 @@ public class ItemEnhanceUI : BaseCanvasUI
         }
 
         if (item != null && item.isIdentified)
-            RefreshOptionTexts(item);
+        {
+            item.BuildOptions(); // 동적 옵션 생성
+            RefreshOptionTexts();
+            RefreshLockButtons();
+        }
         else
+        {
             ClearOptionTexts();
+            HideAllLockButtons();
+        }
 
         enhanceButton.interactable = (item != null && item.isIdentified);
     }
@@ -107,9 +115,80 @@ public class ItemEnhanceUI : BaseCanvasUI
         enhanceManager.TryEnhance(selectedItem);
     }
 
+    private void OnClickLock(int index)
+    {
+        if (selectedItem == null || selectedItem.options == null) return;
+        if (index >= selectedItem.options.Count) return;
+
+        selectedItem.options[index].isLocked = !selectedItem.options[index].isLocked;
+        RefreshLockButtonVisual(index);
+    }
+
+    private void RefreshLockButtons()
+    {
+        if (lockButtons == null || selectedItem?.options == null) return;
+
+        for (int i = 0; i < lockButtons.Length; i++)
+        {
+            if (lockButtons[i] == null) continue;
+
+            if (i < selectedItem.options.Count)
+            {
+                lockButtons[i].gameObject.SetActive(true);
+                lockButtons[i].onClick.RemoveAllListeners();
+                int index = i;
+                lockButtons[i].onClick.AddListener(() => OnClickLock(index));
+                RefreshLockButtonVisual(i);
+            }
+            else
+            {
+                lockButtons[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void RefreshLockButtonVisual(int index)
+    {
+        if (lockButtons == null || index >= lockButtons.Length) return;
+        if (lockButtons[index] == null) return;
+        if (selectedItem?.options == null || index >= selectedItem.options.Count) return;
+
+        var img = lockButtons[index].GetComponent<Image>();
+        if (img != null)
+            img.sprite = selectedItem.options[index].isLocked ? lockedSprite : unlockedSprite;
+    }
+
+    private void HideAllLockButtons()
+    {
+        if (lockButtons == null) return;
+        foreach (var btn in lockButtons)
+            if (btn != null) btn.gameObject.SetActive(false);
+    }
+
+    private void RefreshOptionTexts()
+    {
+        if (optionTexts == null || selectedItem?.options == null) return;
+
+        for (int i = 0; i < optionTexts.Length; i++)
+        {
+            if (optionTexts[i] == null) continue;
+            optionTexts[i].text = i < selectedItem.options.Count
+                ? selectedItem.options[i].displayText : "";
+        }
+    }
+
+    private void ClearOptionTexts()
+    {
+        if (optionTexts == null) return;
+        foreach (var t in optionTexts)
+            if (t != null) t.text = "";
+    }
+
     private void HandleSuccess(InventoryItem enhanced)
     {
-        RefreshOptionTexts(enhanced);
+        enhanced.RefreshOptionTexts(); // 잠금 유지하며 텍스트만 갱신
+        RefreshOptionTexts();
+        RefreshLockButtons();
     }
 
     private void HandleFailed(string reason)
@@ -121,39 +200,6 @@ public class ItemEnhanceUI : BaseCanvasUI
     {
         if (currentGoldText != null)
             currentGoldText.text = $"{gold}G";
-    }
-
-    private void RefreshOptionTexts(InventoryItem item)
-    {
-        if (optionTexts == null) return;
-
-        string[] options = BuildOptionArray(item);
-
-        for (int i = 0; i < optionTexts.Length; i++)
-        {
-            if (optionTexts[i] == null) continue;
-            optionTexts[i].text = i < options.Length ? options[i] : "";
-        }
-    }
-
-    private void ClearOptionTexts()
-    {
-        if (optionTexts == null) return;
-        foreach (var t in optionTexts)
-            if (t != null) t.text = "";
-    }
-
-    private string[] BuildOptionArray(InventoryItem item)
-    {
-        var list = new System.Collections.Generic.List<string>();
-        if (item.physicalDamage > 0) list.Add($"물리 공격력: {item.physicalDamage:F1}");
-        if (item.magicDamage > 0) list.Add($"마법 공격력: {item.magicDamage:F1}");
-        if (item.criticalChance > 0) list.Add($"치명타 확률: {item.criticalChance * 100f:F1}%");
-        if (item.criticalDamage > 0) list.Add($"치명타 피해: {item.criticalDamage:F2}배");
-        if (item.maxHealth > 0) list.Add($"최대 체력: {item.maxHealth:F1}");
-        if (item.physicalDefense > 0) list.Add($"방어력: {item.physicalDefense:F1}");
-        if (item.moveSpeed > 0) list.Add($"이동속도: {item.moveSpeed:F2}");
-        return list.ToArray();
     }
 
     private void ClearSelection()
