@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Experimental.GraphView;
@@ -8,26 +8,29 @@ using static UnityEditor.PlayerSettings;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public EnemyManager enemyManager; // ¾Æ±î ¸¸µç ¸Å´ÏÀú ¿¬°á
-    public Transform player;          // ÇÃ·¹ÀÌ¾î À§Ä¡ ±âÁØ
+    public EnemyManager enemyManager; // ì•„ê¹Œ ë§Œë“  ë§¤ë‹ˆì € ì—°ê²°
+    public Transform player;          // í”Œë ˆì´ì–´ ìœ„ì¹˜ ê¸°ì¤€
 
-    [Header("¼³Á¤")]
-    public float spawnDistance = 10f; // ÇÃ·¹ÀÌ¾î·ÎºÎÅÍ ¶³¾îÁø °Å¸®
-    [SerializeField] private StageManager stageManager; // ÀÎ½ºÆåÅÍ¿¡¼­ ¿¬°á
+    [Header("ì„¤ì •")]
+    public float spawnDistance = 10f; // í”Œë ˆì´ì–´ë¡œë¶€í„° ë–¨ì–´ì§„ ê±°ë¦¬
+    [SerializeField] private StageManager stageManager; // ì¸ìŠ¤í™í„°ì—ì„œ ì—°ê²°
     public DungeonTable table; 
 
 
-    private int lastProcessedSecond = -1; //ÀÌ°Å ½ºÅ×ÀÌÁö ¹Ù²ğ¶§¸¶´Ù -1·Î ÃÊ±âÈ­ ÇØ¾ßÇÔ
+    private int lastProcessedSecond = -1; //ì´ê±° ìŠ¤í…Œì´ì§€ ë°”ë€”ë•Œë§ˆë‹¤ -1ë¡œ ì´ˆê¸°í™” í•´ì•¼í•¨
     private bool isBoss = false;
-    private int[] eliteId = {2,4,6,8, -1, 10,12,14,16}; //1ÃşºÎÅÍ 9Ãş±îÁö ¿¤¸®Æ®¸ó½ºÅÍ ID ¸ñ·Ï
+    private int[] eliteId = {2,4,6,8, -1, 10,12,14,16}; //1ì¸µë¶€í„° 9ì¸µê¹Œì§€ ì—˜ë¦¬íŠ¸ëª¬ìŠ¤í„° ID ëª©ë¡
     private int eliteIndx = -1;
     private int currentFloor = -1;
     List<MonsterSpawnRate> targetRates; 
-    private bool isInitialized = false; // ÃÊ±âÈ­ ¿©ºÎ Ã¼Å©
+    private bool isInitialized = false; // ì´ˆê¸°í™” ì—¬ë¶€ ì²´í¬
+    private EnemyAI spawnedElite = null;
 
-    [Header("µ¹Áø ÆĞÅÏ ¼³Á¤")]
-    [SerializeField] private float rushSpawnY = 12f;  // È­¸é À§ ½ºÆù 
-    [SerializeField] private float rushDis = 24f;  // ÀÌµ¿°Å¸®
+    public static event System.Action OnEliteKilled;
+
+    [Header("ëŒì§„ íŒ¨í„´ ì„¤ì •")]
+    [SerializeField] private float rushSpawnY = 12f;  // í™”ë©´ ìœ„ ìŠ¤í° 
+    [SerializeField] private float rushDis = 24f;  // ì´ë™ê±°ë¦¬
     public void startInit()
     {
         currentFloor = (int)GameDataManager.Instance.CurrentFloor;
@@ -41,8 +44,8 @@ public class EnemySpawner : MonoBehaviour
     {
         if ((StageManager.IsStageOver && isBoss)|| !isInitialized) return;
         float currentTime = stageManager.getTimer(); 
-        int currentSecond = Mathf.FloorToInt(currentTime); //¼Ò¼ıÁ¡ ¹ö¸²
-        // 1ÃÊ¸¶´Ù ÇÑ ¹ø¾¿ ½ÇÇà
+        int currentSecond = Mathf.FloorToInt(currentTime); //ì†Œìˆ«ì  ë²„ë¦¼
+        // 1ì´ˆë§ˆë‹¤ í•œ ë²ˆì”© ì‹¤í–‰
         if (currentSecond != lastProcessedSecond)
         {
             lastProcessedSecond = currentSecond;
@@ -52,7 +55,7 @@ public class EnemySpawner : MonoBehaviour
 
     void HandleWaveLogic(int sec)
     {
-        //Á¤»ó·ÎÁ÷        
+        //ì •ìƒë¡œì§        
         if (sec < 60) SpawnNormalWave(Random.Range(1,2));
         else if (sec == 60) { SpawnCircleWave(); }
         else if (sec < 120) SpawnNormalWave(Random.Range(3, 4));
@@ -62,19 +65,19 @@ public class EnemySpawner : MonoBehaviour
         else return;
     }
 
-    //ÀÏ¹İ¼ÒÈ¯
+    //ì¼ë°˜ì†Œí™˜
     void SpawnNormalWave(int n)
     {
         for (int i = 0; i < n; i++) {
             Spawn(GetWeightedRandom(targetRates));
         }
     }
-    //°¢Ãş È®·ü¿¡ µû¸¥ ·£´ı ÀÎµ¦½º ¹İÈ¯ 
+    //ê°ì¸µ í™•ë¥ ì— ë”°ë¥¸ ëœë¤ ì¸ë±ìŠ¤ ë°˜í™˜ 
     public int GetWeightedRandom(List<MonsterSpawnRate> rates)
     {
         if (rates == null || rates.Count == 0)
         {
-            Debug.LogWarning("½ºÆù ¸®½ºÆ®°¡ À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù.");
+            Debug.LogWarning("ìŠ¤í° ë¦¬ìŠ¤íŠ¸ê°€ ìœ íš¨í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
         }
         float totalWeight = 0;
         for (int i = 0; i < rates.Count; i++)
@@ -87,95 +90,116 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < rates.Count; i++)
         {
             MonsterSpawnRate rate = rates[i];           
-            currentSum += rate.chance; // °¡ÁßÄ¡¸¦ °è¼Ó ´õÇØ³ª°¨ (±¸°£ »ı¼º)
+            currentSum += rate.chance; // ê°€ì¤‘ì¹˜ë¥¼ ê³„ì† ë”í•´ë‚˜ê° (êµ¬ê°„ ìƒì„±)
 
             if (pivot <= currentSum)
             {
-                return rate.monsterID; // ±¸°£ ¾È¿¡ ³­¼ö°¡ µé¾î¿À¸é ÇØ´ç ID ¹İÈ¯
+                return rate.monsterID; // êµ¬ê°„ ì•ˆì— ë‚œìˆ˜ê°€ ë“¤ì–´ì˜¤ë©´ í•´ë‹¹ ID ë°˜í™˜
             }
         }
-        Debug.Log("¿À·ù·Î ±âº» ¸ó½ºÅÍ");
-        return rates[0].monsterID; // ¿¹¿Ü Ã³¸®
+        Debug.Log("ì˜¤ë¥˜ë¡œ ê¸°ë³¸ ëª¬ìŠ¤í„°");
+        return rates[0].monsterID; // ì˜ˆì™¸ ì²˜ë¦¬
     }
 
-    // ¿øÇü Á¢±Ù ÀÌº¥Æ®
+    // ì›í˜• ì ‘ê·¼ ì´ë²¤íŠ¸
     void SpawnCircleWave(int count = 36, float radius = 15.0f)
     {
-        // ÇÑ ¸¶¸®´ç °£°İ °¢µµ °è»ê 
+        // í•œ ë§ˆë¦¬ë‹¹ ê°„ê²© ê°ë„ ê³„ì‚° 
         float angleStep = 360f / count;
 
         for (int i = 0; i < count; i++)
         {
-            // ÇöÀç ¸ó½ºÅÍÀÇ °¢µµ 
+            // í˜„ì¬ ëª¬ìŠ¤í„°ì˜ ê°ë„ 
             float currentAngle = i * angleStep * Mathf.Deg2Rad;
-            // ¿ø À§ÀÇ ÁÂÇ¥ °è»ê (x = cos, y = sin)
+            // ì› ìœ„ì˜ ì¢Œí‘œ ê³„ì‚° (x = cos, y = sin)
             float x = Mathf.Cos(currentAngle) * radius;
             float y = Mathf.Sin(currentAngle) * radius;
-            // ÇÃ·¹ÀÌ¾î À§Ä¡¸¦ ±âÁØÀ¸·Î ¿ÀÇÁ¼Â ´õÇÏ±â
+            // í”Œë ˆì´ì–´ ìœ„ì¹˜ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì˜¤í”„ì…‹ ë”í•˜ê¸°
             Vector2 spawnPos = (Vector2)player.position + new Vector2(x, y);
-            // °¡ÁßÄ¡ ·£´ıÀ¸·Î ¸ó½ºÅÍ ID °áÁ¤ ÈÄ ¼ÒÈ¯
+            // ê°€ì¤‘ì¹˜ ëœë¤ìœ¼ë¡œ ëª¬ìŠ¤í„° ID ê²°ì • í›„ ì†Œí™˜
             int monsterID = GetWeightedRandom(targetRates);
-            // ¸ó½ºÅÍ »ı¼º (±âÁ¸ Spawn ÇÔ¼ö È°¿ë)
+            // ëª¬ìŠ¤í„° ìƒì„± (ê¸°ì¡´ Spawn í•¨ìˆ˜ í™œìš©)
             Spawn(monsterID, spawnPos);
         }
-        Debug.Log("Æ÷À§ ½ºÆù");
+        Debug.Log("í¬ìœ„ ìŠ¤í°");
     }
     
-    //3µîºĞ ¹ØÀ¸·Î ³»·Á°¡´Â ÀÌº¥Æ®
+    //3ë“±ë¶„ ë°‘ìœ¼ë¡œ ë‚´ë ¤ê°€ëŠ” ì´ë²¤íŠ¸
     public void SpawnVerticalRush()
     {
         StartCoroutine(VerticalRushRoutine());
     }
     private IEnumerator VerticalRushRoutine()
     {
-        // Ä«¸Ş¶ó ±âÁØÀ¸·Î °¡·Î Æø °è»ê 
+        // ì¹´ë©”ë¼ ê¸°ì¤€ìœ¼ë¡œ ê°€ë¡œ í­ ê³„ì‚° 
         Camera cam = Camera.main;
         float screenHeight = cam.orthographicSize;
         float screenWidth = screenHeight * cam.aspect;
-        // 3±¸¿ª Áß¾Ó X ÁÂÇ¥°ª ¼³Á¤
-        // -screenWidth ~ +screenWidth »çÀÌ¸¦ 3µîºĞ
+        // 3êµ¬ì—­ ì¤‘ì•™ X ì¢Œí‘œê°’ ì„¤ì •
+        // -screenWidth ~ +screenWidth ì‚¬ì´ë¥¼ 3ë“±ë¶„
         float zoneWidth = (screenWidth * 2f) / 3f;
         float[] zoneX = new float[3];
-        zoneX[0] = -screenWidth + (zoneWidth * 0.5f); // ÁÂÃø ±¸¿ª
-        zoneX[1] = 0f;                                // Áß¾Ó ±¸¿ª
-        zoneX[2] = screenWidth - (zoneWidth * 0.5f);  // ¿ìÃø ±¸¿ª
+        zoneX[0] = -screenWidth + (zoneWidth * 0.5f); // ì¢Œì¸¡ êµ¬ì—­
+        zoneX[1] = 0f;                                // ì¤‘ì•™ êµ¬ì—­
+        zoneX[2] = screenWidth - (zoneWidth * 0.5f);  // ìš°ì¸¡ êµ¬ì—­
 
-        // 2. 3È¸ ¹İº¹ µ¹Áø
+        // 2. 3íšŒ ë°˜ë³µ ëŒì§„
         for (int wave = 0; wave < 3; wave++)
         {
-            int randomZone = Random.Range(0, 3); // 0, 1, 2 Áß ·£´ı
+            int randomZone = Random.Range(0, 3); // 0, 1, 2 ì¤‘ ëœë¤
             float targetX = zoneX[randomZone];
 
-            // ÇÃ·¹ÀÌ¾î À§Ä¡¸¦ ±âÁØÀ¸·Î ¿ÀÇÁ¼Â ´õÇÏ±â
+            // í”Œë ˆì´ì–´ ìœ„ì¹˜ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì˜¤í”„ì…‹ ë”í•˜ê¸°
             float rushYPos = player.position.y + rushSpawnY;
-            Debug.Log($"[Rush] {wave + 1}Â÷ µ¹Áø ±¸¿ª: {randomZone + 1}±¸¿ª");
+            Debug.Log($"[Rush] {wave + 1}ì°¨ ëŒì§„ êµ¬ì—­: {randomZone + 1}êµ¬ì—­");
 
-            // ÇÑ ±¸¿ª¿¡ ¸ó½ºÅÍ ¿©·¯ ¸¶¸® ¼ÒÈ¯ (¹¶ÃÄ¼­ ³»·Á¿À°Ô)
+            // í•œ êµ¬ì—­ì— ëª¬ìŠ¤í„° ì—¬ëŸ¬ ë§ˆë¦¬ ì†Œí™˜ (ë­‰ì³ì„œ ë‚´ë ¤ì˜¤ê²Œ)
             for (int i = 0; i < 10; i++)
             {
-                // ¾à°£ÀÇ °¡·Î ¿ÀÇÁ¼ÂÀ» Áà¼­ °ãÄ¡Áö ¾Ê°Ô
+                // ì•½ê°„ì˜ ê°€ë¡œ ì˜¤í”„ì…‹ì„ ì¤˜ì„œ ê²¹ì¹˜ì§€ ì•Šê²Œ
                 float offsetX = Random.Range(-zoneWidth * 0.4f, zoneWidth * 0.4f);
                 Vector2 spawnPos = new Vector2(targetX + offsetX, rushYPos);
 
-                // ±âÁ¸ Ç®¸µ ½Ã½ºÅÛ È°¿ë (ID´Â °¡ÁßÄ¡ ·£´ıÀ¸·Î »Ì±â)
+                // ê¸°ì¡´ í’€ë§ ì‹œìŠ¤í…œ í™œìš© (IDëŠ” ê°€ì¤‘ì¹˜ ëœë¤ìœ¼ë¡œ ë½‘ê¸°)
                 int monsterID = GetWeightedRandom(targetRates);
                 EnemyAI enemy = enemyManager.SpawnEnemy(monsterID, spawnPos);
-                // ¼Óµµ 1.4¹è, Ã¼·Â 1.5¹è ¹öÇÁ ºÎ¿© ¹× ÇÏ°­ ¸í·É
+                // ì†ë„ 1.4ë°°, ì²´ë ¥ 1.5ë°° ë²„í”„ ë¶€ì—¬ ë° í•˜ê°• ëª…ë ¹
                 enemy.SetRushMode(Vector2.down, 1.4f, 1.5f, rushYPos-rushDis);
                
             }
 
-            // ´ÙÀ½ µ¹Áø±îÁö ´ë±â ½Ã°£ (¾à 1.5ÃÊ)
+            // ë‹¤ìŒ ëŒì§„ê¹Œì§€ ëŒ€ê¸° ì‹œê°„ (ì•½ 1.5ì´ˆ)
             yield return new WaitForSeconds(1.5f);
         }
     }
 
-    //°¢ Ãş¼ö ¿¤¸®Æ® ¸ó½ºÅÍ ¼ÒÈ¯
-    void SpawElite()
+    //ê° ì¸µìˆ˜ ì—˜ë¦¬íŠ¸ ëª¬ìŠ¤í„° ì†Œí™˜
+    /*void SpawElite()
     {
         int thisFloor = GameDataManager.Instance.CurrentFloor;
         if (thisFloor == 5 || thisFloor == 10) return;
          Spawn(eliteId[thisFloor - 1]);
+    }*/
+    void SpawElite()
+    {
+        int thisFloor = GameDataManager.Instance.CurrentFloor;
+        if (thisFloor == 5 || thisFloor == 10) return;
+
+        Vector2 spawnPos = GetRandomPosition();
+        spawnedElite = enemyManager.SpawnEnemy(eliteId[thisFloor - 1], spawnPos);
+
+        // ì—˜ë¦¬íŠ¸ ì‚¬ë§ ê°ì§€ ì½”ë£¨í‹´ ì‹œì‘
+        if (spawnedElite != null)
+            StartCoroutine(WatchEliteDeath(spawnedElite));
+    }
+    private IEnumerator WatchEliteDeath(EnemyAI elite)
+    {
+        while (elite != null && !elite.isDie)
+        {
+            yield return new WaitForSeconds(0.2f);
+        }
+        Debug.Log("[EnemySpawner] ì—˜ë¦¬íŠ¸ ì²˜ì¹˜ â€” ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´");
+        OnEliteKilled?.Invoke();
     }
 
     void Spawn(int ID)
@@ -188,12 +212,12 @@ public class EnemySpawner : MonoBehaviour
         EnemyAI enemy = enemyManager.SpawnEnemy(ID, spawnPos);
     }
 
-    //»ı¼ºÀ§Ä¡ ·£´ı ·ÎÁ÷
+    //ìƒì„±ìœ„ì¹˜ ëœë¤ ë¡œì§
     Vector2 GetRandomPosition()
     {
-        // ·£´ıÇÑ °¢µµ(0~360µµ) ¶óµğ¾ÈÀ¸·Î °è»ê
+        // ëœë¤í•œ ê°ë„(0~360ë„) ë¼ë””ì•ˆìœ¼ë¡œ ê³„ì‚°
         float angle = Random.Range(0f, Mathf.PI * 2f);
-        // »ï°¢ÇÔ¼ö(Cos, Sin)¸¦ »ç¿ëÇÏ¸é ³»°¡ »ÌÀº °¢µµ°¡ ¹İÁö¸§ÀÌ 1ÀÎ ¿ø À§¿¡¼­ ¾îµğ¿¡ À§Ä¡ÇÏ´ÂÁö * °Å¸® 
+        // ì‚¼ê°í•¨ìˆ˜(Cos, Sin)ë¥¼ ì‚¬ìš©í•˜ë©´ ë‚´ê°€ ë½‘ì€ ê°ë„ê°€ ë°˜ì§€ë¦„ì´ 1ì¸ ì› ìœ„ì—ì„œ ì–´ë””ì— ìœ„ì¹˜í•˜ëŠ”ì§€ * ê±°ë¦¬ 
         Vector2 spawnOffset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * spawnDistance;
         return (Vector2)player.position + spawnOffset;
     }

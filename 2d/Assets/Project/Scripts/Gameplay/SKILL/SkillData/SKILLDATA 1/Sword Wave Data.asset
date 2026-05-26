@@ -16,9 +16,9 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 48db986e7e30b7849989c8d9595e5448, type: 3}
   description: 
   levels:
-  - cooldown: 2
+  - cooldown: 1
     count: 1
-    damage: 18
+    damage: 1800
     multiplier: 1
     range: 17.2
     angle: 0

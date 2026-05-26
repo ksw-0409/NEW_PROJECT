@@ -32,6 +32,23 @@ public class StageManager : MonoBehaviour
     public static bool IsStageOver { get; private set; } = false;
     public static bool IsStageActive { get; private set; } = false;
 
+    void OnEnable()
+    {
+        EnemySpawner.OnEliteKilled += OnEliteKilled;
+    }
+
+    void OnDisable()
+    {
+        EnemySpawner.OnEliteKilled -= OnEliteKilled;
+    }
+
+    private void OnEliteKilled()
+    {
+        if (isStageOver) return;
+        isStageOver = true;
+        StartCoroutine(StageEndRoutine());
+    }
+
     void Start()
     {
         IsStageActive = true;
@@ -64,14 +81,9 @@ public class StageManager : MonoBehaviour
 
         timer += Time.deltaTime;
 
+        // 타이머 UI 갱신
         float remaining = Mathf.Max(0f, currentFloorData.stageDuration - timer);
         OnTimerUpdated?.Invoke(remaining);
-
-        if (timer >= currentFloorData.stageDuration && !isStageOver)
-        {
-            isStageOver = true;
-            StartCoroutine(StageEndRoutine());
-        }
     }
 
     private IEnumerator StageEndRoutine()
