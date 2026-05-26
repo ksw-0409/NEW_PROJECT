@@ -52,8 +52,7 @@ public class EnemySpawner : MonoBehaviour
 
     void HandleWaveLogic(int sec)
     {
-        //정상로직
-        
+        //정상로직        
         if (sec < 60) SpawnNormalWave(Random.Range(1,2));
         else if (sec == 60) { SpawnCircleWave(); }
         else if (sec < 120) SpawnNormalWave(Random.Range(3, 4));

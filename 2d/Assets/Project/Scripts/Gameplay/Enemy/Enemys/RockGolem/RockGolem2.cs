@@ -20,6 +20,7 @@ public class RockGolem2 : EnemyAI
     private bool isRockFalling = false;  // 실행 중 중복 방지
     private Transform playerTarget;      // 플레이어 위치 참조
 
+    public Animator animator;
     public override void Init()
     {
         base.Init();
@@ -76,22 +77,26 @@ public class RockGolem2 : EnemyAI
     private IEnumerator DieRoutine()
     {
         RockDie = true;
-        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
-        Color originalColor = sprite.color;
-        Color flashColor = Color.red; // 번쩍일 색상 (흰색 원하면 Color.white)
+        yield return new WaitForSeconds(DieDealy);
+        animator.SetTrigger("is_boom");
+        /*
+         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+         Color originalColor = sprite.color;
+         Color flashColor = Color.red; // 번쩍일 색상 (흰색 원하면 Color.white)
 
-        float elapsed = 0f;
-        float flashInterval = 0.1f; // 깜빡이는 속도 (낮을수록 빠름)
 
-        // 1. DieDealy 시간 동안 반복해서 번쩍임
-        while (elapsed < DieDealy)
-        {
-            // 색상 교체 (깜빡임)
-            sprite.color = (sprite.color == originalColor) ? flashColor : originalColor;
+         float elapsed = 0f;
+         float flashInterval = 0.1f; // 깜빡이는 속도 (낮을수록 빠름)
 
-            yield return new WaitForSeconds(flashInterval);
-            elapsed += flashInterval;
-        }
+         // 1. DieDealy 시간 동안 반복해서 번쩍임
+         while (elapsed < DieDealy)
+         {
+             // 색상 교체 (깜빡임)
+             sprite.color = (sprite.color == originalColor) ? flashColor : originalColor;
+
+             yield return new WaitForSeconds(flashInterval);
+             elapsed += flashInterval;
+         }*/
         SpawnDeathRocks();
         base.Die();
     }
