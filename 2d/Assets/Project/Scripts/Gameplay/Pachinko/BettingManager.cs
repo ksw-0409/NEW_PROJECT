@@ -1,9 +1,20 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class BettingManager : MonoBehaviour
 {
+    [SerializeField] private GameObject batting;
+
+    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject[] buttonsToShowAfterAnim;
+    [SerializeField] private string openAnimName = "PanelIntro";
+
+    private bool isPaused = false;
+    private Coroutine showButtonsCoroutine;
+
+
     [Header("UI 연결")]
     public TMP_Text currentBetText; // 현재 배팅할 금액을 보여줄 텍스트
     public Button goButton; // 파칭코 시작 버튼
@@ -17,7 +28,8 @@ public class BettingManager : MonoBehaviour
 
     //파칭코 배팅 시작 
     void OnEnable()
-    {        
+    {
+        GameDataManager.Instance.isPachinkoActive = true;
         // 외부에서 플레이어의 실제 보유 골드
         playerTotalGold = GameDataManager.Instance.Gold;
         // 초기화
@@ -87,4 +99,46 @@ public class BettingManager : MonoBehaviour
             goButton.interactable = currentBetAmount > 0;
         }
     }
+
+    //배팅 시작
+    public void Gobetting()
+    {
+        isPaused = !isPaused;
+        batting.SetActive(isPaused);
+
+        if (isPaused)
+        {
+            SetButtonsVisible(false);
+            animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+
+            if (showButtonsCoroutine != null) StopCoroutine(showButtonsCoroutine);
+            showButtonsCoroutine = StartCoroutine(PlayAnimAndShowButtons());
+        }
+    }
+
+    private IEnumerator PlayAnimAndShowButtons()
+    {
+        yield return null; // 한 프레임 대기 (Animator 초기화 완료 후 Play)
+        animator.Play(openAnimName, 0, 0f);
+
+        float clipLength = GetClipLength(openAnimName);
+        yield return new WaitForSecondsRealtime(clipLength);
+        SetButtonsVisible(true);
+    }
+
+    private void SetButtonsVisible(bool visible)
+    {
+        foreach (var btn in buttonsToShowAfterAnim)
+            btn.gameObject.SetActive(visible);
+    }
+
+    private float GetClipLength(string clipName)
+    {
+        foreach (var clip in animator.runtimeAnimatorController.animationClips)
+            if (clip.name == clipName) return clip.length;
+
+        Debug.LogWarning($"클립 '{clipName}'을 찾을 수 없습니다.");
+        return 1f;
+    }
+
 }

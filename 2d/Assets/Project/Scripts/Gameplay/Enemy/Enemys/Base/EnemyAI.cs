@@ -118,8 +118,14 @@ public class EnemyAI : MonoBehaviour
         isDie = true;
         EnemyManager.Instance.AddKill();
         // ✨ 적 처치 이펙트 — 보스면 elite 폭발
-        bool isElite = gameObject.name.Contains("Boss") || gameObject.name.Contains("Elite");
-        VFXManager.SpawnDeathBurst(transform.position, isElite);
+        bool isBoss = gameObject.name.Contains("Boss");
+        bool isElite = data.id % 2 == 0;
+        VFXManager.SpawnDeathBurst(transform.position, isBoss||isElite);
+
+        if (isElite)
+        {
+            //여기서 넘겨라잉 ~
+        }
 
         ExpManager.Instance.DropExp(this.transform.position, expAmount);
         ItemManager.Instance.DropItem(this.transform.position, DropWeapon, false);

@@ -130,7 +130,9 @@ public class BossStageManager : MonoBehaviour
                 yield return StartCoroutine(BossDeathSequence(bossPos));
 
                 SpawnPortal();
-                SpawnRoulette();
+                //룰렛 상호작용 룰렛 
+                //함수 상호작용 밑에꺼  
+                    SpawnRoulette();
                 yield break;
             }
         }
@@ -195,7 +197,7 @@ public class BossStageManager : MonoBehaviour
         }
     }
 
-private void SpawnPortal()
+    private void SpawnPortal()
     {
         if (portalPrefab == null || player == null)
         {
@@ -208,6 +210,8 @@ private void SpawnPortal()
         if (ps != null) ps.SetNextScene(SceneController.SceneName.Base);
         Debug.Log("[BossStageManager] 보스 처치 — 베이스로 가는 포탈 생성");
     }
+
+
     private void SpawnRoulette()
     {
         if (Betting == null || player == null)
@@ -215,6 +219,6 @@ private void SpawnPortal()
             Debug.LogError("[BossStageManager] roulettePrefab/player 미할당");
             return;
         }
-        Betting.gameObject.SetActive(true);
+        Betting.GetComponent<BettingManager>().Gobetting();
     }
 }

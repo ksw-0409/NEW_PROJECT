@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GameDataManager.Instance.isPachinkoActive) return;
         rb.linearVelocity = moveInput * stats.MoveSpeed;
     }
 }

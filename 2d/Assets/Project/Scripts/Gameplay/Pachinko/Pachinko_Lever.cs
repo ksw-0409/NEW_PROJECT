@@ -78,7 +78,7 @@ public class SuperEasyLever : MonoBehaviour
             Vector3 delta = obj.transform.position - startPos;
             shaftObject.transform.position = (startPos + (delta * followWeight)) - offset;
             smObject.transform.position = (startPos + (delta * followWeight)) - offset2;
-            upScale = (startPos.y - draggingObject.transform.position.y) * 0.6f + 1.0f;
+            upScale = (startPos.y - draggingObject.transform.position.y) * 0.2f + 1.0f;
             draggingObject.transform.localScale = new Vector3(upScale, upScale, upScale);
             shaftObject.transform.localScale = new Vector3(1, 2.0f - upScale, 1);
             yield return null;
@@ -101,12 +101,12 @@ public class SuperEasyLever : MonoBehaviour
              Vector3 delta = targetPos - startPos;
             shaftObject.transform.position = (startPos + (delta * followWeight)) - offset;
             smObject.transform.position = (startPos + (delta * followWeight)) - offset2;
-            upScale = (startPos.y - draggingObject.transform.position.y)*0.6f+1.0f;
+            upScale = (startPos.y - draggingObject.transform.position.y)*0.2f+1.0f;
             draggingObject.transform.localScale =new Vector3(upScale,upScale,upScale); 
             
             shaftObject.transform.localScale =new Vector3(1, 2.0f-upScale,1);
             // 임계점 도달 체크 (드래그 중에만 체크)
-            if (draggingObject.transform.position.y < -0.25f)
+            if (draggingObject.transform.position.y < -0.18f)
             {
                 isClicked = false;
                 isRolling = true; 
