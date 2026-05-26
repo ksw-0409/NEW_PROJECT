@@ -388,11 +388,13 @@ public static class VFXManager
     }
 
     // 하늘과 연결된 굵은 빛줄기 (세로로 길게 솔구치는 직사각형 빔). worldPos 바닥에서 위로 뻗음.
-    public static void SpawnTallLightBeam(Vector3 basePos, float width, float height, float duration, Color color)
+    public static void SpawnTallLightBeam(Vector3 basePos, float width, float height, float duration, Color color, float angleDeg = 0f)
     {
         var go = new GameObject("VFXTallLightBeam");
-        // 빔은 바닥(basePos)에서 위로 솔아오르므로, 피봇을 아래(0,0)으로 둔 스프라이트 사용
+        // 빔은 바닥(basePos)에서 뻗어나가며, 피봇이 하단 중앙이라 그 점을 중심으로 회전함
         go.transform.position = basePos;
+        // angleDeg 만큼 회전 (0 = 위쪽, 양수 = 반시계)
+        go.transform.rotation = Quaternion.Euler(0f, 0f, angleDeg);
 
         var sr = go.AddComponent<SpriteRenderer>();
         sr.sprite = GetBeamSprite();

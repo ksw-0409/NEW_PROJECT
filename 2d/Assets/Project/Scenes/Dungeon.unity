@@ -5498,6 +5498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossStageManager
   bossPrefab: {fileID: 6158536839425183535, guid: df549d85362462840a82482083976df6, type: 3}
+  voidPriestPrefab: {fileID: 6158536839425183535, guid: 1ce3f8af6ef80ef4b8dfaf0193e3c168, type: 3}
   spawnPoint: {fileID: 201180547}
   player: {fileID: 2026055320}
   portalPrefab: {fileID: 3424542349691123839, guid: acf6ebc6717f39b408acd6a904d68514, type: 3}

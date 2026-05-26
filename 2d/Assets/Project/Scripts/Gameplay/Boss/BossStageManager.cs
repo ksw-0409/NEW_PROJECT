@@ -9,7 +9,8 @@ using UnityEngine;
 public class BossStageManager : MonoBehaviour
 {
     [Header("보스 설정")]
-    [SerializeField] private GameObject bossPrefab;
+        [SerializeField] private GameObject bossPrefab;          // 5층 보스 (실바누스)
+    [SerializeField] private GameObject voidPriestPrefab;    // 10층 보스 (공허의 대사제)
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform player;
     [SerializeField] private GameObject portalPrefab;
@@ -25,7 +26,8 @@ public class BossStageManager : MonoBehaviour
 
     private GameObject spawnedBoss;
     private bool bossDefeated = false;
-    private bool isBossStage = false;
+        private bool isBossStage = false;
+    private int requestedBossId = 5; // 진입 시 요청된 보스 ID (5=실바누스, 10=공허의 대사제);
     private static bool hasInitialized = false; // ⭐ 이중 초기화 방지
 
     void Awake()
@@ -39,7 +41,8 @@ public class BossStageManager : MonoBehaviour
         hasInitialized = true;
 
         bool requested = BossPortal.BossEntryRequested;
-        BossPortal.BossEntryRequested = false; // 즉시 소비
+                BossPortal.BossEntryRequested = false; // 즉시 소비
+        requestedBossId = BossPortal.RequestedBossId; // 요청된 보스 ID 저장 // 즉시 소비
 
         isBossStage = requested;
         int floor = GameDataManager.Instance != null ? GameDataManager.Instance.CurrentFloor : 1;
@@ -82,9 +85,13 @@ public class BossStageManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
-        if (bossPrefab == null)
+                // 요청된 보스 ID에 따라 스폰할 프리팹 선택 (10 = 공허의 대사제, 그 외 = 기본 보스)
+        GameObject selectedBoss = (requestedBossId == 10 && voidPriestPrefab != null) ? voidPriestPrefab : bossPrefab;
+        Debug.Log($"[BossStageManager] requestedBossId={requestedBossId} -> spawn {(selectedBoss != null ? selectedBoss.name : "NULL")}");
+
+        if (selectedBoss == null)
         {
-            Debug.LogError("[BossStageManager] bossPrefab 미할당");
+            Debug.LogError("[BossStageManager] 스폰할 보스 프리팹 미할당 (bossId=" + requestedBossId + ")");
             yield break;
         }
 
@@ -95,7 +102,7 @@ public class BossStageManager : MonoBehaviour
         }
 
         Vector3 pos = spawnPoint != null ? spawnPoint.position : new Vector3(0f, 4f, 0f);
-        spawnedBoss = Instantiate(bossPrefab, pos, Quaternion.identity);
+        spawnedBoss = Instantiate(selectedBoss, pos, Quaternion.identity);
         Debug.Log($"[BossStageManager] Boss spawned at {pos}");
 
         var ai = spawnedBoss.GetComponent<EnemyAI>();
