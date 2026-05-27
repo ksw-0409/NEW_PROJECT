@@ -1033,47 +1033,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::itemmanager
   itemDatabaseCsv: {fileID: 4900000, guid: 52b0f515aac571045af4dcb097b0dc92, type: 3}
   iconEntries:
-  - iconName: fa735
+  - iconName: C_SWORD
     sprite: {fileID: 21300000, guid: 67fd9bdc68f50a24ab095d48834aa712, type: 3}
-  - iconName: fa727
+  - iconName: R_SWORD
     sprite: {fileID: 21300000, guid: da38ef568ac72594badcc9a931ccb98d, type: 3}
-  - iconName: fa1518
+  - iconName: U_SWORD
     sprite: {fileID: 21300000, guid: 6f3534723665bb34b9c5d953752dfdfe, type: 3}
-  - iconName: fa1652
-    sprite: {fileID: 21300000, guid: 4b67cf3dc4fe6d549957bbd8fbeaa900, type: 3}
-  - iconName: fa1654
-    sprite: {fileID: 21300000, guid: cdac8cdbb3bac1046a73a12859662de6, type: 3}
-  - iconName: fa1690
-    sprite: {fileID: 21300000, guid: e540fcc2d6a791e4c93db7c1338f1305, type: 3}
-  - iconName: fa1596
-    sprite: {fileID: 21300000, guid: 1052b9f789516eb458897cc3f398ac7e, type: 3}
-  - iconName: fa1515
+  - iconName: L_SWORD
     sprite: {fileID: 21300000, guid: 86c3720e4b030914682a45004c51ea12, type: 3}
-  - iconName: fa1789
+  - iconName: C_STAFF
+    sprite: {fileID: 21300000, guid: 4b67cf3dc4fe6d549957bbd8fbeaa900, type: 3}
+  - iconName: R_STAFF
+    sprite: {fileID: 21300000, guid: cdac8cdbb3bac1046a73a12859662de6, type: 3}
+  - iconName: U_STAFF
+    sprite: {fileID: 21300000, guid: e540fcc2d6a791e4c93db7c1338f1305, type: 3}
+  - iconName: L_STAFF
     sprite: {fileID: 21300000, guid: ac7ffcb99f04bb54093a27baeb9af7a4, type: 3}
-  - iconName: fa1832
+  - iconName: C_BOW
+    sprite: {fileID: 21300000, guid: 1052b9f789516eb458897cc3f398ac7e, type: 3}
+  - iconName: R_BOW
+    sprite: {fileID: 21300000, guid: 1052b9f789516eb458897cc3f398ac7e, type: 3}
+  - iconName: U_BOW
+    sprite: {fileID: 21300000, guid: 1052b9f789516eb458897cc3f398ac7e, type: 3}
+  - iconName: L_BOW
+    sprite: {fileID: 21300000, guid: 1052b9f789516eb458897cc3f398ac7e, type: 3}
+  - iconName: C_HELM
     sprite: {fileID: 21300000, guid: 18b5a5ed3e4baf34d9fcf5744a68a644, type: 3}
-  - iconName: fa1833
+  - iconName: R_HELM
     sprite: {fileID: 21300000, guid: 7b40591a771f64f409698f4fd4003cf9, type: 3}
-  - iconName: fa1834
+  - iconName: U_HELM
     sprite: {fileID: 21300000, guid: 0a49ca1d2f64fad4ba8363290073d6c8, type: 3}
-  - iconName: fa1818
+  - iconName: L_HELM
+    sprite: {fileID: 21300000, guid: 0a49ca1d2f64fad4ba8363290073d6c8, type: 3}
+  - iconName: C_CHST
     sprite: {fileID: 21300000, guid: 1c4c302989453ae4ea786827c59cf343, type: 3}
-  - iconName: fa1821
+  - iconName: R_CHST
     sprite: {fileID: 21300000, guid: d2411ed2594db0942b2ce935a2d56d6f, type: 3}
-  - iconName: fa2096
+  - iconName: U_CHST
     sprite: {fileID: 21300000, guid: cec22456d15cd0b4398483e1778e8f34, type: 3}
-  - iconName: fa1823
+  - iconName: L_CHST
+    sprite: {fileID: 21300000, guid: cec22456d15cd0b4398483e1778e8f34, type: 3}
+  - iconName: C_LEG
     sprite: {fileID: 21300000, guid: a7bd60c42cbc6ee4683bbd600ff046e1, type: 3}
-  - iconName: fa1824
+  - iconName: R_LEG
     sprite: {fileID: 21300000, guid: 1952171a31f5ed9418374fe7656d3e16, type: 3}
-  - iconName: fa1825
+  - iconName: U_LEG
     sprite: {fileID: 21300000, guid: d3cf6263a59027940b7c9545e998e640, type: 3}
-  - iconName: fa1854
+  - iconName: L_LEG
+    sprite: {fileID: 21300000, guid: d3cf6263a59027940b7c9545e998e640, type: 3}
+  - iconName: C_BOOT
     sprite: {fileID: 21300000, guid: a34f8af3cf66b7440be76d77a4b41ee5, type: 3}
-  - iconName: fa1944
+  - iconName: R_BOOT
     sprite: {fileID: 21300000, guid: 9505cdd026a8b0044810c03cc65e84b9, type: 3}
-  - iconName: fa2045
+  - iconName: U_BOOT
+    sprite: {fileID: 21300000, guid: 26254553dacf05743a1490a2f6ebf870, type: 3}
+  - iconName: L_BOOT
     sprite: {fileID: 21300000, guid: 26254553dacf05743a1490a2f6ebf870, type: 3}
 --- !u!4 &1262952596
 Transform:

@@ -1,7 +1,7 @@
 public enum ItemType { Weapon, Armor, Special }
 public enum EquipmentSlot { Weapon, Helmet, Armor, Shoes, Pants }
-public enum ItemGrade { Common, Rare, Epic, Legendary }
-// ¹«±â ¼¼ºÎ Å¸ÀÔ
+public enum ItemGrade { Common, Rare, Epic, Unique, Legendary }
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½
 public enum WeaponType { Sword, Staff, Bow, Dagger, Spellbook, Shield }
-// Æ¯¼ö Àåºñ ¼¼ºÎ Å¸ÀÔ
+// Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½
 public enum SpecialType { Scabbard, Quiver, CrystalBall, Dice }

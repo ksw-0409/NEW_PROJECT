@@ -66,8 +66,10 @@ public class EquipmentManager : MonoBehaviour
 
                 row.id = int.Parse(cols[0].Trim());
                 row.itemName = cols[1].Trim();
-                row.itemType = (ItemType)System.Enum.Parse(typeof(ItemType), cols[2].Trim(), true);
-                row.grade = (ItemGrade)System.Enum.Parse(typeof(ItemGrade), cols[3].Trim(), true);
+                ParseTypeAndSlot(cols[2].Trim(), out var itType, out var itSlot);
+                row.itemType = itType;
+                row.slot = itSlot;
+                row.grade = ParseGrade(cols[3].Trim());
                 row.iconName = cols[4].Trim();
 
                 row.basePhys       = ParseFloat(cols[5]);
@@ -107,11 +109,64 @@ public class EquipmentManager : MonoBehaviour
         Debug.Log($"[EquipmentManager] 아이템 DB 로드 완료 — 총 {itemDatabase.Count}개");
     }
 
+    // CSV Type 컬럼(부위) → ItemType + EquipmentSlot 동시 결정
+    private void ParseTypeAndSlot(string s, out ItemType type, out EquipmentSlot slot)
+    {
+        switch (s.Trim().ToUpperInvariant())
+        {
+            case "WEAPON": type = ItemType.Weapon; slot = EquipmentSlot.Weapon; return;
+            case "HELMET": type = ItemType.Armor;  slot = EquipmentSlot.Helmet; return;
+            case "ARMOR":  type = ItemType.Armor;  slot = EquipmentSlot.Armor;  return;
+            case "PANTS":  type = ItemType.Armor;  slot = EquipmentSlot.Pants;  return;
+            case "SHOES":  type = ItemType.Armor;  slot = EquipmentSlot.Shoes;  return;
+            default:
+                Debug.LogWarning($"[EquipmentManager] 알 수 없는 Type '{s}' → Weapon 처리");
+                type = ItemType.Weapon; slot = EquipmentSlot.Weapon; return;
+        }
+    }
+
+    // CSV Grade 문자열 → ItemGrade (LEGEND 같은 별칭 처리)
+    private ItemGrade ParseGrade(string s)
+    {
+        switch (s.Trim().ToUpperInvariant())
+        {
+            case "COMMON":    return ItemGrade.Common;
+            case "RARE":      return ItemGrade.Rare;
+            case "EPIC":      return ItemGrade.Epic;
+            case "UNIQUE":    return ItemGrade.Unique;
+            case "LEGEND":
+            case "LEGENDARY": return ItemGrade.Legendary;
+            default:
+                Debug.LogWarning($"[EquipmentManager] 알 수 없는 Grade '{s}' → Common 처리");
+                return ItemGrade.Common;
+        }
+    }
+
     private float ParseFloat(string s)
     {
         if (string.IsNullOrWhiteSpace(s)) return 0f;
         return float.Parse(s.Trim(), System.Globalization.CultureInfo.InvariantCulture);
     }
+
+    // 특정 등급의 모든 아이템 ID 목록 반환
+    public System.Collections.Generic.List<int> GetIdsByGrade(ItemGrade grade)
+    {
+        var list = new System.Collections.Generic.List<int>();
+        foreach (var kv in itemDatabase)
+            if (kv.Value.grade == grade) list.Add(kv.Key);
+        return list;
+    }
+
+    // 특정 등급에서 랜덤 아이템 ID 하나 반환 (없으면 -1)
+    public int GetRandomIdByGrade(ItemGrade grade)
+    {
+        var list = GetIdsByGrade(grade);
+        if (list.Count == 0) return -1;
+        return list[Random.Range(0, list.Count)];
+    }
+
+    // DB에 로드된 전체 아이템 수 (디버그용)
+    public int DatabaseCount => itemDatabase.Count;
 
     public EquipmentData CreateItem(int id)
     {
@@ -127,6 +182,7 @@ public class EquipmentManager : MonoBehaviour
         newItem.itemName = data.itemName;
         newItem.itemType = data.itemType;
         newItem.grade = data.grade;
+        newItem.slot = data.slot;
 
         newItem.physicalDamage  = data.basePhys    + Random.Range(data.minAddPhys, data.maxAddPhys);
         newItem.magicDamage     = data.baseMagic   + Random.Range(data.minAddMagic, data.maxAddMagic);

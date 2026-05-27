@@ -1,22 +1,29 @@
-﻿ID	Name	Type	Grade	IconName	BasePhys	BaseMagic	BaseCrit	BaseCritDmg	BaseHealth	BaseDef	BaseSpeed	AttackCooldown	MinAddPhys	MaxAddPhys	MinAddMagic	MaxAddMagic	MinAddCrit	MaxAddCrit	MinAddCritDmg	MaxAddCritDmg	MinAddHealth	MaxAddHealth	MinAddDef	MaxAddDef	MinAddSpeed	MaxAddSpeed	Ability
-1001	낡은 검	Weapon	COMMON	fa735	30	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-1002	낡은 지팡이	Weapon	COMMON	fa1652	0	15	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-1003	낡은 활	Weapon	COMMON	fa1596	10	10	5	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-1004	보급형 검	Weapon	RARE	fa727	45	0	10	15	0	0	0	0.1	1	15	1	15	5	10	10	15	1	10	1	5	-10	-10	0
-1005	보급형 지팡이	Weapon	RARE	fa1654	0	25	10	15	0	0	0	0.2	1	15	1	15	5	10	10	15	1	10	1	5	-10	-10	0
-1006	보급형 활	Weapon	RARE	fa1515	20	20	15	20	0	0	0	0	1	15	1	15	5	10	10	15	1	10	1	5	-10	-10	0
-1007	연마된 검	Weapon	EPIC	fa1518	60	0	20	30	0	0	0	0.2	16	30	16	30	11	25	16	30	11	30	6	10	-5	-5	0
-1008	연마된 지팡이	Weapon	EPIC	fa1690	0	40	20	30	0	0	0	0.4	16	30	16	30	11	25	16	30	11	30	6	10	-5	-5	0
-1009	연마된 활	Weapon	EPIC	fa1789	25	25	25	30	0	0	0	0.2	16	30	16	30	11	25	16	30	11	30	6	10	-5	-5	0
-1010	낡은 투구	Armor	COMMON	fa1832	0	0	0	0	10	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-1011	낡은 흉갑	Armor	COMMON	fa1818	0	0	0	0	20	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-1012	낡은 각반	Armor	COMMON	fa1823	0	0	0	0	15	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-1013	낡은 신발	Armor	COMMON	fa1854	0	0	0	0	5	0	5	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-1014	보급형 투구	Armor	RARE	fa1833	0	0	0	0	15	0	0	0	-5	-1	-5	-1	0	0	0	0	15	20	1	10	0	0	0
-1015	보급형 흉갑	Armor	RARE	fa1821	0	0	0	0	25	5	0	0	-5	-1	-5	-1	0	0	0	0	15	20	1	10	0	0	0
-1016	보급형 각반	Armor	RARE	fa1824	0	0	0	0	20	5	0	0	-5	-1	-5	-1	0	0	0	0	15	20	1	10	0	0	0
-1017	보급형 신발	Armor	RARE	fa1944	0	0	0	0	10	0	10	0	-5	-1	-5	-1	0	0	0	0	15	20	1	10	15	15	0
-1018	연마된 투구	Armor	EPIC	fa1834	0	0	0	0	20	5	0	0	-10	-6	-10	-6	0	0	0	0	21	40	5	15	0	0	0
-1019	연마된 흉갑	Armor	EPIC	fa2096	0	0	0	0	35	10	0	0	-10	-6	-10	-6	0	0	0	0	21	40	5	15	0	0	0
-1020	연마된 각반	Armor	EPIC	fa1825	0	0	0	0	30	10	0	0	-10	-6	-10	-6	0	0	0	0	21	40	5	15	0	0	0
-1021	연마된 신발	Armor	EPIC	fa2045	0	0	0	0	15	0	20	0	-10	-6	-10	-6	0	0	0	0	21	40	5	15	30	30	0
+ID	Name	Type	Grade	IconName	BasePhys	BaseMagic	BaseCrit	BaseCritDmg	BaseHealth	BaseDef	BaseSpeed	AttackCooldown	MinAddPhys	MaxAddPhys	MinAddMagic	MaxAddMagic	MinAddCrit	MaxAddCrit	MinAddCritDmg	MaxAddCritDmg	MinAddHealth	MaxAddHealth	MinAddDef	MaxAddDef	MinAddSpeed	MaxAddSpeed	Ability
+1001	낡은 검	Weapon	COMMON	C_SWORD	30	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+1002	낡은 지팡이	Weapon	COMMON	C_STAFF	0	15	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+1003	낡은 활	Weapon	COMMON	C_BOW	10	10	5	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+1004	보급형 검	Weapon	RARE	R_SWORD	45	0	10	15	0	0	0	0.1	1	15	1	15	15	25	15	30	1	10	1	5	-10	-10	0
+1005	보급형 지팡이	Weapon	RARE	R_STAFF	0	25	10	15	0	0	0	0.2	1	15	1	15	15	25	15	30	1	10	1	5	-10	-10	0
+1006	보급형 활	Weapon	RARE	R_BOW	20	20	15	20	0	0	0	0	1	15	1	15	15	25	15	30	1	10	1	5	-10	-10	0
+1007	연마된 검	Weapon	UNIQUE	U_SWORD	60	0	20	30	0	0	0	0.2	16	30	16	30	25	40	31	50	11	30	6	10	-5	-5	0
+1008	연마된 지팡이	Weapon	UNIQUE	U_STAFF	0	40	20	30	0	0	0	0.4	16	30	16	30	25	40	31	50	11	30	6	10	-5	-5	0
+1009	연마된 활	Weapon	UNIQUE	U_BOW	25	25	25	30	0	0	0	0.2	16	30	16	30	25	40	31	50	11	30	6	10	-5	-5	0
+1010	낡은 투구	Helmet	COMMON	C_HELM	0	0	0	0	10	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+1011	낡은 흉갑	Armor	COMMON	C_CHST	0	0	0	0	20	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+1012	낡은 각반	Pants	COMMON	C_LEG	0	0	0	0	15	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+1013	낡은 신발	Shoes	COMMON	C_BOOT	0	0	0	0	5	0	5	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+1014	보급형 투구	Helmet	RARE	R_HELM	0	0	0	0	15	0	0	0	-5	-1	-5	-1	0	0	0	0	15	20	1	10	0	0	0
+1015	보급형 흉갑	Armor	RARE	R_CHST	0	0	0	0	25	5	0	0	-5	-1	-5	-1	0	0	0	0	15	20	1	10	0	0	0
+1016	보급형 각반	Pants	RARE	R_LEG	0	0	0	0	20	5	0	0	-5	-1	-5	-1	0	0	0	0	15	20	1	10	0	0	0
+1017	보급형 신발	Shoes	RARE	R_BOOT	0	0	0	0	10	0	10	0	-5	-1	-5	-1	0	0	0	0	15	20	1	10	15	15	0
+1018	연마된 투구	Helmet	UNIQUE	U_HELM	0	0	0	0	20	5	0	0	-10	-6	-10	-6	0	0	0	0	21	40	5	15	0	0	0
+1019	연마된 흉갑	Armor	UNIQUE	U_CHST	0	0	0	0	35	10	0	0	-10	-6	-10	-6	0	0	0	0	21	40	5	15	0	0	0
+1020	연마된 각반	Pants	UNIQUE	U_LEG	0	0	0	0	30	10	0	0	-10	-6	-10	-6	0	0	0	0	21	40	5	15	0	0	0
+1021	연마된 신발	Shoes	UNIQUE	U_BOOT	0	0	0	0	15	0	20	0	-10	-6	-10	-6	0	0	0	0	21	40	5	15	30	30	0
+1022	그람	Weapon	LEGEND	L_SWORD	70	0	0	0	50	0	0	0	50	50	0	0	0	0	0	0	50	50	0	0	0	0	1
+1023	카두케우스	Weapon	LEGEND	L_STAFF	0	60	0	0	0	0	5	0.5	0	0	50	50	30	30	0	0	0	0	0	0	0	0	2
+1024	페일노트	Weapon	LEGEND	L_BOW	30	30	0	0	0	0	0	0	20	20	20	20	40	40	50	50	0	0	0	0	15	15	3
+1025	퀴네에	Helmet	LEGEND	L_HELM	20	20	0	0	100	0	0	0	0	0	0	0	15	15	30	30	20	20	15	15	5	5	4
+1026	핀의 유산	Armor	LEGEND	L_CHST	0	0	0	0	0	0	0	0	70	70	70	70	100	100	200	200	-50	-50	-20	-20	0	0	5
+1027	그리브스	Pants	LEGEND	L_LEG	25	25	0	0	150	9	0	0.3	0	0	0	0	0	0	0	0	25	25	20	20	10	10	6
+1028	탈라리아	Shoes	LEGEND	L_BOOT	15	15	0	0	70	0	0	0.4	0	0	0	0	0	0	20	20	15	15	15	15	20	30	7

@@ -4,6 +4,7 @@ public class ItemDataRow
     public int id;
     public string itemName;
     public ItemType itemType;
+    public EquipmentSlot slot;
     public ItemGrade grade;
     public string iconName;
 

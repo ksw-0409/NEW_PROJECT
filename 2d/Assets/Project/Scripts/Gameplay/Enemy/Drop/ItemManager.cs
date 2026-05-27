@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
-    public static ItemManager Instance; // ½Ì±ÛÅæ
-    [Header("¾ÆÀÌÅÛ ¼³Á¤")]
-    public EquipmentManager equipManager; // À¯´ÏÆ¼¿¡¼­ EquipmentManager ¿ÀºêÁ§Æ®¸¦ ¿¬°á
-    public GameObject equipmentPrefab;    // Àåºñ Àü¿ë ÇÁ¸®ÆÕ (FieldItem ½ºÅ©¸³Æ®°¡ ºÙÀº °Í)
+    public static ItemManager Instance; // ï¿½Ì±ï¿½ï¿½ï¿½
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
+    public EquipmentManager equipManager; // ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ EquipmentManager ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public GameObject equipmentPrefab;    // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (FieldItem ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
     public GameObject player;
-    // ÇöÀç ÇÊµå¿¡ ¶³¾îÁ® ÀÖ´Â ¾ÆÀÌÅÛµé (ÀÚ¼® È¿°ú µîÀ» À§ÇØ °ü¸®)
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Êµå¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ûµï¿½ (ï¿½Ú¼ï¿½ È¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
     public List<GameObject> activeItems = new List<GameObject>();
 
-    //¹«±â µå¶ø È®·ü
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     float[,] dropChances = {
-    { 50f, 25f, 15f, 10f }, // 1~5Ãş
-    { 25f, 35f, 25f, 15f },  // 6~10Ãş
-    { 0f, 50f, 30f, 20f }  // º¸½º
+    { 50f, 25f, 15f, 10f }, // 1~5ï¿½ï¿½
+    { 25f, 35f, 25f, 15f },  // 6~10ï¿½ï¿½
+    { 0f, 50f, 30f, 20f }  // ï¿½ï¿½ï¿½ï¿½
     };
 
     void Awake()
@@ -28,10 +28,10 @@ public class ItemManager : MonoBehaviour
         activeItems.Remove(item);
     }
 
-    // ÀûÀÌ Á×À» ¶§ È£ÃâÇÒ ÇÔ¼ö
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     public void DropItem(Vector2 position, float equipDropChance,bool isBoss)
     {     
-        // µå¶ø È®·ü °è»ê
+        // ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ï¿½
         if (Random.Range(0f, 100f) <= equipDropChance)
         {
             DropEquipment(position, isBoss);
@@ -39,52 +39,53 @@ public class ItemManager : MonoBehaviour
     }
     private void DropEquipment(Vector2 position, bool isBoss)
     {
-        // µî±Ş È®·ü °è»ê K ±¸Çö¿Ï
+        // ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ï¿½ K ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         int selectedID = GetRandomIDByWeight(isBoss);
 
-        // Àåºñ µ¥ÀÌÅÍ »ı¼º (·£´ı ½ºÅÈ ºÎ¿©µÊ)
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î¿ï¿½ï¿½ï¿½)
         EquipmentData randomData = equipManager.CreateItem(selectedID);
 
-        // ÇÊµå¿¡ Àåºñ ¿ÀºêÁ§Æ® »ı¼º
+        // ï¿½Êµå¿¡ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         GameObject equipObj = Instantiate(equipmentPrefab, position, Quaternion.identity);
         equipObj.GetComponent<FieldItem>().Setup(randomData);
         activeItems.Add(equipObj);
     }
+    // ë“±ê¸‰ í™•ë¥ ì— ë”°ë¼ ë“±ê¸‰ì„ ì •í•˜ê³ , ê·¸ ë“±ê¸‰ì˜ ì•„ì´í…œ ì¤‘ ëœë¤ìœ¼ë¡œ í•˜ë‚˜ ì„ íƒ
+    // dropChances ì»¬ëŸ¼ = [Common, Rare, Unique, Legendary]
     private int GetRandomIDByWeight(bool isBoss)
     {
-        int floor = GameDataManager.Instance.CurrentFloor;
+        int floor = GameDataManager.Instance != null ? GameDataManager.Instance.CurrentFloor : 1;
         int rowIndex = (floor <= 5) ? 0 : 1;
         if (isBoss) rowIndex = 2;
+
+        // ë“±ê¸‰ ìˆœì„œ (dropChances ì»¬ëŸ¼ ìˆœì„œì™€ ì¼ì¹˜)
+        ItemGrade[] gradeOrder = { ItemGrade.Common, ItemGrade.Rare, ItemGrade.Unique, ItemGrade.Legendary };
+
         float roll = Random.Range(0f, 100f);
-
-        // Å×½ºÆ®¿ë: 50% È®·ü·Î 1013¹ø, ¾Æ´Ï¸é 1001¹ø µå¶ø
-        // ÀÏ¹İ
-        if (roll < dropChances[rowIndex, 0])
+        float cumulative = 0f;
+        ItemGrade chosenGrade = ItemGrade.Common;
+        for (int g = 0; g < gradeOrder.Length; g++)
         {
-            return 1013; // ¿¬¸¶µÈ °Ë (RARE)
-        }
-        // ·¹¾î (ÀÏ¹İ + ·¹¾î)
-        else if (roll < dropChances[rowIndex, 0] + dropChances[rowIndex, 1])
-        {
-            return 1001; // ³°Àº °Ë (COMMON)
-        }
-        // Èñ±Í (ÀÏ¹İ + ·¹¾î + Èñ±Í)
-        else if (roll < dropChances[rowIndex, 0] + dropChances[rowIndex, 1] + dropChances[rowIndex, 2])
-        {
-            return 1001; // ³°Àº °Ë (COMMON)
-        }
-        // Àü¼³
-        else
-        {
-            return 1001; // ³°Àº °Ë (COMMON)
+            cumulative += dropChances[rowIndex, g];
+            if (roll < cumulative) { chosenGrade = gradeOrder[g]; break; }
+            if (g == gradeOrder.Length - 1) chosenGrade = gradeOrder[g]; // í´ë°±
         }
 
+        // ì„ íƒëœ ë“±ê¸‰ì˜ ì•„ì´í…œ ì¤‘ ëœë¤ í•˜ë‚˜
+        int id = equipManager.GetRandomIdByGrade(chosenGrade);
+
+        // í•´ë‹¹ ë“±ê¸‰ì— ì•„ì´í…œì´ ì—†ìœ¼ë©´ Commonìœ¼ë¡œ í´ë°±
+        if (id < 0) id = equipManager.GetRandomIdByGrade(ItemGrade.Common);
+        if (id < 0) id = 1001; // ìµœì¢… ì•ˆì „ì¥ì¹˜
+
+        return id;
     }
+
     void FixedUpdate()
     {
         if (player == null) return;
 
-        float magnetDistance = 3.0f; // ÀÚ¼® ¹üÀ§
+        float magnetDistance = 3.0f; // ï¿½Ú¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         float moveSpeed = 10.0f;
 
         for (int i = activeItems.Count - 1; i >= 0; i--)
@@ -93,7 +94,7 @@ public class ItemManager : MonoBehaviour
 
             if (dist < magnetDistance)
             {
-                // ÇÃ·¹ÀÌ¾î ¹æÇâÀ¸·Î ÀÌµ¿
+                // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
                 activeItems[i].transform.position = Vector2.MoveTowards(
                     activeItems[i].transform.position,
                     player.transform.position,

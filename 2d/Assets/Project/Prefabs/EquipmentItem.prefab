@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FieldItem
   data: {fileID: 11400000, guid: 8fd8e5a8ad50e1843aed13f45912a7f5, type: 2}
-  itemDisplayScale: 1.8
+  itemDisplayScale: 0.9
   beamWidthCommon: 1.4
   beamHeightCommon: 3.5
   beamWidthRare: 1.8

@@ -6,7 +6,7 @@ public class FieldItem : MonoBehaviour
 
     [Header("Visual")]
     [Tooltip("필드 아이템 표시 크기 (1.5~2.0 권장)")]
-    public float itemDisplayScale = 1.8f;
+    public float itemDisplayScale = 0.9f;
 
     [Header("Beam Size (월드 유닛)")]
     public float beamWidthCommon  = 0.7f;
