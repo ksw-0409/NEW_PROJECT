@@ -368,4 +368,10 @@ public class PlayerStats : MonoBehaviour
 
         GetComponent<PlayerAnimation>()?.PlayDie();
     }
+
+    public void HealToFull()
+    {
+        currentHealth = MaxHealth;
+        isDead = false;
+    }
 }

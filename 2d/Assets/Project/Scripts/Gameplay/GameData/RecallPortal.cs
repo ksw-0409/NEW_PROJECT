@@ -12,7 +12,9 @@ public class RecallPortal : BaseInteractable
             return;
         }
 
+        PlayerStats.Instance?.HealToFull();
         GameDataManager.Instance.ClearSavedSkills();
         SceneController.Instance.LoadBase();
     }
+
 }
