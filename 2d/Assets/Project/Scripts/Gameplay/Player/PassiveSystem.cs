@@ -61,12 +61,20 @@ public class PassiveSystem : MonoBehaviour
     {
         if (Instance != null && Instance != this) { Destroy(this); return; }
         Instance = this;
+        // ⭐ 플레이어 사망 시 패시브 전부 초기화 (런 한정 — 스킬카드 방식)
+        PlayerStats.OnPlayerDied += ResetAll;
+    }
+
+    void OnDestroy()
+    {
+        PlayerStats.OnPlayerDied -= ResetAll;
+        if (Instance == this) Instance = null;
     }
 
     void Start()
     {
-        // GameDataManager에서 저장된 레벨 복원
-        RestoreFromSave();
+        // ⭐ 패시브는 '런(run) 한정' — 죽으면 사라지는 스킬카드 방식이므로
+        // 영구 저장값을 복원하지 않는다 (항상 0에서 시작).
     }
 
     /// <summary>패시브의 현재 레벨 (0 = 미해금).</summary>
@@ -80,7 +88,7 @@ public class PassiveSystem : MonoBehaviour
     {
         level = Mathf.Clamp(level, 0, 6);
         levels[passiveID] = level;
-        SaveToPersistent();
+        // 영구 저장 안 함 (런 한정 패시브)
 
         Debug.Log($"<color=lime>[Passive]</color> {passiveID} → Lv.{level}");
     }
@@ -133,6 +141,15 @@ public class PassiveSystem : MonoBehaviour
     {
         if (GameDataManager.Instance == null) return;
         GameDataManager.Instance.SavePassiveLevels(levels);
+    }
+
+    /// <summary>모든 패시브 레벨 초기화 (캐릭터 사망 시 호출). 영구저장본도 비움.</summary>
+    public void ResetAll()
+    {
+        levels.Clear();
+        if (GameDataManager.Instance != null)
+            GameDataManager.Instance.SavePassiveLevels(new Dictionary<string, int>());
+        Debug.Log("<color=orange>[PassiveSystem]</color> 모든 패시브 초기화 (사망)");
     }
 
     private void RestoreFromSave()

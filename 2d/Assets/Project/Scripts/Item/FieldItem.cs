@@ -15,6 +15,8 @@ public class FieldItem : MonoBehaviour
     public float beamHeightRare   = 2.6f;
     public float beamWidthEpic    = 1.1f;
     public float beamHeightEpic   = 3.2f;
+    public float beamWidthUnique  = 1.2f;
+    public float beamHeightUnique = 3.5f;
     public float beamWidthLegend  = 1.3f;
     public float beamHeightLegend = 3.8f;
 
@@ -95,6 +97,7 @@ public class FieldItem : MonoBehaviour
             case ItemGrade.Common:    return new Color(0.90f, 0.90f, 0.90f, 0.70f);
             case ItemGrade.Rare:      return new Color(0.30f, 0.55f, 1.00f, 0.85f);
             case ItemGrade.Epic:      return new Color(0.75f, 0.30f, 1.00f, 0.90f);
+            case ItemGrade.Unique:    return new Color(1.00f, 0.35f, 0.70f, 0.92f); // 분홍/마젠타
             case ItemGrade.Legendary: return new Color(1.00f, 0.75f, 0.20f, 0.95f);
             default:                  return new Color(1f, 1f, 1f, 0.70f);
         }
@@ -107,6 +110,7 @@ public class FieldItem : MonoBehaviour
             case ItemGrade.Common:    return new Vector2(beamWidthCommon, beamHeightCommon);
             case ItemGrade.Rare:      return new Vector2(beamWidthRare, beamHeightRare);
             case ItemGrade.Epic:      return new Vector2(beamWidthEpic, beamHeightEpic);
+            case ItemGrade.Unique:    return new Vector2(beamWidthUnique, beamHeightUnique);
             case ItemGrade.Legendary: return new Vector2(beamWidthLegend, beamHeightLegend);
             default: return new Vector2(beamWidthCommon, beamHeightCommon);
         }

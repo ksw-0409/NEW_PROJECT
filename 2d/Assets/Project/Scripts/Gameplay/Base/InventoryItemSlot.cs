@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using System;
 
-// ¿ªÇÒ: °¨Á¤/°­È­ UI¿¡¼­ »ç¿ëÇÏ´Â ÀÎº¥Åä¸® ½½·Ô
+// ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½È­ UIï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½
 
 public class InventoryItemSlot : MonoBehaviour
 {
@@ -66,9 +66,11 @@ public class InventoryItemSlot : MonoBehaviour
     {
         switch (grade)
         {
-            case ItemGrade.Rare: return Color.blue;
-            case ItemGrade.Epic: return Color.yellow;
-            case ItemGrade.Legendary: return Color.green;
+            case ItemGrade.Common:    return new Color(0.90f,0.90f,0.90f);
+            case ItemGrade.Rare:      return new Color(0.30f,0.55f,1.00f);
+            case ItemGrade.Epic:      return new Color(0.75f,0.30f,1.00f);
+            case ItemGrade.Unique:    return new Color(1.00f,0.35f,0.70f);
+            case ItemGrade.Legendary: return new Color(1.00f,0.75f,0.20f);
             default: return Color.white;
         }
     }

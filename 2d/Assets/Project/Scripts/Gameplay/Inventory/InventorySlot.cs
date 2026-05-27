@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
@@ -101,9 +101,11 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         switch (grade)
         {
-            case ItemGrade.Rare: return Color.blue;
-            case ItemGrade.Epic: return Color.yellow;
-            case ItemGrade.Legendary: return Color.green;
+            case ItemGrade.Common:    return new Color(0.90f,0.90f,0.90f);
+            case ItemGrade.Rare:      return new Color(0.30f,0.55f,1.00f);
+            case ItemGrade.Epic:      return new Color(0.75f,0.30f,1.00f);
+            case ItemGrade.Unique:    return new Color(1.00f,0.35f,0.70f);
+            case ItemGrade.Legendary: return new Color(1.00f,0.75f,0.20f);
             default: return Color.white;
         }
     }

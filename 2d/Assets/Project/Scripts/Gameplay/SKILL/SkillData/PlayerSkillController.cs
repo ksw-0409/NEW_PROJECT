@@ -136,6 +136,15 @@ public class PlayerSkillController : MonoBehaviour
     {
         GameObject player = this.gameObject;
 
+        // ⭐ 활 패시브 (독/얼음/폭발/관통 화살) — 마커 컴포넌트로 등록해 레벨 관리
+        //    실제 효과는 BowSkill이 ArrowPassiveData.skillInstance를 읽어 적용한다.
+        if (data is ArrowPassiveData arrowPassive)
+        {
+            ArrowPassiveSkill skill = player.AddComponent<ArrowPassiveSkill>();
+            skill.Init(arrowPassive, instance);
+            return skill;
+        }
+
         if (data is FireballData fireball)
         {
             FireballSkill skill = player.AddComponent<FireballSkill>();

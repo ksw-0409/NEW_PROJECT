@@ -29,7 +29,7 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  - cooldown: 1
+  - cooldown: 0.9
     count: 1
     damage: 8
     multiplier: 6
@@ -42,7 +42,7 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  - cooldown: 1
+  - cooldown: 0.8
     count: 1
     damage: 10
     multiplier: 6
@@ -55,7 +55,7 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  - cooldown: 0
+  - cooldown: 0.7
     count: 2
     damage: 12
     multiplier: 7
@@ -68,7 +68,7 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  - cooldown: 0
+  - cooldown: 0.6
     count: 2
     damage: 14
     multiplier: 7
@@ -81,7 +81,7 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  - cooldown: 0
+  - cooldown: 0.5
     count: 3
     damage: 18
     multiplier: 8

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public abstract class SkillBase : MonoBehaviour
@@ -42,7 +42,8 @@ public abstract class SkillBase : MonoBehaviour
 
     protected float GetCooldown()
     {
-        return instance.GetCurrentLevelData().cooldown;
+        // ⭐ 쿨타임 0 이하 방어: WaitForSeconds(0)은 매 프레임 발사 → 렉/프레임레이트 의존 버그
+        return Mathf.Max(0.1f, instance.GetCurrentLevelData().cooldown);
     }
 
     public int GetLevel()

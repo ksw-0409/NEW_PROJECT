@@ -177,6 +177,9 @@ public class LevelUpManager : MonoBehaviour
     public void OnPlayerDie()
     {
         skillController.ResetSkills();
+        // ⭐ 패시브(골드/이속/HP 등)도 런 한정 → 사망 시 초기화
+        if (PassiveSystem.Instance != null)
+            PassiveSystem.Instance.ResetAll();
         Debug.Log("인게임 레벨 초기화. 스킬 트리 능력치는 보존됩니다.");
     }
 }
