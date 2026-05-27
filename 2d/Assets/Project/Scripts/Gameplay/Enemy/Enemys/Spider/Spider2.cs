@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using MCPForUnity.Editor.Tools;
 
 public class Spider2 : EnemyAI
 {

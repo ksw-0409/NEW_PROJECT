@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Search;
-using UnityEngine;
+﻿using UnityEngine;
 using DG.Tweening; // DOTween 사용
 
 public class Pachinko : MonoBehaviour
