@@ -5,7 +5,10 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - icon: {instanceID: 0}
-  - projectilePrefab: {fileID: 2493754749878858455, guid: a95713e3ead5c164f812272983a21fca, type: 3}
+  - card: {instanceID: 0}
+  - gem: {instanceID: 0}
+  - maxGem: {instanceID: 0}
+  - projectilePrefab: {fileID: 2493754749878858455, guid: 5f126f4a1a1c2c7478839eb4c6131b43, type: 3}
   - effectPrefab: {fileID: 2493754749878858455, guid: 6db10bacfb0a35a48b36395a005e974d, type: 3}
   - subProjectilePrefab: {fileID: 2493754749878858455, guid: 444d9b24f3da7a043a41f97cda75312b, type: 3}
   executionOrder: 0

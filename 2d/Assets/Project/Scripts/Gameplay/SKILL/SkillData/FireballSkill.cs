@@ -16,6 +16,7 @@ public class FireballSkill : SkillBase
 
     protected override void Execute(Transform player)
     {
+        print("파이어볼 준비");
         if (fireData == null || instance == null) return;
         if (player == null) return;
 
@@ -110,9 +111,10 @@ public class FireballSkill : SkillBase
     {
         if (fireData.projectilePrefab == null)
         {
-            if (LOG_VERBOSE) Debug.LogError("[Fireball] projectilePrefab이 null");
+            if (LOG_VERBOSE) print("[Fireball] projectilePrefab이 null");
             return;
         }
+        print("파이어볼 발사!");
 
         var levelData = instance.GetCurrentLevelData();
         GameObject obj = Instantiate(fireData.projectilePrefab, player.position, Quaternion.identity);
