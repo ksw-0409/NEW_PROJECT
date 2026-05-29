@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class ChainLightningSkill : SkillBase
 {
@@ -41,7 +41,7 @@ public class ChainLightningSkill : SkillBase
     {
         var ld = instance.GetCurrentLevelData();
         // ⭐ instance 대신 instance.data를 전달하여 에러 해결
-        var bonus = PlayerStats.Instance.GetSkillBonus(instance.data);
+        var bonus = PlayerStats.Instance != null ? PlayerStats.Instance.GetSkillBonus(instance.data) : (dmg:1f, rng:1f, cool:1f, cnt:0, slowMul:1f, durMul:1f);
 
         Transform target = GetNearestEnemy(caster, ld.range);
 

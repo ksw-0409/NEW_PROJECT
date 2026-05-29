@@ -15,7 +15,7 @@ public abstract class SkillBase : MonoBehaviour
     {
         StartCoroutine(AutoCast());
     }
-    // 추상 메서드 정의 (Transform을 받도록 유지)
+
     protected abstract void Execute(Transform player);
 
     protected IEnumerator AutoCast()
@@ -23,12 +23,9 @@ public abstract class SkillBase : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(GetCooldown());
-
-            // 에러 해결: Execute 호출 시 인자를 넣어줘야 합니다.
-            // SkillBase가 MonoBehaviour를 상속받으므로 'this.transform'을 넘겨주면 됩니다.
             Execute(this.transform);
 
-            // ⭐ 전설 어빌리티 2 (카두케우스): 마법 스킬 시 10% 확률로 즉시 재시전
+            // ⭐ 전설 어빌리티 2 (카두케우스): 마법 스킬 시 10% 확률 즉시 재시전
             if (IsMagicSkill() && PlayerStats.Instance != null && PlayerStats.Instance.HasAbility(2))
             {
                 if (UnityEngine.Random.value < 0.1f)
@@ -40,42 +37,76 @@ public abstract class SkillBase : MonoBehaviour
         }
     }
 
+    /// <summary>스킬 트리 노드 보너스를 가져옴 (data null이면 기본값 1/1/1/0/1/1)</summary>
+    protected (float dmg, float rng, float cool, int cnt, float slowMul, float durMul) GetBonus()
+    {
+        // ⭐ data 필드가 NULL일 수 있음 — instance.data를 폴백으로 사용
+        SkillData sd = data;
+        if (sd == null && instance != null) sd = instance.data;
+        // PlayerStats.Instance가 NULL이어도 FindFirst로 폴백 (씬 전환 직후 일시적 NULL 방지)
+        var ps = PlayerStats.Instance;
+        if (ps == null) ps = UnityEngine.Object.FindFirstObjectByType<PlayerStats>();
+        if (ps != null && sd != null)
+            return ps.GetSkillBonus(sd);
+        return (1f, 1f, 1f, 0, 1f, 1f);
+    }
+
+    /// <summary>최종 데미지 = (base × multiplier) × 보너스</summary>
     protected float GetDamage()
     {
-        return instance.GetCurrentLevelData().damage;
+        var ld = instance.GetCurrentLevelData();
+        var b = GetBonus();
+        return ld.damage * ld.multiplier * b.dmg;
     }
 
+    /// <summary>최종 카운트 = base + 보너스</summary>
     protected int GetCount()
     {
-        return instance.GetCurrentLevelData().count;
+        var ld = instance.GetCurrentLevelData();
+        var b = GetBonus();
+        return Mathf.Max(1, ld.count + b.cnt);
     }
 
+    /// <summary>최종 쿨다운 = base × cooldownMul (작을수록 좋음, 최소 0.1초)</summary>
     protected float GetCooldown()
     {
-        // ⭐ 쿨타임 0 이하 방어: WaitForSeconds(0)은 매 프레임 발사 → 렉/프레임레이트 의존 버그
-        return Mathf.Max(0.1f, instance.GetCurrentLevelData().cooldown);
+        var ld = instance.GetCurrentLevelData();
+        var b = GetBonus();
+        return Mathf.Max(0.1f, ld.cooldown * b.cool);
     }
 
-    public int GetLevel()
+    /// <summary>⭐ NEW — 최종 범위 = base × rangeMul</summary>
+    protected float GetRange()
     {
-        return instance.level;
+        var ld = instance.GetCurrentLevelData();
+        var b = GetBonus();
+        return ld.range * b.rng;
     }
 
-    public bool IsMaxLevel()
+    /// <summary>⭐ NEW — 최종 둔화율 (0~1, multiplier 곱)</summary>
+    protected float GetSlowPercent()
     {
-        return instance.IsMaxLevel();
+        var ld = instance.GetCurrentLevelData();
+        var b = GetBonus();
+        return Mathf.Clamp01(ld.slowPercent * b.slowMul);
     }
 
-    public void LevelUp()
+    /// <summary>⭐ NEW — 최종 지속시간 = base × durMul</summary>
+    protected float GetDuration()
     {
-        instance.LevelUp();
+        var ld = instance.GetCurrentLevelData();
+        var b = GetBonus();
+        return Mathf.Max(0.05f, ld.duration * b.durMul);
     }
+
+    public int GetLevel() { return instance.level; }
+    public bool IsMaxLevel() { return instance.IsMaxLevel(); }
+    public void LevelUp() { instance.LevelUp(); }
 
     /// <summary>현재 스킬이 마법 계열인지 (카두케우스 재시전 트리거용)</summary>
     protected bool IsMagicSkill()
     {
         if (data == null) return false;
-        // 데이터 타입 이름으로 마법 스킬 판별
         string tn = data.GetType().Name;
         return tn == "FireballData" || tn == "ChainLightningData" || tn == "MeteorData" || tn == "IceRainData";
     }

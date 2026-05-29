@@ -991,10 +991,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uB0B4\uB824\uCC0D\uAE30 - \uCDA9\uACA9\uD30C \uBC94\uC704"
   nodeDescription: "\uCDA9\uACA9\uD30C \uBC94\uC704 +40% \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 35d59dd5a89f2f843a315159958c0938, type: 2}
   nodeType: 0
   damageMultiplier: 1
-  rangeMultiplier: 1
+  rangeMultiplier: 1.2
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
@@ -1378,9 +1378,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uC5BC\uC74C - \uCE58\uBA85\uD0C0\uC728"
   nodeDescription: "\uCE58\uBA85\uD0C0\uC728 +15%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 997d71937eb133d42a4837e1823382a6, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.2
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -1493,11 +1493,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uC5BC\uC74C - \uCD94\uAC00 \uAC15\uD654 B"
   nodeDescription: "\uB370\uBBF8\uC9C0 +10%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 997d71937eb133d42a4837e1823382a6, type: 2}
   nodeType: 0
-  damageMultiplier: 1
-  rangeMultiplier: 1
-  cooldownMultiplier: 1
+  damageMultiplier: 1.1
+  rangeMultiplier: 1.1
+  cooldownMultiplier: 0.95
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -1862,12 +1862,12 @@ MonoBehaviour:
     \uAD6C\uB984"
   targetSkill: {fileID: 0}
   nodeType: 1
-  damageMultiplier: 1
+  damageMultiplier: 1.2
   rangeMultiplier: 1
   cooldownMultiplier: 1
-  countBonus: 0
+  countBonus: 1
   slowPercentMultiplier: 1
-  durationMultiplier: 1
+  durationMultiplier: 2
   specialtyTag: Arrow_Poison_plague
   skillNodeID: Arrow_Poison_special2
   unlockCost: 1
@@ -2446,12 +2446,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uC5F0\uC1C4 \uBC88\uAC1C - \uCFE8\uD0C0\uC784"
   nodeDescription: "\uCFE8\uD0C0\uC784 -20% \uAC10\uC18C."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 66fb34921e8493c41bc85dae76ad0468, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
-  countBonus: 0
+  countBonus: 1
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
@@ -3802,10 +3802,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uD3ED\uBC1C - \uD3ED\uBC1C \uBC94\uC704"
   nodeDescription: "\uD3ED\uBC1C \uBC94\uC704 +30%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 3cc8b08dbac83544b90e54afdf32a5d3, type: 2}
   nodeType: 0
   damageMultiplier: 1
-  rangeMultiplier: 1
+  rangeMultiplier: 1.2
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
@@ -4339,11 +4339,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uBC29\uC5B4 - \uCFE8\uD0C0\uC784 3"
   nodeDescription: "\uCFE8\uD0C0\uC784 -5\uCD08 \uAC10\uC18C (3\uB2E8\uACC4)."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 72a4cf4bf1439e942a4286d68b7eab43, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -5098,8 +5098,8 @@ MonoBehaviour:
     \uC785\uD799\uB2C8\uB2E4."
   targetSkill: {fileID: 0}
   nodeType: 1
-  damageMultiplier: 1
-  rangeMultiplier: 1
+  damageMultiplier: 1.8
+  rangeMultiplier: 1.3
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
@@ -5435,11 +5435,11 @@ MonoBehaviour:
   nodeName: "\uD65C \uC3D8\uAE30 \uCFE8\uB2E4\uC6B4 \uB2E8\uCD95"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uCFE8\uD0C0\uC784\uC744
     \uCD94\uAC00\uB85C \uB2E8\uCD95\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: ed09faeb5a7254d409b5558fbc1fb3b6, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -5899,11 +5899,11 @@ MonoBehaviour:
   nodeName: "\uB0B4\uB824\uCC0D\uAE30 \uCFE8\uB2E4\uC6B4 \uB2E8\uCD95"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uCFE8\uD0C0\uC784\uC744
     \uCD94\uAC00\uB85C \uB2E8\uCD95\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 35d59dd5a89f2f843a315159958c0938, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -6285,11 +6285,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uAD00\uD1B5 - \uCD94\uAC00 \uAC15\uD654 B"
   nodeDescription: "\uCE58\uBA85\uD0C0\uC728 +10%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 8bebd4584022a944b953c0e70273e084, type: 2}
   nodeType: 0
-  damageMultiplier: 1
-  rangeMultiplier: 1
-  cooldownMultiplier: 1
+  damageMultiplier: 1.1
+  rangeMultiplier: 1.1
+  cooldownMultiplier: 0.95
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -7382,11 +7382,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uB0B4\uB824\uCC0D\uAE30 - \uCFE8\uD0C0\uC784"
   nodeDescription: "\uCFE8\uD0C0\uC784 -30% \uAC10\uC18C."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 35d59dd5a89f2f843a315159958c0938, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -7639,14 +7639,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uC5BC\uC74C - \uBE59\uACB0 \uC9C0\uC18D"
   nodeDescription: "\uBE59\uACB0 \uC9C0\uC18D\uC2DC\uAC04 +1.5\uCD08"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 997d71937eb133d42a4837e1823382a6, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
-  durationMultiplier: 1
+  durationMultiplier: 1.3
   specialtyTag: freeze_dur
   skillNodeID: Arrow_Ice_stat3
   unlockCost: 1
@@ -7756,9 +7756,9 @@ MonoBehaviour:
   nodeName: "\uAC80\uAE30 \uBC29\uCD9C \uB370\uBBF8\uC9C0 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uB370\uBBF8\uC9C0\uB97C
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 195312dbbdcc03840b660f6af8e6bf26, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -8910,12 +8910,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uC5F0\uC1C4 \uBC88\uAC1C - \uC5F0\uC1C4 \uD69F\uC218"
   nodeDescription: "\uC5F0\uC1C4 \uD69F\uC218 +3."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 66fb34921e8493c41bc85dae76ad0468, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
-  countBonus: 0
+  countBonus: 1
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
@@ -9120,9 +9120,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uB3C5 - \uBC1C\uB3D9 \uD655\uB960"
   nodeDescription: "\uBC1C\uB3D9 \uD655\uB960 +30%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: ee60fe991f06ce64394dcac7cbb431f9, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.2
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -9237,13 +9237,13 @@ MonoBehaviour:
   nodeName: "\uC5BC\uC74C \uBE44 \uB454\uD654 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uB454\uD654\uC728\uC744
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 389144f53eae61f489b6f0c23767e64c, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
-  slowPercentMultiplier: 1
+  slowPercentMultiplier: 1.3
   durationMultiplier: 1
   specialtyTag: 
   skillNodeID: IR_boost_slow
@@ -10077,9 +10077,9 @@ MonoBehaviour:
   targetSkill: {fileID: 0}
   nodeType: 1
   damageMultiplier: 1
-  rangeMultiplier: 1
+  rangeMultiplier: 1.2
   cooldownMultiplier: 1
-  countBonus: 0
+  countBonus: 1
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: Arrow_Explosion_carpet
@@ -10188,9 +10188,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uC5BC\uC74C - \uB370\uBBF8\uC9C0"
   nodeDescription: "\uB370\uBBF8\uC9C0 +20%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 997d71937eb133d42a4837e1823382a6, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -11716,9 +11716,9 @@ MonoBehaviour:
   nodeName: "\uBA54\uD14C\uC624 \uB370\uBBF8\uC9C0 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uB370\uBBF8\uC9C0\uB97C
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: aeb13a8b85bb2a24ca440bdc1e7d14cb, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -12427,7 +12427,7 @@ MonoBehaviour:
   nodeName: "[\uC2A4\uD0AC] \uBCA0\uAE30"
   nodeDescription: "\uBCA0\uAE30 \uC2A4\uD0AC\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uAC8C
     \uB429\uB2C8\uB2E4.\n\uC2A4\uD0AC \uD2B8\uB9AC\uC758 \uC2DC\uC791\uC810\uC785\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 04ce3a64b7ffb95418ec1fc201b62fff, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
@@ -13119,11 +13119,11 @@ MonoBehaviour:
   targetSkill: {fileID: 0}
   nodeType: 1
   damageMultiplier: 1
-  rangeMultiplier: 1
+  rangeMultiplier: 1.3
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
-  durationMultiplier: 1
+  durationMultiplier: 2
   specialtyTag: Meteor_LavaField
   skillNodeID: Meteor_lava
   unlockCost: 3
@@ -13233,10 +13233,10 @@ MonoBehaviour:
   nodeName: "\uAC80\uAE30 \uBC29\uCD9C \uD06C\uAE30 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uAC80\uAE30 \uD06C\uAE30\uB97C
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 195312dbbdcc03840b660f6af8e6bf26, type: 2}
   nodeType: 0
   damageMultiplier: 1
-  rangeMultiplier: 1
+  rangeMultiplier: 1.2
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
@@ -14193,11 +14193,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uC5BC\uC74C - \uCD94\uAC00 \uAC15\uD654 A"
   nodeDescription: "\uBE59\uACB0 \uD655\uB960 +20%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 997d71937eb133d42a4837e1823382a6, type: 2}
   nodeType: 0
-  damageMultiplier: 1
-  rangeMultiplier: 1
-  cooldownMultiplier: 1
+  damageMultiplier: 1.1
+  rangeMultiplier: 1.1
+  cooldownMultiplier: 0.95
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -15372,10 +15372,10 @@ MonoBehaviour:
   nodeName: "\uBCA0\uAE30 \uBC94\uC704 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uBC94\uC704\uB97C \uCD94\uAC00\uB85C
     \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 04ce3a64b7ffb95418ec1fc201b62fff, type: 2}
   nodeType: 0
   damageMultiplier: 1
-  rangeMultiplier: 1
+  rangeMultiplier: 1.2
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
@@ -15543,9 +15543,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uAD00\uD1B5 - \uCE58\uBA85\uD0C0\uC728"
   nodeDescription: "\uCE58\uBA85\uD0C0\uC728 +15%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 8bebd4584022a944b953c0e70273e084, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.2
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -16222,11 +16222,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uAD00\uD1B5 - \uCD94\uAC00 \uAC15\uD654 A"
   nodeDescription: "\uB370\uBBF8\uC9C0 +10%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 8bebd4584022a944b953c0e70273e084, type: 2}
   nodeType: 0
-  damageMultiplier: 1
-  rangeMultiplier: 1
-  cooldownMultiplier: 1
+  damageMultiplier: 1.1
+  rangeMultiplier: 1.1
+  cooldownMultiplier: 0.95
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -16458,11 +16458,11 @@ MonoBehaviour:
   nodeName: "\uBC29\uC5B4 \uCFE8\uB2E4\uC6B4 \uAC15\uD654 2"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uCFE8\uD0C0\uC784\uC744
     \uCD94\uAC00 \uB2E8\uCD95\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 72a4cf4bf1439e942a4286d68b7eab43, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -16579,9 +16579,9 @@ MonoBehaviour:
   targetSkill: {fileID: 0}
   nodeType: 1
   damageMultiplier: 1
-  rangeMultiplier: 1
+  rangeMultiplier: 1.3
   cooldownMultiplier: 1
-  countBonus: 0
+  countBonus: 2
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: Meteor_Shower
@@ -16812,12 +16812,12 @@ MonoBehaviour:
   nodeName: "\uC5F0\uC1C4 \uBC88\uAC1C \uC5F0\uC1C4 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uC5F0\uC1C4 \uD69F\uC218\uB97C
     \uCD94\uAC00\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 66fb34921e8493c41bc85dae76ad0468, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
-  countBonus: 0
+  countBonus: 1
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
@@ -17023,11 +17023,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uD65C \uC3D8\uAE30 - \uCFE8\uD0C0\uC784"
   nodeDescription: "\uCFE8\uD0C0\uC784 -20% \uAC10\uC18C."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: ed09faeb5a7254d409b5558fbc1fb3b6, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -17138,13 +17138,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uC5BC\uC74C \uBE44 - \uB454\uD654\uC728"
   nodeDescription: "\uB454\uD654\uC728 +20% \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 389144f53eae61f489b6f0c23767e64c, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
-  slowPercentMultiplier: 1
+  slowPercentMultiplier: 1.3
   durationMultiplier: 1
   specialtyTag: 
   skillNodeID: IceRain_slow
@@ -17253,9 +17253,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uD3ED\uBC1C - \uB370\uBBF8\uC9C0"
   nodeDescription: "\uB370\uBBF8\uC9C0 +25%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 3cc8b08dbac83544b90e54afdf32a5d3, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -18470,7 +18470,7 @@ MonoBehaviour:
   nodeName: "[\uC2A4\uD0AC] \uC5BC\uC74C\uBE44"
   nodeDescription: "\uC5BC\uC74C\uBE44 \uC2A4\uD0AC\uC744 \uC0AC\uC6A9\uD560 \uC218
     \uC788\uAC8C \uB429\uB2C8\uB2E4.\n\uC2A4\uD0AC \uD2B8\uB9AC\uC758 \uC2DC\uC791\uC810\uC785\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 389144f53eae61f489b6f0c23767e64c, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
@@ -18899,9 +18899,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uB0B4\uB824\uCC0D\uAE30 - \uB370\uBBF8\uC9C0"
   nodeDescription: "\uB370\uBBF8\uC9C0 +50% \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 35d59dd5a89f2f843a315159958c0938, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -20338,9 +20338,9 @@ MonoBehaviour:
   nodeName: "\uD65C \uC3D8\uAE30 \uB370\uBBF8\uC9C0 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uB370\uBBF8\uC9C0\uB97C
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: ed09faeb5a7254d409b5558fbc1fb3b6, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -20671,7 +20671,7 @@ MonoBehaviour:
     + 1\uCD08 \uAE30\uC808."
   targetSkill: {fileID: 0}
   nodeType: 1
-  damageMultiplier: 1
+  damageMultiplier: 2
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -21376,9 +21376,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uD654\uC5FC\uAD6C - \uB370\uBBF8\uC9C0 \uAC15\uD654"
   nodeDescription: "\uD654\uC5FC\uAD6C\uC758 \uB370\uBBF8\uC9C0\uAC00 +40% \uC99D\uAC00\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 75d064776e5d644439310478b85ba646, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -22675,8 +22675,8 @@ MonoBehaviour:
     \uBC1C\uC0DD"
   targetSkill: {fileID: 0}
   nodeType: 1
-  damageMultiplier: 1
-  rangeMultiplier: 1
+  damageMultiplier: 1.5
+  rangeMultiplier: 1.2
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
@@ -22945,11 +22945,11 @@ MonoBehaviour:
   nodeName: "\uBA54\uD14C\uC624 \uCFE8\uB2E4\uC6B4 \uB2E8\uCD95"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uCFE8\uD0C0\uC784\uC744
     \uCD94\uAC00\uB85C \uB2E8\uCD95\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: aeb13a8b85bb2a24ca440bdc1e7d14cb, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -23041,9 +23041,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uD65C \uC3D8\uAE30 - \uCE58\uBA85\uD0C0\uC728"
   nodeDescription: "\uCE58\uBA85\uD0C0\uC728 +15% \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: ed09faeb5a7254d409b5558fbc1fb3b6, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.2
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -23158,9 +23158,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uAD00\uD1B5 - \uCE58\uBA85\uD0C0 \uD53C\uD574"
   nodeDescription: "\uCE58\uBA85\uD0C0 \uD53C\uD574 \uBC30\uC728 +20%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 8bebd4584022a944b953c0e70273e084, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.2
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -23723,8 +23723,8 @@ MonoBehaviour:
     \uC785\uD799\uB2C8\uB2E4."
   targetSkill: {fileID: 0}
   nodeType: 1
-  damageMultiplier: 1
-  rangeMultiplier: 1
+  damageMultiplier: 1.3
+  rangeMultiplier: 1.5
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
@@ -23957,14 +23957,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uB3C5 - \uB3C5 \uC9C0\uC18D\uC2DC\uAC04"
   nodeDescription: "\uB3C5 \uC9C0\uC18D\uC2DC\uAC04 +2\uCD08"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: ee60fe991f06ce64394dcac7cbb431f9, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
-  durationMultiplier: 1
+  durationMultiplier: 1.3
   specialtyTag: poison_dur
   skillNodeID: Arrow_Poison_stat2
   unlockCost: 1
@@ -24209,9 +24209,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uC5BC\uC74C \uBE44 - \uB370\uBBF8\uC9C0"
   nodeDescription: "\uB370\uBBF8\uC9C0 +30% \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 389144f53eae61f489b6f0c23767e64c, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -25067,8 +25067,8 @@ MonoBehaviour:
   nodeType: 1
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
-  countBonus: 0
+  cooldownMultiplier: 1.2
+  countBonus: 2
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: Fireball_3_2
@@ -25605,10 +25605,10 @@ MonoBehaviour:
   nodeName: "\uD654\uC5FC\uAD6C - \uD3ED\uBC1C \uBC94\uC704"
   nodeDescription: "\uD654\uC5FC\uAD6C\uC758 \uD3ED\uBC1C \uBC94\uC704\uAC00 +30%
     \uC99D\uAC00\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 75d064776e5d644439310478b85ba646, type: 2}
   nodeType: 0
   damageMultiplier: 1
-  rangeMultiplier: 1
+  rangeMultiplier: 1.2
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
@@ -25953,7 +25953,7 @@ MonoBehaviour:
   nodeName: "[\uC2A4\uD0AC] \uAC80\uAE30\uBC29\uCD9C"
   nodeDescription: "\uAC80\uAE30\uBC29\uCD9C \uC2A4\uD0AC\uC744 \uC0AC\uC6A9\uD560
     \uC218 \uC788\uAC8C \uB429\uB2C8\uB2E4.\n\uC2A4\uD0AC \uD2B8\uB9AC\uC758 \uC2DC\uC791\uC810\uC785\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 195312dbbdcc03840b660f6af8e6bf26, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
@@ -26146,7 +26146,7 @@ MonoBehaviour:
     \uC5C6\uC74C"
   targetSkill: {fileID: 0}
   nodeType: 1
-  damageMultiplier: 1
+  damageMultiplier: 1.5
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -26279,9 +26279,9 @@ MonoBehaviour:
   nodeName: "\uD65C \uC3D8\uAE30 \uCE58\uBA85\uD0C0 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uCE58\uBA85\uD0C0\uC728\uC744
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: ed09faeb5a7254d409b5558fbc1fb3b6, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.2
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -27217,12 +27217,12 @@ MonoBehaviour:
     \uB370\uBBF8\uC9C0 \uD3ED\uBC1C"
   targetSkill: {fileID: 0}
   nodeType: 1
-  damageMultiplier: 1
+  damageMultiplier: 1.5
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
-  durationMultiplier: 1
+  durationMultiplier: 1.5
   specialtyTag: Arrow_Poison_nerve
   skillNodeID: Arrow_Poison_special1
   unlockCost: 1
@@ -27519,12 +27519,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uC5F0\uC1C4 \uBC88\uAC1C - \uB370\uBBF8\uC9C0"
   nodeDescription: "\uB370\uBBF8\uC9C0 +30% \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 66fb34921e8493c41bc85dae76ad0468, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
-  countBonus: 0
+  countBonus: 1
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: 
@@ -28083,12 +28083,12 @@ MonoBehaviour:
     \uD558\uB098\uC5D0\uAC8C \uBC88\uAC1C\uB97C \uB5A8\uC5B4\uB728\uB9BD\uB2C8\uB2E4."
   targetSkill: {fileID: 0}
   nodeType: 1
-  damageMultiplier: 1
-  rangeMultiplier: 1
+  damageMultiplier: 1.2
+  rangeMultiplier: 1.5
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
-  durationMultiplier: 1
+  durationMultiplier: 2
   specialtyTag: Lightning_Cloud
   skillNodeID: ChainLight_cloud
   unlockCost: 3
@@ -28913,10 +28913,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uBCA0\uAE30 - \uBC94\uC704"
   nodeDescription: "\uBC94\uC704 +30% \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 04ce3a64b7ffb95418ec1fc201b62fff, type: 2}
   nodeType: 0
   damageMultiplier: 1
-  rangeMultiplier: 1
+  rangeMultiplier: 1.2
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
@@ -30413,10 +30413,10 @@ MonoBehaviour:
   nodeName: "\uD654\uC5FC\uAD6C \uBC94\uC704 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uD3ED\uBC1C \uBC94\uC704\uB97C
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 75d064776e5d644439310478b85ba646, type: 2}
   nodeType: 0
   damageMultiplier: 1
-  rangeMultiplier: 1
+  rangeMultiplier: 1.2
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
@@ -31051,10 +31051,10 @@ MonoBehaviour:
   nodeName: "\uD68C\uC804 \uBCA0\uAE30 \uBC18\uACBD \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uD68C\uC804 \uBC18\uACBD\uC744
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 793d561b8eb1f3c4c8a91a828eb94f07, type: 2}
   nodeType: 0
   damageMultiplier: 1
-  rangeMultiplier: 1
+  rangeMultiplier: 1.2
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
@@ -31167,9 +31167,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uD65C \uC3D8\uAE30 - \uB370\uBBF8\uC9C0"
   nodeDescription: "\uB370\uBBF8\uC9C0 +30% \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: ed09faeb5a7254d409b5558fbc1fb3b6, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -31917,7 +31917,7 @@ MonoBehaviour:
   nodeName: "[\uC2A4\uD0AC] \uC5F0\uC1C4\uBC88\uAC1C"
   nodeDescription: "\uC5F0\uC1C4\uBC88\uAC1C \uC2A4\uD0AC\uC744 \uC0AC\uC6A9\uD560
     \uC218 \uC788\uAC8C \uB429\uB2C8\uB2E4.\n\uC2A4\uD0AC \uD2B8\uB9AC\uC758 \uC2DC\uC791\uC810\uC785\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 66fb34921e8493c41bc85dae76ad0468, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
@@ -33503,9 +33503,9 @@ MonoBehaviour:
   nodeName: "\uBCA0\uAE30 \uB370\uBBF8\uC9C0 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uB370\uBBF8\uC9C0\uB97C
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 04ce3a64b7ffb95418ec1fc201b62fff, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -33801,9 +33801,9 @@ MonoBehaviour:
   nodeName: "\uC5BC\uC74C \uBE44 \uB370\uBBF8\uC9C0 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uB370\uBBF8\uC9C0\uB97C
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 389144f53eae61f489b6f0c23767e64c, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -34010,11 +34010,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uB3C5 - \uCD94\uAC00 \uAC15\uD654 B"
   nodeDescription: "\uCD08\uB2F9 \uD53C\uD574\uB7C9 +10%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: ee60fe991f06ce64394dcac7cbb431f9, type: 2}
   nodeType: 0
-  damageMultiplier: 1
-  rangeMultiplier: 1
-  cooldownMultiplier: 1
+  damageMultiplier: 1.1
+  rangeMultiplier: 1.1
+  cooldownMultiplier: 0.95
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -34168,6 +34168,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: iceCardAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 997d71937eb133d42a4837e1823382a6, type: 2}
+    - target: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: pierceCardAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8bebd4584022a944b953c0e70273e084, type: 2}
+    - target: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: poisonCardAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ee60fe991f06ce64394dcac7cbb431f9, type: 2}
+    - target: {fileID: 5139689433460371423, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
+      propertyPath: explosionCardAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3cc8b08dbac83544b90e54afdf32a5d3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -35078,7 +35094,7 @@ MonoBehaviour:
   nodeName: "[\uC2A4\uD0AC] \uD68C\uC804\uBCA0\uAE30"
   nodeDescription: "\uD68C\uC804\uBCA0\uAE30 \uC2A4\uD0AC\uC744 \uC0AC\uC6A9\uD560
     \uC218 \uC788\uAC8C \uB429\uB2C8\uB2E4.\n\uC2A4\uD0AC \uD2B8\uB9AC\uC758 \uC2DC\uC791\uC810\uC785\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 72a4cf4bf1439e942a4286d68b7eab43, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
@@ -35579,9 +35595,9 @@ MonoBehaviour:
   nodeName: "\uB0B4\uB824\uCC0D\uAE30 \uB370\uBBF8\uC9C0 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uB370\uBBF8\uC9C0\uB97C
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 35d59dd5a89f2f843a315159958c0938, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -35904,11 +35920,11 @@ MonoBehaviour:
   nodeName: "\uD654\uC5FC\uAD6C \uCFE8\uB2E4\uC6B4 \uB2E8\uCD95"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uCFE8\uD0C0\uC784\uC744
     \uCD94\uAC00\uB85C \uB2E8\uCD95\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 75d064776e5d644439310478b85ba646, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -36502,7 +36518,7 @@ MonoBehaviour:
     + \uB0C9\uAE30 \uD3ED\uBC1C"
   targetSkill: {fileID: 0}
   nodeType: 1
-  damageMultiplier: 1
+  damageMultiplier: 1.5
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -36709,9 +36725,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uAC80\uAE30 \uBC29\uCD9C - \uB370\uBBF8\uC9C0"
   nodeDescription: "\uB370\uBBF8\uC9C0 +30% \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 195312dbbdcc03840b660f6af8e6bf26, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -36928,10 +36944,10 @@ MonoBehaviour:
   nodeName: "\uBA54\uD14C\uC624 \uBC94\uC704 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uB099\uD558 \uBC94\uC704\uB97C
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: aeb13a8b85bb2a24ca440bdc1e7d14cb, type: 2}
   nodeType: 0
   damageMultiplier: 1
-  rangeMultiplier: 1
+  rangeMultiplier: 1.2
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
@@ -37311,7 +37327,7 @@ MonoBehaviour:
   targetSkill: {fileID: 0}
   nodeType: 1
   damageMultiplier: 1
-  rangeMultiplier: 1
+  rangeMultiplier: 1.5
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
@@ -38462,11 +38478,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uBC29\uC5B4 - \uCFE8\uD0C0\uC784 2"
   nodeDescription: "\uCFE8\uD0C0\uC784 -5\uCD08 \uAC10\uC18C (2\uB2E8\uACC4)."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 72a4cf4bf1439e942a4286d68b7eab43, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -38911,9 +38927,9 @@ MonoBehaviour:
     10%\uC529 \uC99D\uAC00\uD569\uB2C8\uB2E4. (\uCD5C\uB300 100%)"
   targetSkill: {fileID: 0}
   nodeType: 1
-  damageMultiplier: 1
+  damageMultiplier: 1.8
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -39046,7 +39062,7 @@ MonoBehaviour:
   nodeName: "[\uC2A4\uD0AC] \uD654\uC5FC\uAD6C"
   nodeDescription: "\uD654\uC5FC\uAD6C \uC2A4\uD0AC\uC744 \uC0AC\uC6A9\uD560 \uC218
     \uC788\uAC8C \uB429\uB2C8\uB2E4.\n\uC2A4\uD0AC \uD2B8\uB9AC\uC758 \uC2DC\uC791\uC810\uC785\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 75d064776e5d644439310478b85ba646, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
@@ -39147,8 +39163,8 @@ MonoBehaviour:
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
-  slowPercentMultiplier: 1
-  durationMultiplier: 1
+  slowPercentMultiplier: 2
+  durationMultiplier: 2
   specialtyTag: Arrow_Ice_absolute
   skillNodeID: Arrow_Ice_special1
   unlockCost: 1
@@ -40671,7 +40687,7 @@ MonoBehaviour:
   nodeName: "[\uC2A4\uD0AC] \uB0B4\uB824\uCC0D\uAE30"
   nodeDescription: "\uB0B4\uB824\uCC0D\uAE30 \uC2A4\uD0AC\uC744 \uC0AC\uC6A9\uD560
     \uC218 \uC788\uAC8C \uB429\uB2C8\uB2E4.\n\uC2A4\uD0AC \uD2B8\uB9AC\uC758 \uC2DC\uC791\uC810\uC785\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 35d59dd5a89f2f843a315159958c0938, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
@@ -42024,11 +42040,11 @@ MonoBehaviour:
   nodeName: "\uBCA0\uAE30 \uACF5\uACA9 \uC18D\uB3C4 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uACF5\uACA9 \uC18D\uB3C4\uB97C
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 04ce3a64b7ffb95418ec1fc201b62fff, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -42161,7 +42177,7 @@ MonoBehaviour:
   nodeName: "[\uC2A4\uD0AC] \uD68C\uC804\uBCA0\uAE30"
   nodeDescription: "\uD68C\uC804\uBCA0\uAE30 \uC2A4\uD0AC\uC744 \uC0AC\uC6A9\uD560
     \uC218 \uC788\uAC8C \uB429\uB2C8\uB2E4.\n\uC2A4\uD0AC \uD2B8\uB9AC\uC758 \uC2DC\uC791\uC810\uC785\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 793d561b8eb1f3c4c8a91a828eb94f07, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
@@ -43011,9 +43027,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uBCA0\uAE30 - \uB370\uBBF8\uC9C0"
   nodeDescription: "\uB370\uBBF8\uC9C0 +30% \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 04ce3a64b7ffb95418ec1fc201b62fff, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -43335,11 +43351,11 @@ MonoBehaviour:
   nodeName: "\uC5F0\uC1C4 \uBC88\uAC1C \uCFE8\uB2E4\uC6B4 \uB2E8\uCD95"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uCFE8\uD0C0\uC784\uC744
     \uCD94\uAC00\uB85C \uB2E8\uCD95\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 66fb34921e8493c41bc85dae76ad0468, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -43752,9 +43768,9 @@ MonoBehaviour:
   nodeName: "\uC5F0\uC1C4 \uBC88\uAC1C \uB370\uBBF8\uC9C0 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uB370\uBBF8\uC9C0\uB97C
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 66fb34921e8493c41bc85dae76ad0468, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -44059,10 +44075,10 @@ MonoBehaviour:
     2\uBC30 \uD53C\uD574 \uD45C\uC2DD)"
   targetSkill: {fileID: 0}
   nodeType: 1
-  damageMultiplier: 1
-  rangeMultiplier: 1
+  damageMultiplier: 1.2
+  rangeMultiplier: 1.3
   cooldownMultiplier: 1
-  countBonus: 0
+  countBonus: 1
   slowPercentMultiplier: 1
   durationMultiplier: 1
   specialtyTag: Arrow_Pierce_soul
@@ -44267,9 +44283,9 @@ MonoBehaviour:
   nodeName: "\uD68C\uC804 \uBCA0\uAE30 \uB370\uBBF8\uC9C0 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uB370\uBBF8\uC9C0\uB97C
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 793d561b8eb1f3c4c8a91a828eb94f07, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -44384,11 +44400,11 @@ MonoBehaviour:
   nodeName: "\uBC29\uC5B4 \uCFE8\uB2E4\uC6B4 \uAC15\uD654 1"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uCFE8\uD0C0\uC784\uC744
     \uCD94\uAC00 \uB2E8\uCD95\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 72a4cf4bf1439e942a4286d68b7eab43, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -44500,9 +44516,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uAD00\uD1B5 - \uB370\uBBF8\uC9C0"
   nodeDescription: "\uB370\uBBF8\uC9C0 +20%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 8bebd4584022a944b953c0e70273e084, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -44693,11 +44709,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uD3ED\uBC1C - \uCD94\uAC00 \uAC15\uD654 B"
   nodeDescription: "\uD3ED\uBC1C \uBC94\uC704 +20%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 3cc8b08dbac83544b90e54afdf32a5d3, type: 2}
   nodeType: 0
-  damageMultiplier: 1
-  rangeMultiplier: 1
-  cooldownMultiplier: 1
+  damageMultiplier: 1.1
+  rangeMultiplier: 1.1
+  cooldownMultiplier: 0.95
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -45023,9 +45039,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uD68C\uC804 \uBCA0\uAE30 - \uB370\uBBF8\uC9C0"
   nodeDescription: "\uB370\uBBF8\uC9C0 +40% \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 793d561b8eb1f3c4c8a91a828eb94f07, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -45138,11 +45154,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uAC80\uAE30 \uBC29\uCD9C - \uD0C4\uC18D"
   nodeDescription: "\uAC80\uAE30 \uD0C4\uC18D +30% \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 195312dbbdcc03840b660f6af8e6bf26, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -46040,9 +46056,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uD3ED\uBC1C - \uCE58\uBA85\uD0C0 \uD53C\uD574"
   nodeDescription: "\uCE58\uBA85\uD0C0 \uD53C\uD574 \uBC30\uC728 +20%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 3cc8b08dbac83544b90e54afdf32a5d3, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.2
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -46446,9 +46462,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uB3C5 - \uCD08\uB2F9 \uD53C\uD574\uB7C9"
   nodeDescription: "\uCD08\uB2F9 \uD53C\uD574\uB7C9 +30%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: ee60fe991f06ce64394dcac7cbb431f9, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -46562,9 +46578,9 @@ MonoBehaviour:
   nodeName: "\uD654\uC5FC\uAD6C \uB370\uBBF8\uC9C0 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uB370\uBBF8\uC9C0\uB97C
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 75d064776e5d644439310478b85ba646, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -46797,11 +46813,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uB3C5 - \uCD94\uAC00 \uAC15\uD654 A"
   nodeDescription: "\uBC1C\uB3D9 \uD655\uB960 +10%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: ee60fe991f06ce64394dcac7cbb431f9, type: 2}
   nodeType: 0
-  damageMultiplier: 1
-  rangeMultiplier: 1
-  cooldownMultiplier: 1
+  damageMultiplier: 1.1
+  rangeMultiplier: 1.1
+  cooldownMultiplier: 0.95
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -47083,7 +47099,7 @@ MonoBehaviour:
   nodeName: "[\uC2A4\uD0AC] \uD65C\uC3D8\uAE30"
   nodeDescription: "\uD65C\uC3D8\uAE30 \uC2A4\uD0AC\uC744 \uC0AC\uC6A9\uD560 \uC218
     \uC788\uAC8C \uB429\uB2C8\uB2E4.\n\uC2A4\uD0AC \uD2B8\uB9AC\uC758 \uC2DC\uC791\uC810\uC785\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: ed09faeb5a7254d409b5558fbc1fb3b6, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
@@ -56387,11 +56403,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uD68C\uC804 \uBCA0\uAE30 - \uCFE8\uD0C0\uC784"
   nodeDescription: "\uCFE8\uD0C0\uC784 -20% \uAC10\uC18C."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 793d561b8eb1f3c4c8a91a828eb94f07, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -56624,11 +56640,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uBCA0\uAE30 - \uACF5\uACA9 \uC18D\uB3C4"
   nodeDescription: "\uACF5\uACA9 \uC18D\uB3C4 +20% \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 04ce3a64b7ffb95418ec1fc201b62fff, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -56760,11 +56776,11 @@ MonoBehaviour:
   nodeName: "\uD68C\uC804 \uBCA0\uAE30 \uCFE8\uB2E4\uC6B4 \uB2E8\uCD95"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uCFE8\uD0C0\uC784\uC744
     \uCD94\uAC00\uB85C \uB2E8\uCD95\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 793d561b8eb1f3c4c8a91a828eb94f07, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -56951,11 +56967,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uBA54\uD14C\uC624 - \uCFE8\uD0C0\uC784"
   nodeDescription: "\uCFE8\uD0C0\uC784 -20% \uAC10\uC18C."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: aeb13a8b85bb2a24ca440bdc1e7d14cb, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -57443,10 +57459,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uAC80\uAE30 \uBC29\uCD9C - \uD06C\uAE30"
   nodeDescription: "\uAC80\uAE30 \uD06C\uAE30 +30% \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 195312dbbdcc03840b660f6af8e6bf26, type: 2}
   nodeType: 0
   damageMultiplier: 1
-  rangeMultiplier: 1
+  rangeMultiplier: 1.2
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
@@ -57880,11 +57896,11 @@ MonoBehaviour:
   nodeName: "\uAC80\uAE30 \uBC29\uCD9C \uCFE8\uB2E4\uC6B4 \uB2E8\uCD95"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uCFE8\uD0C0\uC784\uC744
     \uCD94\uAC00\uB85C \uB2E8\uCD95\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 195312dbbdcc03840b660f6af8e6bf26, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -58894,9 +58910,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uBA54\uD14C\uC624 - \uB370\uBBF8\uC9C0"
   nodeDescription: "\uB370\uBBF8\uC9C0 +40% \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: aeb13a8b85bb2a24ca440bdc1e7d14cb, type: 2}
   nodeType: 0
-  damageMultiplier: 1
+  damageMultiplier: 1.15
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
@@ -60647,11 +60663,11 @@ MonoBehaviour:
   nodeName: "\uBC29\uC5B4 \uCFE8\uB2E4\uC6B4 \uAC15\uD654 3"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uCFE8\uD0C0\uC784\uC744
     \uCD94\uAC00 \uB2E8\uCD95\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 72a4cf4bf1439e942a4286d68b7eab43, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -61112,14 +61128,14 @@ MonoBehaviour:
   nodeName: "\uC5BC\uC74C \uBE44 \uC9C0\uC18D \uC2DC\uAC04 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uC9C0\uC18D \uC2DC\uAC04\uC744
     \uCD94\uAC00\uB85C \uB298\uB9BD\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 389144f53eae61f489b6f0c23767e64c, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
-  durationMultiplier: 1
+  durationMultiplier: 1.3
   specialtyTag: 
   skillNodeID: IR_boost_dur
   unlockCost: 2
@@ -61654,11 +61670,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uBC29\uC5B4 - \uCFE8\uD0C0\uC784 1"
   nodeDescription: "\uCFE8\uD0C0\uC784 -5\uCD08 \uAC10\uC18C (1\uB2E8\uACC4)."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 72a4cf4bf1439e942a4286d68b7eab43, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -61769,10 +61785,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uBA54\uD14C\uC624 - \uB099\uD558 \uBC94\uC704"
   nodeDescription: "\uB099\uD558 \uBC94\uC704 +30% \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: aeb13a8b85bb2a24ca440bdc1e7d14cb, type: 2}
   nodeType: 0
   damageMultiplier: 1
-  rangeMultiplier: 1
+  rangeMultiplier: 1.2
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
@@ -64520,10 +64536,10 @@ MonoBehaviour:
   nodeName: "\uB0B4\uB824\uCC0D\uAE30 \uBC94\uC704 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uCDA9\uACA9\uD30C \uBC94\uC704\uB97C
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 35d59dd5a89f2f843a315159958c0938, type: 2}
   nodeType: 0
   damageMultiplier: 1
-  rangeMultiplier: 1
+  rangeMultiplier: 1.2
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
@@ -64756,11 +64772,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uD654\uC5FC\uAD6C - \uCFE8\uD0C0\uC784"
   nodeDescription: "\uD654\uC5FC\uAD6C\uC758 \uCFE8\uD0C0\uC784\uC774 -20% \uAC10\uC18C\uD569\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 75d064776e5d644439310478b85ba646, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
-  cooldownMultiplier: 1
+  cooldownMultiplier: 0.85
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -65492,10 +65508,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uD68C\uC804 \uBCA0\uAE30 - \uBC18\uACBD"
   nodeDescription: "\uD68C\uC804 \uBC18\uACBD +30% \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 793d561b8eb1f3c4c8a91a828eb94f07, type: 2}
   nodeType: 0
   damageMultiplier: 1
-  rangeMultiplier: 1
+  rangeMultiplier: 1.2
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
@@ -66969,7 +66985,7 @@ MonoBehaviour:
   nodeName: "[\uC2A4\uD0AC] \uBA54\uD14C\uC624"
   nodeDescription: "\uBA54\uD14C\uC624 \uC2A4\uD0AC\uC744 \uC0AC\uC6A9\uD560 \uC218
     \uC788\uAC8C \uB429\uB2C8\uB2E4.\n\uC2A4\uD0AC \uD2B8\uB9AC\uC758 \uC2DC\uC791\uC810\uC785\uB2C8\uB2E4."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: aeb13a8b85bb2a24ca440bdc1e7d14cb, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
@@ -67741,14 +67757,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uC5BC\uC74C \uBE44 - \uC9C0\uC18D \uC2DC\uAC04"
   nodeDescription: "\uC9C0\uC18D \uC2DC\uAC04 +2\uCD08 \uC99D\uAC00."
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 389144f53eae61f489b6f0c23767e64c, type: 2}
   nodeType: 0
   damageMultiplier: 1
   rangeMultiplier: 1
   cooldownMultiplier: 1
   countBonus: 0
   slowPercentMultiplier: 1
-  durationMultiplier: 1
+  durationMultiplier: 1.3
   specialtyTag: 
   skillNodeID: IceRain_dur
   unlockCost: 2
@@ -68485,11 +68501,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
   nodeName: "\uD3ED\uBC1C - \uCD94\uAC00 \uAC15\uD654 A"
   nodeDescription: "\uCD5C\uC885 \uD53C\uD574 +15%"
-  targetSkill: {fileID: 0}
+  targetSkill: {fileID: 11400000, guid: 3cc8b08dbac83544b90e54afdf32a5d3, type: 2}
   nodeType: 0
-  damageMultiplier: 1
-  rangeMultiplier: 1
-  cooldownMultiplier: 1
+  damageMultiplier: 1.1
+  rangeMultiplier: 1.1
+  cooldownMultiplier: 0.95
   countBonus: 0
   slowPercentMultiplier: 1
   durationMultiplier: 1
@@ -69173,27 +69189,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2470163384524014664, guid: c849299db961541418146ca76672854a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2470163384524014664, guid: c849299db961541418146ca76672854a, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2470163384524014664, guid: c849299db961541418146ca76672854a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 171.12
       objectReference: {fileID: 0}
     - target: {fileID: 2470163384524014664, guid: c849299db961541418146ca76672854a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 42.97
       objectReference: {fileID: 0}
     - target: {fileID: 2470163384524014664, guid: c849299db961541418146ca76672854a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 85.56
       objectReference: {fileID: 0}
     - target: {fileID: 2470163384524014664, guid: c849299db961541418146ca76672854a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -21.485
       objectReference: {fileID: 0}
     - target: {fileID: 3230257399244324941, guid: c849299db961541418146ca76672854a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -69421,11 +69437,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3763746417702008284, guid: c849299db961541418146ca76672854a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 171.12
       objectReference: {fileID: 0}
     - target: {fileID: 3763746417702008284, guid: c849299db961541418146ca76672854a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 42.97
       objectReference: {fileID: 0}
     - target: {fileID: 3763746417702008284, guid: c849299db961541418146ca76672854a, type: 3}
       propertyPath: m_AnchoredPosition.x

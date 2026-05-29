@@ -97,7 +97,7 @@ MonoBehaviour:
   card: {fileID: -5561769563046938044, guid: 11c637c09f2239241a205cc1c58d337e, type: 3}
   gem: {fileID: -6604126954763643667, guid: 009403c00757f8b4799d0f0490c4208c, type: 3}
   maxGem: {fileID: -2632305640189647874, guid: 7c9288b60482312468dfe4b478a17373, type: 3}
-  projectilePrefab: {fileID: 2493754749878858455, guid: 5f126f4a1a1c2c7478839eb4c6131b43, type: 3}
+  projectilePrefab: {fileID: 2493754749878858455, guid: a95713e3ead5c164f812272983a21fca, type: 3}
   effectPrefab: {fileID: 2197338236776400270, guid: ae6c20bb428770747945e42a2b2fe370, type: 3}
   projectileSpeed: 10
   explosionRadius: 1

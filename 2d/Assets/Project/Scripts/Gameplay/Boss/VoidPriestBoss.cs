@@ -147,7 +147,7 @@ public class VoidPriestBoss : EnemyAI
         if (isDie) return;
 
         if (sr != null && playerTr != null)
-            sr.flipX = playerTr.position.x < transform.position.x;
+            sr.flipX = playerTr.position.x > transform.position.x; // ⭐ 조건 반전 (보스가 앞을 보도록)
         if (sr != null && !sr.enabled) sr.enabled = true;
 
         if (hp != null && sr != null)
@@ -202,11 +202,13 @@ public class VoidPriestBoss : EnemyAI
             // 멀면 추격
             Vector2 dir = toPlayer.normalized;
             rb.linearVelocity = dir * chaseSpeed;
+            if (anim != null && !IsAttackAnimPlaying()) anim.Play("Walk", 0);
         }
         else
         {
             // 가까우면 정지하고 공격 패턴 진행
             rb.linearVelocity = Vector2.zero;
+            if (anim != null && !IsAttackAnimPlaying()) anim.Play("Idle", 0);
         }
     }
 
@@ -564,5 +566,13 @@ public class VoidPriestBoss : EnemyAI
             yield return new WaitForSeconds(frameInterval);
         }
         if (host != null) Destroy(host);
+    }
+
+    /// <summary>공격/특수기 애니메이션 중일 때 Walk/Idle 강제 전환 방지</summary>
+    private bool IsAttackAnimPlaying()
+    {
+        if (anim == null) return false;
+        var st = anim.GetCurrentAnimatorStateInfo(0);
+        return st.IsName("Skill1") || st.IsName("Skill2") || st.IsName("Summon");
     }
 }

@@ -5,72 +5,37 @@ public class RotatingSlashSkill : SkillBase
 {
     public GameObject effectPrefab;
     private RotatingSlashData rotData;
+    private bool isLoopRunning = false;
 
     public void Init(RotatingSlashData data, SkillInstance instance)
     {
         this.data = data;
         this.instance = instance;
         this.rotData = data;
-        StartCoroutine(AutoCast());
-    }
-
-    protected override void Execute(Transform player)
-    {
-        StartCoroutine(SlashRoutine());
-    }
-
-    // ✨ [변칙] 칼날 오라: 액티브 대신 주변에 상시 데미지 (초당 1/10)
-    private float auraTickTimer = 0f;
-    private const float AuraTickInterval = 1f;
-
-    void Update()
-    {
-        if (instance == null) return;
-        if (PlayerStats.Instance == null) return;
-        if (!PlayerStats.Instance.HasSpecialty("RotSlash_aura")) return;
-
-        auraTickTimer += Time.deltaTime;
-        if (auraTickTimer < AuraTickInterval) return;
-        auraTickTimer = 0f;
-
-        float range = instance.GetCurrentLevelData().range;
-        float dmg = GetDamage() * 0.1f; // 초당 기본 데미지의 1/10
-
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, range);
-        foreach (var hit in hits)
+        // ⭐ AutoCast 제거 — 회전베기는 "상시 회전" 시스템으로 (사용자 요청)
+        // ⭐ 중복 시작 방지 (Init이 또 호출되어도 코루틴은 1개만)
+        if (!isLoopRunning)
         {
-            if (hit.CompareTag("Enemy"))
-            {
-                hit.GetComponent<EnemyHealth>()?.TakeDamage(dmg);
-            }
+            isLoopRunning = true;
+            StartCoroutine(ContinuousAttackLoop());
         }
-
-        // 아주 가볍운 시각 표시 (청백 세는 링)
-        var ringGo = new GameObject("AuraTickRing");
-        ringGo.transform.position = transform.position;
-        var lr = ringGo.AddComponent<LineRenderer>();
-        lr.useWorldSpace = false;
-        lr.loop = true;
-        lr.positionCount = 32;
-        lr.startWidth = 0.04f; lr.endWidth = 0.04f;
-        lr.material = new Material(Shader.Find("Sprites/Default"));
-        lr.startColor = new Color(0.5f, 0.85f, 1f, 0.4f);
-        lr.endColor = new Color(0.5f, 0.85f, 1f, 0.4f);
-        lr.sortingOrder = 40;
-        for (int i = 0; i < lr.positionCount; i++)
-        {
-            float a = i * Mathf.PI * 2f / lr.positionCount;
-            lr.SetPosition(i, new Vector3(Mathf.Cos(a) * range, Mathf.Sin(a) * range, 0));
-        }
-        Destroy(ringGo, 0.25f);
     }
 
-    IEnumerator SlashRoutine()
+    // 상시 공격이라 AutoCast/Execute는 안 쓰지만, SkillBase abstract이라 빈 구현 필요
+    protected override void Execute(Transform player) { /* unused */ }
+
+    /// <summary>회전베기 칼날이 일정 간격으로 계속 돌면서 주변에 데미지 (cooldown 무시)</summary>
+    IEnumerator ContinuousAttackLoop()
     {
-        for (int i = 0; i < GetCount(); i++)
+        // 잠깐 기다린 후 시작 (Player 초기화 대기)
+        yield return new WaitForSeconds(0.3f);
+        while (true)
         {
-            Attack();
-            yield return new WaitForSeconds(rotData.hitInterval);
+            if (instance != null) Attack();
+            // ⭐ hitInterval 최소 0.5초 (너무 빠르면 중첩되어 보임)
+            var rsBonus = PlayerStats.Instance != null && data != null ? PlayerStats.Instance.GetSkillBonus(data) : (dmg:1f, rng:1f, cool:1f, cnt:0, slowMul:1f, durMul:1f);
+            float interval = (rotData != null && rotData.hitInterval > 0f) ? Mathf.Max(0.3f, rotData.hitInterval * rsBonus.cool) : 0.6f;
+            yield return new WaitForSeconds(interval);
         }
     }
 
@@ -78,26 +43,20 @@ public class RotatingSlashSkill : SkillBase
     private int crushStackCount = 0;
     private float crushStackResetTime = 0f;
     private const float CrushStackDuration = 5f;
-    private const float CrushStackMaxBonus = 0.5f; // 최대 +50%
+    private const float CrushStackMaxBonus = 0.5f;
 
     void Attack()
     {
-        // 임팩트 흔들림
-        CameraShake.ShakePreset(CameraShake.Preset.Light);
+        // CameraShake 제거 — 사용자 요청 (화면 흔들림 줄이기)
 
-        float range = instance.GetCurrentLevelData().range;
-        float dmg = GetDamage();
+        float range = GetRange() * 1.5f; // ⭐ 반지름 1.5배 + 트리 보너스(GetRange는 bonus.rng 적용)
+        float dmg = GetDamage(); // SkillBase에서 bonus.dmg 자동 적용
 
-        // ✨ 특수효과 체크
         bool hasCrush = PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("RotSlash_crush");
         bool hasBlackhole = PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("RotSlash_blackhole");
-        // RotSlash_aura는 Init에서 관리
 
-        // ✨ [공격] 분쇄: 5명 이상 적중 시 5%씩 중첩 (최대 +50%, 5초 유지)
         if (hasCrush && Time.time > crushStackResetTime)
-        {
-            crushStackCount = 0; // 시간 경과 대기열 초기화
-        }
+            crushStackCount = 0;
         float crushBonus = hasCrush ? Mathf.Min(crushStackCount * 0.05f, CrushStackMaxBonus) : 0f;
         float finalDmg = dmg * (1f + crushBonus);
 
@@ -109,8 +68,6 @@ public class RotatingSlashSkill : SkillBase
             {
                 hit.GetComponent<EnemyHealth>()?.TakeDamage(finalDmg);
                 enemyHitCount++;
-
-                // ✨ [유틸] 블랙홀: 주변 적을 자신에게 끌어당김
                 if (hasBlackhole)
                 {
                     var enemyRb = hit.GetComponent<Rigidbody2D>();
@@ -123,21 +80,11 @@ public class RotatingSlashSkill : SkillBase
             }
         }
 
-        // 분쇄 스택 증가 조건은 5명 이상 적중
         if (hasCrush && enemyHitCount >= 5)
         {
-            crushStackCount = Mathf.Min(crushStackCount + 1, 10); // 최대 10스택 = +50%
+            crushStackCount = Mathf.Min(crushStackCount + 1, 10);
             crushStackResetTime = Time.time + CrushStackDuration;
         }
-
-        // 피격범위 가시화
-        SkillRangeIndicator.Spawn(
-            transform.position,
-            range,
-            new Color(0.3f, 0.85f, 1f, 0.95f),
-            0.35f,
-            SkillRangeIndicator.Shape.Circle
-        );
 
         SpawnEffect(range);
     }
@@ -165,28 +112,11 @@ public class RotatingSlashSkill : SkillBase
         Destroy(effect, lifetime);
     }
 
-    // 기즈모 색상을 검은색으로 변경
-    // ⭐ 기즈모: 실제 피격판정(OverlapCircle range)과 완벽 일치
     void OnDrawGizmos()
     {
         if (instance == null) return;
-
         float range = instance.GetCurrentLevelData().range;
-
         Gizmos.color = new Color(0.2f, 0.85f, 1f, 0.9f);
         Gizmos.DrawWireSphere(transform.position, range);
-
-        float angle = (rotData != null) ? rotData.angle : 360f;
-        if (angle < 360f)
-        {
-            Vector3 forward = transform.right;
-            int step = 20;
-            for (int i = 0; i <= step; i++)
-            {
-                float currentAngle = -angle / 2 + (angle / step) * i;
-                Vector3 dir = Quaternion.Euler(0, 0, currentAngle) * forward;
-                Gizmos.DrawLine(transform.position, transform.position + dir * range);
-            }
-        }
     }
 }

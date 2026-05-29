@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Effect
   - Enemy
+  - EnemyProjectile
+  - SealPillar
   layers:
   - Default
   - TransparentFX

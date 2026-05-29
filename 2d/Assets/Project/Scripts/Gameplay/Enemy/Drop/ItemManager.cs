@@ -43,7 +43,16 @@ public class ItemManager : MonoBehaviour
         int selectedID = GetRandomIDByWeight(isBoss);
 
         // ��� ������ ���� (���� ���� �ο���)
-        EquipmentData randomData = equipManager.CreateItem(selectedID);
+        // ⭐ DB가 로드된 EquipmentManager를 우선 사용 (씬 전환 후 인스펙터 참조 깨질 수 있음)
+        var em = (EquipmentManager.Instance != null && EquipmentManager.Instance.DatabaseCount > 0)
+            ? EquipmentManager.Instance
+            : equipManager;
+        if (em == null || em.DatabaseCount == 0)
+        {
+            Debug.LogWarning("[ItemManager] 사용 가능한 EquipmentManager가 없습니다 (DB 미로드)");
+            return;
+        }
+        EquipmentData randomData = em.CreateItem(selectedID);
 
         // �ʵ忡 ��� ������Ʈ ����
         GameObject equipObj = Instantiate(equipmentPrefab, position, Quaternion.identity);
@@ -72,10 +81,10 @@ public class ItemManager : MonoBehaviour
         }
 
         // 선택된 등급의 아이템 중 랜덤 하나
-        int id = equipManager.GetRandomIdByGrade(chosenGrade);
+        int id = (EquipmentManager.Instance != null && EquipmentManager.Instance.DatabaseCount > 0 ? EquipmentManager.Instance : equipManager).GetRandomIdByGrade(chosenGrade);
 
         // 해당 등급에 아이템이 없으면 Common으로 폴백
-        if (id < 0) id = equipManager.GetRandomIdByGrade(ItemGrade.Common);
+        if (id < 0) id = (EquipmentManager.Instance != null && EquipmentManager.Instance.DatabaseCount > 0 ? EquipmentManager.Instance : equipManager).GetRandomIdByGrade(ItemGrade.Common);
         if (id < 0) id = 1001; // 최종 안전장치
 
         return id;

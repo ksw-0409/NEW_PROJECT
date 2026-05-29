@@ -4,8 +4,8 @@ using System.Collections;
 public class ArrowRainArea : MonoBehaviour
 {
     [Header("Settings")]
-    public GameObject fallingArrowPrefab; // ½ÇÁ¦ µ¥¹ÌÁö¸¦ ÁÖ´Â È­»ì °´Ã¼
-    public float areaRadius = 3f;         // È­»ìÀÌ ¶³¾îÁö´Â ¹üÀ§
+    public GameObject fallingArrowPrefab; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ È­ï¿½ï¿½ ï¿½ï¿½Ã¼
+    public float areaRadius = 3f;         // È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     private float damage;
     private float duration;
@@ -33,25 +33,28 @@ public class ArrowRainArea : MonoBehaviour
         ApplyAreaScale(this.areaRadius);
 
         StartCoroutine(RainRoutine());
-        Destroy(gameObject, duration + 1f); // ¸ğµç È­»ìÀÌ ¶³¾îÁú ¶§±îÁö ´ë±â ÈÄ ÆÄ±«
+        Destroy(gameObject, duration + 1f); // ï¿½ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ä±ï¿½
     }
 
     IEnumerator RainRoutine()
     {
         float elapsed = 0;
         float spawnInterval = isConcentrated ? 0.08f : 0.25f;
+        // â­ ì „ì„¤ ì–´ë¹Œë¦¬í‹° 3 (í˜ì¼ë…¸íŠ¸) ì¥ì°© ì‹œ: í™”ì‚´ë¹„ ë°€ë„ 2ë°° (ê°„ê²© ì ˆë°˜)
+        if (PlayerStats.Instance != null && PlayerStats.Instance.HasAbility(3))
+            spawnInterval *= 0.5f;
 
         float actualRadius = GetActualWorldRadius();
 
         while (elapsed < duration)
         {
-            // 3. °è»êµÈ ½ÇÁ¦ ¹İÁö¸§ ¾È¿¡¼­¸¸ ·£´ı ÁÂÇ¥ »ı¼º
+            // 3. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½
             Vector2 randomPos = (Vector2)transform.position + (Random.insideUnitCircle * actualRadius);
 
             Vector3 spawnPos = new Vector3(randomPos.x, randomPos.y + 10f, 0);
 
             GameObject arrow = Instantiate(fallingArrowPrefab, spawnPos, Quaternion.Euler(0, 0, -90));
-            // »ı¼º Á÷ÈÄ Å©±â¸¦ ÇöÀçÀÇ Àı¹İ(0.5) È¤Àº ´õ ÀÛ°Ô(0.3) Á¶Àı
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(0.5) È¤ï¿½ï¿½ ï¿½ï¿½ ï¿½Û°ï¿½(0.3) ï¿½ï¿½ï¿½ï¿½
             arrow.transform.localScale = Vector3.one * 0.3f;
             var arrowScript = arrow.GetComponent<FallingArrow>();
             if (arrowScript != null)

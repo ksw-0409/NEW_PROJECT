@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -3876205627134167734}
   - component: {fileID: 5119616863804153185}
   - component: {fileID: 4634212718116626195}
+  - component: {fileID: 6154197897413934433}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -202,6 +203,18 @@ MonoBehaviour:
   poisonCardAsset: {fileID: 0}
   pierceCardAsset: {fileID: 0}
   cheatSlashSkill: {fileID: 11400000, guid: 04ce3a64b7ffb95418ec1fc201b62fff, type: 2}
+  cheatAllSkills:
+  - {fileID: 11400000, guid: 04ce3a64b7ffb95418ec1fc201b62fff, type: 2}
+  - {fileID: 11400000, guid: 793d561b8eb1f3c4c8a91a828eb94f07, type: 2}
+  - {fileID: 11400000, guid: 195312dbbdcc03840b660f6af8e6bf26, type: 2}
+  - {fileID: 11400000, guid: 35d59dd5a89f2f843a315159958c0938, type: 2}
+  - {fileID: 11400000, guid: ed09faeb5a7254d409b5558fbc1fb3b6, type: 2}
+  - {fileID: 11400000, guid: 5a0eac14b3fba9a449e90a2ad88076fa, type: 2}
+  - {fileID: 11400000, guid: 75d064776e5d644439310478b85ba646, type: 2}
+  - {fileID: 11400000, guid: 66fb34921e8493c41bc85dae76ad0468, type: 2}
+  - {fileID: 11400000, guid: aeb13a8b85bb2a24ca440bdc1e7d14cb, type: 2}
+  - {fileID: 11400000, guid: 389144f53eae61f489b6f0c23767e64c, type: 2}
+  - {fileID: 11400000, guid: 72a4cf4bf1439e942a4286d68b7eab43, type: 2}
   enemyManager: {fileID: 0}
   equippedSkills: []
   saveSkills: []
@@ -303,3 +316,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f161d0d7ae73c8f488ae2328daa07327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
+--- !u!114 &6154197897413934433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30316419374980630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9ad0e87086dfcd419824e46af7321f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerShieldRegen
+  regenInterval: 15
+  useShieldPassiveIfAvailable: 1
+  sanctuaryHealRatio: 0.03

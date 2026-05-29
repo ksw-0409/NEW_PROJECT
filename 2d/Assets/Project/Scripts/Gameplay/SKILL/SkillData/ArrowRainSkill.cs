@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ArrowRainSkill : SkillBase
@@ -16,7 +16,7 @@ public class ArrowRainSkill : SkillBase
         if (ld == null) return;
 
         // PlayerStats에서 보너스 데이터를 가져옵니다.
-        var bonus = PlayerStats.Instance.GetSkillBonus(instance.data);
+        var bonus = PlayerStats.Instance != null ? PlayerStats.Instance.GetSkillBonus(instance.data) : (dmg:1f, rng:1f, cool:1f, cnt:0, slowMul:1f, durMul:1f);
 
         // 1. 가장 가까운 적의 위치 찾기
         Vector3 targetPos = GetNearestEnemyPosition(player);
@@ -30,10 +30,11 @@ public class ArrowRainSkill : SkillBase
 
         // 3. 사거리(Range) 제한 로직
         float distToEnemy = Vector2.Distance(player.position, targetPos);
-        if (distToEnemy > ld.range)
+        float skillRange = ld.range * bonus.rng;
+            if (distToEnemy > skillRange)
         {
             Vector2 dir = ((Vector2)targetPos - (Vector2)player.position).normalized;
-            targetPos = (Vector2)player.position + (dir * ld.range);
+            targetPos = (Vector2)player.position + (dir * skillRange);
         }
 
         // 4. 최종 계산된 수치

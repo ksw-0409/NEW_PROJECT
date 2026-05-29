@@ -100,7 +100,7 @@ public class IceRainArea : MonoBehaviour
                 GameObject shard = Instantiate(fallingIcePrefab, spawnPos, Quaternion.identity);
 
                 // ✨ [변칙] 고드름 낙하: 큰 얼음 창
-                float scaleMult = hasSpear ? 0.45f : 0.22f;       // 더 큰 크기
+                float scaleMult = hasSpear ? 1.0f : 0.22f;        // ⭐ 거대 얼음창: 비의 ~4.5배 크기
                 float dmgMult   = hasSpear ? 3.0f  : 1.0f;        // 직격 300%
                 shard.transform.localScale = Vector3.one * scaleMult;
 

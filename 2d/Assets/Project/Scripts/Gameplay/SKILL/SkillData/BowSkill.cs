@@ -27,7 +27,9 @@ public class BowSkill : SkillBase
         bool palenoteOn = PlayerStats.Instance != null && PlayerStats.Instance.HasAbility(3);
         float spreadDeg = 25f;
 
-        for (int i = 0; i < ld.count; i++)
+        var bonus = PlayerStats.Instance != null ? PlayerStats.Instance.GetSkillBonus(data) : (dmg:1f, rng:1f, cool:1f, cnt:0, slowMul:1f, durMul:1f);
+        int totalShots = Mathf.Max(1, ld.count + bonus.cnt);
+        for (int i = 0; i < totalShots; i++)
         {
             // 정중앙(메인) 1발
             ShootArrow(player.position, fireDir);
@@ -92,6 +94,7 @@ public class BowSkill : SkillBase
 
     void ShootArrow(Vector2 pos, Vector2 dir)
     {
+        var bonus = PlayerStats.Instance != null && data != null ? PlayerStats.Instance.GetSkillBonus(data) : (dmg:1f, rng:1f, cool:1f, cnt:0, slowMul:1f, durMul:1f);
         var ld = instance.GetCurrentLevelData();
 
         // ✨ [유틸] 속사: 1회 발사 시 화살 2발 연속
@@ -107,7 +110,7 @@ public class BowSkill : SkillBase
             ArrowProjectile arrow = obj.GetComponent<ArrowProjectile>();
             if (arrow != null)
             {
-                arrow.Setup(ld.damage, ld.multiplier, ld.projectileSpeed, dir);
+                arrow.Setup(ld.damage * bonus.dmg, ld.multiplier, ld.projectileSpeed, dir);
 
                 if (nextArrowCritBoost)
                 {
@@ -115,7 +118,7 @@ public class BowSkill : SkillBase
                     nextArrowCritBoost = false;
                 }
 
-                arrow.ricochetEnabled = PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Bow_ricochet");
+                arrow.ricochetEnabled = true; // ⭐ 변칙 체크 제거 — 항상 튕김 (사용자 요청)
                 arrow.bowSkillRef = this;
 
                 CheckAndApplyPassives(arrow);

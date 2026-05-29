@@ -12,7 +12,7 @@ public class SlashSkill : SkillBase
     protected override void Execute(Transform player)
     {
         var levelData = instance.GetCurrentLevelData();
-        var bonus = PlayerStats.Instance.GetSkillBonus(instance.data);
+        var bonus = PlayerStats.Instance != null ? PlayerStats.Instance.GetSkillBonus(instance.data) : (dmg:1f, rng:1f, cool:1f, cnt:0, slowMul:1f, durMul:1f);
 
         float range = levelData.range * bonus.rng;
         float angle = levelData.angle;
@@ -20,7 +20,7 @@ public class SlashSkill : SkillBase
         // ⭐ 타격 판정만 확대 (이펙트 이미지 크기는 range/angle 그대로라 변하지 않음)
         //   - HIT_RANGE_MULT: 칼 닿는 거리(반경)를 늘려 칼끝까지 판정
         //   - HIT_ANGLE_MULT: 부채꼴 각도를 넓혀 좌우로 더 넓게 판정
-        const float HIT_RANGE_MULT = 1.25f;
+        const float HIT_RANGE_MULT = 1.625f; // ⭐ 사거리 1.3배 증대 (이전 1.25)
         const float HIT_ANGLE_MULT = 1.35f;
         float hitRange = range * HIT_RANGE_MULT;
         float hitAngle = Mathf.Min(angle * HIT_ANGLE_MULT, 360f);
@@ -41,16 +41,17 @@ public class SlashSkill : SkillBase
             0.4f
         );
 
-        // [변칙] 패링 베기: 주변 투사체 제거
-        if (PlayerStats.Instance.HasSpecialty("SL_parry"))
+        // ⭐ 베기 시 주변 적 투사체 제거 (변칙 체크 제거 — 항상 발동, 사용자 요청)
+        var enemyProjectiles = Physics2D.OverlapCircleAll(player.position, hitRange);
+        foreach (var p in enemyProjectiles)
         {
-            var projectiles = Physics2D.OverlapCircleAll(player.position, hitRange, LayerMask.GetMask("Projectile"));
-            foreach (var p in projectiles) Destroy(p.gameObject);
+            if (p != null && p.CompareTag("EnemyProjectile"))
+                Destroy(p.gameObject);
         }
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(player.position, hitRange);
-        bool hasPhantom = PlayerStats.Instance.HasSpecialty("SL_phantom");
-        bool hasBloodbath = PlayerStats.Instance.HasSpecialty("SL_bloodbath");
+        bool hasPhantom = PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("SL_phantom");
+        bool hasBloodbath = PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("SL_bloodbath");
 
         foreach (var hit in hits)
         {
@@ -101,7 +102,7 @@ public class SlashSkill : SkillBase
             enemy.TakeDamage(dotDamage);
 
             // [유틸] 혈투: 출혈로 적 처치 시 체력 2% 회복
-            if (!wasDead && enemyHealth.currentHp <= 0)
+            if (!wasDead && enemyHealth.currentHp <= 0 && PlayerStats.Instance != null)
             {
                 float healAmount = PlayerStats.Instance.MaxHealth * 0.02f;
                 PlayerStats.Instance.currentHealth = Mathf.Min(

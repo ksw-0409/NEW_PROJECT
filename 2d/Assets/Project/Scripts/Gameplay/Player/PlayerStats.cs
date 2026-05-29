@@ -13,6 +13,8 @@ public class PlayerStats : MonoBehaviour
     public float currentHealth;
     public float currentLevel = 1;
     public float currentExp = 0;
+    /// <summary>치트: true면 TakeExp가 무시됨 (레벨업 잠금)</summary>
+    public static bool LevelLocked = false;
     private bool isDead = false;
 
     // 장비 시스템
@@ -268,6 +270,8 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeExp(float exp)
     {
+        // ⭐ 치트: 레벨업 잠금 — 경험치 자체를 무시
+        if (LevelLocked) return;
         // ✨ 경험치 패시브 적용
         float multiplier = PassiveMul(PassiveSystem.ID_EXP);
         currentExp += exp * multiplier;

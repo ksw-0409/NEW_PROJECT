@@ -42,7 +42,7 @@ public class SlamSkill : SkillBase
     {
         float range = instance.GetCurrentLevelData().range;
 
-        CameraShake.ShakePreset(CameraShake.Preset.Heavy);
+        CameraShake.ShakePreset(CameraShake.Preset.Light); // ⭐ 흔들림 약화 (Heavy → Light)
 
         bool hasExecute = PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Slam_execute");
         bool hasQuake   = PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Slam_quake");
@@ -95,10 +95,8 @@ public class SlamSkill : SkillBase
 
         SpawnEffect(dir, range);
 
-        if (hasQuake)
-        {
-            SpawnQuakeZone(transform.position + (Vector3)(dir * range * 0.5f), range * 0.7f, 3f, 0.4f, 3f);
-        }
+        // ⭐ 충격파+둔화 항상 발동 (변칙 체크 제거 — 사용자 요청)
+        // ⭐ QuakeZone(갈색 존) 제거 — 사용자 요청. 슬로우는 위 hit 루프에서 직접 적용 중
     }
 
     bool IsStunImmune(EnemyHealth enemy)

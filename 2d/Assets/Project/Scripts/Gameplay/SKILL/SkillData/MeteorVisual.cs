@@ -184,7 +184,7 @@ public class MeteorVisual : MonoBehaviour
         col.radius = Mathf.Max(0.3f, explosionRadius);
 
         FireField field = lavaZone.AddComponent<FireField>();
-        float lavaDps = Mathf.Max(impactDamage * 0.1f, PlayerStats.Instance.MagicDamage * 0.1f);
+        float lavaDps = Mathf.Max(impactDamage * 0.1f, (PlayerStats.Instance != null ? PlayerStats.Instance.MagicDamage * 0.1f : 0f));
         field.Setup(LavaFieldFixedDuration, lavaDps, 0.5f, 1.0f);
 
         LineRenderer lr = lavaZone.AddComponent<LineRenderer>();

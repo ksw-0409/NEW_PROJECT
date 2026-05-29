@@ -36,6 +36,9 @@ public class PlayerSkillController : MonoBehaviour
     [Tooltip("\ud0a4\ubcf4\ub4dc 1\ubc88 \u2192 \ubca0\uae30 \uc2a4\ud0ac \ud68d\ub4dd")]
     public SkillData cheatSlashSkill;
 
+    [Tooltip("Ctrl+A 치트로 한꺼번에 획득할 모든 스킬 목록")]
+    public System.Collections.Generic.List<SkillData> cheatAllSkills = new System.Collections.Generic.List<SkillData>();
+
     [Header("References")]
     public EnemyManager enemyManager;
     public List<SkillData> equippedSkills = new();
@@ -115,6 +118,29 @@ public class PlayerSkillController : MonoBehaviour
         {
             Debug.Log("<color=yellow>[치트] L 입력 감지!</color>");
             GrantAllLegendaryItems();
+        }
+
+        // === Ctrl+A: 모든 액티브 스킬 획득 ===
+        // === Ctrl+R: 스킬트리(패시브) 초기화 ===
+        bool ctrlHeld = false;
+        try { ctrlHeld = Keyboard.current.leftCtrlKey.isPressed || Keyboard.current.rightCtrlKey.isPressed; } catch { }
+
+        if (ctrlHeld && Keyboard.current.aKey.wasPressedThisFrame)
+        {
+            Debug.Log("<color=yellow>[치트] Ctrl+A 입력 감지!</color>");
+            GrantAllSkills();
+        }
+        if (ctrlHeld && Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            Debug.Log("<color=yellow>[치트] Ctrl+R 입력 감지!</color>");
+            ResetSkillTree();
+        }
+        // === Ctrl+E: 레벨업(경험치) 잠금 토글 ===
+        if (ctrlHeld && Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            PlayerStats.LevelLocked = !PlayerStats.LevelLocked;
+            string state = PlayerStats.LevelLocked ? "잠금 ON (경험치 무시)" : "잠금 OFF (정상)";
+            Debug.Log($"<color=cyan>[치트]</color> 레벨업 잠금 → {state}");
         }
     }
 
@@ -197,6 +223,45 @@ public class PlayerSkillController : MonoBehaviour
             else Debug.LogWarning($"[치트] CreateItem({id}) 실패");
         }
         Debug.Log($"<color=cyan>[치트]</color> 전설 장비 {added}개를 인벤토리에 추가 (총 {Inventory.Instance.Items.Count}개)");
+    }
+
+    /// <summary>cheatAllSkills 리스트의 모든 스킬을 한 번에 획득 (이미 있으면 레벨업)</summary>
+    private void GrantAllSkills()
+    {
+        if (cheatAllSkills == null || cheatAllSkills.Count == 0)
+        {
+            Debug.LogWarning("[치트] cheatAllSkills 리스트가 비어있습니다 (인스펙터에서 스킬을 추가하세요)");
+            return;
+        }
+        int newCount = 0, upCount = 0, maxCount = 0;
+        foreach (var data in cheatAllSkills)
+        {
+            if (data == null) continue;
+            if (!HasSkill(data))
+            {
+                AddNewSkill(data);
+                newCount++;
+            }
+            else if (!IsMaxLevel(data))
+            {
+                LevelUpSkill(data);
+                upCount++;
+            }
+            else maxCount++;
+        }
+        Debug.Log($"<color=cyan>[치트]</color> 스킬 일괄 획득 → 신규 {newCount}개 / 레벨업 {upCount}개 / 이미 최대 {maxCount}개");
+    }
+
+    /// <summary>스킬트리(패시브) 초기화 — PassiveSystem.ResetAll() 호출</summary>
+    private void ResetSkillTree()
+    {
+        if (PassiveSystem.Instance == null)
+        {
+            Debug.LogWarning("[치트] PassiveSystem.Instance가 null입니다");
+            return;
+        }
+        PassiveSystem.Instance.ResetAll();
+        Debug.Log("<color=cyan>[치트]</color> 스킬트리(패시브) 초기화 완료");
     }
 
     public bool HasSkill(SkillData data)
@@ -307,7 +372,9 @@ public class PlayerSkillController : MonoBehaviour
 
         if (data is RotatingSlashData rotatingSlash)
         {
-            RotatingSlashSkill skill = player.AddComponent<RotatingSlashSkill>();
+            // ⭐ 이미 있으면 재사용 — 중복 컴포넌트로 칼날 여러개 도는 버그 방지
+            RotatingSlashSkill skill = player.GetComponent<RotatingSlashSkill>();
+            if (skill == null) skill = player.AddComponent<RotatingSlashSkill>();
             skill.effectPrefab = RotatingSlashPrefab;
             skill.Init(rotatingSlash, instance);
             return skill;

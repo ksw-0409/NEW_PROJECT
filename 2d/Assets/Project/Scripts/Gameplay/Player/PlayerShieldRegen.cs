@@ -1,14 +1,24 @@
 using UnityEngine;
 
 /// <summary>
-/// 방어 패시브 — 일정 간격마다 PlayerStats에 쉴드 1개를 자동으로 추가.
-/// 간격은 PassiveSystem의 ID_SHIELD 레벨에 따라 결정 (90→85→80→70→60→50초).
-///
-/// Player에 한 번 붙여놓으면, 패시브 레벨이 0보다 큰 동안 자동 작동.
+/// 쉴드 자동 재생 + 쉴드 보유 시 HP 회복 (신성한 영역 — 사용자 요청으로 통합).
 /// </summary>
 public class PlayerShieldRegen : MonoBehaviour
 {
-    private float timer = 0f;
+    [Header("쉴드 재생")]
+    [Tooltip("쉴드가 빠진 후 새 쉴드가 생기기까지의 간격(초)")]
+    public float regenInterval = 15f;
+
+    [Tooltip("스킬트리 방어 패시브가 찍혀있을 때 패시브의 간격값으로 덮어씌울지")]
+    public bool useShieldPassiveIfAvailable = true;
+
+    [Header("신성한 영역 — 쉴드 보유 시 HP 회복")]
+    [Tooltip("쉴드를 가지고 있는 동안 1초마다 최대체력의 몇 %를 회복할지")]
+    [Range(0f, 0.2f)]
+    public float sanctuaryHealRatio = 0.03f;  // 초당 최대 HP의 3%
+
+    private float regenTimer = 0f;
+    private float sanctuaryTimer = 0f;
     private PlayerStats stats;
 
     void Awake()
@@ -19,26 +29,51 @@ public class PlayerShieldRegen : MonoBehaviour
     void Update()
     {
         if (stats == null) return;
-        if (PassiveSystem.Instance == null) return;
 
-        int shieldLv = PassiveSystem.Instance.GetLevel(PassiveSystem.ID_SHIELD);
-        if (shieldLv <= 0) return; // 패시브 미해금이면 작동 안 함
-
-        // 이미 쉴드가 꽉 차 있으면 카운트 안 함
-        if (stats.currentShield >= stats.maxShield)
+        // ===== 1) 쉴드 자동 재생 =====
+        if (stats.currentShield < stats.maxShield)
         {
-            timer = 0f;
-            return;
+            float interval = regenInterval;
+            if (useShieldPassiveIfAvailable && PassiveSystem.Instance != null)
+            {
+                int shieldLv = PassiveSystem.Instance.GetLevel(PassiveSystem.ID_SHIELD);
+                if (shieldLv > 0)
+                {
+                    float passiveInterval = PassiveSystem.Instance.GetBonus(PassiveSystem.ID_SHIELD);
+                    if (passiveInterval > 0f) interval = passiveInterval;
+                }
+            }
+            regenTimer += Time.deltaTime;
+            if (regenTimer >= interval)
+            {
+                regenTimer = 0f;
+                stats.AddShield();
+            }
+        }
+        else
+        {
+            regenTimer = 0f;
         }
 
-        // 쉴드 재생 간격 (레벨에 따라)
-        float interval = PassiveSystem.Instance.GetBonus(PassiveSystem.ID_SHIELD); // 90/85/.../50초
-
-        timer += Time.deltaTime;
-        if (timer >= interval)
+        // ===== 2) 신성한 영역: 쉴드 가지고 있으면 초당 HP 회복 =====
+        if (stats.currentShield > 0)
         {
-            timer = 0f;
-            stats.AddShield();
+            sanctuaryTimer += Time.deltaTime;
+            if (sanctuaryTimer >= 1f)
+            {
+                sanctuaryTimer = 0f;
+                float maxHp = stats.MaxHealth;
+                float heal = maxHp * sanctuaryHealRatio;
+                if (heal > 0f && stats.currentHealth < maxHp)
+                {
+                    stats.currentHealth = Mathf.Min(stats.currentHealth + heal, maxHp);
+                    Debug.Log($"<color=#88ccff>[신성한 영역]</color> 쉴드 보유 중 → +{heal:F1} HP ({stats.currentHealth:F0}/{maxHp:F0})");
+                }
+            }
+        }
+        else
+        {
+            sanctuaryTimer = 0f;
         }
     }
 }

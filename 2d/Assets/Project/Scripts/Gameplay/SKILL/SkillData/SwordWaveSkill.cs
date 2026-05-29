@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// 검기 방출 스킬.
@@ -25,23 +26,38 @@ public class SwordWaveSkill : SkillBase
         // ✨ [유틸] 삼연각: 3줄기 부채꼴로 동시 발사
         bool hasTriple = PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("SwordWave_triple");
 
-        for (int i = 0; i < GetCount(); i++)
+        // ⭐ count > 1일 때 시간차 발사 (동시 발사하면 검기끼리 겹쳐서 1개로 보임)
+        StartCoroutine(FireRoutine(player, fireDir, hasTriple, GetCount()));
+    }
+
+    /// <summary>count > 1일 때 시간차로 발사 (0.15초 간격) — 동시 발사하면 겹쳐서 보이지 않음</summary>
+    private IEnumerator FireRoutine(Transform player, Vector2 fireDir, bool hasTriple, int totalCount)
+    {
+        for (int i = 0; i < totalCount; i++)
         {
+            if (player == null) yield break;
+            // 매번 플레이어의 현재 바라보는 방향으로 갱신
+            float lookDirection = player.localScale.x > 0 ? 1f : -1f;
+            Vector2 dir = Vector2.right * lookDirection;
+
             if (hasTriple)
             {
-                // 3줄기 부채꼴 (좌 -25도, 중앙, 우 +25도)
-                Fire(player.position, RotateBy(fireDir, -25f));
-                Fire(player.position, fireDir);
-                Fire(player.position, RotateBy(fireDir, +25f));
+                Fire(player.position, RotateBy(dir, -25f));
+                Fire(player.position, dir);
+                Fire(player.position, RotateBy(dir, +25f));
             }
             else
             {
-                Fire(player.position, fireDir);
+                Fire(player.position, dir);
             }
+
+            // 마지막 발사가 아니면 간격 두기
+            if (i < totalCount - 1)
+                yield return new WaitForSeconds(0.15f);
         }
     }
 
-    private static Vector2 RotateBy(Vector2 v, float deg)
+        private static Vector2 RotateBy(Vector2 v, float deg)
     {
         float rad = deg * Mathf.Deg2Rad;
         float cos = Mathf.Cos(rad), sin = Mathf.Sin(rad);
@@ -63,8 +79,9 @@ public class SwordWaveSkill : SkillBase
 
         float speed = swordWaveData != null ? swordWaveData.projectileSpeed : 18f;
         float thickness = swordWaveData != null ? swordWaveData.projectileThickness : 1.5f;
-        float range = levelData.range;
-        float damage = levelData.damage * levelData.multiplier;
+            var bonus = PlayerStats.Instance != null ? PlayerStats.Instance.GetSkillBonus(data) : (dmg:1f, rng:1f, cool:1f, cnt:0, slowMul:1f, durMul:1f);
+            float range = levelData.range * bonus.rng;
+            float damage = levelData.damage * levelData.multiplier * bonus.dmg;
 
         GameObject projectile = Instantiate(prefabToUse, (Vector3)startPos, Quaternion.identity);
 

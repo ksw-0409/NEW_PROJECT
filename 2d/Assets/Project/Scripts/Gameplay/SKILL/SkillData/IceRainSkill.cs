@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class IceRainSkill : SkillBase
 {
@@ -11,7 +11,7 @@ public class IceRainSkill : SkillBase
         var ld = instance.GetCurrentLevelData();
         if (ld == null) return;
 
-        var bonus = PlayerStats.Instance.GetSkillBonus(instance.data);
+        var bonus = PlayerStats.Instance != null ? PlayerStats.Instance.GetSkillBonus(instance.data) : (dmg:1f, rng:1f, cool:1f, cnt:0, slowMul:1f, durMul:1f);
 
         Vector3 targetPos = GetNearestEnemyPosition(player);
 

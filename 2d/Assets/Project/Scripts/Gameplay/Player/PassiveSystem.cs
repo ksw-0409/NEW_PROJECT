@@ -150,6 +150,13 @@ public class PassiveSystem : MonoBehaviour
         if (GameDataManager.Instance != null)
             GameDataManager.Instance.SavePassiveLevels(new Dictionary<string, int>());
         Debug.Log("<color=orange>[PassiveSystem]</color> 모든 패시브 초기화 (사망)");
+        // ⭐ 모든 스킬트리 UI 노드 갱신 (데이터만 비우면 화면이 안 바뀜)
+        var nodes = UnityEngine.Object.FindObjectsByType<PassiveSkillNode>(UnityEngine.FindObjectsInactive.Include, UnityEngine.FindObjectsSortMode.None);
+        foreach (var n in nodes)
+        {
+            if (n != null) n.UpdateVisual();
+        }
+        Debug.Log($"<color=orange>[PassiveSystem]</color> 노드 UI {nodes.Length}개 갱신");
     }
 
     private void RestoreFromSave()

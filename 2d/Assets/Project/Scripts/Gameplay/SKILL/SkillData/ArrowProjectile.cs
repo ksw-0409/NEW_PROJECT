@@ -66,6 +66,18 @@ public class ArrowProjectile : MonoBehaviour
     {
         pierceCount = Mathf.RoundToInt(ld.count);
         damageDecay = ld.multiplier;
+
+        // ⭐ [공격] Arrow_Pierce_penetrate: 특수 관통 — 관통 +1, 데미지 감쇄 없음
+        if (PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Arrow_Pierce_penetrate"))
+        {
+            pierceCount += 1;
+            damageDecay = 1.0f; // 감쇄 없음
+        }
+        // ⭐ [유틸] Arrow_Pierce_soul: 영혼 관통 — 관통 +3
+        if (PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Arrow_Pierce_soul"))
+        {
+            pierceCount += 3;
+        }
     }
 
     public void SetAllowedArea(Vector2 center, float radius)
@@ -94,8 +106,9 @@ public class ArrowProjectile : MonoBehaviour
                 extraDamage    += ld.damage * ld.multiplier;
                 break;
             case "Poison":
-                float totalStat  = PlayerStats.Instance.data.physicalDamage
-                                 + PlayerStats.Instance.data.magicDamage;
+                float totalStat  = PlayerStats.Instance != null && PlayerStats.Instance.data != null
+                                 ? PlayerStats.Instance.data.physicalDamage + PlayerStats.Instance.data.magicDamage
+                                 : 0f;
                 poisonDmgPerTick = ld.damage + totalStat * 0.1f;
                 poisonDuration   = ld.duration;
                 break;
@@ -155,7 +168,7 @@ public class ArrowProjectile : MonoBehaviour
             bowSkillRef.NotifyArrowHit(isCrit);
         }
 
-        if (isCrit && ricochetEnabled && !isRicochet)
+        if (ricochetEnabled && !isRicochet) // ⭐ 치명타 조건 제거 — 모든 적중에 1회 튕김
         {
             TriggerRicochet(enemy);
         }
@@ -208,35 +221,65 @@ public class ArrowProjectile : MonoBehaviour
     /// </summary>
     void DoExplosion(Vector2 pos)
     {
-        // ⭐ 화염구의 폭발 이펙트와 동일한 방식으로 크기를 폭발 반경에 비례하게 스폰
+        // ⭐ [변칙] Arrow_Explosion_carpet: 융단 폭격 — 폭발 반경 +50%
+        float effectiveRadius = explosionRadius;
+        if (PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Arrow_Explosion_carpet"))
+            effectiveRadius *= 1.5f;
+
+        // 화염 이펙트
         if (fireFieldPrefab != null)
         {
             GameObject fx = Instantiate(fireFieldPrefab, pos, Quaternion.identity);
             const float spriteNative = 0.48f;
             const float activeRatio  = 0.9f;
-            float fxSize = (explosionRadius * 2f) / (spriteNative * activeRatio);
+            float fxSize = (effectiveRadius * 2f) / (spriteNative * activeRatio);
             fx.transform.localScale = new Vector3(fxSize, fxSize, 1f);
             Destroy(fx, 0.55f);
         }
-
-        // 카메라 흔들림 (있다면)
-        if (CameraShake.Instance != null)
-            CameraShake.ShakePreset(CameraShake.Preset.Light);
-
-        // 폭발 범위 시각화 (있다면)
-        SkillRangeIndicator.Spawn(
-            pos,
-            explosionRadius,
-            new Color(1f, 0.55f, 0.1f, 0.95f),
-            0.5f,
-            SkillRangeIndicator.Shape.Circle
-        );
+        if (CameraShake.Instance != null) CameraShake.ShakePreset(CameraShake.Preset.Light);
+        SkillRangeIndicator.Spawn(pos, effectiveRadius, new Color(1f, 0.55f, 0.1f, 0.95f), 0.5f, SkillRangeIndicator.Shape.Circle);
 
         // 폭발 데미지
-        foreach (var col in Physics2D.OverlapCircleAll(pos, explosionRadius))
+        var hits = Physics2D.OverlapCircleAll(pos, effectiveRadius);
+        var hitEnemies = new System.Collections.Generic.List<EnemyHealth>();
+        foreach (var col in hits)
         {
-            if (col.CompareTag("Enemy"))
-                col.GetComponent<EnemyHealth>()?.TakeDamage(extraDamage);
+            if (col != null && col.CompareTag("Enemy"))
+            {
+                var e = col.GetComponent<EnemyHealth>();
+                if (e != null)
+                {
+                    e.TakeDamage(extraDamage);
+                    hitEnemies.Add(e);
+                }
+            }
+        }
+
+        // ⭐ [공격] Arrow_Explosion_chain: 연쇄 폭발 — 폭발 적 1명에서 2차 폭발 (반경 50%, 데미지 50%)
+        if (PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Arrow_Explosion_chain") && hitEnemies.Count > 0)
+        {
+            // 최초 적의 위치에서 2차 폭발
+            var firstEnemy = hitEnemies[0];
+            if (firstEnemy != null)
+            {
+                Vector2 chainPos = firstEnemy.transform.position;
+                float chainRadius = effectiveRadius * 0.6f;
+                float chainDmg = extraDamage * 0.5f;
+                StartCoroutine(DelayedChainExplosion(chainPos, chainRadius, chainDmg, firstEnemy));
+            }
+        }
+    }
+
+    /// <summary>연쇄 폭발: 0.2초 후 2차 폭발 (시각적으로 분리)</summary>
+    IEnumerator DelayedChainExplosion(Vector2 pos, float radius, float dmg, EnemyHealth skipTarget)
+    {
+        yield return new WaitForSeconds(0.2f);
+        SkillRangeIndicator.Spawn(pos, radius, new Color(1f, 0.7f, 0.2f, 0.95f), 0.4f, SkillRangeIndicator.Shape.Circle);
+        foreach (var col in Physics2D.OverlapCircleAll(pos, radius))
+        {
+            if (col == null || !col.CompareTag("Enemy")) continue;
+            var e = col.GetComponent<EnemyHealth>();
+            if (e != null && e != skipTarget) e.TakeDamage(dmg);
         }
     }
 
@@ -244,6 +287,13 @@ public class ArrowProjectile : MonoBehaviour
     {
         if (enemy.gameObject.activeInHierarchy)
             enemy.StartCoroutine(PoisonRoutine(enemy));
+
+        // ⭐ [공격] Arrow_Poison_nerve: 신경 독소 — 독 적용 시 1.5초 30% 둔화
+        if (PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Arrow_Poison_nerve"))
+        {
+            var mv = enemy.GetComponent<EnemyAI>();
+            if (mv != null) mv.ApplySlow(0.7f, 1.5f);
+        }
     }
 
     IEnumerator PoisonRoutine(EnemyHealth enemy)
@@ -255,12 +305,73 @@ public class ArrowProjectile : MonoBehaviour
             elapsed += 1f;
             yield return new WaitForSeconds(1f);
         }
+
+        // ⭐ [변칙] Arrow_Poison_plague: 역병 — 독으로 적이 죽을 때 주변 적에게 독 전염
+        if (enemy == null || !enemy.gameObject.activeInHierarchy)
+        {
+            if (PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Arrow_Poison_plague") && enemy != null)
+            {
+                Vector2 deathPos = enemy.transform.position;
+                foreach (var col in Physics2D.OverlapCircleAll(deathPos, 2.5f))
+                {
+                    if (col == null || !col.CompareTag("Enemy")) continue;
+                    var newTarget = col.GetComponent<EnemyHealth>();
+                    if (newTarget != null && newTarget != enemy && newTarget.gameObject.activeInHierarchy)
+                    {
+                        newTarget.StartCoroutine(PoisonRoutine(newTarget));
+                    }
+                }
+                SkillRangeIndicator.Spawn(deathPos, 2.5f, new Color(0.4f, 0.9f, 0.2f, 0.85f), 0.4f, SkillRangeIndicator.Shape.Circle);
+            }
+        }
     }
 
     void ApplyIce(EnemyHealth enemy)
     {
+        // ⭐ 슬로우 활성화 (이전에 주석 처리되어 있었음)
         var mv = enemy.GetComponent<EnemyAI>();
-        // if (mv != null) mv.ApplySlow(iceSlowAmount, iceDuration);
-        // (얼음 둔화 적용 부분이 주석 처리되어 있어 실제 효과 없음 — EnemyAI에 ApplySlow가 있으면 활성화 필요)
+        if (mv != null)
+        {
+            float slowAmt = iceSlowAmount;
+            float slowDur = iceDuration;
+            // [유틸] Arrow_Ice_absolute: 절대 영도 — 슬로우 강도/지속 2배
+            if (PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Arrow_Ice_absolute"))
+            {
+                slowAmt *= 2f;
+                slowDur *= 2f;
+            }
+            // ApplySlow 시그니처: (multiplier 0~1, duration). slowAmt가 0.3이면 70% 속도로 둔화
+            mv.ApplySlow(Mathf.Clamp(1f - slowAmt, 0.1f, 1f), slowDur);
+        }
+
+        // ⭐ [공격] Arrow_Ice_shatter: 쇄빙 — 빙결된 적 사망 시 주변에 얼음 폭발
+        if (PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Arrow_Ice_shatter"))
+        {
+            enemy.StartCoroutine(IceShatterWatchdog(enemy));
+        }
+    }
+
+    /// <summary>쇄빙: 얼음 적용 적이 죽을 때 주변에 작은 폭발</summary>
+    IEnumerator IceShatterWatchdog(EnemyHealth enemy)
+    {
+        while (enemy != null && enemy.gameObject.activeInHierarchy && enemy.currentHp > 0f)
+            yield return new WaitForSeconds(0.1f);
+
+        if (enemy != null)
+        {
+            Vector2 pos = enemy.transform.position;
+            float dmg = baseDamage * 0.6f;
+            float radius = 1.5f;
+            foreach (var col in Physics2D.OverlapCircleAll(pos, radius))
+            {
+                if (col != null && col.CompareTag("Enemy"))
+                {
+                    var e = col.GetComponent<EnemyHealth>();
+                    if (e != null && e != enemy) e.TakeDamage(dmg);
+                }
+            }
+            if (CameraShake.Instance != null) CameraShake.ShakePreset(CameraShake.Preset.Light);
+            SkillRangeIndicator.Spawn(pos, radius, new Color(0.5f, 0.85f, 1f, 0.95f), 0.4f, SkillRangeIndicator.Shape.Circle);
+        }
     }
 }

@@ -15,7 +15,7 @@ public class MeteorSkill : SkillBase
         if (enemyManager == null) enemyManager = FindFirstObjectByType<EnemyManager>();
 
         SkillLevelData ld = instance.GetCurrentLevelData();
-        var bonus = PlayerStats.Instance.GetSkillBonus(instance.data);
+        var bonus = PlayerStats.Instance != null ? PlayerStats.Instance.GetSkillBonus(instance.data) : (dmg:1f, rng:1f, cool:1f, cnt:0, slowMul:1f, durMul:1f);
 
         float finalDamage = ld.damage * bonus.dmg;
         float finalRange = ld.range * bonus.rng;
