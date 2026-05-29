@@ -79,13 +79,13 @@ public class PlayerStats : MonoBehaviour
     public float MaxHealth => (data.maxHealth + GetEquipSum(item => item.maxHealth)) * PassiveMul(PassiveSystem.ID_HP);
 
     // 이동 속도: data + 장비 합산, ×(1 + 패시브 이속 보너스), ×채무자 페널티(있으면 0.85)
-    public float MoveSpeed => (data.moveSpeed + GetEquipSum(item => item.moveSpeed)) * PassiveMul(PassiveSystem.ID_SPEED) * DebtSpdMul;
+    public float MoveSpeed => (data.moveSpeed + GetEquipSum(item => item.moveSpeed)) * PassiveMul(PassiveSystem.ID_SPEED) * DebtSpdMul * GetTalariaSpeedBoost();
 
     // 물리 데미지: data + 장비 합산, ×(1 + 패시브 물리 데미지 보너스), ×채무자 페널티(0.7)
-    public float PhysicalDamage => (data.physicalDamage + GetEquipSum(item => item.physicalDamage)) * PassiveMul(PassiveSystem.ID_PHYS_DMG) * DebtDmgMul;
+    public float PhysicalDamage => (data.physicalDamage + GetEquipSum(item => item.physicalDamage)) * PassiveMul(PassiveSystem.ID_PHYS_DMG) * DebtDmgMul * GetFrenzyDamageMultiplier();
 
     // 마법 데미지
-    public float MagicDamage => (data.magicDamage + GetEquipSum(item => item.magicDamage)) * PassiveMul(PassiveSystem.ID_MAG_DMG) * DebtDmgMul;
+    public float MagicDamage => (data.magicDamage + GetEquipSum(item => item.magicDamage)) * PassiveMul(PassiveSystem.ID_MAG_DMG) * DebtDmgMul * GetFrenzyDamageMultiplier();
 
     // 방어 (data 기준 그대로 + 장비)
     public float PhysicalDefense => data.physicalDefense + GetEquipSum(item => item.physicalDefense);
@@ -94,7 +94,7 @@ public class PlayerStats : MonoBehaviour
     public float DefenseRate => data.defenseRate + GetEquipSum(item => item.defense) + PassiveBonus(PassiveSystem.ID_DEFENSE);
 
     // 치명타 확률: data + 장비 + 패시브 치명타 보너스
-    public float CriticalChance => data.criticalChance + GetEquipSum(item => item.criticalChance) + PassiveBonus(PassiveSystem.ID_CRIT);
+    public float CriticalChance => HasAbility(5) ? 1f : (data.criticalChance + GetEquipSum(item => item.criticalChance) + PassiveBonus(PassiveSystem.ID_CRIT));
 
     public float CriticalDamage => data.criticalDamage + GetEquipSum(item => item.criticalDamage);
     public float AttackCooldown => data.attackcooldown + GetEquipSum(item => item.moveSpeed);
@@ -293,6 +293,10 @@ public class PlayerStats : MonoBehaviour
     // ============================================================
     public void TakeDamage(float damage)
     {
+        // 어빌리티 7: 피격 시간 기록 + 충격파 발동 (탈라리아)
+        lastDamagedTime = Time.time;
+        TriggerTalariaShockwave();
+
         if (isDead) return;
         if (damage <= 0f) return;
 
@@ -367,6 +371,121 @@ public class PlayerStats : MonoBehaviour
         }
 
         GetComponent<PlayerAnimation>()?.PlayDie();
+    }
+
+    // ========================= 전설 장비 어빌리티 시스템 =========================
+    // Ability 1: 흡혈 10%        Ability 2: 마법 즉시 재시전 10%   Ability 3: 화살 +2발 부채꼴
+    // Ability 4: 주변 슬로우 30%  Ability 5: 확정 크리                Ability 6: 광폭 스택
+    // Ability 7: 이속 충전 +20% + 피격 시 충격파
+
+    /// <summary>장착 중인 장비 중 해당 ability ID를 가진 게 있는지</summary>
+    public bool HasAbility(int abilityId)
+    {
+        if (abilityId == 0) return false;
+        foreach (var item in equippedItems.Values)
+            if (item != null && item.ability == abilityId) return true;
+        return false;
+    }
+
+    /// <summary>회복 (어빌리티 1 흡혈용)</summary>
+    public void Heal(float amount)
+    {
+        if (amount <= 0) return;
+        currentHealth = Mathf.Min(MaxHealth, currentHealth + amount);
+    }
+
+    /// <summary>적에게 피해를 입혔을 때 호출 — 흡혈(어빌리티 1)/광폭 스택 데미지 보너스 적용</summary>
+    public void OnDealDamage(float damageDealt)
+    {
+        // 어빌리티 1: 흡혈 10%
+        if (HasAbility(1) && damageDealt > 0)
+        {
+            float __before = currentHealth;
+            Heal(damageDealt * 0.1f);
+            Debug.Log($"<color=red>[그람 흡혈]</color> dmg={damageDealt:F1} → +{damageDealt*0.1f:F1} HP ({__before:F1} → {currentHealth:F1} / MaxHP {MaxHealth:F1})");
+        }
+    }
+
+    // ===== 어빌리티 6: 광폭 스택 =====
+    private int frenzyStacks = 0;
+    private float frenzyActiveUntil = -1f; // Time.time 기준, 이 시간까지 광폭 모드
+    public bool IsFrenzyActive => Time.time < frenzyActiveUntil;
+    /// <summary>광폭 모드 중일 때 모든 데미지에 곱할 배율 (1.5 = +50%)</summary>
+    public float GetFrenzyDamageMultiplier() => IsFrenzyActive ? 1.5f : 1f;
+
+    /// <summary>적 처치 시 호출 (어빌리티 6 광폭 스택)</summary>
+    public void OnEnemyKilled()
+    {
+        if (!HasAbility(6)) return;
+        if (UnityEngine.Random.value < 0.2f) // 20% 확률
+        {
+            frenzyStacks++;
+            if (frenzyStacks >= 10)
+            {
+                frenzyStacks = 0;
+                frenzyActiveUntil = Time.time + 10f; // 10초간 광폭
+                Debug.Log("<color=red>[그리브스]</color> 광폭 활성! 10초간 데미지 +50%");
+            }
+        }
+    }
+
+    // ===== 어빌리티 7: 이속 충전 + 충격파 =====
+    private float lastDamagedTime = -100f;
+    /// <summary>미피격 이동 시 0~+20% 이속 부스트 배율 (3초 무피격 시 최대)</summary>
+    public float GetTalariaSpeedBoost()
+    {
+        if (!HasAbility(7)) return 1f;
+        float elapsed = Time.time - lastDamagedTime;
+        float t = Mathf.Clamp01(elapsed / 3f); // 3초간 충전
+        return 1f + (0.2f * t);
+    }
+
+    /// <summary>피격 시 충격파 발동 (어빌리티 7) — TakeDamage 내부에서 호출됨</summary>
+    private void TriggerTalariaShockwave()
+    {
+        if (!HasAbility(7)) return;
+        float radius = 3f;
+        // 주변 3m 적들 → 충격파로 밀쳐냄 + 약간의 데미지
+        var hits = Physics2D.OverlapCircleAll(transform.position, radius);
+        int affected = 0;
+        foreach (var h in hits)
+        {
+            if (!h.CompareTag("Enemy")) continue;
+            var ai = h.GetComponent<EnemyAI>();
+            if (ai != null && !ai.isDie)
+            {
+                ai.ApplyHitEffect(transform.position); // 보스 위치 기준으로 밀려나는 효과
+                var eh = h.GetComponent<EnemyHealth>();
+                if (eh != null) eh.TakeDamage(PhysicalDamage * 0.5f);
+                affected++;
+            }
+        }
+        if (affected > 0)
+            Debug.Log($"<color=cyan>[탈라리아]</color> 충격파! {affected}마리 밀쳐냄");
+    }
+
+    /// <summary>주변 적에게 슬로우 적용 (어빌리티 4 — 매 프레임 호출)</summary>
+    private float lastKineeTickTime = 0f;
+    private void TickKineeSlow()
+    {
+        if (!HasAbility(4)) return;
+        // 0.5초마다 한 번씩만 (성능)
+        if (Time.time - lastKineeTickTime < 0.5f) return;
+        lastKineeTickTime = Time.time;
+
+        var hits = Physics2D.OverlapCircleAll(transform.position, 5f);
+        foreach (var h in hits)
+        {
+            if (!h.CompareTag("Enemy")) continue;
+            var ai = h.GetComponent<EnemyAI>();
+            if (ai != null && !ai.isDie)
+                ai.ApplySlow(0.7f, 0.6f); // 30% 감소 (= 70% 속도), 0.6초 지속 (0.5초 틱보다 길게)
+        }
+    }
+
+    void Update()
+    {
+        TickKineeSlow();
     }
 
     public void HealToFull()

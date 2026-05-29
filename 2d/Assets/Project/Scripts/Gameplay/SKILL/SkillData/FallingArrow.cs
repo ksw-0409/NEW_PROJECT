@@ -1,8 +1,13 @@
 using UnityEngine;
 
+/// <summary>
+/// ArrowRainAreaê°€ ë–¨ì–´ëœ¨ë¦¬ëŠ” í™”ì‚´ 1ë°œ.
+/// BowSkillì²˜ëŸ¼ í™œ íŒ¨ì‹œë¸Œ(ë¹™ê²°/í­ë°œ/ë…/ê´€í†µ)ë¥¼ í™•ë¥  ê¸°ë°˜ìœ¼ë¡œ ì ìš©í•´ì„œ,
+/// í”Œë ˆì´ì–´ê°€ ê°€ì§„ í™œ íŒ¨ì‹œë¸Œê°€ í™”ì‚´ë¹„ì—ë„ ë™ì¼í•˜ê²Œ ë°œë™í•œë‹¤.
+/// </summary>
 public class FallingArrow : MonoBehaviour
 {
-    private ArrowProjectile projectile; // ±âÁ¸ ÆĞ½Ãºê ·ÎÁ÷ ½ºÅ©¸³Æ® ÂüÁ¶
+    private ArrowProjectile projectile;
     private Vector2 targetPos;
     private float speed = 25f;
 
@@ -11,42 +16,69 @@ public class FallingArrow : MonoBehaviour
         projectile = GetComponent<ArrowProjectile>();
         targetPos = target;
 
-        // 1. ±âÁ¸ ½ºÅ©¸³Æ®ÀÇ ±âº» ¼Â¾÷ È£Ãâ (µ¥¹ÌÁö Àü´Ş)
-        // ¹æÇâÀº ¾Æ·¡ÂÊ(Vector2.down)À¸·Î ¼³Á¤
+        // 1) ArrowProjectile ê¸°ë³¸ ì…‹ì—… (ì•„ë˜ë¡œ ë–¨ì–´ì§)
         projectile.Setup(dmg, conc ? 2.0f : 1.0f, speed, Vector2.down);
         projectile.SetAllowedArea(rainCenter, rainRadius);
 
-        // 2. ÆĞ½Ãºê È¿°ú °­Á¦ Àû¿ë (¿øÇÑ´Ù¸é)
-        // BowSkill¿¡¼­ ÇÏ´ø °ÍÃ³·³ ¿©±â¼­µµ ÆĞ½Ãºê µ¥ÀÌÅÍ¿¡ µû¶ó AddPassive È£Ãâ °¡´É
+        // 2) í™œ íŒ¨ì‹œë¸Œ ì ìš© â€” BowSkillê³¼ ë™ì¼í•œ í™•ë¥  ê¸°ë°˜ ë¡œì§
         ApplyRainPassives(exec, conc);
     }
 
     void Update()
     {
-        // ¸ñÇ¥ ÁöÁ¡(¹Ù´Ú)±îÁö °ÅÀÇ ´Ù ¿ÔÀ» ¶§ »èÁ¦ (¹Ù´Ú¿¡ ¹ÚÈ÷´Â ´À³¦)
         if (Vector2.Distance(transform.position, targetPos) < 0.2f)
         {
             Destroy(gameObject);
         }
     }
 
+    /// <summary>BowSkill.CheckAndApplyPassivesì™€ ë™ì¼í•œ ë¡œì§ â€” ê° í™œ íŒ¨ì‹œë¸Œë¥¼ í™•ë¥ ë¡œ ì ìš©</summary>
     private void ApplyRainPassives(bool exec, bool conc)
     {
-        // PlayerSkillController¿¡ ¿¬°áµÈ ÆĞ½Ãºê ¿¡¼ÂµéÀ» °¡Á®¿Í¼­ 
-        // È®·üÀûÀ¸·Î È¤Àº È®Á¤ÀûÀ¸·Î È­»ì¿¡ ÆĞ½Ãºê¸¦ ÁÖÀÔÇÕ´Ï´Ù.
         var controller = PlayerSkillController.Instance;
+        if (controller == null || projectile == null) return;
 
-        // ¿¹: ¾óÀ½ ÆĞ½Ãºê°¡ ÀÖ´Ù¸é 30% È®·ü·Î È­»ìºñÀÇ È­»ì¿¡µµ Àû¿ë
-        if (controller.iceCardAsset != null && controller.iceCardAsset.skillInstance != null)
+        // ê´€í†µ â€” í™•ë¥  ê¸°ë°˜
+        ApplyPierceIfSuccess(controller.pierceCardAsset);
+
+        // ë¹™ê²° / í­ë°œ / ë… â€” í™•ë¥  ê¸°ë°˜
+        ApplyIfSuccess(controller.iceCardAsset, "Ice");
+        ApplyIfSuccess(controller.explosionCardAsset, "Explosion");
+        ApplyIfSuccess(controller.poisonCardAsset, "Poison");
+    }
+
+    private void ApplyPierceIfSuccess(ArrowPassiveData data)
+    {
+        if (data == null) return;
+        var ld = data.GetCurrentLevelData();
+        if (ld == null) return;
+
+        float chance = data.CurrentProcChance;
+        if (Random.value < chance)
         {
-            var ld = controller.iceCardAsset.GetCurrentLevelData();
-            projectile.AddPassive(ld, "Ice", Color.cyan);
+            projectile.SetPierce(ld);
         }
+    }
 
-        // ÁıÁß »ç°İ(conc) »óÅÂ¶ó¸é °üÅë ÆĞ½Ãºê¸¦ °­Á¦·Î ÁÙ ¼öµµ ÀÖ½À´Ï´Ù.
-        if (conc && controller.pierceCardAsset != null)
+    private void ApplyIfSuccess(ArrowPassiveData data, string type)
+    {
+        if (data == null) return;
+
+        var ld = data.GetCurrentLevelData();
+        if (ld == null) return;
+
+        float chance = data.CurrentProcChance;
+        if (Random.value < chance)
         {
-            projectile.SetPierce(controller.pierceCardAsset.GetCurrentLevelData());
+            projectile.AddPassive(ld, type, data.arrowColor, data.arrowSprite);
+
+            // í­ë°œí™”ì‚´ ë°œë™ ì‹œ í­ë°œ ì´í™íŠ¸ í”„ë¦¬íŒ¹ ì£¼ì…
+            if (type == "Explosion")
+            {
+                var psc = PlayerSkillController.Instance;
+                if (psc != null && psc.bowExplosionEffectPrefab != null)
+                    projectile.fireFieldPrefab = psc.bowExplosionEffectPrefab;
+            }
         }
     }
 }

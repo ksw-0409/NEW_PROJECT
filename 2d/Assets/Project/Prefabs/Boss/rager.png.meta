@@ -1,0 +1,1105 @@
+fileFormatVersion: 2
+guid: cc0117ed6472a3f4c9212cb06dc9a5e7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6818763789897229149
+    second: rager_0
+  - first:
+      213: -6552580719621884977
+    second: rager_1
+  - first:
+      213: -8517202307626484461
+    second: rager_2
+  - first:
+      213: 8845163619033205397
+    second: rager_3
+  - first:
+      213: -1403810652376432142
+    second: rager_4
+  - first:
+      213: 5636259391961242088
+    second: rager_5
+  - first:
+      213: -3173535805971862848
+    second: rager_6
+  - first:
+      213: -950021665201411245
+    second: rager_7
+  - first:
+      213: -8062227604952900636
+    second: rager_8
+  - first:
+      213: 5797512991449573121
+    second: rager_9
+  - first:
+      213: -3280295528139656878
+    second: rager_10
+  - first:
+      213: -6196279447713504860
+    second: rager_11
+  - first:
+      213: -7494001825272259359
+    second: rager_12
+  - first:
+      213: 7174491426278188098
+    second: rager_13
+  - first:
+      213: 6704413870823144771
+    second: rager_14
+  - first:
+      213: 228474602058035694
+    second: rager_15
+  - first:
+      213: -8078175404186829081
+    second: rager_16
+  - first:
+      213: -2210528482631614179
+    second: rager_17
+  - first:
+      213: -5137675803046431598
+    second: rager_18
+  - first:
+      213: 4056338919091584229
+    second: rager_19
+  - first:
+      213: -1017479133339816762
+    second: rager_20
+  - first:
+      213: -7713901874195751159
+    second: rager_21
+  - first:
+      213: 2141774866169387029
+    second: rager_22
+  - first:
+      213: -4869760455136679970
+    second: rager_23
+  - first:
+      213: 6136415459254543414
+    second: rager_24
+  - first:
+      213: 8247397957492141597
+    second: rager_25
+  - first:
+      213: -4913564862390761248
+    second: rager_26
+  - first:
+      213: 2396086271468929720
+    second: rager_27
+  - first:
+      213: 1095184614955164622
+    second: rager_28
+  - first:
+      213: 8350844640030483588
+    second: rager_29
+  - first:
+      213: 8257536758336618489
+    second: rager_30
+  - first:
+      213: -4373375518925442978
+    second: rager_31
+  - first:
+      213: 2094883447696850474
+    second: rager_32
+  - first:
+      213: -562829445166362826
+    second: rager_33
+  - first:
+      213: 6948231885911614806
+    second: rager_34
+  - first:
+      213: -8516348282559087397
+    second: rager_35
+  - first:
+      213: -4267252313722018149
+    second: rager_36
+  - first:
+      213: 5888675062606020218
+    second: rager_37
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: rager_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 1090
+        width: 35
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ac11efd572ee51a0800000000000000
+      internalID: -6818763789897229149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_1
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 1092
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc33dd47d8e8015a0800000000000000
+      internalID: -6552580719621884977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_2
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 1092
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31d39c590a1dcc980800000000000000
+      internalID: -8517202307626484461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_3
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 1092
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59acea4a27550ca70800000000000000
+      internalID: 8845163619033205397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_4
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1086
+        width: 29
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f1813d36a9a48ce0800000000000000
+      internalID: -1403810652376432142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_5
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 1099
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e91fc70e04083e40800000000000000
+      internalID: 5636259391961242088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_6
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 1092
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ca6013aff555f3d0800000000000000
+      internalID: -3173535805971862848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_7
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 1090
+        width: 35
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35baeb43458d0d2f0800000000000000
+      internalID: -950021665201411245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_8
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 1092
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4eb1f6475b63d1090800000000000000
+      internalID: -8062227604952900636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_9
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 1092
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10760146957e47050800000000000000
+      internalID: 5797512991449573121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_10
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 1092
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 251feeec89c0a72d0800000000000000
+      internalID: -3280295528139656878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_11
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 1086
+        width: 29
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a1abfdeba4620aa0800000000000000
+      internalID: -6196279447713504860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_12
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 1099
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ec948a7b05fff790800000000000000
+      internalID: -7494001825272259359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_13
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 1092
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 244a56ba0f9e09360800000000000000
+      internalID: 7174491426278188098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_14
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 1090
+        width: 35
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34d7d9dd4ecda0d50800000000000000
+      internalID: 6704413870823144771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_15
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 1092
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee13ed7a074bb2300800000000000000
+      internalID: 228474602058035694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_16
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 1092
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ee7528154e84ef80800000000000000
+      internalID: -8078175404186829081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_17
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 1092
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d110cd29e00a251e0800000000000000
+      internalID: -2210528482631614179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_18
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 973
+        width: 29
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2943c44e31f43b8b0800000000000000
+      internalID: -5137675803046431598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_19
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 1099
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ecbb0961c20b4830800000000000000
+      internalID: 4056338919091584229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_20
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 1092
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cc68ea7e1031e1f0800000000000000
+      internalID: -1017479133339816762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_21
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 1081
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90f975c8d17b2f490800000000000000
+      internalID: -7713901874195751159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_22
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 1086
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 518d2e6a4ec19bd10800000000000000
+      internalID: 2141774866169387029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_23
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 1082
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed7655acaa22b6cb0800000000000000
+      internalID: -4869760455136679970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_24
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1079
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 634251b195de82550800000000000000
+      internalID: 6136415459254543414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_25
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 1060
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1ee999eeb4a47270800000000000000
+      internalID: 8247397957492141597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_26
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 1079
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e88b547ac28fcbb0800000000000000
+      internalID: -4913564862390761248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_27
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 1061
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b28816d4cb904120800000000000000
+      internalID: 2396086271468929720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_28
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 221
+        width: 29
+        height: 867
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec320e1da90e23f00800000000000000
+      internalID: 1095184614955164622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_29
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 221
+        width: 27
+        height: 858
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 484ed7794f824e370800000000000000
+      internalID: 8350844640030483588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_30
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 1048
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ff72607ee9a89270800000000000000
+      internalID: 8257536758336618489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_31
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 1064
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e503f0df226ae43c0800000000000000
+      internalID: -4373375518925442978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_32
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 1062
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2ef0d18565821d10800000000000000
+      internalID: 2094883447696850474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_33
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 221
+        width: 26
+        height: 859
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63f8ab30a9d6038f0800000000000000
+      internalID: -562829445166362826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_34
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 221
+        width: 31
+        height: 859
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 655edc046141d6060800000000000000
+      internalID: 6948231885911614806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_35
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 221
+        width: 11
+        height: 847
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdcbe8acb5adfc980800000000000000
+      internalID: -8516348282559087397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_36
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 221
+        width: 152
+        height: 847
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b96a2a921aca7c4c0800000000000000
+      internalID: -4267252313722018149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rager_37
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 945
+        width: 9
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7e355815c6c8b150800000000000000
+      internalID: 5888675062606020218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      rager_0: -6818763789897229149
+      rager_1: -6552580719621884977
+      rager_10: -3280295528139656878
+      rager_11: -6196279447713504860
+      rager_12: -7494001825272259359
+      rager_13: 7174491426278188098
+      rager_14: 6704413870823144771
+      rager_15: 228474602058035694
+      rager_16: -8078175404186829081
+      rager_17: -2210528482631614179
+      rager_18: -5137675803046431598
+      rager_19: 4056338919091584229
+      rager_2: -8517202307626484461
+      rager_20: -1017479133339816762
+      rager_21: -7713901874195751159
+      rager_22: 2141774866169387029
+      rager_23: -4869760455136679970
+      rager_24: 6136415459254543414
+      rager_25: 8247397957492141597
+      rager_26: -4913564862390761248
+      rager_27: 2396086271468929720
+      rager_28: 1095184614955164622
+      rager_29: 8350844640030483588
+      rager_3: 8845163619033205397
+      rager_30: 8257536758336618489
+      rager_31: -4373375518925442978
+      rager_32: 2094883447696850474
+      rager_33: -562829445166362826
+      rager_34: 6948231885911614806
+      rager_35: -8516348282559087397
+      rager_36: -4267252313722018149
+      rager_37: 5888675062606020218
+      rager_4: -1403810652376432142
+      rager_5: 5636259391961242088
+      rager_6: -3173535805971862848
+      rager_7: -950021665201411245
+      rager_8: -8062227604952900636
+      rager_9: 5797512991449573121
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

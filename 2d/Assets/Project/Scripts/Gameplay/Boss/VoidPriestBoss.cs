@@ -57,7 +57,21 @@ public class VoidPriestBoss : EnemyAI
     public GameObject rockGolemElitePrefab;      // 정예 암석 골렘
     public float summonRadius = 3f;
 
-    [Header("기타")]
+    [Header("소환 이펙트")]
+    [Tooltip("몬스터가 소환되는 자리에 잠깐 표시할 summon 스프라이트 시퀀스 (summon_0 ~ summon_4 순서로 할당)")]
+    public Sprite[] summonEffectSprites;
+    [Tooltip("이펙트 표시 후 실제 몬스터가 등장할 때까지의 시간(초)")]
+    public float summonEffectDuration = 1.0f;
+    [Tooltip("소환 시작 시 플레이어를 보스 주변에서 밀어내는 거리")]
+    public float pushPlayerDistance = 6f;
+
+    [Header("추격 / 이동")]
+    [Tooltip("플레이어와 이 거리 이상이면 보스가 다가옴. 이하면 정지하고 공격")]
+    public float chaseDistance = 5f;
+    [Tooltip("추격 시 이동 속도 (유닛/초)")]
+    public float chaseSpeed = 2.5f;
+
+        [Header("기타")]
     public float introDelay = 0.5f;
 
     private Animator anim;
@@ -74,6 +88,7 @@ public class VoidPriestBoss : EnemyAI
 
     // 보호막 상태 (특수1 진행 중 무적)
         private bool shielded = false;
+    private bool specialResting = false; // 특수공격 직후 5초 휴식 중인지
     private float shieldHp = -1f; // 보호막 진입 시 HP 저장 (무적 유지용);
     private GameObject shieldVisual;
 
@@ -164,7 +179,35 @@ public class VoidPriestBoss : EnemyAI
 
     public override void MoveTaget(Vector2 targetPos)
     {
-        if (rb != null) rb.linearVelocity = Vector2.zero; // 고정형 보스
+        if (rb == null || isDie) return;
+
+        // 특수공격/보호막 중이거나 넉백/스턴 상태면 이동 정지
+        if (shielded || specialResting || isKnockedBack || isStun)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
+        // 플레이어와 거리 측정 → 멀면 추격, 가까우면 정지하고 공격
+        if (playerTr == null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+        Vector2 toPlayer = (Vector2)playerTr.position - (Vector2)transform.position;
+        float dist = toPlayer.magnitude;
+
+        if (dist > chaseDistance)
+        {
+            // 멀면 추격
+            Vector2 dir = toPlayer.normalized;
+            rb.linearVelocity = dir * chaseSpeed;
+        }
+        else
+        {
+            // 가까우면 정지하고 공격 패턴 진행
+            rb.linearVelocity = Vector2.zero;
+        }
     }
 
     public override void Die()
@@ -185,21 +228,21 @@ public class VoidPriestBoss : EnemyAI
 
         while (!isDie)
         {
-            // 보호막(특수1) 중이면 대기
-            if (shielded) { yield return null; continue; }
+            // 보호막(특수1) 또는 특수공격 후 휴식 중이면 대기
+            if (shielded || specialResting) { yield return null; continue; }
 
             // 일반공격 N회
             for (int i = 0; i < normalAttackCountBeforeEnhanced; i++)
             {
                 if (isDie) yield break;
-                if (shielded) break; // 페이즈 진입 시 중단
+                if (shielded || specialResting) break; // 페이즈/휴식 진입 시 중단
                 yield return StartCoroutine(NormalAttack());
                 if (anim != null) anim.Play("Idle", 0, 0f);
                 yield return new WaitForSeconds(normalAttackInterval);
             }
 
             if (isDie) yield break;
-            if (shielded) continue;
+            if (shielded || specialResting) continue;
 
             // 강화공격 1회
             yield return StartCoroutine(EnhancedAttack());
@@ -215,17 +258,19 @@ public class VoidPriestBoss : EnemyAI
 
         if (voidOrbPrefab == null || playerTr == null) yield break;
 
-        Vector2 dir = ((Vector2)playerTr.position - (Vector2)transform.position).normalized;
-        Vector2 perp = new Vector2(-dir.y, dir.x); // 발사 방향에 수직 (일자 배치용)
         float orbSpeed = playerBaseSpeed * orbSpeedMultiplier;
 
-        // 3개를 수직으로 나란히 (일자)
-        for (int i = -1; i <= 1; i++)
+        // 같은 자리에서 시간차로 3발 빵빵빵 (세로 일렬로 줄지어 날아감)
+        for (int i = 0; i < 3; i++)
         {
-            Vector3 spawn = transform.position + (Vector3)(dir * 0.6f) + (Vector3)(perp * (i * orbLineSpacing));
+            if (isDie || playerTr == null) yield break;
+            // 매번 플레이어의 최신 위치로 방향 갱신 (자연스러운 추적)
+            Vector2 dir = ((Vector2)playerTr.position - (Vector2)transform.position).normalized;
+            Vector3 spawn = transform.position + (Vector3)(dir * 0.6f);
             GameObject o = Instantiate(voidOrbPrefab, spawn, Quaternion.identity);
             var orb = o.GetComponent<VoidOrb>();
             if (orb != null) orb.Setup(SkillDamage, orbSpeed, dir);
+            yield return new WaitForSeconds(0.18f); // 빵-빵-빵 간격
         }
     }
 
@@ -244,14 +289,16 @@ public class VoidPriestBoss : EnemyAI
         var field = fieldGo.AddComponent<VoidMeteorField>();
         field.Setup(meteorTickDamage, meteorRadius, meteorFieldDuration, meteorWarningTime);
 
-        // 2) 4방향 보라 구체 발사
+        // 2) 4방향 보라 구체 발사 — 메테오 터진 자리(meteorPos)에서 나가도록
+        //    메테오 착지 타이밍에 맞춰 살짝 지연
+        yield return new WaitForSeconds(meteorWarningTime);
         if (voidOrbPrefab != null)
         {
             float orbSpeed = playerBaseSpeed * orbSpeedMultiplier;
             Vector2[] dirs = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
             foreach (var d in dirs)
             {
-                GameObject o = Instantiate(voidOrbPrefab, transform.position + (Vector3)(d * 0.6f), Quaternion.identity);
+                GameObject o = Instantiate(voidOrbPrefab, meteorPos + (Vector3)(d * 0.6f), Quaternion.identity);
                 var orb = o.GetComponent<VoidOrb>();
                 if (orb != null) orb.Setup(SkillDamage, orbSpeed, d);
             }
@@ -346,6 +393,11 @@ public class VoidPriestBoss : EnemyAI
         foreach (var p in pillars) if (p != null) Destroy(p.gameObject);
 
         RemoveShield();
+
+        // ⭐ 특수공격 후 5초 휴식 (플레이어 숨 돌릴 시간) — 메인 루프도 멈춤
+        specialResting = true;
+        yield return new WaitForSeconds(5f);
+        specialResting = false;
     }
 
     private List<SealPillar> SpawnPillars()
@@ -406,38 +458,58 @@ public class VoidPriestBoss : EnemyAI
     private IEnumerator SpecialAttack2_Summon(int phaseIndex)
     {
         Debug.Log($"[VoidPriestBoss] === SPECIAL2 (Summon) phase {phaseIndex} (HP {special2Thresholds[phaseIndex]:P0}) ===");
-        if (anim != null) anim.Play("Skill2", 0, 0f);
-        yield return new WaitForSeconds(0.4f);
+        // ⭐ 소환 시작 → 플레이어를 보스 주변에서 안전 거리로 밀쳐냄 (즉사 방지)
+        PushPlayerAway();
+
+        if (anim != null) anim.Play("Summon", 0, 0f);
+        // 보스 Summon 애니메이션(11프레임 ≈ 0.92초)이 완전히 끝나도록 대기
+        yield return new WaitForSeconds(1.0f);
 
         switch (phaseIndex)
         {
             case 0: // 70% → 박쥐 10마리
-                SummonMany(batPrefab, 10);
+                yield return StartCoroutine(SummonManyCoroutine(batPrefab, 10));
                 break;
             case 1: // 40% → 폭발 거미 5 + 새끼 거미 10
-                SummonMany(explosiveSpiderPrefab, 5);
-                SummonMany(babySpiderPrefab, 10);
+                yield return StartCoroutine(SummonManyCoroutine(explosiveSpiderPrefab, 5));
+                yield return StartCoroutine(SummonManyCoroutine(babySpiderPrefab, 10));
                 break;
             case 2: // 10% → 정예 암석 골렘 2
-                SummonMany(rockGolemElitePrefab, 2);
+                yield return StartCoroutine(SummonManyCoroutine(rockGolemElitePrefab, 2));
                 break;
         }
-        yield return null;
+        // ⭐ 특수공격 후 5초 휴식 — 메인 루프도 멈춤
+        specialResting = true;
+        yield return new WaitForSeconds(5f);
+        specialResting = false;
     }
 
-    private void SummonMany(GameObject prefab, int count)
+    private IEnumerator SummonManyCoroutine(GameObject prefab, int count)
     {
         if (prefab == null)
         {
             Debug.LogWarning($"[VoidPriestBoss] 소환 프리팹 미할당 (count={count})");
-            return;
+            yield break;
         }
+
+        // 1) 모든 소환 위치를 먼저 계산하고, 각 위치에 summon 이펙트를 표시
+        var spawnPositions = new List<Vector3>(count);
         for (int i = 0; i < count; i++)
         {
             float ang = Random.Range(0f, Mathf.PI * 2f);
             float dist = Random.Range(summonRadius * 0.5f, summonRadius);
             Vector3 pos = transform.position + new Vector3(Mathf.Cos(ang), Mathf.Sin(ang), 0f) * dist;
+            spawnPositions.Add(pos);
+            PlaySummonEffect(pos);
+        }
 
+        // 2) 이펙트가 보이는 동안 잠깐 대기 (플레이어가 소환 위치 확인 가능)
+        yield return new WaitForSeconds(summonEffectDuration);
+
+        // 3) 실제 몬스터 등장
+        foreach (var pos in spawnPositions)
+        {
+            if (isDie) yield break;
             GameObject m = Instantiate(prefab, pos, Quaternion.identity);
             var ai = m.GetComponent<EnemyAI>();
             if (ai != null)
@@ -448,5 +520,49 @@ public class VoidPriestBoss : EnemyAI
             }
         }
         Debug.Log($"[VoidPriestBoss] {prefab.name} {count}마리 소환");
+    }
+
+    /// <summary>소환 시작 시 플레이어를 보스에서 안전 거리로 밀어냄 (즉사 방지)</summary>
+    private void PushPlayerAway()
+    {
+        if (playerTr == null) return;
+        Vector2 toPlayer = (Vector2)playerTr.position - (Vector2)transform.position;
+        // 보스랑 같은 자리면 임의 방향
+        if (toPlayer.sqrMagnitude < 0.01f) toPlayer = Vector2.right;
+        Vector2 dir = toPlayer.normalized;
+        Vector3 newPos = transform.position + (Vector3)(dir * pushPlayerDistance);
+        playerTr.position = newPos;
+        Debug.Log($"[VoidPriestBoss] 플레이어를 {pushPlayerDistance}유닛 밀쳐냄 → {newPos}");
+    }
+
+    /// <summary>소환 위치에 summon 이펙트 스프라이트들을 잠시 표시</summary>
+    private void PlaySummonEffect(Vector3 pos)
+    {
+        var go = new GameObject("SummonEffect");
+        go.transform.position = pos;
+        var esr = go.AddComponent<SpriteRenderer>();
+        esr.sortingOrder = 50;
+        esr.color = new Color(0.85f, 0.55f, 1f, 1f); // 보라 틴트
+        go.transform.localScale = Vector3.one * 1.5f;
+        StartCoroutine(PlaySpriteSequence(esr, summonEffectSprites, go, summonEffectDuration));
+    }
+
+    /// <summary>스프라이트 배열을 SpriteRenderer에 순차 재생 후 오브젝트 제거 (런타임 안전)</summary>
+    private IEnumerator PlaySpriteSequence(SpriteRenderer target, Sprite[] sprites, GameObject host, float duration)
+    {
+        if (sprites == null || sprites.Length == 0 || target == null)
+        {
+            yield return new WaitForSeconds(duration);
+            if (host != null) Destroy(host);
+            yield break;
+        }
+        float frameInterval = duration / sprites.Length;
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            if (target == null) yield break;
+            target.sprite = sprites[i];
+            yield return new WaitForSeconds(frameInterval);
+        }
+        if (host != null) Destroy(host);
     }
 }

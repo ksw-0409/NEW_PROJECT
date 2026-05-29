@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 100
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -3005847881989076636, guid: c452178861db62240aa8ddcd44c0e9f2, type: 3}
+  m_Sprite: {fileID: -6495736356600878037, guid: a8e3da96c0e0ea7499f314d77b9d3df9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,7 +102,7 @@ Animator:
   m_GameObject: {fileID: 959761441129247792}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5604c5945c44f1640819588c0de62699, type: 2}
+  m_Controller: {fileID: 9100000, guid: 17af768a81fe7cc47a0235ef77acef2a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -284,4 +284,14 @@ MonoBehaviour:
   babySpiderPrefab: {fileID: 1695417322640460754, guid: 41199c28c24c70b4bb821d4c59dbdb97, type: 3}
   rockGolemElitePrefab: {fileID: 1695417322640460754, guid: 1a693642421f8d246ae6fc43217eaca5, type: 3}
   summonRadius: 3
+  summonEffectSprites:
+  - {fileID: -4631336749209548592, guid: c18cf40f6eb77924fa466fe375bd4e79, type: 3}
+  - {fileID: -2921172321250403043, guid: c18cf40f6eb77924fa466fe375bd4e79, type: 3}
+  - {fileID: -5434011753326306553, guid: c18cf40f6eb77924fa466fe375bd4e79, type: 3}
+  - {fileID: -1889970089500947440, guid: c18cf40f6eb77924fa466fe375bd4e79, type: 3}
+  - {fileID: 1929732825256986462, guid: c18cf40f6eb77924fa466fe375bd4e79, type: 3}
+  summonEffectDuration: 1
+  pushPlayerDistance: 6
+  chaseDistance: 5
+  chaseSpeed: 2.5
   introDelay: 0.5

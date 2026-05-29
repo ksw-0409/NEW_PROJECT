@@ -17,11 +17,23 @@ public class EquipmentManager : MonoBehaviour
     [Tooltip("CSV의 IconName과 매칭되는 스프라이트들. 비어 있으면 에디터에서 자동 채움.")]
     public List<IconEntry> iconEntries = new List<IconEntry>();
 
+    public static EquipmentManager Instance { get; private set; }
+
     private Dictionary<int, ItemDataRow> itemDatabase = new Dictionary<int, ItemDataRow>();
     private Dictionary<string, Sprite> iconLookup;
 
     void Awake()
     {
+        // 이미 살아있는 인스턴스가 있으면(base 씬의 비활성 AnvilCanvas 등) 자기 자신 파괴
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        // Bootstrap에서 만들어진 EquipmentManager가 모든 씬에 살아남도록
+        DontDestroyOnLoad(gameObject);
+
         BuildIconLookup();
         LoadDatabase();
     }

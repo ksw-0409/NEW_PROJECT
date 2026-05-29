@@ -1040,7 +1040,7 @@ MonoBehaviour:
   - iconName: U_SWORD
     sprite: {fileID: 21300000, guid: 6f3534723665bb34b9c5d953752dfdfe, type: 3}
   - iconName: L_SWORD
-    sprite: {fileID: 21300000, guid: 86c3720e4b030914682a45004c51ea12, type: 3}
+    sprite: {fileID: 21300000, guid: 93158144f17c7d94f8c3d688a27cc2b7, type: 3}
   - iconName: C_STAFF
     sprite: {fileID: 21300000, guid: 4b67cf3dc4fe6d549957bbd8fbeaa900, type: 3}
   - iconName: R_STAFF
@@ -1048,7 +1048,7 @@ MonoBehaviour:
   - iconName: U_STAFF
     sprite: {fileID: 21300000, guid: e540fcc2d6a791e4c93db7c1338f1305, type: 3}
   - iconName: L_STAFF
-    sprite: {fileID: 21300000, guid: ac7ffcb99f04bb54093a27baeb9af7a4, type: 3}
+    sprite: {fileID: 21300000, guid: 1877ca78a1e28d046aadff4ec0e86c42, type: 3}
   - iconName: C_BOW
     sprite: {fileID: 21300000, guid: 1052b9f789516eb458897cc3f398ac7e, type: 3}
   - iconName: R_BOW
@@ -1056,7 +1056,7 @@ MonoBehaviour:
   - iconName: U_BOW
     sprite: {fileID: 21300000, guid: 1052b9f789516eb458897cc3f398ac7e, type: 3}
   - iconName: L_BOW
-    sprite: {fileID: 21300000, guid: 1052b9f789516eb458897cc3f398ac7e, type: 3}
+    sprite: {fileID: 21300000, guid: fc0c7850da031d249ade0441dcd44d3d, type: 3}
   - iconName: C_HELM
     sprite: {fileID: 21300000, guid: 18b5a5ed3e4baf34d9fcf5744a68a644, type: 3}
   - iconName: R_HELM

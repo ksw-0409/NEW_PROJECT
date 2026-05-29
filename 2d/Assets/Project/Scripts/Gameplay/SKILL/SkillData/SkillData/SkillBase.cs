@@ -27,6 +27,16 @@ public abstract class SkillBase : MonoBehaviour
             // 에러 해결: Execute 호출 시 인자를 넣어줘야 합니다.
             // SkillBase가 MonoBehaviour를 상속받으므로 'this.transform'을 넘겨주면 됩니다.
             Execute(this.transform);
+
+            // ⭐ 전설 어빌리티 2 (카두케우스): 마법 스킬 시 10% 확률로 즉시 재시전
+            if (IsMagicSkill() && PlayerStats.Instance != null && PlayerStats.Instance.HasAbility(2))
+            {
+                if (UnityEngine.Random.value < 0.1f)
+                {
+                    Debug.Log("<color=magenta>[카두케우스]</color> 마법 즉시 재시전!");
+                    Execute(this.transform);
+                }
+            }
         }
     }
 
@@ -59,5 +69,14 @@ public abstract class SkillBase : MonoBehaviour
     public void LevelUp()
     {
         instance.LevelUp();
+    }
+
+    /// <summary>현재 스킬이 마법 계열인지 (카두케우스 재시전 트리거용)</summary>
+    protected bool IsMagicSkill()
+    {
+        if (data == null) return false;
+        // 데이터 타입 이름으로 마법 스킬 판별
+        string tn = data.GetType().Name;
+        return tn == "FireballData" || tn == "ChainLightningData" || tn == "MeteorData" || tn == "IceRainData";
     }
 }

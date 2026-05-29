@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +21,7 @@ public class InventoryItem
     public float physicalDefense;
     public float moveSpeed;
     public float attackcooldown;
+    public int ability;   // ⭐ 전설 장비 어빌리티 ID (1~7, 일반 장비는 0)
 
     // ✨ 동적 옵션 매핑 (실제 값이 있는 옵션만)
     // key: 스탯 이름, value: 잠금 여부
@@ -78,6 +79,7 @@ public class InventoryItem
             physicalDefense = data.physicalDefense,
             moveSpeed = data.moveSpeed,
             attackcooldown = data.attackcooldown,
+            ability = data.ability,
         };
     }
 
@@ -97,6 +99,7 @@ public class InventoryItem
         data.moveSpeed = moveSpeed;
         data.attackcooldown = attackcooldown;
         data.icon = iconSprite;
+        data.ability = ability;
         return data;
     }
 

@@ -201,6 +201,7 @@ MonoBehaviour:
   explosionCardAsset: {fileID: 0}
   poisonCardAsset: {fileID: 0}
   pierceCardAsset: {fileID: 0}
+  cheatSlashSkill: {fileID: 11400000, guid: 04ce3a64b7ffb95418ec1fc201b62fff, type: 2}
   enemyManager: {fileID: 0}
   equippedSkills: []
   saveSkills: []

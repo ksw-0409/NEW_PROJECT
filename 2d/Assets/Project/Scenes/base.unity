@@ -34174,9 +34174,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 30316419374980630, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1435410594}
-    - targetCorrespondingSourceObject: {fileID: 30316419374980630, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1435410601}
   m_SourcePrefab: {fileID: 100100000, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
 --- !u!1 &1172287332
@@ -41723,39 +41720,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 30316419374980630, guid: 9f72db6a8e77c8f43a1c4dc8d7e27655, type: 3}
   m_PrefabInstance: {fileID: 1171757505}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1435410594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435410593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32591a986534f104e9f65f23c48fd7f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSkillController
-  slashEffectPrefab: {fileID: 0}
-  RotatingSlashPrefab: {fileID: 0}
-  fireballPrefab: {fileID: 0}
-  slamPrefab: {fileID: 0}
-  shieldPrefab: {fileID: 0}
-  SwordWavePrefab: {fileID: 0}
-  meteorFireFieldPrefab: {fileID: 0}
-  ChainLightningPrefab: {fileID: 0}
-  IceRainPrefab: {fileID: 0}
-  FireFielfPrefab: {fileID: 0}
-  meteorWarningCirclePrefab: {fileID: 0}
-  bowArrowPrefab: {fileID: 0}
-  arrowRainPrefab: {fileID: 0}
-  bowExplosionEffectPrefab: {fileID: 0}
-  iceCardAsset: {fileID: 0}
-  explosionCardAsset: {fileID: 0}
-  poisonCardAsset: {fileID: 0}
-  pierceCardAsset: {fileID: 0}
-  enemyManager: {fileID: 0}
-  equippedSkills: []
-  saveSkills: []
 --- !u!61 &1435410601
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -68839,7 +68803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6661920393959229905, guid: 96a13087eee070540ae7feb96bce886f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8372702280305412786, guid: 96a13087eee070540ae7feb96bce886f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -68896,7 +68860,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1184180188477223488, guid: dd5c23aca5374cd46aeee460da7dcf0f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.45
+      value: -8.95
       objectReference: {fileID: 0}
     - target: {fileID: 1184180188477223488, guid: dd5c23aca5374cd46aeee460da7dcf0f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -68940,7 +68904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1379015970023589702, guid: dd5c23aca5374cd46aeee460da7dcf0f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

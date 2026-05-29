@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class PlayerSkillController : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class PlayerSkillController : MonoBehaviour
     [SerializeField] private GameObject bowArrowPrefab;
     [SerializeField] private GameObject arrowRainPrefab;
     [Tooltip("폭발화살이 발동될 때 사용할 폭발 이펙트 프리팹 (보통 FireExplosionEffect)")]
-    [SerializeField] private GameObject bowExplosionEffectPrefab;
+    public GameObject bowExplosionEffectPrefab;
 
 
     [Header("Bow Passive Assets")]
@@ -30,6 +31,10 @@ public class PlayerSkillController : MonoBehaviour
     public ArrowPassiveData pierceCardAsset;
 
     public static PlayerSkillController Instance { get; private set; }
+
+    [Header("\ud83c\udfae \uce58\ud2b8 (\ud14c\uc2a4\ud2b8\uc6a9)")]
+    [Tooltip("\ud0a4\ubcf4\ub4dc 1\ubc88 \u2192 \ubca0\uae30 \uc2a4\ud0ac \ud68d\ub4dd")]
+    public SkillData cheatSlashSkill;
 
     [Header("References")]
     public EnemyManager enemyManager;
@@ -52,6 +57,146 @@ public class PlayerSkillController : MonoBehaviour
         }
 
         RestoreSavedSkills();
+    }
+
+    // 🎮 치트키 (테스트용)
+    //   1번 → 베기 스킬 획득/레벨업
+    //   5번 → base 씬의 5층 보스 포탈 토글
+    //   0번 → base 씬의 10층 보스 포탈 토글
+    //   L   → 전설 장비 7개 인벤토리에 추가
+    void Update()
+    {
+        if (Keyboard.current == null) return;
+
+        // === 1번: 베기 스킬 ===
+        if (Keyboard.current.digit1Key.wasPressedThisFrame)
+        {
+            if (cheatSlashSkill == null)
+            {
+                Debug.LogWarning("[치트] cheatSlashSkill이 인스펙터에 할당되지 않음");
+            }
+            else if (!HasSkill(cheatSlashSkill))
+            {
+                AddNewSkill(cheatSlashSkill);
+                Debug.Log($"<color=cyan>[치트]</color> {cheatSlashSkill.skillName} 획득!");
+            }
+            else if (!IsMaxLevel(cheatSlashSkill))
+            {
+                LevelUpSkill(cheatSlashSkill);
+                Debug.Log($"<color=cyan>[치트]</color> {cheatSlashSkill.skillName} 레벨업! → Lv.{GetSkillLevel(cheatSlashSkill)}");
+            }
+            else
+            {
+                Debug.Log($"<color=cyan>[치트]</color> {cheatSlashSkill.skillName} 최대 레벨");
+            }
+        }
+
+        // === 5번: 5층 포탈 토글 ===
+        if (Keyboard.current.digit5Key.wasPressedThisFrame)
+        {
+            TogglePortal("BossPortal");
+        }
+
+        // === 0번: 10층 포탈 토글 ===
+        if (Keyboard.current.digit0Key.wasPressedThisFrame)
+        {
+            TogglePortal("BossPortal_Floor10");
+        }
+
+        // === L: 전설 장비 전부 인벤토리에 추가 ===
+        bool lPressed = false;
+        try {
+            if (Keyboard.current.lKey.wasPressedThisFrame) lPressed = true;
+            else if (Keyboard.current[UnityEngine.InputSystem.Key.L].wasPressedThisFrame) lPressed = true;
+        } catch (System.Exception ex) {
+            Debug.LogWarning("[치트] L 키 감지 예외: " + ex.Message);
+        }
+        if (lPressed)
+        {
+            Debug.Log("<color=yellow>[치트] L 입력 감지!</color>");
+            GrantAllLegendaryItems();
+        }
+    }
+
+    /// <summary>이름으로 포탈을 찾아 active 토글</summary>
+    private void TogglePortal(string portalName)
+    {
+        var go = GameObject.Find(portalName);
+        if (go == null)
+        {
+            // 비활성 상태인 오브젝트는 Find로 못 찾음 → Resources 검색
+            foreach (var t in Resources.FindObjectsOfTypeAll<Transform>())
+            {
+                if (t.gameObject.name == portalName && t.gameObject.scene.IsValid()
+                    && !UnityEditor_IsPartOfPrefabAsset(t.gameObject))
+                {
+                    go = t.gameObject; break;
+                }
+            }
+        }
+        if (go == null)
+        {
+            Debug.LogWarning($"[치트] 포탈 '{portalName}'을 찾을 수 없습니다 (base 씬이 로드되지 않았을 수 있음)");
+            return;
+        }
+        bool newState = !go.activeSelf;
+        go.SetActive(newState);
+        Debug.Log($"<color=cyan>[치트]</color> {portalName} → {(newState?"보이기":"숨기기")}");
+    }
+
+    // 런타임에서는 PrefabUtility를 못 쓰니 항상 false 반환 (씬 오브젝트만 다룬다는 가정)
+    private bool UnityEditor_IsPartOfPrefabAsset(GameObject go) => false;
+
+    /// <summary>전설(Legendary) 등급 장비 7개를 모두 인벤토리에 추가</summary>
+    /// <summary>전설(Legendary) 등급 장비 7개를 모두 인벤토리에 추가</summary>
+    /// <summary>전설(Legendary) 등급 장비 7개를 모두 인벤토리에 추가</summary>
+    private void GrantAllLegendaryItems()
+    {
+        Debug.Log("<color=yellow>[치트 진단] GrantAllLegendaryItems 시작</color>");
+
+        // EquipmentManager.Instance 우선, 폴백으로 Resources 검색
+        EquipmentManager em = EquipmentManager.Instance;
+        if (em == null || em.DatabaseCount == 0)
+        {
+            // DB가 로드된 인스턴스를 찾기 (DontDestroyOnLoad 전환 직후 등 안전망)
+            var allEms = Resources.FindObjectsOfTypeAll<EquipmentManager>();
+            foreach (var candidate in allEms)
+            {
+                if (candidate == null || !candidate.gameObject.scene.IsValid()) continue;
+                #if UNITY_EDITOR
+                if (UnityEditor.EditorUtility.IsPersistent(candidate.gameObject)) continue;
+                #endif
+                if (candidate.DatabaseCount > 0) { em = candidate; break; }
+            }
+        }
+
+        if (em == null)
+        {
+            Debug.LogWarning("[치트] EquipmentManager가 어디에도 없습니다");
+            return;
+        }
+        Debug.Log($"<color=yellow>[치트 진단]</color> EquipmentManager: {em.gameObject.name} (scene={em.gameObject.scene.name}, dbCount={em.DatabaseCount})");
+
+        if (Inventory.Instance == null)
+        {
+            Debug.LogWarning("[치트] Inventory.Instance가 null입니다");
+            return;
+        }
+
+        var ids = em.GetIdsByGrade(ItemGrade.Legendary);
+        Debug.Log($"<color=yellow>[치트 진단]</color> 전설 ID {ids.Count}개: {string.Join(",", ids)}");
+        int added = 0;
+        foreach (var id in ids)
+        {
+            var data = em.CreateItem(id);
+            if (data != null)
+            {
+                Inventory.Instance.AddItem(data);
+                added++;
+            }
+            else Debug.LogWarning($"[치트] CreateItem({id}) 실패");
+        }
+        Debug.Log($"<color=cyan>[치트]</color> 전설 장비 {added}개를 인벤토리에 추가 (총 {Inventory.Instance.Items.Count}개)");
     }
 
     public bool HasSkill(SkillData data)

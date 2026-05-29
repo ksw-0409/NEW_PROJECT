@@ -1,0 +1,403 @@
+fileFormatVersion: 2
+guid: 6b764be7ba8cec7459b77dbd140b59bb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5276464760016116361
+    second: 10boss_summon_ghost_0
+  - first:
+      213: -3280281068707058270
+    second: 10boss_summon_ghost_1
+  - first:
+      213: 5263996012360403226
+    second: 10boss_summon_ghost_2
+  - first:
+      213: -4204072656096576194
+    second: 10boss_summon_ghost_3
+  - first:
+      213: 7159377724271937491
+    second: 10boss_summon_ghost_4
+  - first:
+      213: 7774498536512003891
+    second: 10boss_summon_ghost_5
+  - first:
+      213: -8618824437822742385
+    second: 10boss_summon_ghost_6
+  - first:
+      213: -8128588536528858298
+    second: 10boss_summon_ghost_7
+  - first:
+      213: -8828782243903320497
+    second: 10boss_summon_ghost_8
+  - first:
+      213: -4246539804498510384
+    second: 10boss_summon_ghost_9
+  - first:
+      213: -6900049026238712958
+    second: 10boss_summon_ghost_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 10boss_summon_ghost_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 7
+        width: 44
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7756f55b14b36c6b0800000000000000
+      internalID: -5276464760016116361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10boss_summon_ghost_1
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 4
+        width: 45
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ade6486fb91a72d0800000000000000
+      internalID: -3280281068707058270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10boss_summon_ghost_2
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 7
+        width: 46
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1980dfbb787d0940800000000000000
+      internalID: 5263996012360403226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10boss_summon_ghost_3
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 7
+        width: 46
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3d3e63813228a5c0800000000000000
+      internalID: -4204072656096576194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10boss_summon_ghost_4
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 7
+        width: 49
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d7c214bb183b5360800000000000000
+      internalID: 7159377724271937491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10boss_summon_ghost_5
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 7
+        width: 46
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33f97975a3194eb60800000000000000
+      internalID: 7774498536512003891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10boss_summon_ghost_6
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 7
+        width: 46
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f80ae1a96d8c36880800000000000000
+      internalID: -8618824437822742385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10boss_summon_ghost_7
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 7
+        width: 46
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64392ea0bc3713f80800000000000000
+      internalID: -8128588536528858298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10boss_summon_ghost_8
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 7
+        width: 46
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4ecdd8735dd97580800000000000000
+      internalID: -8828782243903320497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10boss_summon_ghost_9
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 58
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dd3f440c824115c0800000000000000
+      internalID: -4246539804498510384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 10boss_summon_ghost_10
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 58
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 283f24af7f91e30a0800000000000000
+      internalID: -6900049026238712958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      10boss_summon_ghost_0: -5276464760016116361
+      10boss_summon_ghost_1: -3280281068707058270
+      10boss_summon_ghost_10: -6900049026238712958
+      10boss_summon_ghost_2: 5263996012360403226
+      10boss_summon_ghost_3: -4204072656096576194
+      10boss_summon_ghost_4: 7159377724271937491
+      10boss_summon_ghost_5: 7774498536512003891
+      10boss_summon_ghost_6: -8618824437822742385
+      10boss_summon_ghost_7: -8128588536528858298
+      10boss_summon_ghost_8: -8828782243903320497
+      10boss_summon_ghost_9: -4246539804498510384
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

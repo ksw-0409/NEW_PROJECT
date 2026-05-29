@@ -5,9 +5,9 @@ using UnityEngine.Pool;
 public class EnemyHealth : MonoBehaviour
 {
     public EnemyData data;
-    public float currentHp; // ÆÛºí¸¯À¸·Î ¹Ù²Ş
+    public float currentHp; // ï¿½Ûºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½
 
-    public float MaxHp => data != null ? data.hp : 100f; // ÃÖ´ë Ã¼·Â µ¥ÀÌÅÍ °¡Àú¿À´Â º¯¼ö
+    public float MaxHp => data != null ? data.hp : 100f; // ï¿½Ö´ï¿½ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     private IObjectPool<EnemyAI> managedPool;
     public void TakeDamage(float amount)
@@ -15,12 +15,16 @@ public class EnemyHealth : MonoBehaviour
         GetComponent<EnemyAI>().ApplyHitEffect(EnemyManager.Instance.player.transform.position);
         currentHp -= amount;
         EnemyManager.Instance.AddDamage(amount);
+        // â­ ì „ì„¤ ì–´ë¹Œë¦¬í‹° 1 (ê·¸ëŒ): í¡í˜ˆ â€” ì…íŒ í”¼í•´ì˜ 10% íšŒë³µ
+        if (PlayerStats.Instance != null) PlayerStats.Instance.OnDealDamage(amount);
         if (currentHp <= 0)
         {
+            // â­ ì „ì„¤ ì–´ë¹Œë¦¬í‹° 6 (ê·¸ë¦¬ë¸ŒìŠ¤): ì  ì²˜ì¹˜ ì‹œ ê´‘í­ ìŠ¤íƒ
+            if (PlayerStats.Instance != null) PlayerStats.Instance.OnEnemyKilled();
             GetComponent<EnemyAI>().Die();
         }
     }
-    //ÃÊ±âÈ­ ai¿¡¼­ Ã³¸®
+    //ï¿½Ê±ï¿½È­ aiï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     public void init(float hp)
     {
         currentHp = hp;

@@ -23,9 +23,26 @@ public class BowSkill : SkillBase
 
         Vector2 fireDir = GetFireDirection(player);
 
+        // ⭐ 전설 어빌리티 3 (페일노트): 화살 2발 추가 (부채꼴)
+        bool palenoteOn = PlayerStats.Instance != null && PlayerStats.Instance.HasAbility(3);
+        float spreadDeg = 25f;
+
         for (int i = 0; i < ld.count; i++)
         {
+            // 정중앙(메인) 1발
             ShootArrow(player.position, fireDir);
+
+            // 페일노트가 있으면 좌/우로 +2발 부채꼴
+            if (palenoteOn)
+            {
+                float baseAngle = Mathf.Atan2(fireDir.y, fireDir.x) * Mathf.Rad2Deg;
+                for (int side = -1; side <= 1; side += 2)
+                {
+                    float ang = (baseAngle + side * spreadDeg) * Mathf.Deg2Rad;
+                    Vector2 spreadDir = new Vector2(Mathf.Cos(ang), Mathf.Sin(ang));
+                    ShootArrow(player.position, spreadDir);
+                }
+            }
         }
     }
 
