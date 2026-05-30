@@ -31,6 +31,9 @@ public class BossStageManager : MonoBehaviour
     [Header("숨길 UI")]
     [SerializeField] private GameObject stageTimerUI;
 
+    [Header("보스 맵 경계")]
+    [SerializeField] private GameObject bossStageBounds;
+
     private GameObject spawnedBoss;
     private bool bossDefeated = false;
     private bool isBossStage = false;
@@ -80,6 +83,9 @@ public class BossStageManager : MonoBehaviour
             stageTimerUI.SetActive(false);
             Debug.Log("[BossStageManager] StageTimerUI 숨김");
         }
+
+        if (bossStageBounds != null)
+            bossStageBounds.SetActive(true);
     }
 
     void OnDestroy()
