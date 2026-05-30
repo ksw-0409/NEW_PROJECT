@@ -11,6 +11,9 @@ using System.Collections;
 /// </summary>
 public class ShieldSkill : SkillBase
 {
+
+    // ⭐ 방어 스킬은 적이 없어도 발동돼야 함 (쉴드/신성한 영역 등은 패시브 성격)
+    protected override bool RequiresEnemiesToCast() => false;
     private ShieldData shieldData;
 
     private int shieldCount    = 0;

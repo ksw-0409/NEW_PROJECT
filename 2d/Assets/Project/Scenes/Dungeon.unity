@@ -4507,6 +4507,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 571127425}
   m_CullTransparentMesh: 1
+--- !u!1 &582308014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 582308016}
+  - component: {fileID: 582308015}
+  m_Layer: 0
+  m_Name: DungeonAtmosphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &582308015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582308014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc6b826260d1204b86569920bfda8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonAtmosphereController
+  maxPostExposure: -1.5
+  maxSaturation: -35
+  maxContrast: 20
+  deepFloorTint: {r: 0.55, g: 0.65, b: 0.85, a: 1}
+  minVignette: 0.15
+  maxVignette: 0.55
+  maxVignetteTint: {r: 0.06, g: 0.02, b: 0.12, a: 1}
+  minBloom: 0.3
+  maxBloom: 0.8
+  logChanges: 1
+--- !u!4 &582308016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582308014}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &598860047
 GameObject:
   m_ObjectHideFlags: 0
@@ -18948,6 +19002,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ad0e87086dfcd419824e46af7321f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerShieldRegen
+  regenInterval: 15
+  useShieldPassiveIfAvailable: 1
+  sanctuaryHealRatio: 0.03
 --- !u!114 &7423140879279617989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18996,3 +19053,4 @@ SceneRoots:
   - {fileID: 1615455199}
   - {fileID: 1659243646}
   - {fileID: 1440588398}
+  - {fileID: 582308016}

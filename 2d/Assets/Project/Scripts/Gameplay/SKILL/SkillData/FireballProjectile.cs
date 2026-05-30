@@ -97,7 +97,7 @@ public class FireballProjectile : MonoBehaviour
             GameObject fx = Instantiate(effectPrefab, transform.position, Quaternion.identity);
             const float spriteNative = 0.48f;
             const float activeRatio = 0.9f;
-            float fxSize = (explosionRadius * 2f) / (spriteNative * activeRatio);
+            float fxSize = (explosionRadius * 2f) / (spriteNative * activeRatio) * 0.5f; // ⭐ 시각만 2배 축소 (피격 범위는 동일)
             fx.transform.localScale = new Vector3(fxSize, fxSize, 1f);
             Destroy(fx, 0.55f);
         }

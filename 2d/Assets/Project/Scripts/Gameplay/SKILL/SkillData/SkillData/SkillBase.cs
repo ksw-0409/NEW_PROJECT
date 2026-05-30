@@ -23,7 +23,9 @@ public abstract class SkillBase : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(GetCooldown());
-            Execute(this.transform);
+            // ⭐ 적이 한 마리도 없으면 발동 건너뜀 (보스/엘리트 처치 후)
+            if (!RequiresEnemiesToCast() || HasEnemiesToAttack())
+                Execute(this.transform);
 
             // ⭐ 전설 어빌리티 2 (카두케우스): 마법 스킬 시 10% 확률 즉시 재시전
             if (IsMagicSkill() && PlayerStats.Instance != null && PlayerStats.Instance.HasAbility(2))
@@ -35,6 +37,24 @@ public abstract class SkillBase : MonoBehaviour
                 }
             }
         }
+    }
+
+    /// <summary>이 스킬이 적이 있어야 발동되는 공격 스킬인지 여부. 방어/유틸 스킬은 false로 오버라이드.</summary>
+    protected virtual bool RequiresEnemiesToCast() => true;
+
+    /// <summary>현재 활성 적이 있는지 (보스 + 잡몹 포함). EnemyManager NULL이면 안전하게 true 반환.</summary>
+    protected bool HasEnemiesToAttack()
+    {
+        var em = EnemyManager.Instance;
+        if (em == null || em.activeEnemies == null) return true; // EnemyManager 없으면 막지 않음 (안전 폴백)
+        // 살아있는 적이 1마리라도 있으면 true
+        for (int i = 0; i < em.activeEnemies.Count; i++)
+        {
+            var e = em.activeEnemies[i];
+            if (e != null && e.gameObject.activeInHierarchy && !e.isDie)
+                return true;
+        }
+        return false;
     }
 
     /// <summary>스킬 트리 노드 보너스를 가져옴 (data null이면 기본값 1/1/1/0/1/1)</summary>

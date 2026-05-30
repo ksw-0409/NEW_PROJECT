@@ -138,7 +138,7 @@ public class MeteorVisual : MonoBehaviour
             var matcher = fieldGo.GetComponent<SkillRangeMatcher>();
             if (matcher == null) matcher = fieldGo.AddComponent<SkillRangeMatcher>();
             matcher.activeRatio = 0.32f;
-            matcher.ApplyRadius(effectiveRadius);
+            matcher.ApplyRadius(effectiveRadius * 0.8f); // ⭐ 시각만 1.25배 축소 (피격 범위는 effectiveRadius 그대로)
 
             FireField field = fieldGo.GetComponent<FireField>();
             if (field != null)
@@ -170,7 +170,7 @@ public class MeteorVisual : MonoBehaviour
         sr.sprite = CreateWhitePixelSprite();
         sr.color = new Color(1f, 0.5f, 0.1f, 0.55f);
         sr.sortingOrder = 210;
-        pulse.transform.localScale = new Vector3(explosionRadius * 2.2f, explosionRadius * 2.2f, 1f);
+        pulse.transform.localScale = new Vector3(explosionRadius * 1.76f, explosionRadius * 1.76f, 1f); // ⭐ 1.25배 축소 (2.2 → 1.76)
         Destroy(pulse, 0.25f);
     }
 

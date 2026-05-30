@@ -31,7 +31,7 @@ public class RotatingSlashSkill : SkillBase
         yield return new WaitForSeconds(0.3f);
         while (true)
         {
-            if (instance != null) Attack();
+            if (instance != null && HasEnemiesToAttack()) Attack(); // ⭐ 적 0이면 칼날 회전만 유지, 데미지 처리 스킵
             // ⭐ hitInterval 최소 0.5초 (너무 빠르면 중첩되어 보임)
             var rsBonus = PlayerStats.Instance != null && data != null ? PlayerStats.Instance.GetSkillBonus(data) : (dmg:1f, rng:1f, cool:1f, cnt:0, slowMul:1f, durMul:1f);
             float interval = (rotData != null && rotData.hitInterval > 0f) ? Mathf.Max(0.3f, rotData.hitInterval * rsBonus.cool) : 0.6f;
