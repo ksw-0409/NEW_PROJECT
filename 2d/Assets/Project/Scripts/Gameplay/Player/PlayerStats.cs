@@ -259,6 +259,14 @@ public class PlayerStats : MonoBehaviour
         Debug.Log($"{newItem.itemName} 장착 완료. 현재 공격력: {PhysicalDamage}");
     }
 
+    // 거점 귀환 시 체력 전체 회복 (패시브 + 장비 보너스 반영된 MaxHealth 기준)
+    public void HealToFull()
+    {
+        currentHealth = MaxHealth;
+        isDead = false;
+        Debug.Log($"[PlayerStats] 체력 전체 회복: {currentHealth}/{MaxHealth}");
+    }
+
     public void Unequip(EquipmentSlot slot)
     {
         if (equippedItems.ContainsKey(slot))
@@ -276,7 +284,7 @@ public class PlayerStats : MonoBehaviour
         float multiplier = PassiveMul(PassiveSystem.ID_EXP);
         currentExp += exp * multiplier;
         Debug.Log(currentExp);
-        if (currentExp >= 2) LevelUp();
+        if (currentExp >= 100) LevelUp();
     }
 
     private void LevelUp()
@@ -406,7 +414,7 @@ public class PlayerStats : MonoBehaviour
         {
             float __before = currentHealth;
             Heal(damageDealt * 0.1f);
-            Debug.Log($"<color=red>[그람 흡혈]</color> dmg={damageDealt:F1} → +{damageDealt*0.1f:F1} HP ({__before:F1} → {currentHealth:F1} / MaxHP {MaxHealth:F1})");
+            Debug.Log($"<color=red>[그람 흡혈]</color> dmg={damageDealt:F1} → +{damageDealt * 0.1f:F1} HP ({__before:F1} → {currentHealth:F1} / MaxHP {MaxHealth:F1})");
         }
     }
 
@@ -490,11 +498,5 @@ public class PlayerStats : MonoBehaviour
     void Update()
     {
         TickKineeSlow();
-    }
-
-    public void HealToFull()
-    {
-        currentHealth = MaxHealth;
-        isDead = false;
     }
 }

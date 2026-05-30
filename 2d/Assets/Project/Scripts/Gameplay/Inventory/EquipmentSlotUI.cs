@@ -18,7 +18,7 @@ public class EquipmentSlotUI : MonoBehaviour//, IPointerEnterHandler, IPointerEx
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        Refresh(null);
+        //Refresh(null);
     }
 
     // ─── 갱신 ────────────────────────────────────────
@@ -74,7 +74,7 @@ public class EquipmentSlotUI : MonoBehaviour//, IPointerEnterHandler, IPointerEx
         if (item.maxHealth > 0) sb.AppendLine($"최대 체력:   +{item.maxHealth:F0}");
         if (item.physicalDefense > 0) sb.AppendLine($"방어력:      +{item.physicalDefense:F1}");
         if (item.moveSpeed > 0) sb.AppendLine($"이동속도:    +{item.moveSpeed:F2}");
-        if (item.attackcooldown > 0) sb.AppendLine($"쿨타임 감소: +{item.attackcooldown:F2}배");
+        if (item.attackcooldown > 0) sb.AppendLine($"쿨타임 감소: -{item.attackcooldown:F2}초");
         sb.Append("\n<color=#888>클릭: 장비 해제</color>");
         return sb.ToString();
     }

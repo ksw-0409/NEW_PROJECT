@@ -24,7 +24,32 @@ public class GameDataManager : MonoBehaviour
     public int CurrentFloor => persistentData.currentFloor;
     public int BossTokens => persistentData.bossTokens;
 
-    public bool isPachinkoActive=false;
+    public bool isPachinkoActive = false;
+
+    // 런타임 장착 아이템 (씬 전환 간 유지 — 직렬화 불필요)
+    private Dictionary<EquipmentSlot, InventoryItem> runtimeEquippedItems
+        = new Dictionary<EquipmentSlot, InventoryItem>();
+
+    public void SetEquippedItem(EquipmentSlot slot, InventoryItem item)
+    {
+        if (item == null) runtimeEquippedItems.Remove(slot);
+        else runtimeEquippedItems[slot] = item;
+    }
+
+    public void RemoveEquippedItem(EquipmentSlot slot)
+    {
+        runtimeEquippedItems.Remove(slot);
+    }
+
+    public InventoryItem GetEquippedItem(EquipmentSlot slot)
+    {
+        runtimeEquippedItems.TryGetValue(slot, out var item);
+        return item;
+    }
+
+    public Dictionary<EquipmentSlot, InventoryItem> GetAllEquippedItems()
+        => runtimeEquippedItems;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -35,16 +60,12 @@ public class GameDataManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // ✨ 에셋 원본을 건드리지 않도록 런타임 복사본 생성
-        // 해금 데이터(스킬 트리/패시브)는 복사본에 유지되고,
-        // 골드/층수 등 인게임 데이터는 매 실행마다 초기화됨
         persistentData = Instantiate(persistentData);
         persistentData.ResetRuntimeData();
 
         Debug.Log($"[GameDataManager] 로드 완료 — unlocked 노드: {persistentData.unlockedSkillNodes.Count}, 골드: {persistentData.gold}");
     }
 
-    // 명시적 리셋 (메뉴에서 호출)
     public void HardResetAll()
     {
         persistentData.ResetAll();
@@ -115,16 +136,16 @@ public class GameDataManager : MonoBehaviour
         return persistentData.unlockedEffects;
     }
 
-    public void SavePassiveLevels(System.Collections.Generic.Dictionary<string, int> levels)
+    public void SavePassiveLevels(Dictionary<string, int> levels)
     {
         persistentData.passiveLevels.Clear();
         foreach (var kv in levels)
             persistentData.passiveLevels.Add(new PassiveLevelEntry { passiveID = kv.Key, level = kv.Value });
     }
 
-    public System.Collections.Generic.Dictionary<string, int> GetPassiveLevels()
+    public Dictionary<string, int> GetPassiveLevels()
     {
-        var d = new System.Collections.Generic.Dictionary<string, int>();
+        var d = new Dictionary<string, int>();
         foreach (var e in persistentData.passiveLevels)
             if (!string.IsNullOrEmpty(e.passiveID)) d[e.passiveID] = e.level;
         return d;
@@ -137,7 +158,6 @@ public class GameDataManager : MonoBehaviour
         OnSpecialCurrencyChanged?.Invoke(persistentData.specialCurrency);
     }
 
-        // 보스 처치 증표 (골드처럼 카운트로 저장 — 추후 인벤토리 아이템 등으로 조정 가능)
     public void AddBossToken(int amount)
     {
         if (amount <= 0) return;
@@ -154,7 +174,7 @@ public class GameDataManager : MonoBehaviour
         return true;
     }
 
-public bool SpendSpecialCurrency(int amount)
+    public bool SpendSpecialCurrency(int amount)
     {
         if (persistentData.specialCurrency < amount) return false;
         persistentData.specialCurrency -= amount;

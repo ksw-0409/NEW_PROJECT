@@ -1,6 +1,7 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
-// ¿ªÇÒ: ¾ÆÀÌÅÛ ½ºÅÈ ·£´ý ºÎ¿© À¯Æ¿¸®Æ¼
+// ì—­í• : ì•„ì´í…œ ìŠ¤íƒ¯ ëžœë¤ ë¶€ì—¬ ìœ í‹¸ë¦¬í‹°
+// ê¸°ë³¸ ìˆ˜ì¹˜ê°€ 0ì¸ ìŠ¤íƒ¯ì€ ì¶”ê°€ ì˜µì…˜ ë¶€ì—¬ ì•ˆ í•¨
 
 public static class ItemStatRoller
 {
@@ -53,7 +54,6 @@ public static class ItemStatRoller
                 break;
         }
 
-        // Àá±ä ¿É¼ÇÀº ½ºÅµ, ³ª¸ÓÁö¸¸ ¸®·Ñ
         bool IsLocked(string statName)
         {
             if (target.options == null) return false;
@@ -62,12 +62,26 @@ public static class ItemStatRoller
             return false;
         }
 
-        if (!IsLocked("physicalDamage")) target.physicalDamage = Random.Range(physMin, physMax);
-        if (!IsLocked("magicDamage")) target.magicDamage = Random.Range(magMin, magMax);
-        if (!IsLocked("criticalChance")) target.criticalChance = Random.Range(critMin, critMax);
-        if (!IsLocked("criticalDamage")) target.criticalDamage = Random.Range(critDmgMin, critDmgMax);
-        if (!IsLocked("maxHealth")) target.maxHealth = Random.Range(hpMin, hpMax);
-        if (!IsLocked("physicalDefense")) target.physicalDefense = Random.Range(defMin, defMax);
-        if (!IsLocked("moveSpeed")) target.moveSpeed = Random.Range(speedMin, speedMax);
+        // âœ¨ ê¸°ë³¸ ìˆ˜ì¹˜ > 0ì¸ ìŠ¤íƒ¯ë§Œ ì¶”ê°€ ì˜µì…˜ ë¡¤ë§
+        if (target.basePhysicalDamage > 0 && !IsLocked("physicalDamage"))
+            target.physicalDamage = target.basePhysicalDamage + Random.Range(physMin, physMax);
+
+        if (target.baseMagicDamage > 0 && !IsLocked("magicDamage"))
+            target.magicDamage = target.baseMagicDamage + Random.Range(magMin, magMax);
+
+        if (target.baseCriticalChance > 0 && !IsLocked("criticalChance"))
+            target.criticalChance = target.baseCriticalChance + Random.Range(critMin, critMax);
+
+        if (target.baseCriticalDamage > 0 && !IsLocked("criticalDamage"))
+            target.criticalDamage = target.baseCriticalDamage + Random.Range(critDmgMin, critDmgMax);
+
+        if (target.baseMaxHealth > 0 && !IsLocked("maxHealth"))
+            target.maxHealth = target.baseMaxHealth + Random.Range(hpMin, hpMax);
+
+        if (target.basePhysicalDefense > 0 && !IsLocked("physicalDefense"))
+            target.physicalDefense = target.basePhysicalDefense + Random.Range(defMin, defMax);
+
+        if (target.baseMoveSpeed > 0 && !IsLocked("moveSpeed"))
+            target.moveSpeed = target.baseMoveSpeed + Random.Range(speedMin, speedMax);
     }
 }

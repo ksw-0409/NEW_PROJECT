@@ -84,29 +84,29 @@ public class EquipmentManager : MonoBehaviour
                 row.grade = ParseGrade(cols[3].Trim());
                 row.iconName = cols[4].Trim();
 
-                row.basePhys       = ParseFloat(cols[5]);
-                row.baseMagic      = ParseFloat(cols[6]);
-                row.baseCrit       = ParseFloat(cols[7]);
-                row.baseCritDmg    = ParseFloat(cols[8]);
-                row.baseHealth     = ParseFloat(cols[9]);
-                row.baseDef        = ParseFloat(cols[10]);
-                row.baseSpeed      = ParseFloat(cols[11]);
+                row.basePhys = ParseFloat(cols[5]);
+                row.baseMagic = ParseFloat(cols[6]);
+                row.baseCrit = ParseFloat(cols[7]);
+                row.baseCritDmg = ParseFloat(cols[8]);
+                row.baseHealth = ParseFloat(cols[9]);
+                row.baseDef = ParseFloat(cols[10]);
+                row.baseSpeed = ParseFloat(cols[11]);
                 row.attackCooldown = ParseFloat(cols[12]);
 
-                row.minAddPhys     = ParseFloat(cols[13]);
-                row.maxAddPhys     = ParseFloat(cols[14]);
-                row.minAddMagic    = ParseFloat(cols[15]);
-                row.maxAddMagic    = ParseFloat(cols[16]);
-                row.minAddCrit     = ParseFloat(cols[17]);
-                row.maxAddCrit     = ParseFloat(cols[18]);
-                row.minAddCritDmg  = ParseFloat(cols[19]);
-                row.maxAddCritDmg  = ParseFloat(cols[20]);
-                row.minAddHealth   = ParseFloat(cols[21]);
-                row.maxAddHealth   = ParseFloat(cols[22]);
-                row.minAddDef      = ParseFloat(cols[23]);
-                row.maxAddDef      = ParseFloat(cols[24]);
-                row.minAddSpeed    = ParseFloat(cols[25]);
-                row.maxAddSpeed    = ParseFloat(cols[26]);
+                row.minAddPhys = ParseFloat(cols[13]);
+                row.maxAddPhys = ParseFloat(cols[14]);
+                row.minAddMagic = ParseFloat(cols[15]);
+                row.maxAddMagic = ParseFloat(cols[16]);
+                row.minAddCrit = ParseFloat(cols[17]);
+                row.maxAddCrit = ParseFloat(cols[18]);
+                row.minAddCritDmg = ParseFloat(cols[19]);
+                row.maxAddCritDmg = ParseFloat(cols[20]);
+                row.minAddHealth = ParseFloat(cols[21]);
+                row.maxAddHealth = ParseFloat(cols[22]);
+                row.minAddDef = ParseFloat(cols[23]);
+                row.maxAddDef = ParseFloat(cols[24]);
+                row.minAddSpeed = ParseFloat(cols[25]);
+                row.maxAddSpeed = ParseFloat(cols[26]);
 
                 row.ability = cols.Length > 27 ? int.Parse(cols[27].Trim()) : 0;
 
@@ -127,10 +127,10 @@ public class EquipmentManager : MonoBehaviour
         switch (s.Trim().ToUpperInvariant())
         {
             case "WEAPON": type = ItemType.Weapon; slot = EquipmentSlot.Weapon; return;
-            case "HELMET": type = ItemType.Armor;  slot = EquipmentSlot.Helmet; return;
-            case "ARMOR":  type = ItemType.Armor;  slot = EquipmentSlot.Armor;  return;
-            case "PANTS":  type = ItemType.Armor;  slot = EquipmentSlot.Pants;  return;
-            case "SHOES":  type = ItemType.Armor;  slot = EquipmentSlot.Shoes;  return;
+            case "HELMET": type = ItemType.Armor; slot = EquipmentSlot.Helmet; return;
+            case "ARMOR": type = ItemType.Armor; slot = EquipmentSlot.Armor; return;
+            case "PANTS": type = ItemType.Armor; slot = EquipmentSlot.Pants; return;
+            case "SHOES": type = ItemType.Armor; slot = EquipmentSlot.Shoes; return;
             default:
                 Debug.LogWarning($"[EquipmentManager] 알 수 없는 Type '{s}' → Weapon 처리");
                 type = ItemType.Weapon; slot = EquipmentSlot.Weapon; return;
@@ -142,10 +142,10 @@ public class EquipmentManager : MonoBehaviour
     {
         switch (s.Trim().ToUpperInvariant())
         {
-            case "COMMON":    return ItemGrade.Common;
-            case "RARE":      return ItemGrade.Rare;
-            case "EPIC":      return ItemGrade.Epic;
-            case "UNIQUE":    return ItemGrade.Unique;
+            case "COMMON": return ItemGrade.Common;
+            case "RARE": return ItemGrade.Rare;
+            case "EPIC": return ItemGrade.Epic;
+            case "UNIQUE": return ItemGrade.Unique;
             case "LEGEND":
             case "LEGENDARY": return ItemGrade.Legendary;
             default:
@@ -196,15 +196,25 @@ public class EquipmentManager : MonoBehaviour
         newItem.grade = data.grade;
         newItem.slot = data.slot;
 
-        newItem.physicalDamage  = data.basePhys    + Random.Range(data.minAddPhys, data.maxAddPhys);
-        newItem.magicDamage     = data.baseMagic   + Random.Range(data.minAddMagic, data.maxAddMagic);
-        newItem.criticalChance  = data.baseCrit    + Random.Range(data.minAddCrit, data.maxAddCrit);
-        newItem.criticalDamage  = data.baseCritDmg + Random.Range(data.minAddCritDmg, data.maxAddCritDmg);
-        newItem.maxHealth       = data.baseHealth  + Random.Range(data.minAddHealth, data.maxAddHealth);
-        newItem.physicalDefense = data.baseDef     + Random.Range(data.minAddDef, data.maxAddDef);
-        newItem.moveSpeed       = data.baseSpeed   + Random.Range(data.minAddSpeed, data.maxAddSpeed);
-        newItem.attackcooldown  = data.attackCooldown;
-        newItem.ability         = data.ability;
+        newItem.physicalDamage = data.basePhys + Random.Range(data.minAddPhys, data.maxAddPhys);
+        newItem.magicDamage = data.baseMagic + Random.Range(data.minAddMagic, data.maxAddMagic);
+        newItem.criticalChance = data.baseCrit + Random.Range(data.minAddCrit, data.maxAddCrit);
+        newItem.criticalDamage = data.baseCritDmg + Random.Range(data.minAddCritDmg, data.maxAddCritDmg);
+        newItem.maxHealth = data.baseHealth + Random.Range(data.minAddHealth, data.maxAddHealth);
+        newItem.physicalDefense = data.baseDef + Random.Range(data.minAddDef, data.maxAddDef);
+        newItem.moveSpeed = data.baseSpeed + Random.Range(data.minAddSpeed, data.maxAddSpeed);
+        newItem.attackcooldown = data.attackCooldown;
+        newItem.ability = data.ability;
+
+        // ✨ 기본 수치 저장 (툴팁 표시용)
+        newItem.basePhysicalDamage = data.basePhys;
+        newItem.baseMagicDamage = data.baseMagic;
+        newItem.baseCriticalChance = data.baseCrit;
+        newItem.baseCriticalDamage = data.baseCritDmg;
+        newItem.baseMaxHealth = data.baseHealth;
+        newItem.basePhysicalDefense = data.baseDef;
+        newItem.baseMoveSpeed = data.baseSpeed;
+        newItem.baseAttackcooldown = data.attackCooldown;
 
         // 아이콘 — 인스펙터에서 매핑된 dictionary로 먼저 시도, 폴백으로 Resources
         Sprite icon = null;

@@ -2,8 +2,9 @@
 using UnityEngine;
 using TMPro;
 
-// 역할: 장비창 컨트롤러 — 슬롯 5개(무기/투구/갑옷/장갑/신발) + 하단 스탯 패널
-// InventoryUI와 함께 Tab키로 열리고 닫힘 (InventoryUI가 SetActive 제어)
+// 역할: 장비창 컨트롤러 — 슬롯 5개(무기/투구/갑옷/하의/신발) + 하단 스탯 패널
+// InventoryUI와 함께 Tab키로 열리고 닫힘
+// ✨ 장착 아이템은 GameDataManager에 저장되어 씬 전환 후에도 유지
 
 public class CharacterEquipmentUI : MonoBehaviour
 {
@@ -20,10 +21,6 @@ public class CharacterEquipmentUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI offensiveStatText;
     [SerializeField] private TextMeshProUGUI defensiveStatText;
 
-    // 현재 장착 아이템 (슬롯별)
-    private Dictionary<EquipmentSlot, InventoryItem> equippedItems
-        = new Dictionary<EquipmentSlot, InventoryItem>();
-
     void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(this); return; }
@@ -32,58 +29,65 @@ public class CharacterEquipmentUI : MonoBehaviour
 
     void OnEnable()
     {
+        RestoreEquippedItems();
         RefreshAllSlots();
         RefreshStatPanel();
     }
 
+    // ─── 복원 ──────────────────────────────────────────────────────────
+    /// <summary>씬 로드 시 GameDataManager에서 장착 아이템 복원 및 PlayerStats 재적용</summary>
+    private void RestoreEquippedItems()
+    {
+        if (GameDataManager.Instance == null) return;
+
+        var saved = GameDataManager.Instance.GetAllEquippedItems();
+
+
+        foreach (var kv in saved)
+        {
+            PlayerStats.Instance?.Equip(kv.Value.ToEquipmentData());
+        }
+
+        // 거점 씬이면 체력 전체 회복 (패시브/장비 보너스 반영된 MaxHealth로)
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == SceneController.SceneName.Base)
+            PlayerStats.Instance?.HealToFull();
+    }
+
     // ─── 장착 ─────────────────────────────────────────────────────────
-    /// <summary>
-    /// 인벤토리 슬롯 클릭 시 InventorySlot이 호출.
-    /// 감정된 아이템만 장착 가능. 같은 슬롯에 이미 장착된 아이템은 인벤토리로 자동 반환.
-    /// </summary>
     public void TryEquip(InventoryItem item)
     {
-        if (item == null)
-        {
-            Debug.Log("[EquipUI] 아이템 없음");
-            return;
-        }
-        if (!item.isIdentified)
-        {
-            Debug.Log("[EquipUI] 감정되지 않은 아이템은 장착할 수 없습니다.");
-            return;
-        }
+        if (item == null) { Debug.Log("[EquipUI] 아이템 없음"); return; }
+        if (!item.isIdentified) { Debug.Log("[EquipUI] 감정되지 않은 아이템은 장착할 수 없습니다."); return; }
 
         EquipmentSlot slot = (EquipmentSlot)item.slotInt;
 
         // 기존 장착 아이템 → 인벤토리 반환
-        if (equippedItems.TryGetValue(slot, out var prev) && prev != null)
+        var prev = GameDataManager.Instance?.GetEquippedItem(slot);
+        if (prev != null)
         {
-            Inventory.Instance?.AddItem(prev);   // InventoryItem 직접 반환 (isIdentified 유지)
+            Inventory.Instance?.AddItem(prev);
             Debug.Log($"[EquipUI] {prev.itemName} 해제 → 인벤토리 반환");
         }
 
         // 인벤토리에서 제거 후 장착
         Inventory.Instance?.RemoveItem(item);
-        equippedItems[slot] = item;
+        GameDataManager.Instance?.SetEquippedItem(slot, item);
 
         // PlayerStats 반영
         PlayerStats.Instance?.Equip(item.ToEquipmentData());
 
         RefreshAllSlots();
         RefreshStatPanel();
-
-        // 인벤토리 슬롯 갱신
         FindFirstObjectByType<InventoryUI>()?.ForceRefresh();
 
         Debug.Log($"[EquipUI] {item.itemName} 장착 (슬롯: {EquipmentSlotUI.GetSlotKoreanName(slot)})");
     }
 
     // ─── 해제 ─────────────────────────────────────────────────────────
-    /// <summary>우클릭으로 슬롯 해제 시 EquipmentSlotUI가 호출.</summary>
     public void UnequipSlot(EquipmentSlot slot)
     {
-        if (!equippedItems.TryGetValue(slot, out var item) || item == null) return;
+        var item = GameDataManager.Instance?.GetEquippedItem(slot);
+        if (item == null) return;
 
         if (Inventory.Instance != null && Inventory.Instance.Items.Count >= 28)
         {
@@ -91,16 +95,12 @@ public class CharacterEquipmentUI : MonoBehaviour
             return;
         }
 
-        // 인벤토리 반환
         Inventory.Instance?.AddItem(item);
-        equippedItems.Remove(slot);
-
-        // PlayerStats 해제
+        GameDataManager.Instance?.RemoveEquippedItem(slot);
         PlayerStats.Instance?.Unequip(slot);
 
         RefreshAllSlots();
         RefreshStatPanel();
-
         FindFirstObjectByType<InventoryUI>()?.ForceRefresh();
 
         Debug.Log($"[EquipUI] {EquipmentSlotUI.GetSlotKoreanName(slot)} 슬롯 해제");
@@ -111,15 +111,15 @@ public class CharacterEquipmentUI : MonoBehaviour
     {
         RefreshSlot(weaponSlot, EquipmentSlot.Weapon);
         RefreshSlot(helmetSlot, EquipmentSlot.Helmet);
-        RefreshSlot(armorSlot,  EquipmentSlot.Armor);
-        RefreshSlot(pantsSlot,  EquipmentSlot.Pants);
-        RefreshSlot(shoesSlot,  EquipmentSlot.Shoes);
+        RefreshSlot(armorSlot, EquipmentSlot.Armor);
+        RefreshSlot(pantsSlot, EquipmentSlot.Pants);
+        RefreshSlot(shoesSlot, EquipmentSlot.Shoes);
     }
 
     private void RefreshSlot(EquipmentSlotUI slotUI, EquipmentSlot slot)
     {
         if (slotUI == null) return;
-        equippedItems.TryGetValue(slot, out var item);
+        var item = GameDataManager.Instance?.GetEquippedItem(slot);
         slotUI.Refresh(item);
     }
 
@@ -134,7 +134,7 @@ public class CharacterEquipmentUI : MonoBehaviour
                 $"마법 공격력  {PlayerStats.Instance.MagicDamage:F1}\n" +
                 $"치명타 확률  {PlayerStats.Instance.CriticalChance * 100f:F1}%\n" +
                 $"치명타 피해  {PlayerStats.Instance.CriticalDamage:F2}배\n" +
-                $"쿨타임 감소  {PlayerStats.Instance.AttackCooldown:F2}배";
+                $"쿨타임 감소  -{PlayerStats.Instance.AttackCooldown:F2}초";
         }
 
         if (defensiveStatText != null)

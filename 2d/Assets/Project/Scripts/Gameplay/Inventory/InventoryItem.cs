@@ -21,41 +21,65 @@ public class InventoryItem
     public float physicalDefense;
     public float moveSpeed;
     public float attackcooldown;
-    public int ability;   // ⭐ 전설 장비 어빌리티 ID (1~7, 일반 장비는 0)
+    public int ability;
 
-    // ✨ 동적 옵션 매핑 (실제 값이 있는 옵션만)
-    // key: 스탯 이름, value: 잠금 여부
+    // 기본 수치 (툴팁 표시용)
+    public float basePhysicalDamage;
+    public float baseMagicDamage;
+    public float baseCriticalChance;
+    public float baseCriticalDamage;
+    public float baseMaxHealth;
+    public float basePhysicalDefense;
+    public float baseMoveSpeed;
+    public float baseAttackcooldown;
+
     [NonSerialized] public List<StatOption> options = new List<StatOption>();
 
-    /// <summary>아이템 선택 시 실제 옵션 목록 생성</summary>
+    /// <summary>아이템 선택 시 실제 옵션 목록 생성 (추가 수치만 표시)</summary>
     public void BuildOptions()
     {
         options = new List<StatOption>();
-        if (physicalDamage > 0) options.Add(new StatOption("physicalDamage", $"물리 공격력: {physicalDamage:F1}"));
-        if (magicDamage > 0) options.Add(new StatOption("magicDamage", $"마법 공격력: {magicDamage:F1}"));
-        if (criticalChance > 0) options.Add(new StatOption("criticalChance", $"치명타 확률: {criticalChance * 100f:F1}%"));
-        if (criticalDamage > 0) options.Add(new StatOption("criticalDamage", $"치명타 피해: {criticalDamage:F2}배"));
-        if (maxHealth > 0) options.Add(new StatOption("maxHealth", $"최대 체력: {maxHealth:F0}"));
-        if (physicalDefense > 0) options.Add(new StatOption("physicalDefense", $"방어력: {physicalDefense:F1}"));
-        if (moveSpeed > 0) options.Add(new StatOption("moveSpeed", $"이동속도: {moveSpeed:F2}"));
-        if (attackcooldown > 0) options.Add(new StatOption("attackcooldown", $"쿨타임 감소: {attackcooldown:F2}배"));
+        float addPhys = physicalDamage - basePhysicalDamage;
+        float addMagic = magicDamage - baseMagicDamage;
+        float addCrit = criticalChance - baseCriticalChance;
+        float addCritDmg = criticalDamage - baseCriticalDamage;
+        float addHp = maxHealth - baseMaxHealth;
+        float addDef = physicalDefense - basePhysicalDefense;
+        float addSpeed = moveSpeed - baseMoveSpeed;
+
+        if (basePhysicalDamage > 0) options.Add(new StatOption("physicalDamage", $"물리 공격력: +{addPhys:F1}"));
+        if (baseMagicDamage > 0) options.Add(new StatOption("magicDamage", $"마법 공격력: +{addMagic:F1}"));
+        if (baseCriticalChance > 0) options.Add(new StatOption("criticalChance", $"치명타 확률: +{addCrit:F1}%"));
+        if (baseCriticalDamage > 0) options.Add(new StatOption("criticalDamage", $"치명타 피해: +{addCritDmg:F2}배"));
+        if (baseMaxHealth > 0) options.Add(new StatOption("maxHealth", $"최대 체력: +{addHp:F0}"));
+        if (basePhysicalDefense > 0) options.Add(new StatOption("physicalDefense", $"방어력: +{addDef:F1}"));
+        if (baseMoveSpeed > 0) options.Add(new StatOption("moveSpeed", $"이동속도: +{addSpeed:F2}"));
+        if (baseAttackcooldown > 0) options.Add(new StatOption("attackcooldown", $"쿨타임 감소: -{attackcooldown:F2}초"));
     }
 
     /// <summary>강화 후 옵션 텍스트만 갱신 (잠금 상태 유지)</summary>
     public void RefreshOptionTexts()
     {
+        float addPhys = physicalDamage - basePhysicalDamage;
+        float addMagic = magicDamage - baseMagicDamage;
+        float addCrit = criticalChance - baseCriticalChance;
+        float addCritDmg = criticalDamage - baseCriticalDamage;
+        float addHp = maxHealth - baseMaxHealth;
+        float addDef = physicalDefense - basePhysicalDefense;
+        float addSpeed = moveSpeed - baseMoveSpeed;
+
         foreach (var opt in options)
         {
             switch (opt.statName)
             {
-                case "physicalDamage": opt.displayText = $"물리 공격력: {physicalDamage:F1}"; break;
-                case "magicDamage": opt.displayText = $"마법 공격력: {magicDamage:F1}"; break;
-                case "criticalChance": opt.displayText = $"치명타 확률: {criticalChance * 100f:F1}%"; break;
-                case "criticalDamage": opt.displayText = $"치명타 피해: {criticalDamage:F2}배"; break;
-                case "maxHealth": opt.displayText = $"최대 체력: {maxHealth:F0}"; break;
-                case "physicalDefense": opt.displayText = $"방어력: {physicalDefense:F1}"; break;
-                case "moveSpeed": opt.displayText = $"이동속도: {moveSpeed:F2}"; break;
-                case "attackcooldown": opt.displayText = $"쿨타임 감소: {attackcooldown:F2}배"; break;
+                case "physicalDamage": opt.displayText = $"물리 공격력: +{addPhys:F1}"; break;
+                case "magicDamage": opt.displayText = $"마법 공격력: +{addMagic:F1}"; break;
+                case "criticalChance": opt.displayText = $"치명타 확률: +{addCrit:F1}%"; break;
+                case "criticalDamage": opt.displayText = $"치명타 피해: +{addCritDmg:F2}배"; break;
+                case "maxHealth": opt.displayText = $"최대 체력: +{addHp:F0}"; break;
+                case "physicalDefense": opt.displayText = $"방어력: +{addDef:F1}"; break;
+                case "moveSpeed": opt.displayText = $"이동속도: +{addSpeed:F2}"; break;
+                case "attackcooldown": opt.displayText = $"쿨타임 감소: -{attackcooldown:F2}초"; break;
             }
         }
     }
@@ -80,6 +104,14 @@ public class InventoryItem
             moveSpeed = data.moveSpeed,
             attackcooldown = data.attackcooldown,
             ability = data.ability,
+            basePhysicalDamage = data.basePhysicalDamage,
+            baseMagicDamage = data.baseMagicDamage,
+            baseCriticalChance = data.baseCriticalChance,
+            baseCriticalDamage = data.baseCriticalDamage,
+            baseMaxHealth = data.baseMaxHealth,
+            basePhysicalDefense = data.basePhysicalDefense,
+            baseMoveSpeed = data.baseMoveSpeed,
+            baseAttackcooldown = data.baseAttackcooldown,
         };
     }
 
@@ -100,18 +132,25 @@ public class InventoryItem
         data.attackcooldown = attackcooldown;
         data.icon = iconSprite;
         data.ability = ability;
+        data.basePhysicalDamage = basePhysicalDamage;
+        data.baseMagicDamage = baseMagicDamage;
+        data.baseCriticalChance = baseCriticalChance;
+        data.baseCriticalDamage = baseCriticalDamage;
+        data.baseMaxHealth = baseMaxHealth;
+        data.basePhysicalDefense = basePhysicalDefense;
+        data.baseMoveSpeed = baseMoveSpeed;
+        data.baseAttackcooldown = baseAttackcooldown;
         return data;
     }
 
     public ItemGrade Grade => (ItemGrade)gradeInt;
 }
 
-/// <summary>옵션 하나의 데이터 (스탯 이름 + 표시 텍스트 + 잠금 여부)</summary>
 [Serializable]
 public class StatOption
 {
-    public string statName;    // 스탯 식별자
-    public string displayText; // UI 표시 텍스트
+    public string statName;
+    public string displayText;
     public bool isLocked;
 
     public StatOption(string statName, string displayText)

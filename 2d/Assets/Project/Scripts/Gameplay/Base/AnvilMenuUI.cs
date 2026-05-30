@@ -14,10 +14,13 @@ public class AnvilMenuUI : BaseCanvasUI
     [SerializeField] private GameObject identifyCanvas;
     [SerializeField] private GameObject enhanceCanvas;
 
+    [SerializeField] private GameObject menuPanel; // 버튼들이 있는 패널
+
     protected override void OnOpen()
     {
         identifyButton.onClick.AddListener(OnClickIdentify);
         enhanceButton.onClick.AddListener(OnClickEnhance);
+        if (menuPanel != null) menuPanel.SetActive(true);
     }
 
     protected override void OnClose()
@@ -29,14 +32,14 @@ public class AnvilMenuUI : BaseCanvasUI
     private void OnClickIdentify()
     {
         if (identifyCanvas == null) return;
-        gameObject.SetActive(false);
+        if (menuPanel != null) menuPanel.SetActive(false);
         identifyCanvas.SetActive(true);
     }
 
     private void OnClickEnhance()
     {
         if (enhanceCanvas == null) return;
-        gameObject.SetActive(false);
+        if (menuPanel != null) menuPanel.SetActive(false);
         enhanceCanvas.SetActive(true);
     }
 }

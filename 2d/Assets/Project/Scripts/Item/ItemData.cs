@@ -10,6 +10,16 @@ public class EquipmentData : ScriptableObject
     public ItemGrade grade;
     public Sprite icon;
 
+    [Header("Base Stats")]
+    public float basePhysicalDamage;
+    public float baseMagicDamage;
+    public float baseCriticalChance;
+    public float baseCriticalDamage;
+    public float baseMaxHealth;
+    public float basePhysicalDefense;
+    public float baseMoveSpeed;
+    public float baseAttackcooldown;
+
     [Header("Stats")]
     public float physicalDamage;
     public float magicDamage;

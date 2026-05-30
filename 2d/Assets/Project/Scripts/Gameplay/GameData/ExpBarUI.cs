@@ -9,7 +9,7 @@ public class ExpBarUI : MonoBehaviour
     [SerializeField] private Image fillImage;
     [SerializeField] private PlayerStats playerStats;
 
-    private const float expToLevelUp = 2f; // 임시 하드코딩
+    private const float expToLevelUp = 100f; // 임시 하드코딩
 
     void Update()
     {

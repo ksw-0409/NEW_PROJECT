@@ -111,7 +111,7 @@ public class ItemIdentifyUI : BaseCanvasUI
     {
         RefreshOptionTexts(item);
         SetupSlots();
-        ClearSelection();
+        //ClearSelection();
     }
 
     private void HandleFailed(string reason)
@@ -150,7 +150,7 @@ public class ItemIdentifyUI : BaseCanvasUI
         var list = new System.Collections.Generic.List<string>();
         if (item.physicalDamage > 0) list.Add($"물리 공격력: {item.physicalDamage:F1}");
         if (item.magicDamage > 0) list.Add($"마법 공격력: {item.magicDamage:F1}");
-        if (item.criticalChance > 0) list.Add($"치명타 확률: {item.criticalChance * 100f:F1}%");
+        if (item.criticalChance > 0) list.Add($"치명타 확률: {item.criticalChance:F1}%");
         if (item.criticalDamage > 0) list.Add($"치명타 피해: {item.criticalDamage:F2}배");
         if (item.maxHealth > 0) list.Add($"최대 체력: {item.maxHealth:F1}");
         if (item.physicalDefense > 0) list.Add($"방어력: {item.physicalDefense:F1}");
