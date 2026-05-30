@@ -251,10 +251,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SylvanusBoss
   data: {fileID: 11400000, guid: 25285f3ca20993b45b2ca84df9792c03, type: 2}
   dataP: {fileID: 0}
+  isDie: 0
   usePooling: 0
+  knockbackForce: 5
+  knockbackDuration: 0.15
+  flashDuration: 0.1
+  flashMaterial: {fileID: 0}
   woodNeedlePrefab: {fileID: 4552811415786973707, guid: 781331e049403ac4fb7ac2ac8c67d033, type: 3}
-  needleCount: 12
-  needleSpread: 120
+  needleCount: 6
+  needleSpread: 90
   needleSpeed: 9
   normalAttackInterval: 3
   normalAttackCountBase: 8
@@ -272,6 +277,7 @@ MonoBehaviour:
   rootDamageDelay: 0.6
   rootIndicatorPrefab: {fileID: 831448601743774942, guid: 597310cb611cf6d42a1d6958abe63f61, type: 3}
   indicatorTrackDuration: 1.5
+  indicatorLockDuration: 1.5
   indicatorBarLength: 30
   postComboFreeTime: 7
   rangeIndicatorColor: {r: 0.45, g: 0.85, b: 0.25, a: 0.85}

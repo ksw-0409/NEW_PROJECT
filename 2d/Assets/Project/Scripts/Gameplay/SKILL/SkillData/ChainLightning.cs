@@ -240,16 +240,10 @@ public class ChainLightning : MonoBehaviour
 
     private void TriggerFinalExplosion(Vector2 center)
     {
-        SpawnBlueRingEffect(center, finalExplosionRadius, 0.35f);
-        SpawnBlueFlash(center, finalExplosionRadius * 1.6f, 0.2f);
+        // ⭐ 동그라미 번개 폭발 이펙트 (사용자 요청 — 방사형 번개 + 충격파 링 + 코어 글로우)
+        LightningCircleExplosion.Spawn(center, finalExplosionRadius, 0.55f);
 
-        if (hitEffectPrefab != null)
-        {
-            GameObject fx = Instantiate(hitEffectPrefab, center, Quaternion.identity);
-            fx.transform.localScale *= 2.5f;
-            Destroy(fx, 0.5f);
-        }
-
+        // 데미지 영역 (시각 효과와 별개 — 변경 없음)
         Collider2D[] targets = Physics2D.OverlapCircleAll(center, finalExplosionRadius);
         for (int i = 0; i < targets.Length; i++)
         {

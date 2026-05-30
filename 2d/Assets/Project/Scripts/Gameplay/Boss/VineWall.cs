@@ -52,6 +52,9 @@ public class VineWall : MonoBehaviour
 
     public void Setup(Vector2 dir, float length, float width, float damage, float damageInterval, float lifetime)
     {
+        // ⭐ 나무 줄기 시각/콜라이더 2배 스케일 (사용자 요청)
+        transform.localScale = new Vector3(2f, 2f, 1f);
+
         this.growDir = dir.normalized;
         this.length = length;
         this.width = width;

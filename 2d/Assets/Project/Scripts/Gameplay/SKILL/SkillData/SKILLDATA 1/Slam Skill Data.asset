@@ -98,6 +98,6 @@ MonoBehaviour:
   gem: {fileID: -3273216748401862306, guid: c014314225a7a42429caed03e598038a, type: 3}
   maxGem: {fileID: 3273761095418258225, guid: 7562f5a6e38772742a599f05a01ce596, type: 3}
   range: 5
-  angle: 70
+  angle: 110
   slowPercent: 0.3
   slowDuration: 2

@@ -95,6 +95,9 @@ public class SlamSkill : SkillBase
 
         SpawnEffect(dir, range);
 
+        // ⭐ 라인하르트 스타일 땅 균열 이펙트 (사용자 요청)
+        SlamCrackEffect.Spawn(transform.position, dir, slamData != null ? slamData.angle : 110f, range, 0.7f);
+
         // ⭐ 충격파+둔화 항상 발동 (변칙 체크 제거 — 사용자 요청)
         // ⭐ QuakeZone(갈색 존) 제거 — 사용자 요청. 슬로우는 위 hit 루프에서 직접 적용 중
     }
