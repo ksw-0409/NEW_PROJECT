@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BowSkillData
   skillName: "\uD65C\uC3D8\uAE30"
   icon: {fileID: 21300000, guid: 9d566f36c0fda76428f9055cd1632bf9, type: 3}
-  description: 
+  description: "\uC804\uBC29\uC73C\uB85C \uD654\uC0B4\uC744 \uBC1C\uC0AC\uD574 \uC801\uC744
+    \uAD00\uD1B5\uD569\uB2C8\uB2E4."
   levels:
   - cooldown: 3
     count: 1

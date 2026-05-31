@@ -25,17 +25,30 @@ public class RotatingSlashSkill : SkillBase
     protected override void Execute(Transform player) { /* unused */ }
 
     /// <summary>회전베기 칼날이 일정 간격으로 계속 돌면서 주변에 데미지 (cooldown 무시)</summary>
+    /// <summary>회전베기 통합 루프 — 칼날오라 찍었으면 상시 회전 모드, 안 찍었으면 쿨다운 모드</summary>
     IEnumerator ContinuousAttackLoop()
     {
-        // 잠깐 기다린 후 시작 (Player 초기화 대기)
         yield return new WaitForSeconds(0.3f);
         while (true)
         {
-            if (instance != null && HasEnemiesToAttack()) Attack(); // ⭐ 적 0이면 칼날 회전만 유지, 데미지 처리 스킵
-            // ⭐ hitInterval 최소 0.5초 (너무 빠르면 중첩되어 보임)
-            var rsBonus = PlayerStats.Instance != null && data != null ? PlayerStats.Instance.GetSkillBonus(data) : (dmg:1f, rng:1f, cool:1f, cnt:0, slowMul:1f, durMul:1f);
-            float interval = (rotData != null && rotData.hitInterval > 0f) ? Mathf.Max(0.3f, rotData.hitInterval * rsBonus.cool) : 0.6f;
-            yield return new WaitForSeconds(interval);
+            // ⭐ 매 루프마다 칼날오라 specialty 보유 여부 체크 (게임 도중 찍으면 자동 전환)
+            bool hasAura = PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("RotSlash_aura");
+
+            if (instance != null && HasEnemiesToAttack()) Attack();
+
+            float waitTime;
+            if (hasAura)
+            {
+                // 칼날오라 모드: hitInterval마다 상시 회전
+                var rsBonus = PlayerStats.Instance != null && data != null ? PlayerStats.Instance.GetSkillBonus(data) : (dmg:1f, rng:1f, cool:1f, cnt:0, slowMul:1f, durMul:1f);
+                waitTime = (rotData != null && rotData.hitInterval > 0f) ? Mathf.Max(0.3f, rotData.hitInterval * rsBonus.cool) : 0.6f;
+            }
+            else
+            {
+                // 일반 모드: GetCooldown()마다 1회 데미지
+                waitTime = Mathf.Max(0.5f, GetCooldown());
+            }
+            yield return new WaitForSeconds(waitTime);
         }
     }
 

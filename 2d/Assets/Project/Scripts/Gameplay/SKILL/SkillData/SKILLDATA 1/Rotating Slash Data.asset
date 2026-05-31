@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RotatingSlashData
   skillName: "\uD68C\uC804\uBC30\uAE30"
   icon: {fileID: 21300000, guid: 93377d874309aab4380d77315b00d783, type: 3}
-  description: 
+  description: "\uC8FC\uBCC0 \uC801\uC744 \uD68C\uC804\uD558\uBA70 \uC9C0\uC18D\uC801\uC73C\uB85C
+    \uACF5\uACA9\uD569\uB2C8\uB2E4."
   levels:
   - cooldown: 4
     count: 1

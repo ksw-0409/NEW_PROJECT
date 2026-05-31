@@ -16,15 +16,15 @@ public class SlamCrackEffect : MonoBehaviour
     [Tooltip("각 균열의 지그재그 segments")]
     public int crackSegments = 8;
     [Tooltip("지그재그 흔들림 강도 (radius 비율)")]
-    public float zigzagRatio = 0.12f;
+    public float zigzagRatio = 0.06f;
     [Tooltip("균열당 가지치기 개수 (0이면 없음)")]
-    public int branchCount = 2;
+    public int branchCount = 1;
 
     [Header("색상 (라인하르트 주황+노랑 발광)")]
     public Color crackOuterColor = new Color(0.15f, 0.05f, 0.02f, 1f); // 어두운 외각 (균열 라인)
     public Color crackInnerColor = new Color(1f, 0.6f, 0.15f, 1f);     // 밝은 안쪽 (발광)
     public Color shockwaveColor = new Color(1f, 0.5f, 0.1f, 0.9f);     // 충격파 링
-    public Color glowColor = new Color(1f, 0.55f, 0.1f, 0.55f);        // 중앙 글로우
+    public Color glowColor = new Color(1f, 0.55f, 0.1f, 0.30f);        // 중앙 글로우
 
     private static Sprite cachedRadialGlow;
     private LineRenderer[] crackOuter;
@@ -55,13 +55,14 @@ public class SlamCrackEffect : MonoBehaviour
     public static SlamCrackEffect Spawn(Vector3 position, Vector2 dir, float fanAngleDeg, float radius = 4f, float duration = 0.7f)
     {
         GameObject go = new GameObject("SlamCrackEffect");
+        go.SetActive(false); // ⭐ Awake 지연
         go.transform.position = position;
         var fx = go.AddComponent<SlamCrackEffect>();
         fx.maxRadius = radius;
         fx.duration = duration;
         fx.fanDirection = dir.sqrMagnitude > 0.001f ? dir.normalized : Vector2.zero;
         fx.fanAngle = fanAngleDeg;
-        fx.InitializeChildren();
+        go.SetActive(true); // 이제 Awake 호출 → 올바른 부채꼴 값 반영
         return fx;
     }
 
@@ -130,14 +131,21 @@ public class SlamCrackEffect : MonoBehaviour
             branchAttachT[i] = Random.Range(0.30f, 0.80f);
             // 메인 라인 각도에서 ±25~50도 분기
             float sign = (i % 2 == 0) ? 1f : -1f;
-            branchAngles[i] = crackAngles[parent] + sign * Random.Range(25f, 50f);
+            branchAngles[i] = crackAngles[parent] + sign * Random.Range(15f, 30f);
+            // ⭐ 부채꼴 모드면 가지가 범위 밖으로 못 나가게 clamp
+            if (isFan)
+            {
+                float minA = baseAngleDeg - halfFan;
+                float maxA = baseAngleDeg + halfFan;
+                branchAngles[i] = Mathf.Clamp(branchAngles[i], minA, maxA);
+            }
 
             branchOuter[i] = CreateCrackLine($"BranchOuter_{i}", 5, 0.22f, 0.08f, crackOuterColor, 211);
             branchInner[i] = CreateCrackLine($"BranchInner_{i}", 5, 0.10f, 0.03f, crackInnerColor, 216);
         }
 
         // === 충격파 링 ===
-        shockwaveRing = CreateRing("ShockwaveRing", 0.18f, shockwaveColor, 205);
+        shockwaveRing = null; // ⭐ 충격파 링/호 제거 — 사용자 요청
     }
 
     LineRenderer CreateCrackLine(string name, int positionCount, float startWidth, float endWidth, Color color, int sortOrder)
@@ -197,7 +205,7 @@ public class SlamCrackEffect : MonoBehaviour
         Vector3 center = transform.position;
 
         // === 중앙 글로우: 빠르게 커지고 페이드 ===
-        float glowScale = maxRadius * 0.7f * crackExpand;
+        float glowScale = maxRadius * 0.4f * crackExpand;
         centerGlow.transform.localScale = new Vector3(glowScale, glowScale, 1f);
         var sr = centerGlow.GetComponent<SpriteRenderer>();
         sr.color = new Color(glowColor.r, glowColor.g, glowColor.b, glowColor.a * fade);
@@ -241,6 +249,8 @@ public class SlamCrackEffect : MonoBehaviour
         // === 충격파 링/호 — 부채꼴 모드면 호, 아니면 풀 링 ===
         bool isFanMode = fanAngle > 0f && fanDirection != Vector2.zero;
         float ringRadius = maxRadius * crackExpand;
+        if (shockwaveRing != null)
+        {
         shockwaveRing.loop = !isFanMode;
         if (isFanMode)
         {
@@ -267,6 +277,7 @@ public class SlamCrackEffect : MonoBehaviour
         shockwaveRing.endColor = rc;
         shockwaveRing.startWidth = 0.18f * fade + 0.04f;
         shockwaveRing.endWidth = shockwaveRing.startWidth;
+        }
 
         if (elapsed >= duration) Destroy(gameObject);
     }

@@ -88,14 +88,8 @@ public class SlamSkill : SkillBase
             }
         }
 
-        float angleDeg = slamData != null ? slamData.angle : 90f;
-        SkillRangeIndicator.SpawnSector(
-            transform.position, dir, range, angleDeg,
-            new Color(1f, 0.7f, 0.1f, 0.95f), 0.6f);
-
-        SpawnEffect(dir, range);
-
-        // ⭐ 라인하르트 스타일 땅 균열 이펙트 (사용자 요청)
+        // ⭐ 부채꼴 테두리(SkillRangeIndicator) + 부채꼴 이미지(SpawnEffect) 제거 — 사용자 요청
+        // ⭐ 균열만 사용 (스킬 범위 안에만 균열 생성)
         SlamCrackEffect.Spawn(transform.position, dir, slamData != null ? slamData.angle : 110f, range, 0.7f);
 
         // ⭐ 충격파+둔화 항상 발동 (변칙 체크 제거 — 사용자 요청)

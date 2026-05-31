@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ArrowRainData
   skillName: "\uD654\uC0B4\uBE44"
   icon: {fileID: 21300000, guid: 0c98ac9fdf7aea240be023751843f2f2, type: 3}
-  description: 
+  description: "\uC9C0\uC815 \uBC94\uC704\uC5D0 \uD654\uC0B4 \uBE44\uB97C \uC3DF\uC544\uBD93\uC2B5\uB2C8\uB2E4."
   levels:
   - cooldown: 10
     count: 1

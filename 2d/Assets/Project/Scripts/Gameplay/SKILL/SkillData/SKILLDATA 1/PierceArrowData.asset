@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ArrowPassiveData
   skillName: "\uAD00\uD1B5\uD654\uC0B4"
   icon: {fileID: 21300000, guid: f239f76565e388445bd7867c0faa2f90, type: 3}
-  description: 
+  description: "\uD654\uC0B4\uC774 \uC801\uC744 \uAD00\uD1B5\uD560 \uD655\uB960\uC774
+    \uC99D\uAC00\uD569\uB2C8\uB2E4."
   levels:
   - cooldown: 0
     count: 1
