@@ -15,6 +15,8 @@ public class EnemyAI : MonoBehaviour
     private float expAmount;
     private float DropWeapon;
     public bool usePooling = true; // �ν����Ϳ��� ����� üũ, �������� üũ ����
+    private float goldMin;
+    private float goldMax;
 
     //���� �̺�Ʈ��
     private bool isRushMode = false;
@@ -88,6 +90,8 @@ public class EnemyAI : MonoBehaviour
         
         moveSpeed = data.moveSpeed * dataP.moveSpeed;
         DropWeapon = data.DropWeapon;
+        goldMax= data.goldMax; 
+        goldMin= data.goldMin;
 
         // [추가됨] 풀링에서 꺼낼 때 넉백/깜빡임 상태 초기화
         isKnockedBack = false;
@@ -109,10 +113,25 @@ public class EnemyAI : MonoBehaviour
         moveSpeed = speed * dataP.moveSpeed;
         health.Multiple(hpMultiplier);
     }
+
+    public void SetOverloadMode(float hpMultiplier, float DamageMultiplier,float DropMultiplier)
+    {
+        health.Multiple(hpMultiplier);
+        SkillDamage *= DamageMultiplier;
+        ContactDamage *= DamageMultiplier;
+        DropWeapon *= DropMultiplier;
+        expAmount *= DropMultiplier;
+        goldMin *= DropMultiplier;
+        goldMax *= DropMultiplier;
+    }
+
     public virtual void Die()
     {
         if (isDie) return;
         isDie = true;
+        int uniqueSeed = System.DateTime.Now.Millisecond + this.gameObject.GetInstanceID() + (int)(transform.position.x * 100);
+        System.Random localRandom = new System.Random(uniqueSeed);
+
         EnemyManager.Instance.AddKill();
         // ✨ 적 처치 이펙트 — 보스면 elite 폭발
         bool isBoss = gameObject.name.Contains("Boss");
@@ -125,8 +144,11 @@ public class EnemyAI : MonoBehaviour
         }
 
         ExpManager.Instance.DropExp(this.transform.position, expAmount);
-        ItemManager.Instance.DropItem(this.transform.position, DropWeapon, false);
-        GoldManager.Instance.DropGold(this.transform.position, Random.Range(data.goldMin, data.goldMax));
+        // ItemManager.Instance.DropItem(this.transform.position, DropWeapon, false);
+        ItemManager.Instance.DropItem(this.transform.position, DropWeapon, false, localRandom);
+
+        int randomGold = localRandom.Next((int)goldMin, (int)goldMax + 1); // int일 경우 최댓값 미만이므로 +1 필요
+        GoldManager.Instance.DropGold(this.transform.position, randomGold);
 
         EnemyManager.Instance.EnqueueToRelease(this);
     }

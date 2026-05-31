@@ -29,10 +29,23 @@ public class ItemManager : MonoBehaviour
     }
 
     // ���� ���� �� ȣ���� �Լ�
-    public void DropItem(Vector2 position, float equipDropChance,bool isBoss)
-    {     
-        // ��� Ȯ�� ���
-        if (Random.Range(0f, 100f) <= equipDropChance)
+    public void DropItem(Vector2 position, float equipDropChance, bool isBoss, System.Random randomSource)
+    {
+        // randomSource가 없을 때를 대비한 방어 코드 
+        if (randomSource == null)
+        {
+            // 넘겨받은 난수 생성기가 없다면 기존 유니티 Random 사용
+            if (Random.Range(0f, 100f) <= equipDropChance)
+            {
+                DropEquipment(position, isBoss);
+            }
+            return;
+        }
+
+        // ⭐ 독립된 난수 생성기로 확률 계산 (0.0 ~ 100.0)
+        double randomValue = randomSource.NextDouble() * 100.0;
+
+        if (randomValue <= equipDropChance)
         {
             DropEquipment(position, isBoss);
         }

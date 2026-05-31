@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json.Bson;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -28,6 +29,15 @@ public class EnemySpawner : MonoBehaviour
     [Header("돌진 패턴 설정")]
     [SerializeField] private float rushSpawnY = 12f;  // 화면 위 스폰 
     [SerializeField] private float rushDis = 24f;  // 이동거리
+
+
+    [Header("보스맵 좌 우 리미트")]
+    [SerializeField] private float Xlim = 100f;
+    [SerializeField] private float MXlim = -100f;
+    [SerializeField] private float Ylim = 100f;
+    [SerializeField] private float MYlim = -100f;
+
+
     public void startInit()
     {
         currentFloor = (int)GameDataManager.Instance.CurrentFloor;
@@ -46,10 +56,17 @@ public class EnemySpawner : MonoBehaviour
         if (currentSecond != lastProcessedSecond)
         {
             lastProcessedSecond = currentSecond;
-            HandleWaveLogic(currentSecond);
+            if (!StageManager.IsOverload) {
+                HandleWaveLogic(currentSecond); }
+            else if (StageManager.IsOverload)
+            {
+                HandleOverload();
+            }
         }
     }
 
+
+    //일반 핸들러 
     void HandleWaveLogic(int sec)
     {
         //정상로직        
@@ -62,6 +79,7 @@ public class EnemySpawner : MonoBehaviour
         else return;
     }
 
+  
     //일반소환
     void SpawnNormalWave(int n)
     {
@@ -69,6 +87,29 @@ public class EnemySpawner : MonoBehaviour
             Spawn(GetWeightedRandom(targetRates));
         }
     }
+
+    //오버로드 핸들러
+    void HandleOverload()
+    {
+        SpawnOverloadWave(5);
+    }
+
+    //오버로드 소환
+    void SpawnOverloadWave(int n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            SpawnOverload(GetWeightedRandom(targetRates));
+        }
+    }
+
+    void SpawnOverload(int id)
+    {
+        Vector2 spawnPos= new Vector2 (Random.Range(MXlim,Xlim),Random.Range(Ylim,Ylim));
+        EnemyAI enemy = enemyManager.SpawnEnemy(id, spawnPos);
+        enemy.SetOverloadMode(2, 2, 2);
+    }
+
     //각층 확률에 따른 랜덤 인덱스 반환 
     public int GetWeightedRandom(List<MonsterSpawnRate> rates)
     {
