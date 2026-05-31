@@ -151,6 +151,26 @@ public class GameDataManager : MonoBehaviour
         return d;
     }
 
+    // ⭐ 스킬 레벨 저장/복구 (씬 전환 시 유지)
+    public void SaveSkillLevel(string skillName, int level)
+    {
+        if (string.IsNullOrEmpty(skillName)) return;
+        var entry = persistentData.savedSkillLevels.Find(e => e.skillName == skillName);
+        if (entry != null) entry.level = level;
+        else persistentData.savedSkillLevels.Add(new SkillLevelEntry { skillName = skillName, level = level });
+    }
+
+    public int GetSavedSkillLevel(string skillName)
+    {
+        var entry = persistentData.savedSkillLevels.Find(e => e.skillName == skillName);
+        return entry != null ? entry.level : 1;
+    }
+
+    public void ClearSavedSkillLevels()
+    {
+        persistentData.savedSkillLevels.Clear();
+    }
+
     public void AddSpecialCurrency(int amount)
     {
         if (amount <= 0) return;

@@ -30,6 +30,7 @@ public class PersistentData : ScriptableObject
 
     [Header("✨ 패시브 스킬 레벨 (id -> level)")]
     public List<PassiveLevelEntry> passiveLevels = new List<PassiveLevelEntry>();
+    public List<SkillLevelEntry> savedSkillLevels = new List<SkillLevelEntry>(); // ⭐ 스킬 레벨 영구 저장 (씬 전환 시 유지)
 
     // 전체 초기화 (스킬 트리 포함)
     public void ResetAll()
@@ -63,6 +64,13 @@ public class PersistentData : ScriptableObject
 public class PassiveLevelEntry
 {
     public string passiveID;
+    public int level;
+}
+
+[System.Serializable]
+public class SkillLevelEntry
+{
+    public string skillName;
     public int level;
 }
 

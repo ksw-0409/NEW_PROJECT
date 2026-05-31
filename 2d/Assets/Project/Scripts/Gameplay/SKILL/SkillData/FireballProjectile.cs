@@ -72,7 +72,9 @@ public class FireballProjectile : MonoBehaviour
         bool isBigExplosion = PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Fireball_2_2");
 
         // 1. 데미지 판정
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+        // ⭐ 데미지 범위를 시각 효과(fxSize 0.5배)와 일치시킴
+        float effectiveRadius = explosionRadius * 0.6f;
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, effectiveRadius);
         foreach (var hit in hits)
         {
             if (hit.CompareTag("Enemy"))
@@ -105,7 +107,7 @@ public class FireballProjectile : MonoBehaviour
         // 4. 피격범위 가시화
         SkillRangeIndicator.Spawn(
             transform.position,
-            explosionRadius,
+            effectiveRadius, // ⭐ 데미지 범위와 일치
             new Color(1f, 0.55f, 0.1f, 0.95f),
             0.55f,
             SkillRangeIndicator.Shape.Circle

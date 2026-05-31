@@ -129,11 +129,37 @@ public class PlayerStats : MonoBehaviour
     {
         RestoreUnlockedEffectsFromSave();
 
+        // ⭐ 던전 씬 전환 시 GameDataManager에서 장비 자동 복원
+        RestoreEquippedItemsFromGameData();
+
         // PassiveSystem이 같은 GameObject에 없으면 자동 추가 (보존성 보장)
         if (GetComponent<PassiveSystem>() == null)
         {
             gameObject.AddComponent<PassiveSystem>();
         }
+    }
+
+    /// <summary>
+    /// 씬 전환 시 GameDataManager.runtimeEquippedItems로부터 PlayerStats.equippedItems 자동 복원.
+    /// 던전 씬에서 PlayerStats가 새로 생성되어도 아이템 능력치가 유지됨.
+    /// </summary>
+    void RestoreEquippedItemsFromGameData()
+    {
+        if (GameDataManager.Instance == null) return;
+        var savedItems = GameDataManager.Instance.GetAllEquippedItems();
+        if (savedItems == null) return;
+        foreach (var kv in savedItems)
+        {
+            if (kv.Value == null) continue;
+            var equipData = kv.Value.ToEquipmentData();
+            if (equipData != null)
+            {
+                equippedItems[kv.Key] = equipData;
+            }
+        }
+        // 체력 캡 보정 (장비 보너스 반영 후)
+        if (currentHealth > MaxHealth) currentHealth = MaxHealth;
+        Debug.Log($"[PlayerStats] 장비 복원 완료 — {equippedItems.Count}개 슬롯, 이동속도={MoveSpeed:F2}");
     }
 
     void RestoreUnlockedEffectsFromSave()

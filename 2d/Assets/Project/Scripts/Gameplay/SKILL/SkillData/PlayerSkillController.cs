@@ -330,6 +330,9 @@ public class PlayerSkillController : MonoBehaviour
         if (skillDict.ContainsKey(data))
         {
             skillDict[data].LevelUp();
+            // ⭐ 레벨 저장 (씬 전환 시 유지)
+            if (GameDataManager.Instance != null)
+                GameDataManager.Instance.SaveSkillLevel(data.skillName, skillDict[data].GetLevel());
             return;
         }
         foreach (var pair in skillDict)
@@ -337,6 +340,9 @@ public class PlayerSkillController : MonoBehaviour
             if (pair.Key != null && pair.Key.skillName == data.skillName)
             {
                 pair.Value.LevelUp();
+                // ⭐ 레벨 저장
+                if (GameDataManager.Instance != null)
+                    GameDataManager.Instance.SaveSkillLevel(data.skillName, pair.Value.GetLevel());
                 return;
             }
         }
@@ -485,6 +491,18 @@ public class PlayerSkillController : MonoBehaviour
             if (found == null) continue;
             if (skillDict.ContainsKey(found)) continue;
             AddNewSkill(found);
+
+            // ⭐ 저장된 레벨까지 복구
+            int savedLevel = GameDataManager.Instance.GetSavedSkillLevel(skillName);
+            if (savedLevel > 1 && skillDict.ContainsKey(found))
+            {
+                int safety = 0;
+                while (skillDict[found].GetLevel() < savedLevel && !IsMaxLevel(found) && safety < 20)
+                {
+                    skillDict[found].LevelUp();
+                    safety++;
+                }
+            }
         }
     }
 }

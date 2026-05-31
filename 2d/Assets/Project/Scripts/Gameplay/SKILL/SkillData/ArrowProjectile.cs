@@ -161,7 +161,7 @@ public class ArrowProjectile : MonoBehaviour
             dmg *= critMul;
         }
 
-        enemy.TakeDamage(dmg);
+        enemy.TakeDamage(dmg, isCrit); // ⭐ ArrowProjectile은 이미 crit 계산 — 이중 방지
 
         if (bowSkillRef != null && !isRicochet)
         {

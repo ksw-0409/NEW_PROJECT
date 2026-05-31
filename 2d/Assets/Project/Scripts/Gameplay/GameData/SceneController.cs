@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// ¿ªÇÒ: ¾À ÀüÈ¯ÀÇ ´ÜÀÏ Ã¢±¸
+// ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½
 
 public class SceneController : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class SceneController : MonoBehaviour
     public static class SceneName
     {
         public const string Bootstrap = "Bootstrap";
-        public const string Base = "Base";
+        public const string Base = "base"; // â­ ì‹¤ì œ íŒŒì¼ëª… base.unityì™€ ì¼ì¹˜ (case-sensitive ë¹Œë“œ ëŒ€ì‘)
         public const string Dungeon = "Dungeon";
     }
 
