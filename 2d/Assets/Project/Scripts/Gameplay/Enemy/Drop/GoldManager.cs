@@ -16,7 +16,7 @@ public class GoldManager : MonoBehaviour
     // 지연 처리를 위한 청소 큐 추가
     private Queue<Gold> goldsToRelease = new Queue<Gold>();
 
-    float magnetDistance = 3.0f; // 자석 범위
+    float magnetDistance = 5.0f; // 자석 범위
     float moveSpeed = 10.0f; // 자석 속도
 
     void Awake()

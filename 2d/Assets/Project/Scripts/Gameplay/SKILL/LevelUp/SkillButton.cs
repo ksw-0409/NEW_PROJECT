@@ -61,12 +61,12 @@ public class SkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             int level = skillController.GetSkillLevel(data);
             if (skillController.IsMaxLevel(data))
             {
-                levelText.text = "MAX";
+               // levelText.text = "MAX";
                 MaxGems.enabled = true;
             }
             else
             {
-                levelText.text = "Lv." + level;
+                //levelText.text = "Lv." + level;
                 MaxGems.enabled = false;
                 for (int i = 0; i <= level && i < Gems.Length; i++) Gems[i].enabled = true;
                 for (int i = level; i < Gems.Length; i++) Gems[i].enabled = false;
@@ -74,7 +74,7 @@ public class SkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
         else
         {
-            levelText.text = "NEW";
+            //levelText.text = "NEW";
             for (int i = 0; i < Gems.Length; i++)
             {
                 Gems[i].enabled = false;

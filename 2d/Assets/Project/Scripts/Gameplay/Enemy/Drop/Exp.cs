@@ -21,6 +21,7 @@ public class Exp : MonoBehaviour
     public void SetExp(float expAmount)
     {
         this.expAmount = expAmount;
+        IsEaten = false; // 풀에서 꺼낼 때 초기화
         int index = 0; //기본 소 
         // 조건에 따른 인덱스 결정
         if (expAmount >= 200) index = 3; // 특대(초록)

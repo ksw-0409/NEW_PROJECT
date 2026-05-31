@@ -37,6 +37,7 @@ public class PauseMenuUI : MonoBehaviour
 
     private void TogglePause()
     {
+        if (GameDataManager.Instance.isPachinkoActive) return;
         isPaused = !isPaused;
         pausePanel.SetActive(isPaused);
         Time.timeScale = isPaused ? 0f : 1f;

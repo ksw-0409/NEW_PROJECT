@@ -105,7 +105,9 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnOverload(int id)
     {
-        Vector2 spawnPos= new Vector2 (Random.Range(MXlim,Xlim),Random.Range(Ylim,Ylim));
+        Vector2 spawnPos= GetRandomPosition();
+        spawnPos.x = Mathf.Clamp(spawnPos.x, MXlim, Xlim);
+        spawnPos.y = Mathf.Clamp(spawnPos.y, MYlim, Ylim);
         EnemyAI enemy = enemyManager.SpawnEnemy(id, spawnPos);
         enemy.SetOverloadMode(2, 2, 2);
     }

@@ -35,7 +35,7 @@ public class StageManager : MonoBehaviour
     //스테이지 오버로드용 변수
     public static bool IsOverload { get; private set; } = false;
 
-void OnEnable()
+    void OnEnable()
     {
         EnemySpawner.OnEliteKilled += OnEliteKilled;
     }
@@ -167,4 +167,13 @@ void OnEnable()
     void OnDestroy() { IsStageActive = false; }
 
     public float getTimer() { return timer; }
+
+    //오버로드 스테이지 시작 함수 
+    private void StartOverloadWave()
+    {
+        if (IsOverload) return;
+        IsOverload = true;
+        //나머지 처리는 시간 1분30초, 층은그대로 소환로직은 스포너에서 알아서처리 
+        //게임오버는 시간이 다 되었을경우에 처리하도록 변경해야함 엘리트죽을때에서 
+    }
 }
