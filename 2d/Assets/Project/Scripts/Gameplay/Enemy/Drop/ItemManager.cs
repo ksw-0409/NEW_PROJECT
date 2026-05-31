@@ -106,8 +106,9 @@ public class ItemManager : MonoBehaviour
     void FixedUpdate()
     {
         if (player == null) return;
+        if (Inventory.Instance != null && Inventory.Instance.Items.Count >= 28) return;
 
-        float magnetDistance = 3.0f; // �ڼ� ����
+        float magnetDistance = 3.0f;
         float moveSpeed = 10.0f;
 
         for (int i = activeItems.Count - 1; i >= 0; i--)
@@ -116,7 +117,6 @@ public class ItemManager : MonoBehaviour
 
             if (dist < magnetDistance)
             {
-                // �÷��̾� �������� �̵�
                 activeItems[i].transform.position = Vector2.MoveTowards(
                     activeItems[i].transform.position,
                     player.transform.position,

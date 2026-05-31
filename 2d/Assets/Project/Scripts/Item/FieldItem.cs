@@ -157,18 +157,22 @@ public class FieldItem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player")) return;
+        if (Inventory.Instance == null) return;
+
+        // 인벤토리 가득 찼으면 획득 불가
+        if (Inventory.Instance.Items.Count >= 28)
         {
-            if (Inventory.Instance != null)
-            {
-                Inventory.Instance.AddItem(data);
-            }
-
-            if (ItemManager.Instance != null)
-                ItemManager.Instance.RemoveItem(gameObject);
-
-            Destroy(gameObject);
+            Debug.Log("[FieldItem] 인벤토리가 가득 찼습니다.");
+            return;
         }
+
+        Inventory.Instance.AddItem(data);
+
+        if (ItemManager.Instance != null)
+            ItemManager.Instance.RemoveItem(gameObject);
+
+        Destroy(gameObject);
     }
 }
 
