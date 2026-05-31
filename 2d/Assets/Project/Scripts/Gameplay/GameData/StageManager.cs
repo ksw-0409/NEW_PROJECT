@@ -32,7 +32,10 @@ public class StageManager : MonoBehaviour
     public static bool IsStageOver { get; private set; } = false;
     public static bool IsStageActive { get; private set; } = false;
 
-    void OnEnable()
+    //스테이지 오버로드용 변수
+    public static bool IsOverload { get; private set; } = false;
+
+void OnEnable()
     {
         EnemySpawner.OnEliteKilled += OnEliteKilled;
     }
