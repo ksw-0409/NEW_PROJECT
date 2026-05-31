@@ -86,7 +86,11 @@ public class BettingManager : MonoBehaviour
             Debug.Log("배팅 금액이 0원이거나 보유 골드가 부족합니다.");
         }
     }
-
+    public void exitButtn()
+    {
+        GameDataManager.Instance.isPachinkoActive = false;
+        this.gameObject.SetActive(false);
+    }
     // 화면 텍스트 및 버튼 상태 갱신
     private void UpdateUI()
     {

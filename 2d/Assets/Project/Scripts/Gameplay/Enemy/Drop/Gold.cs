@@ -17,6 +17,7 @@ public class Gold : MonoBehaviour
     public void SetGold(float amount)
     {
         this.goldAmount = amount;
+        IsEaten = false; // Ǯ���� ���� �� �ʱ�ȭ
     }
 
     private void OnTriggerEnter2D(Collider2D other)

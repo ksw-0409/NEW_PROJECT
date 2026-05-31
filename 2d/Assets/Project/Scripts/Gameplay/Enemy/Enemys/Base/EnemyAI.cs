@@ -142,10 +142,10 @@ public class EnemyAI : MonoBehaviour
         {
             //여기서 넘겨라잉 ~
         }
-
-        ExpManager.Instance.DropExp(this.transform.position, expAmount);
+        Vector3 offset = new Vector3(0.3f, 0,0);
+        ExpManager.Instance.DropExp(this.transform.position+offset, expAmount);
         // ItemManager.Instance.DropItem(this.transform.position, DropWeapon, false);
-        ItemManager.Instance.DropItem(this.transform.position, DropWeapon, false, localRandom);
+        ItemManager.Instance.DropItem(this.transform.position+offset, DropWeapon, false, localRandom);
 
         int randomGold = localRandom.Next((int)goldMin, (int)goldMax + 1); // int일 경우 최댓값 미만이므로 +1 필요
         GoldManager.Instance.DropGold(this.transform.position, randomGold);
