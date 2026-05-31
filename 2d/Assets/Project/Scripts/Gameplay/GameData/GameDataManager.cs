@@ -26,7 +26,7 @@ public class GameDataManager : MonoBehaviour
 
     public bool isPachinkoActive = false;
 
-    // 런타임 장착 아이템 (씬 전환 간 유지 — 직렬화 불필요)
+    // 런타임 장착 아이템 (씬 전환 간 유지)
     private Dictionary<EquipmentSlot, InventoryItem> runtimeEquippedItems
         = new Dictionary<EquipmentSlot, InventoryItem>();
 
@@ -49,6 +49,15 @@ public class GameDataManager : MonoBehaviour
 
     public Dictionary<EquipmentSlot, InventoryItem> GetAllEquippedItems()
         => runtimeEquippedItems;
+
+    // 오버로드 패널티 (80%)
+    private bool isHardPenalty = false;
+
+    public void SetHardPenalty(bool active)
+    {
+        isHardPenalty = active;
+        Debug.Log($"[GameDataManager] HardPenalty: {active}");
+    }
 
     void Awake()
     {
@@ -151,7 +160,6 @@ public class GameDataManager : MonoBehaviour
         return d;
     }
 
-    // ⭐ 스킬 레벨 저장/복구 (씬 전환 시 유지)
     public void SaveSkillLevel(string skillName, int level)
     {
         if (string.IsNullOrEmpty(skillName)) return;
@@ -279,11 +287,14 @@ public class GameDataManager : MonoBehaviour
         ApplyGoldPenalty();
         ApplyItemPenalty();
         ResetFloor();
+        isHardPenalty = false; // ✨ 패널티 적용 후 초기화
     }
 
     private void ApplyGoldPenalty()
     {
-        persistentData.gold = Mathf.FloorToInt(persistentData.gold * 0.5f);
+        // ✨ 오버로드 중 사망: 20% 유지(80% 손실), 일반: 50% 유지
+        float rate = isHardPenalty ? 0.2f : 0.5f;
+        persistentData.gold = Mathf.FloorToInt(persistentData.gold * rate);
         OnGoldChanged?.Invoke(persistentData.gold);
     }
 
@@ -292,7 +303,10 @@ public class GameDataManager : MonoBehaviour
         List<string> items = persistentData.equippedItems;
         if (items.Count == 0) return;
 
-        int removeCount = Mathf.CeilToInt(items.Count * 0.5f);
+        // 오버로드 중 사망: 80% 손실, 일반: 50% 손실
+        float penaltyRate = isHardPenalty ? 0.8f : 0.5f;
+        int removeCount = Mathf.CeilToInt(items.Count * penaltyRate);
+
         List<int> indices = new List<int>(items.Count);
         for (int i = 0; i < items.Count; i++) indices.Add(i);
 

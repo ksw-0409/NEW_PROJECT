@@ -95,7 +95,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     //오버로드 소환
-    void SpawnOverloadWave(int n)
+    public void SpawnOverloadWave(int n)
     {
         for (int i = 0; i < n; i++)
         {
