@@ -72,12 +72,14 @@ public class EnemySpawner : MonoBehaviour
     void HandleWaveLogic(int sec)
     {
         //정상로직        
-        if (sec < 20) SpawnNormalWave(Random.Range(1,2));
+        if (sec < 20) SpawnNormalWave(Random.Range(1, 2));
         else if (sec == 20) { SpawnCircleWave(); }
         else if (sec < 40) SpawnNormalWave(Random.Range(3, 4));
         else if (sec == 40) { SpawnVerticalRush(); }
-        else if (sec > 40) SpawnNormalWave(4);
-        else if (sec == 60) SpawElite();
+        else if (sec > 40) { 
+            if(sec==60)SpawElite();
+            else SpawnNormalWave(4); 
+        }
         else return;
     }
 
@@ -224,12 +226,14 @@ public class EnemySpawner : MonoBehaviour
     }*/
     void SpawElite()
     {
+        Debug.Log("Spaw Elite");
         int thisFloor = GameDataManager.Instance.CurrentFloor;
         if (thisFloor == 5 || thisFloor == 10) return;
 
         Vector2 spawnPos = GetRandomPosition();
         spawnedElite = enemyManager.SpawnEnemy(eliteId[thisFloor - 1], spawnPos);
 
+        Debug.Log(eliteId[thisFloor - 1]);
         // 엘리트 사망 감지 코루틴 시작
         if (spawnedElite != null)
             StartCoroutine(WatchEliteDeath(spawnedElite));

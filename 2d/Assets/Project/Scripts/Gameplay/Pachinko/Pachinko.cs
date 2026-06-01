@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using DG.Tweening; // DOTween 사용
+﻿using DG.Tweening; // DOTween 사용
+using UnityEngine;
+using System.Collections; 
 
 public class Pachinko : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Pachinko : MonoBehaviour
     //멈출 숫자 저장용
     private int[] values = new int[3];
 
-    private int value=0;
+    private int value = 0;
 
     //릴 조작 
     public GameObject[] Reals;
@@ -23,9 +24,9 @@ public class Pachinko : MonoBehaviour
     [SerializeField] private GameObject explosionPrefab;    // 음수(-)일 때 복수 생성할 폭발 이펙트 프리팹
 
     [SerializeField] private Transform effectSpawnCenter;   // 이펙트가 생성될 중심 기준점
-    [SerializeField] private float spawnRadius = 2.0f;       // 중심점 기준 랜덤 생성할 반경 (원형 범위)
+     private float spawnRadius = 10.0f;       // 중심점 기준 랜덤 생성할 반경 (원형 범위)
 
-    [SerializeField] private int maxSpawnCount = 50;        // 컴퓨터 과부하 방지를 위한 최대 생성 제한 개수
+     private int maxSpawnCount = 50;        // 컴퓨터 과부하 방지를 위한 최대 생성 제한 개수
 
     void OnEnable()
     {
@@ -46,11 +47,11 @@ public class Pachinko : MonoBehaviour
     {
         if (!isGameReady) return;
         isGameReady = false; // 중복 실행 방지
-        StartReal(); 
+        StartReal();
         value = GetRandomValue();
         StopAllReels();
         // 릴이 다 멈추는 시간 에 정산 및 닫기 연출 시작
-        Invoke(nameof(RewardAndCloseRoutine), 10);
+        Invoke(nameof(RewardAndCloseRoutine), 8);
     }
 
     //랜덤 당첨
@@ -59,9 +60,10 @@ public class Pachinko : MonoBehaviour
         int value = 1;
         for (int i = 0; i < 3; i++)
         {
-            int RandomIndex = UnityEngine.Random.Range(1, items.GetTotalProbability()+1);
+            int RandomIndex = UnityEngine.Random.Range(1, items.GetTotalProbability() + 1);
             int p = 0;
-            for (int j = 0; j < items.items.Length; j++) {
+            for (int j = 0; j < items.items.Length; j++)
+            {
                 p += items.items[j].probability;
                 if (RandomIndex <= p)
                 {
@@ -69,7 +71,7 @@ public class Pachinko : MonoBehaviour
                     values[i] = items.items[j].itemValue;
                     Debug.Log(value);
                     break;
-                } 
+                }
             }
         }
         Debug.Log(value);
@@ -87,11 +89,16 @@ public class Pachinko : MonoBehaviour
     {
         for (int i = 0; i < Reals.Length; i++)
         {
-            Reals[i].GetComponent<Pachinko_Real>().RequestStop(values[i], 2.0f+ (float)i);
+            Reals[i].GetComponent<Pachinko_Real>().RequestStop(values[i], 2.0f + (float)i);
         }
     }
 
     private void RewardAndCloseRoutine()
+    {
+        StartCoroutine(RewardAndCloseProcess());
+    }
+
+    private IEnumerator RewardAndCloseProcess()
     {
         // 1. 모든 릴이 멈춘 이 시점에 최종 골드를 정산하여 반영합니다!
         int rewardGold = savedBetAmount * value;
@@ -99,15 +106,10 @@ public class Pachinko : MonoBehaviour
 
         GameDataManager.Instance.PachinkoAddGold(rewardGold);
 
-
-        // 2. 금액의 절댓값을 100으로 나눠 생성할 개수(Count) 계산
-        // Mathf.Abs()를 사용해 음수(-)도 양수 개수로 변환합니다.
-        int calculatedCount = Mathf.Abs(rewardGold) / 100;
-
-        // 최소 1개는 생성되도록 하고, 너무 많으면 렉이 걸리므로 maxSpawnCount로 제한합니다.
+        // 2. 금액의 절댓값을 200으로 나눠 생성할 개수(Count) 계산
+        int calculatedCount = Mathf.Abs(rewardGold) / 200;
         int finalSpawnCount = Mathf.Clamp(calculatedCount, 1, maxSpawnCount);
 
-        // 만약 딱 0원이면 꽝 이펙트처럼 1개만 생성하고 싶다면 아래처럼 예외 처리 가능
         if (rewardGold == 0) finalSpawnCount = 1;
 
         // 3. 양수/음수 조건에 따른 이펙트 종류 선택
@@ -120,29 +122,40 @@ public class Pachinko : MonoBehaviour
         {
             for (int i = 0; i < finalSpawnCount; i++)
             {
-                // 중심점 기준 원 안의 랜덤한 좌표 계산 (2D UI 환경이라면 Random.insideUnitCircle 사용)
                 Vector2 randomOffset = Random.insideUnitCircle * spawnRadius;
                 Vector3 spawnPosition = effectSpawnCenter.position + new Vector3(randomOffset.x, randomOffset.y, 0f);
 
-                // 이펙트 생성
                 GameObject spawnedEffect = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity, effectSpawnCenter);
-
                 Destroy(spawnedEffect, 2.0f);
             }
         }
 
+        // 5. [추가] 폭발할 때(음수일 때) 파친코 창 흔들기 효과
+        if (rewardGold <= 0 && pachin != null)
+        {
+            // DOShakePosition(지속시간, 강도, 진동횟수)
+            // 원래 위치를 지키기 위해 완전한 초기화를 보장하려면 원래 위치를 저장해두는 것이 안전합니다.
+            pachin.transform.DOShakePosition(0.5f, 30f, 20, 90f, false, true);
+        }
+
+        // 6. [추가] 이펙트와 흔들림을 보여주기 위한 시간 지연 (원하는 초만큼 설정)
+        // 1.5초 동안 연출을 감상한 뒤 아래 닫기 로직으로 넘어갑니다.
+        yield return new WaitForSeconds(3f);
+
         // 사용한 배팅 금액 리셋
         savedBetAmount = 0;
 
-        // 2. 골드 반영과 동시에 창이 솩 줄어들며 사라집니다.
+        // 7. 골드 반영과 동시에 창이 솩 줄어들며 사라집니다.
         pachin.transform.DOScale(Vector3.zero, 0.4f)
             .SetEase(Ease.InBack)
             .OnComplete(() =>
             {
                 pachin.SetActive(false);
+                // 닫힌 후 다음 게임을 위해 스케일을 다시 1로 초기화해두는 것이 좋습니다.
+                pachin.transform.localScale = Vector3.one;
             });
+
         // 게임이 끝났으므로 킵해둔 금액 리셋
-        savedBetAmount = 0;
         GameDataManager.Instance.isPachinkoActive = false;
     }
-}
+};
