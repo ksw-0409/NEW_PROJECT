@@ -97,7 +97,7 @@ public class ItemEnhanceUI : BaseCanvasUI
 
         if (item != null && item.isIdentified)
         {
-            item.BuildOptions(); // 동적 옵션 생성
+            item.BuildOptions();
             RefreshOptionTexts();
             RefreshLockButtons();
         }
@@ -109,6 +109,10 @@ public class ItemEnhanceUI : BaseCanvasUI
 
         enhanceButton.interactable = (item != null && item.isIdentified);
         CheckEnhanceButtonState();
+
+        // ✨ 선택된 아이템 기준으로 비용 갱신
+        if (costText != null)
+            costText.text = $"{enhanceManager.GetEnhanceCost(item)}G";
     }
 
     private void OnClickEnhance()
@@ -124,6 +128,10 @@ public class ItemEnhanceUI : BaseCanvasUI
         selectedItem.options[index].isLocked = !selectedItem.options[index].isLocked;
         RefreshLockButtonVisual(index);
         CheckEnhanceButtonState();
+
+        // ✨ 잠금 변경 시 비용 갱신
+        if (costText != null)
+            costText.text = $"{enhanceManager.GetEnhanceCost(selectedItem)}G";
     }
 
     private void CheckEnhanceButtonState()
@@ -203,7 +211,8 @@ public class ItemEnhanceUI : BaseCanvasUI
 
     private void HandleSuccess(InventoryItem enhanced)
     {
-        enhanced.RefreshOptionTexts(); // 잠금 유지하며 텍스트만 갱신
+        enhanced.BuildOptions(); // ✨ 옵션 목록 재생성 (종류 변경 반영)
+        enhanced.RefreshOptionTexts();
         RefreshOptionTexts();
         RefreshLockButtons();
     }

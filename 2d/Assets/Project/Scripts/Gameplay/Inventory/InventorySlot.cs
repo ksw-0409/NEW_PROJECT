@@ -69,7 +69,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         string hexColor = ColorUtility.ToHtmlStringRGB(GetGradeColor(item.Grade));
         sb.AppendLine($"<color=#{hexColor}>{item.itemName}</color>");
 
-        // 기본 능력치는 감정 전후 항상 표시
+        // 기본 능력치는 항상 표시
         sb.AppendLine("[ 기본 능력치 ]");
         if (item.basePhysicalDamage > 0) sb.AppendLine($"물리 공격력: {item.basePhysicalDamage:F1}");
         if (item.baseMagicDamage > 0) sb.AppendLine($"마법 공격력: {item.baseMagicDamage:F1}");
@@ -88,7 +88,6 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
         else
         {
-            sb.AppendLine("\n[ 옵션 ]");
             float addPhys = item.physicalDamage - item.basePhysicalDamage;
             float addMagic = item.magicDamage - item.baseMagicDamage;
             float addCrit = item.criticalChance - item.baseCriticalChance;
@@ -97,14 +96,16 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             float addDef = item.physicalDefense - item.basePhysicalDefense;
             float addSpeed = item.moveSpeed - item.baseMoveSpeed;
 
-            if (item.basePhysicalDamage > 0) sb.AppendLine($"물리 공격력: {item.physicalDamage:F1} ({item.basePhysicalDamage:F1}+{addPhys:F1})");
-            if (item.baseMagicDamage > 0) sb.AppendLine($"마법 공격력: {item.magicDamage:F1} ({item.baseMagicDamage:F1}+{addMagic:F1})");
-            if (item.baseCriticalChance > 0) sb.AppendLine($"치명타 확률: {item.criticalChance:F1}% ({item.baseCriticalChance:F1}%+{addCrit:F1}%)");
-            if (item.baseCriticalDamage > 0) sb.AppendLine($"치명타 피해: {item.criticalDamage:F2}배 ({item.baseCriticalDamage:F2}+{addCritDmg:F2})");
-            if (item.baseMaxHealth > 0) sb.AppendLine($"최대 체력:   {item.maxHealth:F0} ({item.baseMaxHealth:F0}+{addHp:F0})");
-            if (item.basePhysicalDefense > 0) sb.AppendLine($"방어력:      {item.physicalDefense:F1} ({item.basePhysicalDefense:F1}+{addDef:F1})");
-            if (item.baseMoveSpeed > 0) sb.AppendLine($"이동속도:    {item.moveSpeed:F2} ({item.baseMoveSpeed:F2}+{addSpeed:F2})");
-            if (item.baseAttackcooldown > 0) sb.AppendLine($"쿨타임 감소: -{item.attackcooldown:F2}초");
+            sb.AppendLine("\n[ 옵션 ]");
+            if (addPhys != 0) sb.AppendLine($"물리 공격력: {addPhys:+0.0;-0.0}");
+            if (addMagic != 0) sb.AppendLine($"마법 공격력: {addMagic:+0.0;-0.0}");
+            if (addCrit != 0) sb.AppendLine($"치명타 확률: {addCrit:+0.0;-0.0}%");
+            if (addCritDmg != 0) sb.AppendLine($"치명타 피해: {addCritDmg:+0.00;-0.00}배");
+            if (addHp != 0) sb.AppendLine($"최대 체력:   {addHp:+0;-0}");
+            if (addDef != 0) sb.AppendLine($"방어력:      {addDef:+0.0;-0.0}");
+            if (addSpeed != 0) sb.AppendLine($"이동속도:    {addSpeed:+0.00;-0.00}");
+            if (item.attackcooldown > 0) sb.AppendLine($"쿨타임 감소: -{item.attackcooldown:F2}초");
+
             sb.Append("\n<color=#aaa>클릭: 장착</color>");
         }
 

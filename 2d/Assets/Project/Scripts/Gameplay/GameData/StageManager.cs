@@ -13,6 +13,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private GameObject portalPrefab;
+    [SerializeField] private GameObject recallPortalPrefab;
     [SerializeField] private GameObject bossPortalPrefab5;  // 5층 보스 포탈 (4층 클리어 시)
     [SerializeField] private GameObject bossPortalPrefab10; // 10층 보스 포탈 (9층 클리어 시)
     [SerializeField] private Transform player;
@@ -159,6 +160,12 @@ public class StageManager : MonoBehaviour
                 ? SceneController.SceneName.Base
                 : SceneController.SceneName.Dungeon;
             portalScript.SetNextScene(nextScene);
+        }
+
+        if (recallPortalPrefab != null)
+        {
+            Vector3 recallPos = player.position + new Vector3(-portalSpawnRadius, 0f, 0f);
+            Instantiate(recallPortalPrefab, recallPos, Quaternion.identity);
         }
 
         Debug.Log("[StageManager] 포탈 생성 완료");

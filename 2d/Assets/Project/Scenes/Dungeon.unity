@@ -15849,6 +15849,7 @@ MonoBehaviour:
   enemySpawner: {fileID: 1768684259}
   enemyManager: {fileID: 1768684260}
   portalPrefab: {fileID: 3424542349691123839, guid: acf6ebc6717f39b408acd6a904d68514, type: 3}
+  recallPortalPrefab: {fileID: 3424542349691123839, guid: 43afc7c85f6fa744491c0bd1504c80b8, type: 3}
   bossPortalPrefab5: {fileID: 6661920393959229905, guid: 96a13087eee070540ae7feb96bce886f, type: 3}
   bossPortalPrefab10: {fileID: 1379015970023589702, guid: dd5c23aca5374cd46aeee460da7dcf0f, type: 3}
   player: {fileID: 2026055320}

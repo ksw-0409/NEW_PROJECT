@@ -1,87 +1,69 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 // 역할: 아이템 스탯 랜덤 부여 유틸리티
-// 기본 수치가 0인 스탯은 추가 옵션 부여 안 함
+// - 레어: 추가 옵션 2개 랜덤 선택
+// - 유니크: 추가 옵션 4개 랜덤 선택
+// - 레전더리: 강화 불가 (고정 수치)
+// - 잠긴 옵션은 유지
 
 public static class ItemStatRoller
 {
     public static void RollStats(InventoryItem target)
     {
-        float physMin, physMax, magMin, magMax, critMin, critMax,
-              critDmgMin, critDmgMax, hpMin, hpMax, defMin, defMax,
-              speedMin, speedMax;
+        // 레전더리는 고정 수치 — 강화 대상 아님
+        if (target.Grade == ItemGrade.Legendary) return;
 
-        switch (target.Grade)
+        // 등급별 추가 옵션 개수
+        int maxOptions = target.Grade switch
         {
-            case ItemGrade.Rare:
-                physMin = 10f; physMax = 20f;
-                magMin = 5f; magMax = 15f;
-                critMin = 0.05f; critMax = 0.15f;
-                critDmgMin = 1.5f; critDmgMax = 2.0f;
-                hpMin = 20f; hpMax = 50f;
-                defMin = 5f; defMax = 15f;
-                speedMin = 0f; speedMax = 0.5f;
-                break;
+            ItemGrade.Rare => 2,
+            ItemGrade.Unique => 4,
+            _ => 0
+        };
 
-            case ItemGrade.Epic:
-                physMin = 20f; physMax = 40f;
-                magMin = 10f; magMax = 30f;
-                critMin = 0.1f; critMax = 0.25f;
-                critDmgMin = 1.8f; critDmgMax = 2.5f;
-                hpMin = 40f; hpMax = 100f;
-                defMin = 10f; defMax = 25f;
-                speedMin = 0f; speedMax = 1f;
-                break;
+        if (maxOptions == 0) return;
 
-            case ItemGrade.Legendary:
-                physMin = 40f; physMax = 80f;
-                magMin = 20f; magMax = 60f;
-                critMin = 0.2f; critMax = 0.4f;
-                critDmgMin = 2.0f; critDmgMax = 3.0f;
-                hpMin = 80f; hpMax = 200f;
-                defMin = 20f; defMax = 50f;
-                speedMin = 0.5f; speedMax = 2f;
-                break;
-
-            default:
-                physMin = 1f; physMax = 10f;
-                magMin = 0f; magMax = 5f;
-                critMin = 0f; critMax = 0.05f;
-                critDmgMin = 1.2f; critDmgMax = 1.5f;
-                hpMin = 5f; hpMax = 20f;
-                defMin = 0f; defMax = 5f;
-                speedMin = 0f; speedMax = 0.2f;
-                break;
-        }
-
-        bool IsLocked(string statName)
-        {
-            if (target.options == null) return false;
+        // 잠긴 옵션 목록
+        var lockedStats = new List<string>();
+        if (target.options != null)
             foreach (var opt in target.options)
-                if (opt.statName == statName && opt.isLocked) return true;
-            return false;
+                if (opt.isLocked) lockedStats.Add(opt.statName);
+
+        // 추가 옵션 후보 (MinAdd/MaxAdd 범위가 있는 스탯)
+        var candidates = new List<string>();
+        if (target.minAddPhys != 0 || target.maxAddPhys != 0) candidates.Add("physicalDamage");
+        if (target.minAddMagic != 0 || target.maxAddMagic != 0) candidates.Add("magicDamage");
+        if (target.minAddCrit != 0 || target.maxAddCrit != 0) candidates.Add("criticalChance");
+        if (target.minAddCritDmg != 0 || target.maxAddCritDmg != 0) candidates.Add("criticalDamage");
+        if (target.minAddHealth != 0 || target.maxAddHealth != 0) candidates.Add("maxHealth");
+        if (target.minAddDef != 0 || target.maxAddDef != 0) candidates.Add("physicalDefense");
+        if (target.minAddSpeed != 0 || target.maxAddSpeed != 0) candidates.Add("moveSpeed");
+
+        // 잠긴 옵션 무조건 포함, 나머지 슬롯 랜덤으로 채움
+        var selectedStats = new List<string>(lockedStats);
+        var unlocked = new List<string>();
+        foreach (var c in candidates)
+            if (!lockedStats.Contains(c)) unlocked.Add(c);
+
+        // 셔플
+        for (int i = unlocked.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (unlocked[i], unlocked[j]) = (unlocked[j], unlocked[i]);
         }
 
-        // ✨ 기본 수치 > 0인 스탯만 추가 옵션 롤링
-        if (target.basePhysicalDamage > 0 && !IsLocked("physicalDamage"))
-            target.physicalDamage = target.basePhysicalDamage + Random.Range(physMin, physMax);
+        int remaining = Mathf.Max(0, maxOptions - selectedStats.Count);
+        for (int i = 0; i < remaining && i < unlocked.Count; i++)
+            selectedStats.Add(unlocked[i]);
 
-        if (target.baseMagicDamage > 0 && !IsLocked("magicDamage"))
-            target.magicDamage = target.baseMagicDamage + Random.Range(magMin, magMax);
-
-        if (target.baseCriticalChance > 0 && !IsLocked("criticalChance"))
-            target.criticalChance = target.baseCriticalChance + Random.Range(critMin, critMax);
-
-        if (target.baseCriticalDamage > 0 && !IsLocked("criticalDamage"))
-            target.criticalDamage = target.baseCriticalDamage + Random.Range(critDmgMin, critDmgMax);
-
-        if (target.baseMaxHealth > 0 && !IsLocked("maxHealth"))
-            target.maxHealth = target.baseMaxHealth + Random.Range(hpMin, hpMax);
-
-        if (target.basePhysicalDefense > 0 && !IsLocked("physicalDefense"))
-            target.physicalDefense = target.basePhysicalDefense + Random.Range(defMin, defMax);
-
-        if (target.baseMoveSpeed > 0 && !IsLocked("moveSpeed"))
-            target.moveSpeed = target.baseMoveSpeed + Random.Range(speedMin, speedMax);
+        // 선택된 스탯만 롤링, 나머지는 기본값으로 초기화
+        target.physicalDamage = selectedStats.Contains("physicalDamage") ? target.basePhysicalDamage + Random.Range(target.minAddPhys, target.maxAddPhys) : target.basePhysicalDamage;
+        target.magicDamage = selectedStats.Contains("magicDamage") ? target.baseMagicDamage + Random.Range(target.minAddMagic, target.maxAddMagic) : target.baseMagicDamage;
+        target.criticalChance = selectedStats.Contains("criticalChance") ? target.baseCriticalChance + Random.Range(target.minAddCrit, target.maxAddCrit) : target.baseCriticalChance;
+        target.criticalDamage = selectedStats.Contains("criticalDamage") ? target.baseCriticalDamage + Random.Range(target.minAddCritDmg, target.maxAddCritDmg) : target.baseCriticalDamage;
+        target.maxHealth = selectedStats.Contains("maxHealth") ? target.baseMaxHealth + Random.Range(target.minAddHealth, target.maxAddHealth) : target.baseMaxHealth;
+        target.physicalDefense = selectedStats.Contains("physicalDefense") ? target.basePhysicalDefense + Random.Range(target.minAddDef, target.maxAddDef) : target.basePhysicalDefense;
+        target.moveSpeed = selectedStats.Contains("moveSpeed") ? target.baseMoveSpeed + Random.Range(target.minAddSpeed, target.maxAddSpeed) : target.baseMoveSpeed;
     }
 }

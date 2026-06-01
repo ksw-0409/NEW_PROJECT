@@ -310,7 +310,7 @@ public class PlayerStats : MonoBehaviour
         float multiplier = PassiveMul(PassiveSystem.ID_EXP);
         currentExp += exp * multiplier;
         Debug.Log(currentExp);
-        if (currentExp >= 100) LevelUp();
+        if (currentExp >= 50) LevelUp();
     }
 
     private void LevelUp()

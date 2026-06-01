@@ -33,6 +33,14 @@ public class InventoryItem
     public float baseMoveSpeed;
     public float baseAttackcooldown;
 
+    public float minAddPhys, maxAddPhys;
+    public float minAddMagic, maxAddMagic;
+    public float minAddCrit, maxAddCrit;
+    public float minAddCritDmg, maxAddCritDmg;
+    public float minAddHealth, maxAddHealth;
+    public float minAddDef, maxAddDef;
+    public float minAddSpeed, maxAddSpeed;
+
     [NonSerialized] public List<StatOption> options = new List<StatOption>();
 
     /// <summary>아이템 선택 시 실제 옵션 목록 생성 (추가 수치만 표시)</summary>
@@ -47,13 +55,14 @@ public class InventoryItem
         float addDef = physicalDefense - basePhysicalDefense;
         float addSpeed = moveSpeed - baseMoveSpeed;
 
-        if (basePhysicalDamage > 0) options.Add(new StatOption("physicalDamage", $"물리 공격력: +{addPhys:F1}"));
-        if (baseMagicDamage > 0) options.Add(new StatOption("magicDamage", $"마법 공격력: +{addMagic:F1}"));
-        if (baseCriticalChance > 0) options.Add(new StatOption("criticalChance", $"치명타 확률: +{addCrit:F1}%"));
-        if (baseCriticalDamage > 0) options.Add(new StatOption("criticalDamage", $"치명타 피해: +{addCritDmg:F2}배"));
-        if (baseMaxHealth > 0) options.Add(new StatOption("maxHealth", $"최대 체력: +{addHp:F0}"));
-        if (basePhysicalDefense > 0) options.Add(new StatOption("physicalDefense", $"방어력: +{addDef:F1}"));
-        if (baseMoveSpeed > 0) options.Add(new StatOption("moveSpeed", $"이동속도: +{addSpeed:F2}"));
+        // ✨ 기본값 > 0 이거나 추가 수치가 0이 아닌 경우 표시
+        if (addPhys != 0) options.Add(new StatOption("physicalDamage", $"물리 공격력: {addPhys:+0.0;-0.0}"));
+        if (addMagic != 0) options.Add(new StatOption("magicDamage", $"마법 공격력: {addMagic:+0.0;-0.0}"));
+        if (addCrit != 0) options.Add(new StatOption("criticalChance", $"치명타 확률: {addCrit:+0.0;-0.0}%"));
+        if (addCritDmg != 0) options.Add(new StatOption("criticalDamage", $"치명타 피해: {addCritDmg:+0.00;-0.00}배"));
+        if (addHp != 0) options.Add(new StatOption("maxHealth", $"최대 체력: {addHp:+0;-0}"));
+        if (addDef != 0) options.Add(new StatOption("physicalDefense", $"방어력: {addDef:+0.0;-0.0}"));
+        if (addSpeed != 0) options.Add(new StatOption("moveSpeed", $"이동속도: {addSpeed:+0.00;-0.00}"));
         if (baseAttackcooldown > 0) options.Add(new StatOption("attackcooldown", $"쿨타임 감소: -{attackcooldown:F2}초"));
     }
 
@@ -72,13 +81,13 @@ public class InventoryItem
         {
             switch (opt.statName)
             {
-                case "physicalDamage": opt.displayText = $"물리 공격력: +{addPhys:F1}"; break;
-                case "magicDamage": opt.displayText = $"마법 공격력: +{addMagic:F1}"; break;
-                case "criticalChance": opt.displayText = $"치명타 확률: +{addCrit:F1}%"; break;
-                case "criticalDamage": opt.displayText = $"치명타 피해: +{addCritDmg:F2}배"; break;
-                case "maxHealth": opt.displayText = $"최대 체력: +{addHp:F0}"; break;
-                case "physicalDefense": opt.displayText = $"방어력: +{addDef:F1}"; break;
-                case "moveSpeed": opt.displayText = $"이동속도: +{addSpeed:F2}"; break;
+                case "physicalDamage": opt.displayText = $"물리 공격력: {addPhys:+0.0;-0.0}"; break;
+                case "magicDamage": opt.displayText = $"마법 공격력: {addMagic:+0.0;-0.0}"; break;
+                case "criticalChance": opt.displayText = $"치명타 확률: {addCrit:+0.0;-0.0}%"; break;
+                case "criticalDamage": opt.displayText = $"치명타 피해: {addCritDmg:+0.00;-0.00}배"; break;
+                case "maxHealth": opt.displayText = $"최대 체력: {addHp:+0;-0}"; break;
+                case "physicalDefense": opt.displayText = $"방어력: {addDef:+0.0;-0.0}"; break;
+                case "moveSpeed": opt.displayText = $"이동속도: {addSpeed:+0.00;-0.00}"; break;
                 case "attackcooldown": opt.displayText = $"쿨타임 감소: -{attackcooldown:F2}초"; break;
             }
         }
@@ -112,6 +121,20 @@ public class InventoryItem
             basePhysicalDefense = data.basePhysicalDefense,
             baseMoveSpeed = data.baseMoveSpeed,
             baseAttackcooldown = data.baseAttackcooldown,
+            minAddPhys = data.minAddPhys,
+            maxAddPhys = data.maxAddPhys,
+            minAddMagic = data.minAddMagic,
+            maxAddMagic = data.maxAddMagic,
+            minAddCrit = data.minAddCrit,
+            maxAddCrit = data.maxAddCrit,
+            minAddCritDmg = data.minAddCritDmg,
+            maxAddCritDmg = data.maxAddCritDmg,
+            minAddHealth = data.minAddHealth,
+            maxAddHealth = data.maxAddHealth,
+            minAddDef = data.minAddDef,
+            maxAddDef = data.maxAddDef,
+            minAddSpeed = data.minAddSpeed,
+            maxAddSpeed = data.maxAddSpeed,
         };
     }
 
@@ -140,6 +163,13 @@ public class InventoryItem
         data.basePhysicalDefense = basePhysicalDefense;
         data.baseMoveSpeed = baseMoveSpeed;
         data.baseAttackcooldown = baseAttackcooldown;
+        data.minAddPhys = minAddPhys; data.maxAddPhys = maxAddPhys;
+        data.minAddMagic = minAddMagic; data.maxAddMagic = maxAddMagic;
+        data.minAddCrit = minAddCrit; data.maxAddCrit = maxAddCrit;
+        data.minAddCritDmg = minAddCritDmg; data.maxAddCritDmg = maxAddCritDmg;
+        data.minAddHealth = minAddHealth; data.maxAddHealth = maxAddHealth;
+        data.minAddDef = minAddDef; data.maxAddDef = maxAddDef;
+        data.minAddSpeed = minAddSpeed; data.maxAddSpeed = maxAddSpeed;
         return data;
     }
 

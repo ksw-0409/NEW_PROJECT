@@ -33,4 +33,13 @@ public class EquipmentData : ScriptableObject
 
     [Header("Special")]
     public int ability;              // 특수 능력 ID (0 = 없음)
+
+    [Header("Add Stats Range")]
+    public float minAddPhys, maxAddPhys;
+    public float minAddMagic, maxAddMagic;
+    public float minAddCrit, maxAddCrit;
+    public float minAddCritDmg, maxAddCritDmg;
+    public float minAddHealth, maxAddHealth;
+    public float minAddDef, maxAddDef;
+    public float minAddSpeed, maxAddSpeed;
 }

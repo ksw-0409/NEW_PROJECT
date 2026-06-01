@@ -206,7 +206,7 @@ public class EquipmentManager : MonoBehaviour
         newItem.attackcooldown = data.attackCooldown;
         newItem.ability = data.ability;
 
-        // ✨ 기본 수치 저장 (툴팁 표시용)
+        // 기본 수치 저장 (툴팁 표시용)
         newItem.basePhysicalDamage = data.basePhys;
         newItem.baseMagicDamage = data.baseMagic;
         newItem.baseCriticalChance = data.baseCrit;
@@ -215,6 +215,14 @@ public class EquipmentManager : MonoBehaviour
         newItem.basePhysicalDefense = data.baseDef;
         newItem.baseMoveSpeed = data.baseSpeed;
         newItem.baseAttackcooldown = data.attackCooldown;
+
+        newItem.minAddPhys = data.minAddPhys; newItem.maxAddPhys = data.maxAddPhys;
+        newItem.minAddMagic = data.minAddMagic; newItem.maxAddMagic = data.maxAddMagic;
+        newItem.minAddCrit = data.minAddCrit; newItem.maxAddCrit = data.maxAddCrit;
+        newItem.minAddCritDmg = data.minAddCritDmg; newItem.maxAddCritDmg = data.maxAddCritDmg;
+        newItem.minAddHealth = data.minAddHealth; newItem.maxAddHealth = data.maxAddHealth;
+        newItem.minAddDef = data.minAddDef; newItem.maxAddDef = data.maxAddDef;
+        newItem.minAddSpeed = data.minAddSpeed; newItem.maxAddSpeed = data.maxAddSpeed;
 
         // 아이콘 — 인스펙터에서 매핑된 dictionary로 먼저 시도, 폴백으로 Resources
         Sprite icon = null;

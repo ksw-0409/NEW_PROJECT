@@ -1,40 +1,49 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System;
 
-// ¿ªÇÒ: ¾ÆÀÌÅÛ °­È­ ÇÙ½É ·ÎÁ÷ (¿É¼Ç ¸®·Ñ + °ñµå Â÷°¨)
+// ì—­í• : ì•„ì´í…œ ê°•í™” í•µì‹¬ ë¡œì§ (ì˜µì…˜ ë¦¬ë¡¤ + ê³¨ë“œ ì°¨ê°)
 
 public class ItemEnhanceManager : MonoBehaviour
 {
-    [Header("°­È­ ºñ¿ë")]
-    [SerializeField] private int enhanceCost = 10;
+    [Header("ê°•í™” ë¹„ìš©")]
+    [SerializeField] private int baseCost = 10;
+    [SerializeField] private int lockCostPerOption = 50; // ì ê¸ˆ ì˜µì…˜ë‹¹ ì¶”ê°€ ë¹„ìš©
 
     public event Action<InventoryItem> OnEnhanceSuccess;
     public event Action<string> OnEnhanceFailed;
+
+    // ì ê¸´ ì˜µì…˜ ìˆ˜ì— ë”°ë¼ ë¹„ìš© ê³„ì‚°
+    public int GetEnhanceCost(InventoryItem item = null)
+    {
+        if (item == null || item.options == null) return baseCost;
+        int lockedCount = 0;
+        foreach (var opt in item.options)
+            if (opt.isLocked) lockedCount++;
+        return baseCost + lockedCount * lockCostPerOption;
+    }
 
     public void TryEnhance(InventoryItem target)
     {
         if (target == null)
         {
-            OnEnhanceFailed?.Invoke("°­È­ÇÒ ¾ÆÀÌÅÛÀÌ ¼±ÅÃµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+            OnEnhanceFailed?.Invoke("ê°•í™”í•  ì•„ì´í…œì´ ì„ íƒë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
             return;
         }
 
         if (!target.isIdentified)
         {
-            OnEnhanceFailed?.Invoke("°¨Á¤µÇÁö ¾ÊÀº ¾ÆÀÌÅÛÀº °­È­ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+            OnEnhanceFailed?.Invoke("ê°ì •ë˜ì§€ ì•Šì€ ì•„ì´í…œì€ ê°•í™”í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             return;
         }
 
-        if (!GameDataManager.Instance.SpendGold(enhanceCost))
+        int cost = GetEnhanceCost(target);
+        if (!GameDataManager.Instance.SpendGold(cost))
         {
-            OnEnhanceFailed?.Invoke($"°ñµå°¡ ºÎÁ·ÇÕ´Ï´Ù. (ÇÊ¿ä: {enhanceCost}G)");
+            OnEnhanceFailed?.Invoke($"ê³¨ë“œê°€ ë¶€ì¡±í•©ë‹ˆë‹¤. (í•„ìš”: {cost}G)");
             return;
         }
 
-        // ¸®·Ñ
         ItemStatRoller.RollStats(target);
         OnEnhanceSuccess?.Invoke(target);
     }
-
-    public int GetEnhanceCost() => enhanceCost;
 }
