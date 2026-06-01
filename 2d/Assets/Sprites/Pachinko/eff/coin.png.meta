@@ -1,25 +1,10 @@
 fileFormatVersion: 2
-guid: 6026a9003ec679248ba615f539ff6663
+guid: c4dc8679df70a2748940ce4f3aa13085
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1467567140011248941
-    second: E_big_spider(idle)_0
-  - first:
-      213: -1872777798820491871
-    second: E_big_spider(idle)_1
-  - first:
-      213: 1427808528434043950
-    second: E_big_spider(idle)_2
-  - first:
-      213: -7993297655493991100
-    second: E_big_spider(idle)_3
-  - first:
-      213: -8378648144669317684
-    second: E_big_spider(idle)_4
-  - first:
-      213: 103297977170310444
-    second: E_big_spider(idle)_5
+      213: 7675826601332790545
+    second: coin_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: E_big_spider(idle)_0
+      name: coin_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,118 +115,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3d2f79f267722abe0800000000000000
-      internalID: -1467567140011248941
+      spriteID: 1155fe920a3068a60800000000000000
+      internalID: 7675826601332790545
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_big_spider(idle)_1
+      name: coin_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b36081dbe763f143a3cc65df5ea530f
+      internalID: -371439191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coin_2
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1ad011ea38e8206e0800000000000000
-      internalID: -1872777798820491871
+      spriteID: c8eace56906b58d4c86bbf74f39421a0
+      internalID: -1283937594
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_big_spider(idle)_2
+      name: coin_3
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e2c9590ba4890d310800000000000000
-      internalID: 1427808528434043950
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: E_big_spider(idle)_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4456154f12a121190800000000000000
-      internalID: -7993297655493991100
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: E_big_spider(idle)_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cc5eff687ef09bb80800000000000000
-      internalID: -8378648144669317684
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: E_big_spider(idle)_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c25b04386fcfe6100800000000000000
-      internalID: 103297977170310444
+      spriteID: 9ded0ceaf08af9b43a62c985eed40a31
+      internalID: 1157449283
       vertices: []
       indices: 
       edges: []
@@ -250,7 +191,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a85027b91bb1d2b438aae35b5e9f0d34
+    spriteID: 230682667e6bb1146937d40823a61c0d
     internalID: 0
     vertices: []
     indices: 
@@ -260,14 +201,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      E_big_spider(idle)_0: -1467567140011248941
-      E_big_spider(idle)_1: -1872777798820491871
-      E_big_spider(idle)_2: 1427808528434043950
-      E_big_spider(idle)_3: -7993297655493991100
-      E_big_spider(idle)_4: -8378648144669317684
-      E_big_spider(idle)_5: 103297977170310444
+      coin_0: 7675826601332790545
+      coin_1: -371439191
+      coin_2: -1283937594
+      coin_3: 1157449283
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

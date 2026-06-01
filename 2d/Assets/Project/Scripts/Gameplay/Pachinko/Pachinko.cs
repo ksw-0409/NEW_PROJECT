@@ -18,6 +18,15 @@ public class Pachinko : MonoBehaviour
     private bool isGameReady = false; // 레버를 당길 수 있는 상태인지 체크
 
     public GameObject pachin;
+
+    [SerializeField] private GameObject goldPrefab;         // 양수(+)일 때 복수 생성할 골드 이펙트 프리팹
+    [SerializeField] private GameObject explosionPrefab;    // 음수(-)일 때 복수 생성할 폭발 이펙트 프리팹
+
+    [SerializeField] private Transform effectSpawnCenter;   // 이펙트가 생성될 중심 기준점
+    [SerializeField] private float spawnRadius = 2.0f;       // 중심점 기준 랜덤 생성할 반경 (원형 범위)
+
+    [SerializeField] private int maxSpawnCount = 50;        // 컴퓨터 과부하 방지를 위한 최대 생성 제한 개수
+
     void OnEnable()
     {
         value = 0;
@@ -89,6 +98,38 @@ public class Pachinko : MonoBehaviour
         Debug.Log($"[파칭코 정산] 배팅: {savedBetAmount} x 배율: {value} = 획득: {rewardGold}");
 
         GameDataManager.Instance.PachinkoAddGold(rewardGold);
+
+
+        // 2. 금액의 절댓값을 100으로 나눠 생성할 개수(Count) 계산
+        // Mathf.Abs()를 사용해 음수(-)도 양수 개수로 변환합니다.
+        int calculatedCount = Mathf.Abs(rewardGold) / 100;
+
+        // 최소 1개는 생성되도록 하고, 너무 많으면 렉이 걸리므로 maxSpawnCount로 제한합니다.
+        int finalSpawnCount = Mathf.Clamp(calculatedCount, 1, maxSpawnCount);
+
+        // 만약 딱 0원이면 꽝 이펙트처럼 1개만 생성하고 싶다면 아래처럼 예외 처리 가능
+        if (rewardGold == 0) finalSpawnCount = 1;
+
+        // 3. 양수/음수 조건에 따른 이펙트 종류 선택
+        GameObject prefabToSpawn = (rewardGold > 0) ? goldPrefab : explosionPrefab;
+
+        Debug.Log($"[이펙트 연출] 결과: {rewardGold} | 생성 프리팹: {prefabToSpawn.name} | 생성 개수: {finalSpawnCount}개");
+
+        // 4. 계산된 개수만큼 랜덤 포지션에 반복 생성
+        if (prefabToSpawn != null && effectSpawnCenter != null)
+        {
+            for (int i = 0; i < finalSpawnCount; i++)
+            {
+                // 중심점 기준 원 안의 랜덤한 좌표 계산 (2D UI 환경이라면 Random.insideUnitCircle 사용)
+                Vector2 randomOffset = Random.insideUnitCircle * spawnRadius;
+                Vector3 spawnPosition = effectSpawnCenter.position + new Vector3(randomOffset.x, randomOffset.y, 0f);
+
+                // 이펙트 생성
+                GameObject spawnedEffect = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity, effectSpawnCenter);
+
+                Destroy(spawnedEffect, 2.0f);
+            }
+        }
 
         // 사용한 배팅 금액 리셋
         savedBetAmount = 0;

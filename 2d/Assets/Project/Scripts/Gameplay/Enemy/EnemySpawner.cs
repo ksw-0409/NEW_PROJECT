@@ -52,12 +52,14 @@ public class EnemySpawner : MonoBehaviour
         if ((StageManager.IsStageOver && isBoss)|| !isInitialized) return;
         float currentTime = stageManager.getTimer(); 
         int currentSecond = Mathf.FloorToInt(currentTime); //소숫점 버림
+      
         // 1초마다 한 번씩 실행
         if (currentSecond != lastProcessedSecond)
         {
             lastProcessedSecond = currentSecond;
             if (!StageManager.IsOverload) {
-                HandleWaveLogic(currentSecond); }
+                HandleWaveLogic(currentSecond); 
+            }
             else if (StageManager.IsOverload)
             {
                 HandleOverload();
@@ -70,12 +72,12 @@ public class EnemySpawner : MonoBehaviour
     void HandleWaveLogic(int sec)
     {
         //정상로직        
-        if (sec < 60) SpawnNormalWave(Random.Range(1,2));
-        else if (sec == 60) { SpawnCircleWave(); }
-        else if (sec < 120) SpawnNormalWave(Random.Range(3, 4));
-        else if (sec == 120) { SpawnVerticalRush(); }
-        else if (sec < 170) SpawnNormalWave(4);
-        else if (sec == 180) SpawElite();
+        if (sec < 20) SpawnNormalWave(Random.Range(1,2));
+        else if (sec == 20) { SpawnCircleWave(); }
+        else if (sec < 40) SpawnNormalWave(Random.Range(3, 4));
+        else if (sec == 40) { SpawnVerticalRush(); }
+        else if (sec > 40) SpawnNormalWave(4);
+        else if (sec == 60) SpawElite();
         else return;
     }
 

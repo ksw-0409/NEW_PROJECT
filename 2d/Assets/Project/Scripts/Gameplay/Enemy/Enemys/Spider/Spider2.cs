@@ -12,6 +12,7 @@ public class Spider2 : EnemyAI
 
 
     private bool isActionRunning = false;
+    private bool isWalk = true;
 
     public GameObject dashEffectPrefab;
     public float effectDestroyTime = 0.4f;
@@ -24,6 +25,7 @@ public class Spider2 : EnemyAI
     {
         base.Init();
         isActionRunning = false;
+        isWalk = true;
         indicatorObj.SetActive(false);
     }
 
@@ -43,7 +45,7 @@ public class Spider2 : EnemyAI
     public override void MoveTaget(Vector2 targetPos)
     {
         // 자폭 준비 중에는 이동 불가
-        if (isActionRunning)
+        if (isActionRunning||!isWalk)
         {
             rb.linearVelocity = Vector2.zero;
             return;
@@ -54,6 +56,7 @@ public class Spider2 : EnemyAI
     private IEnumerator ExplosionSequence()
     {
         isActionRunning = true;
+        isWalk = false;
         // 1. 즉시 정지 및 물리 고정
         rb.linearVelocity = Vector2.zero;
         anim.SetTrigger("is_ready");
@@ -67,9 +70,11 @@ public class Spider2 : EnemyAI
         ExecuteExplosion();
         yield return new WaitForSeconds(0.3f);
         anim.SetTrigger("is_cool");
-        yield return new WaitForSeconds(coolDown-0.3f);
+        yield return new WaitForSeconds(0.3f);
         anim.SetTrigger("is_walk");
         isActionRunning = false;
+        isWalk = true;
+        yield return new WaitForSeconds(coolDown - 0.3f);
     }
 
     private void ExecuteExplosion()
