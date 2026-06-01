@@ -33755,7 +33755,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc7d17ae23a4e64499c680901080bdf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemEnhanceManager
-  enhanceCost: 10
+  baseCost: 10
+  lockCostPerOption: 50
 --- !u!1 &1254861213
 GameObject:
   m_ObjectHideFlags: 0

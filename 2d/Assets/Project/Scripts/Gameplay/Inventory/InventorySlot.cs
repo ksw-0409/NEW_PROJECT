@@ -48,7 +48,6 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         InventoryTooltip.Instance?.Hide();
     }
 
-    // ✨ 좌클릭 → 장비 장착 시도
     public void OnPointerClick(PointerEventData eventData)
     {
         if (slotItem == null) return;
@@ -69,7 +68,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         string hexColor = ColorUtility.ToHtmlStringRGB(GetGradeColor(item.Grade));
         sb.AppendLine($"<color=#{hexColor}>{item.itemName}</color>");
 
-        // 기본 능력치는 항상 표시
+        // 기본 능력치는 감정 전후 항상 표시
         sb.AppendLine("[ 기본 능력치 ]");
         if (item.basePhysicalDamage > 0) sb.AppendLine($"물리 공격력: {item.basePhysicalDamage:F1}");
         if (item.baseMagicDamage > 0) sb.AppendLine($"마법 공격력: {item.baseMagicDamage:F1}");
@@ -96,15 +95,26 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             float addDef = item.physicalDefense - item.basePhysicalDefense;
             float addSpeed = item.moveSpeed - item.baseMoveSpeed;
 
-            sb.AppendLine("\n[ 옵션 ]");
-            if (addPhys != 0) sb.AppendLine($"물리 공격력: {addPhys:+0.0;-0.0}");
-            if (addMagic != 0) sb.AppendLine($"마법 공격력: {addMagic:+0.0;-0.0}");
-            if (addCrit != 0) sb.AppendLine($"치명타 확률: {addCrit:+0.0;-0.0}%");
-            if (addCritDmg != 0) sb.AppendLine($"치명타 피해: {addCritDmg:+0.00;-0.00}배");
-            if (addHp != 0) sb.AppendLine($"최대 체력:   {addHp:+0;-0}");
-            if (addDef != 0) sb.AppendLine($"방어력:      {addDef:+0.0;-0.0}");
-            if (addSpeed != 0) sb.AppendLine($"이동속도:    {addSpeed:+0.00;-0.00}");
-            if (item.attackcooldown > 0) sb.AppendLine($"쿨타임 감소: -{item.attackcooldown:F2}초");
+            // minAdd/maxAdd 범위가 있는 스탯만 추가 옵션으로 표시
+            bool hasOptions = ((item.minAddPhys != 0 || item.maxAddPhys != 0) && addPhys != 0)
+                           || ((item.minAddMagic != 0 || item.maxAddMagic != 0) && addMagic != 0)
+                           || ((item.minAddCrit != 0 || item.maxAddCrit != 0) && addCrit != 0)
+                           || ((item.minAddCritDmg != 0 || item.maxAddCritDmg != 0) && addCritDmg != 0)
+                           || ((item.minAddHealth != 0 || item.maxAddHealth != 0) && addHp != 0)
+                           || ((item.minAddDef != 0 || item.maxAddDef != 0) && addDef != 0)
+                           || ((item.minAddSpeed != 0 || item.maxAddSpeed != 0) && addSpeed != 0);
+
+            if (hasOptions)
+            {
+                sb.AppendLine("\n[ 옵션 ]");
+                if ((item.minAddPhys != 0 || item.maxAddPhys != 0) && addPhys != 0) sb.AppendLine($"물리 공격력: {addPhys:+0.0;-0.0}");
+                if ((item.minAddMagic != 0 || item.maxAddMagic != 0) && addMagic != 0) sb.AppendLine($"마법 공격력: {addMagic:+0.0;-0.0}");
+                if ((item.minAddCrit != 0 || item.maxAddCrit != 0) && addCrit != 0) sb.AppendLine($"치명타 확률: {addCrit:+0.0;-0.0}%");
+                if ((item.minAddCritDmg != 0 || item.maxAddCritDmg != 0) && addCritDmg != 0) sb.AppendLine($"치명타 피해: {addCritDmg:+0.00;-0.00}배");
+                if ((item.minAddHealth != 0 || item.maxAddHealth != 0) && addHp != 0) sb.AppendLine($"최대 체력:   {addHp:+0;-0}");
+                if ((item.minAddDef != 0 || item.maxAddDef != 0) && addDef != 0) sb.AppendLine($"방어력:      {addDef:+0.0;-0.0}");
+                if ((item.minAddSpeed != 0 || item.maxAddSpeed != 0) && addSpeed != 0) sb.AppendLine($"이동속도:    {addSpeed:+0.00;-0.00}");
+            }
 
             sb.Append("\n<color=#aaa>클릭: 장착</color>");
         }
