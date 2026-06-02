@@ -50,7 +50,7 @@ public class PersistentData : ScriptableObject
     // ✨ 인게임 데이터만 초기화 (스킬 트리 해금/패시브는 유지)
     public void ResetRuntimeData()
     {
-        gold = 1000;
+        gold = 99999;
         normalCurrency = 10;
         specialCurrency = 10;
         equippedItems.Clear();
