@@ -15975,9 +15975,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimpleInfiniteMap
   playerTransform: {fileID: 2026055320}
   floorSprites1:
-  - {fileID: 4804446361586417100, guid: 2ae9dd975a3fd1a4f9d2dd5bf98c470f, type: 3}
+  - {fileID: 6937817954938267909, guid: b13479ecfab89fc45b467ebd25172638, type: 3}
   floorSprites2:
-  - {fileID: -6888756438569675735, guid: 50af276dff6e18845bd6091f974bd487, type: 3}
+  - {fileID: -855298285791758126, guid: 9d0ce4672ad6f47409aaf6c403d97b93, type: 3}
   chunkSize: {x: 40, y: 40}
 --- !u!1 &1672080970
 GameObject:

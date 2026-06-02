@@ -20,8 +20,8 @@ public class SimpleInfiniteMap : MonoBehaviour
 
     public void FloorStart(int floor)
     {
-        if (floor == 1 || floor == 2 || floor == 3 || floor == 4) floorSprites = floorSprites1;
-        else if (floor == 6 || floor == 7 || floor == 8 || floor == 9) floorSprites = floorSprites2;
+        if (floor == 1 || floor == 2 || floor == 3 || floor == 4||floor==5) floorSprites = floorSprites1;
+        else if (floor == 6 || floor == 7 || floor == 8 || floor == 9||floor==10) floorSprites = floorSprites2;
         else Debug.Log("Àß¸øµÈÃþ");
     }
     void Update()
