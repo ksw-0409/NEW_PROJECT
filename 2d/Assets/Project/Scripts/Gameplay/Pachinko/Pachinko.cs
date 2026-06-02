@@ -31,6 +31,7 @@ public class Pachinko : MonoBehaviour
     void OnEnable()
     {
         value = 0;
+        MouseManager.Instance.OpenPachinko();
         for (int i = 0; i < 3; i++) values[i] = 0;
     }
 
@@ -157,5 +158,7 @@ public class Pachinko : MonoBehaviour
 
         // 게임이 끝났으므로 킵해둔 금액 리셋
         GameDataManager.Instance.isPachinkoActive = false;
+
+        MouseManager.Instance.ResetToDefault();
     }
 };
