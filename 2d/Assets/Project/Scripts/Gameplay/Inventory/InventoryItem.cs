@@ -43,7 +43,7 @@ public class InventoryItem
 
     [NonSerialized] public List<StatOption> options = new List<StatOption>();
 
-    /// <summary>아이템 선택 시 실제 옵션 목록 생성 (추가 수치만 표시)</summary>
+    /// <summary>아이템 선택 시 실제 옵션 목록 생성 (추가 옵션만 표시)</summary>
     public void BuildOptions()
     {
         options = new List<StatOption>();
@@ -55,15 +55,21 @@ public class InventoryItem
         float addDef = physicalDefense - basePhysicalDefense;
         float addSpeed = moveSpeed - baseMoveSpeed;
 
-        // ✨ 기본값 > 0 이거나 추가 수치가 0이 아닌 경우 표시
-        if (addPhys != 0) options.Add(new StatOption("physicalDamage", $"물리 공격력: {addPhys:+0.0;-0.0}"));
-        if (addMagic != 0) options.Add(new StatOption("magicDamage", $"마법 공격력: {addMagic:+0.0;-0.0}"));
-        if (addCrit != 0) options.Add(new StatOption("criticalChance", $"치명타 확률: {addCrit:+0.0;-0.0}%"));
-        if (addCritDmg != 0) options.Add(new StatOption("criticalDamage", $"치명타 피해: {addCritDmg:+0.00;-0.00}배"));
-        if (addHp != 0) options.Add(new StatOption("maxHealth", $"최대 체력: {addHp:+0;-0}"));
-        if (addDef != 0) options.Add(new StatOption("physicalDefense", $"방어력: {addDef:+0.0;-0.0}"));
-        if (addSpeed != 0) options.Add(new StatOption("moveSpeed", $"이동속도: {addSpeed:+0.00;-0.00}"));
-        if (baseAttackcooldown > 0) options.Add(new StatOption("attackcooldown", $"쿨타임 감소: -{attackcooldown:F2}초"));
+        // minAdd/maxAdd 범위가 있는 스탯만 추가 옵션으로 표시 (추가 수치만)
+        if ((minAddPhys != 0 || maxAddPhys != 0) && addPhys != 0)
+            options.Add(new StatOption("physicalDamage", $"물리 공격력: {addPhys:+0.0;-0.0}"));
+        if ((minAddMagic != 0 || maxAddMagic != 0) && addMagic != 0)
+            options.Add(new StatOption("magicDamage", $"마법 공격력: {addMagic:+0.0;-0.0}"));
+        if ((minAddCrit != 0 || maxAddCrit != 0) && addCrit != 0)
+            options.Add(new StatOption("criticalChance", $"치명타 확률: {addCrit:+0.0;-0.0}%"));
+        if ((minAddCritDmg != 0 || maxAddCritDmg != 0) && addCritDmg != 0)
+            options.Add(new StatOption("criticalDamage", $"치명타 피해: {addCritDmg:+0.00;-0.00}배"));
+        if ((minAddHealth != 0 || maxAddHealth != 0) && addHp != 0)
+            options.Add(new StatOption("maxHealth", $"최대 체력: {addHp:+0;-0}"));
+        if ((minAddDef != 0 || maxAddDef != 0) && addDef != 0)
+            options.Add(new StatOption("physicalDefense", $"방어력: {addDef:+0.0;-0.0}"));
+        if ((minAddSpeed != 0 || maxAddSpeed != 0) && addSpeed != 0)
+            options.Add(new StatOption("moveSpeed", $"이동속도: {addSpeed:+0.00;-0.00}"));
     }
 
     /// <summary>강화 후 옵션 텍스트만 갱신 (잠금 상태 유지)</summary>
@@ -88,7 +94,6 @@ public class InventoryItem
                 case "maxHealth": opt.displayText = $"최대 체력: {addHp:+0;-0}"; break;
                 case "physicalDefense": opt.displayText = $"방어력: {addDef:+0.0;-0.0}"; break;
                 case "moveSpeed": opt.displayText = $"이동속도: {addSpeed:+0.00;-0.00}"; break;
-                case "attackcooldown": opt.displayText = $"쿨타임 감소: -{attackcooldown:F2}초"; break;
             }
         }
     }

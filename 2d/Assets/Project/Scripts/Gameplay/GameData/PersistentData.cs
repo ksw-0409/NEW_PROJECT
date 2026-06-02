@@ -5,7 +5,7 @@ using UnityEngine;
 public class PersistentData : ScriptableObject
 {
     [Header("재화")]
-    public int gold = 1000;
+    public int gold = 99999;
     public int normalCurrency = 10;
     public int specialCurrency = 10;
     public int bossTokens = 0;       // 보스 처치 증표 (골드처럼 카운트 저장, 추후 조정 가능)
