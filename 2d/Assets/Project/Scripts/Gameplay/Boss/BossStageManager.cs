@@ -36,6 +36,7 @@ public class BossStageManager : MonoBehaviour
 
     [Header("보스 맵 경계")]
     [SerializeField] private GameObject bossStageBounds;
+    [SerializeField] private SimpleInfiniteMap mapM;
 
     private GameObject spawnedBoss;
     private bool bossDefeated = false;
@@ -68,7 +69,7 @@ public class BossStageManager : MonoBehaviour
 
         if (stageManager != null)
         {
-            Destroy(stageManager.gameObject);
+            Destroy(stageManager);
             Debug.Log("[BossStageManager] StageManager DESTROYED (boss mode)");
         }
         if (normalSpawner != null)
@@ -93,6 +94,8 @@ public class BossStageManager : MonoBehaviour
     void Start()
     {
         if (!isBossStage) return;
+        int floor = GameDataManager.Instance != null ? GameDataManager.Instance.CurrentFloor : 5;
+        if (mapM != null) mapM.FloorStart(floor);
         StartCoroutine(SpawnBossRoutine());
     }
 

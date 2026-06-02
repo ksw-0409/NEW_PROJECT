@@ -68,7 +68,7 @@ public class StageManager : MonoBehaviour
         if (floor == 5 || floor == 10)
         {
             if (enemySpawner != null) enemySpawner.gameObject.SetActive(false);
-            if (mapM != null) mapM.gameObject.SetActive(false);
+            //if (mapM != null) mapM.gameObject.SetActive(false);
         }
         else
         {

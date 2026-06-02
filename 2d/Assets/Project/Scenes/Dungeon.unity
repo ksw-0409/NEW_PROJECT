@@ -5742,6 +5742,7 @@ MonoBehaviour:
   bossHealthBar: {fileID: 1440588397}
   stageTimerUI: {fileID: 566742817}
   bossStageBounds: {fileID: 399205159}
+  mapM: {fileID: 1669466177}
 --- !u!4 &696667238
 Transform:
   m_ObjectHideFlags: 0
