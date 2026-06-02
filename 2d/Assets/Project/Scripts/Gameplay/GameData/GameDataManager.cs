@@ -53,6 +53,9 @@ public class GameDataManager : MonoBehaviour
     // 오버로드 패널티 (80%)
     private bool isHardPenalty = false;
 
+    // 튜토리얼 표시 여부 (0=미표시, 1=표시완료)
+    public int tr = 0;
+
     public void SetHardPenalty(bool active)
     {
         isHardPenalty = active;
@@ -287,12 +290,12 @@ public class GameDataManager : MonoBehaviour
         ApplyGoldPenalty();
         ApplyItemPenalty();
         ResetFloor();
-        isHardPenalty = false; // ✨ 패널티 적용 후 초기화
+        isHardPenalty = false; // 패널티 적용 후 초기화
     }
 
     private void ApplyGoldPenalty()
     {
-        // ✨ 오버로드 중 사망: 20% 유지(80% 손실), 일반: 50% 유지
+        // 오버로드 중 사망: 20% 유지(80% 손실), 일반: 50% 유지
         float rate = isHardPenalty ? 0.2f : 0.5f;
         persistentData.gold = Mathf.FloorToInt(persistentData.gold * rate);
         OnGoldChanged?.Invoke(persistentData.gold);
