@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   id: 998
   Name: VoidPriest
-  hp: 100
+  hp: 8000
   skillDamage: 18
   contactDamage: 12
   Defense: 8

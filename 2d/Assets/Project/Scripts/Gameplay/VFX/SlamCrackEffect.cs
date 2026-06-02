@@ -194,10 +194,8 @@ public class SlamCrackEffect : MonoBehaviour
         elapsed += dt;
         float t = Mathf.Clamp01(elapsed / duration);
 
-        // 페이즈 — 균열은 0~0.4까지 확장, 그 후 페이드
-        float crackExpand = t < 0.4f
-            ? Mathf.Pow(t / 0.4f, 0.6f)        // ease-out 빠른 확장
-            : 1f;
+        // ⭐ 균열 즉시 풀 사이즈 (쾅 하고 한 번에 쫙) — 사용자 요청
+        float crackExpand = 1f;
         float fade = t < 0.5f
             ? 1f
             : Mathf.Pow(1f - (t - 0.5f) / 0.5f, 1.5f);

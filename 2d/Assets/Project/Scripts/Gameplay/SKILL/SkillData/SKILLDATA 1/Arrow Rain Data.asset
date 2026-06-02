@@ -18,8 +18,8 @@ MonoBehaviour:
   levels:
   - cooldown: 10
     count: 1
-    damage: 25
-    multiplier: 0.1
+    damage: 2.5
+    multiplier: 1
     range: 15
     angle: 0
     projectileSpeed: 0
@@ -31,8 +31,8 @@ MonoBehaviour:
     pierce: 0
   - cooldown: 12
     count: 1
-    damage: 35
-    multiplier: 0.1
+    damage: 3.5
+    multiplier: 1
     range: 15
     angle: 0
     projectileSpeed: 0
@@ -44,8 +44,8 @@ MonoBehaviour:
     pierce: 0
   - cooldown: 10
     count: 1
-    damage: 35
-    multiplier: 0.1
+    damage: 3.5
+    multiplier: 1
     range: 15
     angle: 0
     projectileSpeed: 0
@@ -57,8 +57,8 @@ MonoBehaviour:
     pierce: 0
   - cooldown: 10
     count: 1
-    damage: 35
-    multiplier: 0.12
+    damage: 4.2
+    multiplier: 1
     range: 15
     angle: 0
     projectileSpeed: 0
@@ -70,8 +70,8 @@ MonoBehaviour:
     pierce: 0
   - cooldown: 7
     count: 1
-    damage: 50
-    multiplier: 0.12
+    damage: 6
+    multiplier: 1
     range: 15
     angle: 0
     projectileSpeed: 0
@@ -83,8 +83,8 @@ MonoBehaviour:
     pierce: 0
   - cooldown: 7
     count: 1
-    damage: 80
-    multiplier: 0.15
+    damage: 12
+    multiplier: 1
     range: 15
     angle: 0
     projectileSpeed: 0

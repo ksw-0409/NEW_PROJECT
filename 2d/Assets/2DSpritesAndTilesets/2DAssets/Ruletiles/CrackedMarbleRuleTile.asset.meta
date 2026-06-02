@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 91c564fd75cf6884b9c1f03f6a38ac8d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249881
+  packageName: 2D Topdown tilesets and sprites - HD edition
+  packageVersion: 2.2.0
+  assetPath: Assets/2DSpritesAndTilesets/2DAssets/Ruletiles/CrackedMarbleRuleTile.asset
+  uploadId: 650584

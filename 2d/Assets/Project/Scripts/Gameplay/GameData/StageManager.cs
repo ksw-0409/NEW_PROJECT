@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -69,6 +69,7 @@ public class StageManager : MonoBehaviour
         {
             if (enemySpawner != null) enemySpawner.gameObject.SetActive(false);
             if (mapM != null) mapM.gameObject.SetActive(false);
+            SpawnBossArenaWalls(player != null ? (UnityEngine.Vector2)player.position : UnityEngine.Vector2.zero, 12f, 7f);
         }
         else
         {
@@ -182,5 +183,36 @@ public class StageManager : MonoBehaviour
         IsOverload = true;
         //나머지 처리는 시간 1분30초, 층은그대로 소환로직은 스포너에서 알아서처리 
         //게임오버는 시간이 다 되었을경우에 처리하도록 변경해야함 엘리트죽을때에서 
+    }
+
+    /// <summary>보스 맵에 벽 4개를 만들어 플레이어가 너무 멀리 못 가게 함</summary>
+    private void SpawnBossArenaWalls(UnityEngine.Vector2 center, float halfWidth, float halfHeight)
+    {
+        var parent = new GameObject("BossArenaWalls");
+        parent.transform.position = center;
+        // 4방향 벽 (보이지 않는 BoxCollider2D)
+        SpawnWall(parent.transform, new UnityEngine.Vector2(0, halfHeight),  new UnityEngine.Vector2(halfWidth*2+1f, 1f), "Wall_Top");
+        SpawnWall(parent.transform, new UnityEngine.Vector2(0, -halfHeight), new UnityEngine.Vector2(halfWidth*2+1f, 1f), "Wall_Bottom");
+        SpawnWall(parent.transform, new UnityEngine.Vector2(-halfWidth, 0),  new UnityEngine.Vector2(1f, halfHeight*2+1f), "Wall_Left");
+        SpawnWall(parent.transform, new UnityEngine.Vector2(halfWidth, 0),   new UnityEngine.Vector2(1f, halfHeight*2+1f), "Wall_Right");
+        Debug.Log($"[StageManager] 보스 아레나 벽 생성 — 중심={center}, 크기=({halfWidth*2}, {halfHeight*2})");
+    }
+    private void SpawnWall(UnityEngine.Transform parent, UnityEngine.Vector2 localOffset, UnityEngine.Vector2 size, string name)
+    {
+        var go = new GameObject(name);
+        go.transform.SetParent(parent, false);
+        go.transform.localPosition = localOffset;
+        var bc = go.AddComponent<UnityEngine.BoxCollider2D>();
+        bc.size = size;
+        bc.isTrigger = false;
+        // 살짝 보이게 (반투명 빨간선) — 빌드에서도 시각 가이드
+        var sr = go.AddComponent<UnityEngine.SpriteRenderer>();
+        var tex = new UnityEngine.Texture2D(1, 1);
+        tex.SetPixel(0, 0, new UnityEngine.Color(0.6f, 0.1f, 0.1f, 0.25f));
+        tex.Apply();
+        sr.sprite = UnityEngine.Sprite.Create(tex, new UnityEngine.Rect(0, 0, 1, 1), new UnityEngine.Vector2(0.5f, 0.5f), 1f);
+        sr.drawMode = UnityEngine.SpriteDrawMode.Sliced;
+        sr.size = size;
+        sr.sortingOrder = -50;
     }
 }

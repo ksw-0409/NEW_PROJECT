@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b37fb5fa4f572544984898286924cddc
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308260
+  packageName: Pixel Craft VFX - HDRP
+  packageVersion: 1.0.02
+  assetPath: Assets/Vefects/Pixel Craft VFX URP/VFX/Explosion Big/Particles/VFX_Explosion_Big_01_Color_Static.prefab
+  uploadId: 771198

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 00670ba3ecd969a4aba6170742d67b72
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308260
+  packageName: Pixel Craft VFX - HDRP
+  packageVersion: 1.0.02
+  assetPath: Assets/Vefects/Pixel Craft VFX URP/_ Extra/Shaders/SH_Vefects_Extra_Grid_01_HDRP.shader
+  uploadId: 771198

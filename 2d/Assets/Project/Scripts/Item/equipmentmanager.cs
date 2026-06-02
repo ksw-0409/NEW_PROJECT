@@ -199,10 +199,10 @@ public class EquipmentManager : MonoBehaviour
         newItem.physicalDamage = data.basePhys + Random.Range(data.minAddPhys, data.maxAddPhys);
         newItem.magicDamage = data.baseMagic + Random.Range(data.minAddMagic, data.maxAddMagic);
         newItem.criticalChance = data.baseCrit + Random.Range(data.minAddCrit, data.maxAddCrit);
-        newItem.criticalDamage = data.baseCritDmg + Random.Range(data.minAddCritDmg, data.maxAddCritDmg);
+        newItem.criticalDamage = (data.baseCritDmg + Random.Range(data.minAddCritDmg, data.maxAddCritDmg)) * 0.01f; // CSV값 100 → 1.0
         newItem.maxHealth = data.baseHealth + Random.Range(data.minAddHealth, data.maxAddHealth);
         newItem.physicalDefense = data.baseDef + Random.Range(data.minAddDef, data.maxAddDef);
-        newItem.moveSpeed = data.baseSpeed + Random.Range(data.minAddSpeed, data.maxAddSpeed);
+        newItem.moveSpeed = (data.baseSpeed + Random.Range(data.minAddSpeed, data.maxAddSpeed)) * 0.01f; // CSV값 10 → 0.1
         newItem.attackcooldown = data.attackCooldown;
         newItem.ability = data.ability;
 
@@ -210,19 +210,19 @@ public class EquipmentManager : MonoBehaviour
         newItem.basePhysicalDamage = data.basePhys;
         newItem.baseMagicDamage = data.baseMagic;
         newItem.baseCriticalChance = data.baseCrit;
-        newItem.baseCriticalDamage = data.baseCritDmg;
+        newItem.baseCriticalDamage = data.baseCritDmg * 0.01f;
         newItem.baseMaxHealth = data.baseHealth;
         newItem.basePhysicalDefense = data.baseDef;
-        newItem.baseMoveSpeed = data.baseSpeed;
+        newItem.baseMoveSpeed = data.baseSpeed * 0.01f;
         newItem.baseAttackcooldown = data.attackCooldown;
 
         newItem.minAddPhys = data.minAddPhys; newItem.maxAddPhys = data.maxAddPhys;
         newItem.minAddMagic = data.minAddMagic; newItem.maxAddMagic = data.maxAddMagic;
         newItem.minAddCrit = data.minAddCrit; newItem.maxAddCrit = data.maxAddCrit;
-        newItem.minAddCritDmg = data.minAddCritDmg; newItem.maxAddCritDmg = data.maxAddCritDmg;
+        newItem.minAddCritDmg = data.minAddCritDmg * 0.01f; newItem.maxAddCritDmg = data.maxAddCritDmg * 0.01f;
         newItem.minAddHealth = data.minAddHealth; newItem.maxAddHealth = data.maxAddHealth;
         newItem.minAddDef = data.minAddDef; newItem.maxAddDef = data.maxAddDef;
-        newItem.minAddSpeed = data.minAddSpeed; newItem.maxAddSpeed = data.maxAddSpeed;
+        newItem.minAddSpeed = data.minAddSpeed * 0.01f; newItem.maxAddSpeed = data.maxAddSpeed * 0.01f;
 
         // 아이콘 — 인스펙터에서 매핑된 dictionary로 먼저 시도, 폴백으로 Resources
         Sprite icon = null;

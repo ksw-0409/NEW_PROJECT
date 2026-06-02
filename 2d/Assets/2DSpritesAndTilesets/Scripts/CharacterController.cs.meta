@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 449ccf70bf2c85f498f3a1a7527b0df7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249881
+  packageName: 2D Topdown tilesets and sprites - HD edition
+  packageVersion: 2.2.0
+  assetPath: Assets/2DSpritesAndTilesets/Scripts/CharacterController.cs
+  uploadId: 650584

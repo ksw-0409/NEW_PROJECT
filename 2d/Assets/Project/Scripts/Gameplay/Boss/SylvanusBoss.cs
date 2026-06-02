@@ -228,6 +228,15 @@ public class SylvanusBoss : EnemyAI
         float baseAngle = Mathf.Atan2(dirToPlayer.y, dirToPlayer.x) * Mathf.Rad2Deg;
         float halfSpread = needleSpread * 0.5f;
 
+        // ⭐ 산탄 발사 직전 녹색 burst (자연 테마)
+        var burst = LightningCircleExplosion.Spawn(transform.position, 1.5f, 0.4f);
+        if (burst != null)
+        {
+            burst.bodyColor = new Color(0.4f, 0.9f, 0.3f, 0.85f);
+            burst.ringColor = new Color(0.6f, 1f, 0.4f, 0.7f);
+            burst.arcColor  = new Color(0.8f, 1f, 0.6f, 0.9f);
+        }
+
         for (int i = 0; i < needleCount; i++)
         {
             float t = needleCount == 1 ? 0.5f : (float)i / (needleCount - 1);

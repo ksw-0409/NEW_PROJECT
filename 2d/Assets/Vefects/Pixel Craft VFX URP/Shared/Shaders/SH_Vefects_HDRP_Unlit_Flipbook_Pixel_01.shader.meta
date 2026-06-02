@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 5738cafe7fed7b54da2ed0670726589e
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _MainTexture: {instanceID: 0}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308260
+  packageName: Pixel Craft VFX - HDRP
+  packageVersion: 1.0.02
+  assetPath: Assets/Vefects/Pixel Craft VFX URP/Shared/Shaders/SH_Vefects_HDRP_Unlit_Flipbook_Pixel_01.shader
+  uploadId: 771198

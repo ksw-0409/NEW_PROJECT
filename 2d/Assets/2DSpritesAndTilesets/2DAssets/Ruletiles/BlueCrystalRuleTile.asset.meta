@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a1f0107dd174103488ac5d07cd903b1c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249881
+  packageName: 2D Topdown tilesets and sprites - HD edition
+  packageVersion: 2.2.0
+  assetPath: Assets/2DSpritesAndTilesets/2DAssets/Ruletiles/BlueCrystalRuleTile.asset
+  uploadId: 650584

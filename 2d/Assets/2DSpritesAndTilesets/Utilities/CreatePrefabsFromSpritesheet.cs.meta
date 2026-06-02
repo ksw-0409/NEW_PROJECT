@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 93ef4951784152245a70abaabc58693c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249881
+  packageName: 2D Topdown tilesets and sprites - HD edition
+  packageVersion: 2.2.0
+  assetPath: Assets/2DSpritesAndTilesets/Utilities/CreatePrefabsFromSpritesheet.cs
+  uploadId: 650584

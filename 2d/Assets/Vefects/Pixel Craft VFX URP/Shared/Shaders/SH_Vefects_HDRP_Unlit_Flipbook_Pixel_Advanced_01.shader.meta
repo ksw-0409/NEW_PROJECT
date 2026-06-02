@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 0ece66d4c6e87b946a07e6c5d9471ae2
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _MainTexture: {instanceID: 0}
+  - _disolveMap: {instanceID: 0}
+  - _DistortionTexture: {fileID: 2800000, guid: 98c3d568d9032a34eb5b038e20fea05d,
+      type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308260
+  packageName: Pixel Craft VFX - HDRP
+  packageVersion: 1.0.02
+  assetPath: Assets/Vefects/Pixel Craft VFX URP/Shared/Shaders/SH_Vefects_HDRP_Unlit_Flipbook_Pixel_Advanced_01.shader
+  uploadId: 771198

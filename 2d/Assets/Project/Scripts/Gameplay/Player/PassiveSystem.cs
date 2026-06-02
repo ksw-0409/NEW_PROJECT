@@ -75,6 +75,7 @@ public class PassiveSystem : MonoBehaviour
     {
         // ⭐ 패시브는 '런(run) 한정' — 죽으면 사라지는 스킬카드 방식이므로
         // 영구 저장값을 복원하지 않는다 (항상 0에서 시작).
+        RestoreFromSave(); // ⭐ 씬 전환 시 패시브 레벨 유지
     }
 
     /// <summary>패시브의 현재 레벨 (0 = 미해금).</summary>
@@ -90,6 +91,7 @@ public class PassiveSystem : MonoBehaviour
         levels[passiveID] = level;
         // 영구 저장 안 함 (런 한정 패시브)
 
+        SaveToPersistent(); // ⭐ 씬 전환 대비
         Debug.Log($"<color=lime>[Passive]</color> {passiveID} → Lv.{level}");
     }
 
