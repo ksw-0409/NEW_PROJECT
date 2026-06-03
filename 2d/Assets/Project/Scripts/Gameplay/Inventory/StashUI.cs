@@ -155,10 +155,10 @@ public class StashUI : MonoBehaviour
         arrowGo = new GameObject("StashArrow");
         arrowGo.transform.SetParent(inventoryPanelRef.transform.parent, false);
         var rt = arrowGo.AddComponent<RectTransform>();
-        rt.sizeDelta = new Vector2(200f, 200f);
+        rt.sizeDelta = new Vector2(400f, 400f);
         var tmp = arrowGo.AddComponent<TextMeshProUGUI>();
         tmp.text = "→";
-        tmp.fontSize = 150f;
+        tmp.fontSize = 300f;
         tmp.color = new Color(1f, 0.85f, 0.3f, 1f);
         tmp.alignment = TextAlignmentOptions.Center;
         tmp.fontStyle = FontStyles.Bold;

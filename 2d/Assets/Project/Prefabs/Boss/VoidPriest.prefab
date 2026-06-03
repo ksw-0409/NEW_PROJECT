@@ -290,6 +290,7 @@ MonoBehaviour:
   - {fileID: -5434011753326306553, guid: c18cf40f6eb77924fa466fe375bd4e79, type: 3}
   - {fileID: -1889970089500947440, guid: c18cf40f6eb77924fa466fe375bd4e79, type: 3}
   - {fileID: 1929732825256986462, guid: c18cf40f6eb77924fa466fe375bd4e79, type: 3}
+  fireMeteorSprite: {fileID: 21300000, guid: 3a72a1ea6b8bc29409401f543e998caa, type: 3}
   summonEffectDuration: 1
   pushPlayerDistance: 6
   chaseDistance: 5

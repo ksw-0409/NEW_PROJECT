@@ -17,17 +17,17 @@ public class DungeonAtmosphereController : MonoBehaviour
 {
     [Header("층수별 보간 한계 (1층 → 10층)")]
     [Tooltip("post-exposure를 얼마나 어둡게 떨어뜨릴지 (EV stops). 10층 기준")]
-    public float maxPostExposure = -1.5f;
+    public float maxPostExposure = -0.7f; // ⭐ 어두움 약화
     [Tooltip("채도를 얼마나 떨어뜨릴지 (-100~100). 10층 기준")]
-    public float maxSaturation = -35f;
+    public float maxSaturation = -18f;
     [Tooltip("대비를 얼마나 높일지 (-100~100). 10층 기준")]
     public float maxContrast = 20f;
     [Tooltip("10층 기준 색조 (푸르스름한 차가운 톤)")]
-    public Color deepFloorTint = new Color(0.55f, 0.65f, 0.85f, 1f);
+    public Color deepFloorTint = new Color(0.78f, 0.82f, 0.95f, 1f); // ⭐ 더 밝은 톤
     [Tooltip("1층 비네팅 강도")]
     public float minVignette = 0.15f;
     [Tooltip("10층 비네팅 강도")]
-    public float maxVignette = 0.55f;
+    public float maxVignette = 0.32f;
     [Tooltip("10층 비네팅 색조 (어두운 보라)")]
     public Color maxVignetteTint = new Color(0.06f, 0.02f, 0.12f, 1f);
     [Tooltip("1층 블룸 강도")]

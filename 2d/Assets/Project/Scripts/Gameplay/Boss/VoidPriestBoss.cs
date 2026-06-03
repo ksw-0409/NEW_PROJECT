@@ -60,6 +60,8 @@ public class VoidPriestBoss : EnemyAI
     [Header("소환 이펙트")]
     [Tooltip("몬스터가 소환되는 자리에 잠깐 표시할 summon 스프라이트 시퀀스 (summon_0 ~ summon_4 순서로 할당)")]
     public Sprite[] summonEffectSprites;
+    [Header("⭐ 떨어지는 메테오 sprite (Fire_Sprit1)")]
+    public Sprite fireMeteorSprite;
     [Tooltip("이펙트 표시 후 실제 몬스터가 등장할 때까지의 시간(초)")]
     public float summonEffectDuration = 1.0f;
     [Tooltip("소환 시작 시 플레이어를 보스 주변에서 밀어내는 거리")]
@@ -111,6 +113,7 @@ public class VoidPriestBoss : EnemyAI
         int startFloor = data != null ? data.startfloor : 10;
         float scaledHp = data != null ? data.hp * (1f + Mathf.Max(0, floor - startFloor) * 0.3f) : 2000f;
         hp = GetComponent<EnemyHealth>();
+        if (fireMeteorSprite != null) VoidMeteorField.SetFireSpriteCache(fireMeteorSprite);
         if (hp != null) hp.init(scaledHp);
 
         SkillDamage = data != null ? data.skillDamage * (1f + Mathf.Max(0, floor - startFloor) * 0.15f) : 25f;
@@ -359,7 +362,12 @@ public class VoidPriestBoss : EnemyAI
 
             // 살아있는 기둥이 없으면 다시 생성
             pillars.RemoveAll(p => p == null || p.IsDestroyed);
-            if (pillars.Count == 0) pillars = SpawnPillars();
+            // ⭐ 모든 기둥 깨졌으면 즉시 성공 (HP 회복 X, 더 이상 레이저 발사 X)
+            if (pillars.Count == 0)
+            {
+                UnityEngine.Debug.Log("[VoidPriestBoss] 모든 기둥 파괴 → 패턴 성공 (즉시 종료)");
+                break;
+            }
 
             bool resolved = false;
             bool hitPillar = false;

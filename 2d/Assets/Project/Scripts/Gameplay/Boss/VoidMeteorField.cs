@@ -114,7 +114,7 @@ public class VoidMeteorField : MonoBehaviour
         meteorBody.transform.SetParent(meteorGo.transform, false);
         meteorBody.transform.localPosition = Vector3.zero;
         var meteorSr = meteorBody.AddComponent<SpriteRenderer>();
-        meteorSr.sprite = GetCircle();
+        meteorSr.sprite = GetFireSpritSprite() ?? GetCircle(); // ⭐ Fire_Sprit1 sprite
         meteorSr.color = new Color(0.7f, 0.3f, 1f, 1f);
         meteorSr.sortingOrder = 90; // 장판/경고보다 위
         meteorBody.transform.localScale = Vector3.one * meteorScale;
@@ -199,4 +199,8 @@ public class VoidMeteorField : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D other) { inside.Add(other); }
     void OnTriggerExit2D(Collider2D other) { inside.Remove(other); }
+
+    private static Sprite _fireSpritCache;
+    private static Sprite GetFireSpritSprite() => _fireSpritCache;
+    public static void SetFireSpriteCache(Sprite s) { if (s != null) _fireSpritCache = s; }
 }
