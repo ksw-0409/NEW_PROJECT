@@ -46,11 +46,11 @@ public class ChainLightning : MonoBehaviour
         }
 
         // LineRenderer 설정: 더 굵게, 텍스처 적용
-        lineRenderer.startWidth = 0.30f;
-        lineRenderer.endWidth = 0.30f;
+        lineRenderer.startWidth = 0.18f; // ⭐ 빌드 두께 감소
+        lineRenderer.endWidth = 0.18f;
         lineRenderer.numCapVertices = 2;
         lineRenderer.numCornerVertices = 2;
-        lineRenderer.alignment = LineAlignment.TransformZ; // ⭐ 빌드/에디터 두께 일관 (View는 카메라 의존)
+        lineRenderer.alignment = LineAlignment.View; // ⭐ 화면 평면 정렬 (빌드/에디터 동일 두께)
         lineRenderer.textureMode = LineTextureMode.Stretch;
         lineRenderer.sortingOrder = 200;
 

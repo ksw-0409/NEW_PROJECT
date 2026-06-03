@@ -12768,7 +12768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  nodeName: "\uBA54\uD14C\uC624 \uB370\uBBF8\uC9C0 \uAC15\uD654"
+  nodeName: "\uD654\uC5FC\uD3ED\uD48D \uB370\uBBF8\uC9C0 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uB370\uBBF8\uC9C0\uB97C
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
   targetSkill: {fileID: 11400000, guid: aeb13a8b85bb2a24ca440bdc1e7d14cb, type: 2}
@@ -19223,7 +19223,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBA54\uD14C\uC624"
+  m_text: "\uD654\uC5FC\uD3ED\uD48D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac2af3832641cca429f9907c7e80cc3c, type: 2}
   m_sharedMaterial: {fileID: -4100585044338009816, guid: ac2af3832641cca429f9907c7e80cc3c, type: 2}
@@ -24102,7 +24102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  nodeName: "\uBA54\uD14C\uC624 \uCFE8\uB2E4\uC6B4 \uB2E8\uCD95"
+  nodeName: "\uD654\uC5FC\uD3ED\uD48D \uCFE8\uB2E4\uC6B4 \uB2E8\uCD95"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uCFE8\uD0C0\uC784\uC744
     \uCD94\uAC00\uB85C \uB2E8\uCD95\uD569\uB2C8\uB2E4."
   targetSkill: {fileID: 11400000, guid: aeb13a8b85bb2a24ca440bdc1e7d14cb, type: 2}
@@ -27485,7 +27485,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1.2
+  m_Radius: 1
 --- !u!212 &892585437
 SpriteRenderer:
   serializedVersion: 2
@@ -40130,7 +40130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  nodeName: "\uBA54\uD14C\uC624 \uBC94\uC704 \uAC15\uD654"
+  nodeName: "\uD654\uC5FC\uD3ED\uD48D \uBC94\uC704 \uAC15\uD654"
   nodeDescription: "\uC7AC\uD654\uB97C \uC0AC\uC6A9\uD574 \uB099\uD558 \uBC94\uC704\uB97C
     \uCD94\uAC00\uB85C \uC99D\uD3ED\uD569\uB2C8\uB2E4."
   targetSkill: {fileID: 11400000, guid: aeb13a8b85bb2a24ca440bdc1e7d14cb, type: 2}
@@ -60639,7 +60639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  nodeName: "\uBA54\uD14C\uC624 - \uCFE8\uD0C0\uC784"
+  nodeName: "\uD654\uC5FC\uD3ED\uD48D - \uCFE8\uD0C0\uC784"
   nodeDescription: "\uCFE8\uD0C0\uC784 -20% \uAC10\uC18C."
   targetSkill: {fileID: 11400000, guid: aeb13a8b85bb2a24ca440bdc1e7d14cb, type: 2}
   nodeType: 0
@@ -61205,6 +61205,7 @@ GameObject:
   - component: {fileID: 1724252398}
   - component: {fileID: 1724252397}
   - component: {fileID: 1724252399}
+  - component: {fileID: 1724252400}
   m_Layer: 0
   m_Name: CampFire
   m_TagString: Untagged
@@ -61373,6 +61374,42 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!58 &1724252400
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724252394}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 1.8
 --- !u!1 &1726161214
 GameObject:
   m_ObjectHideFlags: 0
@@ -62455,7 +62492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  nodeName: "\uBA54\uD14C\uC624 - \uB370\uBBF8\uC9C0"
+  nodeName: "\uD654\uC5FC\uD3ED\uD48D - \uB370\uBBF8\uC9C0"
   nodeDescription: "\uB370\uBBF8\uC9C0 +40% \uC99D\uAC00."
   targetSkill: {fileID: 11400000, guid: aeb13a8b85bb2a24ca440bdc1e7d14cb, type: 2}
   nodeType: 0
@@ -65235,7 +65272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  nodeName: "\uBA54\uD14C\uC624 - \uB099\uD558 \uBC94\uC704"
+  nodeName: "\uD654\uC5FC\uD3ED\uD48D - \uB099\uD558 \uBC94\uC704"
   nodeDescription: "\uB099\uD558 \uBC94\uC704 +30% \uC99D\uAC00."
   targetSkill: {fileID: 11400000, guid: aeb13a8b85bb2a24ca440bdc1e7d14cb, type: 2}
   nodeType: 0
@@ -70849,7 +70886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d9f077bc86aff488b204708a6ff898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillNode
-  nodeName: "[\uC2A4\uD0AC] \uBA54\uD14C\uC624"
+  nodeName: "[\uC2A4\uD0AC] \uD654\uC5FC\uD3ED\uD48D"
   nodeDescription: "\uBA54\uD14C\uC624 \uC2A4\uD0AC\uC744 \uC0AC\uC6A9\uD560 \uC218
     \uC788\uAC8C \uB429\uB2C8\uB2E4.\n\uC2A4\uD0AC \uD2B8\uB9AC\uC758 \uC2DC\uC791\uC810\uC785\uB2C8\uB2E4."
   targetSkill: {fileID: 11400000, guid: aeb13a8b85bb2a24ca440bdc1e7d14cb, type: 2}

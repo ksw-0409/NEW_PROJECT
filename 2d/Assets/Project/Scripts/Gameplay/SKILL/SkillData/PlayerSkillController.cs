@@ -69,6 +69,20 @@ public class PlayerSkillController : MonoBehaviour
     //   L   → 전설 장비 7개 인벤토리에 추가
     void Update()
     {
+        // ⭐ Ctrl+R: 스킬트리 + 패시브 리셋
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.R))
+        {
+            if (GameDataManager.Instance != null)
+            {
+                GameDataManager.Instance.ResetSkillTree();
+                if (PassiveSystem.Instance != null) PassiveSystem.Instance.ResetAll();
+                Debug.Log("<color=yellow>[치트] 스킬트리 + 패시브 전체 리셋</color>");
+                // SkillTreeUI 갱신
+                var ui = UnityEngine.Object.FindFirstObjectByType<SkillTreeUI>(FindObjectsInactive.Include);
+                if (ui != null) { ui.gameObject.SetActive(false); ui.gameObject.SetActive(true); }
+            }
+        }
+
         if (Keyboard.current == null) return;
 
         // === 1번: 베기 스킬 ===

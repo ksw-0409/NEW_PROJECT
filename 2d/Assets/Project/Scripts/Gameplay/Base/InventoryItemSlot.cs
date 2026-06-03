@@ -46,6 +46,7 @@ public class InventoryItemSlot : MonoBehaviour
             itemNameText.color = GetGradeColor(item.Grade);
         }
 
+        ApplyGradeBorder(item.Grade);
         button.interactable = true;
     }
 
@@ -53,6 +54,7 @@ public class InventoryItemSlot : MonoBehaviour
     {
         if (iconImage != null) { iconImage.sprite = null; iconImage.enabled = false; }
         if (itemNameText != null) itemNameText.text = "";
+        ApplyGradeBorder(null);
         button.interactable = false;
     }
 
@@ -73,6 +75,36 @@ public class InventoryItemSlot : MonoBehaviour
             case ItemGrade.Legendary: return new Color(1.00f,0.75f,0.20f);
             default: return Color.white;
         }
+    }
+
+    private void ApplyGradeBorder(ItemGrade? grade)
+    {
+        Transform borderT = transform.Find("GradeBorder");
+        Image borderImg;
+        if (borderT == null)
+        {
+            var go = new GameObject("GradeBorder");
+            go.transform.SetParent(transform, false);
+            var rt = go.AddComponent<RectTransform>();
+            rt.anchorMin = Vector2.zero;
+            rt.anchorMax = Vector2.one;
+            rt.sizeDelta = Vector2.zero;
+            rt.offsetMin = Vector2.zero;
+            rt.offsetMax = Vector2.zero;
+            borderImg = go.AddComponent<Image>();
+            borderImg.raycastTarget = false;
+            borderImg.sprite = null;
+            go.transform.SetAsFirstSibling();
+        }
+        else borderImg = borderT.GetComponent<Image>();
+        if (borderImg == null) return;
+        if (grade.HasValue)
+        {
+            Color c = GetGradeColor(grade.Value);
+            c.a = 0.45f;
+            borderImg.color = c;
+        }
+        else borderImg.color = new Color(0f, 0f, 0f, 0f);
     }
 
     void OnDestroy()

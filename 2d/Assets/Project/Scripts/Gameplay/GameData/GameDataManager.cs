@@ -349,4 +349,14 @@ public class GameDataManager : MonoBehaviour
         Debug.Log($"[패널티 후] 골드: {Gold}, 장비: {Items.Count}개, 층: {CurrentFloor}");
     }
 #endif
+
+    /// <summary>스킬트리 + 패시브 + 효과 모두 리셋 (치트키 Ctrl+R)</summary>
+    public void ResetSkillTree()
+    {
+        if (persistentData == null) return;
+        persistentData.unlockedSkillNodes.Clear();
+        persistentData.passiveLevels.Clear();
+        persistentData.unlockedEffects.Clear();
+        Debug.Log("[GameDataManager] 스킬트리 + 패시브 + 효과 전체 리셋");
+    }
 }
