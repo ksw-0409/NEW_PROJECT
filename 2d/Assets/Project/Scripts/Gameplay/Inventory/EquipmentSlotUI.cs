@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 // 역할: 장비창의 슬롯 하나 — 아이템 없으면 아이콘 숨김, 장착 시 아이콘 표시
 
-public class EquipmentSlotUI : MonoBehaviour//, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class EquipmentSlotUI : MonoBehaviour, IPointerClickHandler
 {
     [Header("슬롯 타입 (Inspector에서 지정)")]
     public EquipmentSlot slotType;
