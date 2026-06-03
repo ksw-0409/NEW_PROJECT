@@ -56,21 +56,18 @@ public class SkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (skillController == null) { Debug.LogError("PlayerSkillController 못찾음"); return; }
         if (levelText == null) { Debug.LogError("levelText 연결 안됨"); return; }
 
-        if (skillController.HasSkill(data))
-        {
-            int level = skillController.GetSkillLevel(data);
-            if (skillController.IsMaxLevel(data))
+        if (skillController.HasSkill(data)) 
+        {             
+            for (int i = 0; i < Gems.Length; i++)
             {
-               // levelText.text = "MAX";
-                MaxGems.enabled = true;
-            }
-            else
-            {
-                //levelText.text = "Lv." + level;
+                Gems[i].enabled = false;
                 MaxGems.enabled = false;
-                for (int i = 0; i <= level && i < Gems.Length; i++) Gems[i].enabled = true;
-                for (int i = level; i < Gems.Length; i++) Gems[i].enabled = false;
             }
+
+            int level = skillController.GetSkillLevel(data);
+            if (level == 5) MaxGems.enabled = true;
+            //levelText.text = "Lv." + level;
+            for (int i = 0; i <= level+1 && i < Gems.Length; i++) Gems[i].enabled = true;            
         }
         else
         {

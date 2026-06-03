@@ -171,5 +171,6 @@ public class Pachinko : MonoBehaviour
         GameDataManager.Instance.isPachinkoActive = false;
 
         MouseManager.Instance.ResetToDefault();
+        BGMManager.Instance.SetMusic(1);
     }
 };

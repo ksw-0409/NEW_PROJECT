@@ -31,6 +31,7 @@ public class BettingManager : MonoBehaviour
     // ��Ī�� ���� â�� ���� ��
     void OnEnable()
     {
+        BGMManager.Instance.SetMusic(3);
         setUp();
         GameDataManager.Instance.isPachinkoActive = true;
 

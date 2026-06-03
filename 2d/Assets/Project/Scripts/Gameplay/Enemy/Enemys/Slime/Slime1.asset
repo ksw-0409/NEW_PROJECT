@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   id: 1
   Name: Slime1
-  hp: 40
+  hp: 20
   skillDamage: 7
   contactDamage: 7
   Defense: 0

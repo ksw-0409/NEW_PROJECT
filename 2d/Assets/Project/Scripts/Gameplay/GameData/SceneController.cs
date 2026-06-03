@@ -31,13 +31,19 @@ public class SceneController : MonoBehaviour
     }
     public void LoadDungeonBoss()
     {
+        BGMManager.Instance.SetMusic(2);
         StartCoroutine(LoadSceneRoutine(SceneName.Dungeon));
     }
 
-    public void LoadBase() => StartCoroutine(LoadSceneRoutine(SceneName.Base));
+    public void LoadBase()
+    {
+        BGMManager.Instance.SetMusic(0);
+        StartCoroutine(LoadSceneRoutine(SceneName.Base));
+    }
     public void LoadDungeon()
     {
         GameDataManager.Instance.SetFloor(1);
+        BGMManager.Instance.SetMusic(1);
         StartCoroutine(LoadSceneRoutine(SceneName.Dungeon));
     }
     public void LoadScene(string sceneName) => StartCoroutine(LoadSceneRoutine(sceneName));

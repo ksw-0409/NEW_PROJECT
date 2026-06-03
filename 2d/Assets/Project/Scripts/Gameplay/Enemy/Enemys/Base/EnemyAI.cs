@@ -35,12 +35,16 @@ public class EnemyAI : MonoBehaviour
     protected bool isFlip=false;
 
     [Header("Hit Effect Settings")]
-    [SerializeField] private float knockbackForce = 5f;       // 넉백 세기
+    [SerializeField] private float knockbackForce = 5f;       // 넉백 
+    [SerializeField] private float knockbackForce2 = 10f;       // 넉백 세기
     [SerializeField] private float knockbackDuration = 0.15f; // 넉백 지속 시간
+    [SerializeField] private float knockbackDuration2 = 0.15f; // 넉백 지속 시간
     [SerializeField] private float flashDuration = 0.1f;      // 하얗게 번쩍이는 시간
     [SerializeField] private Material flashMaterial;          // 흰색 마테리얼
     protected bool isKnockedBack = false;
     private float knockbackTimer = 0f;
+    protected bool isKnockedBack2 = false;
+    private float knockbackTimer2 = 0f;
     private bool isFlashing = false;
     private float flashTimer = 0f;
     private Material originalMaterial;
@@ -165,6 +169,7 @@ public class EnemyAI : MonoBehaviour
         HandleStunTimer();
         HandleKnockbackTimer();
         HandleFlashTimer();
+        HandleKnockbackTimer2();
         if (isStun) return;
         if (isDie) return;
     }
@@ -173,7 +178,8 @@ public class EnemyAI : MonoBehaviour
         if (data == null) return;
         if (isStun) return;
         if (isDie) return;
-        if (isKnockedBack) return;  
+        if (isKnockedBack) return;
+        if (isKnockedBack2) return;
         if (isRushMode) {
             rb.linearVelocity = rushDir * moveSpeed;
             if (transform.position.y < rushLimitY) {
@@ -220,6 +226,20 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    public void KnockBack(Vector2 attackerPos)
+    {
+        if (isDie) return;
+
+        // 1. 넉백 적용 (플레이어 -> 몬스터 방향)
+        Vector2 knockbackDir = ((Vector2)transform.position - attackerPos).normalized;
+
+        rb.linearVelocity = Vector2.zero; // AI 이동 속도를 지우고
+        rb.AddForce(knockbackDir * knockbackForce2, ForceMode2D.Impulse); // 뒤로 밀어냄
+
+        isKnockedBack2 = true;
+        knockbackTimer2 = knockbackDuration2;
+    }
+
     protected void HandleSpriteFlip(float horizontalDir)
     {
         // 0.1f�� �̼��� ���������� ���� �����Ÿ� ����
@@ -238,9 +258,11 @@ public class EnemyAI : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(ContactDamage==0) return;
-        if (collision.gameObject.CompareTag("Player"))
-        {
+
+        if (!collision.gameObject.CompareTag("Player")) return;
+        KnockBack(collision.transform.position);
+        if (ContactDamage==0) return;
+        
             PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
 
             if (playerStats != null)
@@ -249,7 +271,7 @@ public class EnemyAI : MonoBehaviour
                 // �ð��� Ȯ���� ���� �α�
                 Debug.Log($"{collision.gameObject.name}���� {ContactDamage}�� �������� �������ϴ�.");
             }
-        }
+        
     }
 
 
@@ -324,6 +346,18 @@ public class EnemyAI : MonoBehaviour
             if (knockbackTimer <= 0)
             {
                 isKnockedBack = false;
+                rb.linearVelocity = Vector2.zero; // 밀려난 후 미끄러짐 방지
+            }
+        }
+    }
+    private void HandleKnockbackTimer2()
+    {
+        if (isKnockedBack2)
+        {
+            knockbackTimer2 -= Time.deltaTime;
+            if (knockbackTimer2 <= 0)
+            {
+                isKnockedBack2 = false;
                 rb.linearVelocity = Vector2.zero; // 밀려난 후 미끄러짐 방지
             }
         }
