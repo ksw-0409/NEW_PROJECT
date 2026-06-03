@@ -265,9 +265,20 @@ public class PlayerStats : MonoBehaviour
     public void Equip(EquipmentData newItem)
     {
         if (newItem == null) return;
+        float oldMax = MaxHealth;
         equippedItems[newItem.slot] = newItem;
-        if (currentHealth > MaxHealth) currentHealth = MaxHealth;
+        float diff = MaxHealth - oldMax;
+        if (diff > 0) currentHealth += diff; // ✨ MaxHealth 증가분만큼 현재 체력도 증가
+        currentHealth = Mathf.Clamp(currentHealth, 0, MaxHealth);
         Debug.Log($"{newItem.itemName} 장착 완료. 현재 공격력: {PhysicalDamage}");
+    }
+
+    // ✨ 패시브 등으로 MaxHealth 변경 시 currentHealth에 증가분 반영
+    public void RefreshMaxHealth(float oldMax)
+    {
+        float diff = MaxHealth - oldMax;
+        if (diff > 0) currentHealth += diff;
+        currentHealth = Mathf.Clamp(currentHealth, 0, MaxHealth);
     }
 
     // 거점 귀환 시 체력 전체 회복 (패시브 + 장비 보너스 반영된 MaxHealth 기준)
