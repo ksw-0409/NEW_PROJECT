@@ -249,4 +249,11 @@ public class SkillNode : MonoBehaviour, IPointerClickHandler
         if (costText != null)
             costText.text = IsUnlocked ? "✔" : (blocked ? "✕" : unlockCost.ToString());
     }
+
+    /// <summary>치트키 Ctrl+R로 호출 — 노드 잠금 상태 + 시각 강제 초기화</summary>
+    public void ResetUnlocked()
+    {
+        IsUnlocked = false;
+        UpdateVisual();
+    }
 }

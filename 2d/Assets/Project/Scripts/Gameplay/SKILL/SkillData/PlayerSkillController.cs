@@ -69,19 +69,6 @@ public class PlayerSkillController : MonoBehaviour
     //   L   → 전설 장비 7개 인벤토리에 추가
     void Update()
     {
-        // ⭐ Ctrl+R: 스킬트리 + 패시브 리셋
-        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.R))
-        {
-            if (GameDataManager.Instance != null)
-            {
-                GameDataManager.Instance.ResetSkillTree();
-                if (PassiveSystem.Instance != null) PassiveSystem.Instance.ResetAll();
-                Debug.Log("<color=yellow>[치트] 스킬트리 + 패시브 전체 리셋</color>");
-                // SkillTreeUI 갱신
-                var ui = UnityEngine.Object.FindFirstObjectByType<SkillTreeUI>(FindObjectsInactive.Include);
-                if (ui != null) { ui.gameObject.SetActive(false); ui.gameObject.SetActive(true); }
-            }
-        }
 
         if (Keyboard.current == null) return;
 
@@ -267,15 +254,19 @@ public class PlayerSkillController : MonoBehaviour
     }
 
     /// <summary>스킬트리(패시브) 초기화 — PassiveSystem.ResetAll() 호출</summary>
+    /// <summary>스킬트리 + 패시브 + 효과 전체 초기화 (Ctrl+R)</summary>
     private void ResetSkillTree()
     {
-        if (PassiveSystem.Instance == null)
-        {
-            Debug.LogWarning("[치트] PassiveSystem.Instance가 null입니다");
-            return;
-        }
-        PassiveSystem.Instance.ResetAll();
-        Debug.Log("<color=cyan>[치트]</color> 스킬트리(패시브) 초기화 완료");
+        // 1) GameDataManager 데이터 비우기 (unlockedSkillNodes/passiveLevels/unlockedEffects)
+        if (GameDataManager.Instance != null) GameDataManager.Instance.ResetSkillTree();
+
+        // 2) PassiveSystem 런타임 레벨 비우기 + PassiveSkillNode UI 갱신
+        if (PassiveSystem.Instance != null) PassiveSystem.Instance.ResetAll();
+
+        // 3) ⭐ 모든 SkillNode UI 강제 갱신 (잠금 해제 상태 → 잠금 시각)
+        var nodes = UnityEngine.Object.FindObjectsByType<SkillNode>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (var n in nodes) { if (n != null) n.ResetUnlocked(); }
+        Debug.Log($"<color=cyan>[치트]</color> 스킬트리 + 패시브 초기화 완료 — SkillNode {nodes.Length}개 갱신");
     }
 
     public bool HasSkill(SkillData data)
