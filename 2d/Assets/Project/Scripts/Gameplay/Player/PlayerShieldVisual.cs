@@ -57,7 +57,7 @@ public class PlayerShieldVisual : MonoBehaviour
         SetVisible(stats.currentShield > 0);
     }
 
-    void SetVisible(bool v)
+    public void SetVisible(bool v)
     {
         if (root != null) root.SetActive(v);
     }

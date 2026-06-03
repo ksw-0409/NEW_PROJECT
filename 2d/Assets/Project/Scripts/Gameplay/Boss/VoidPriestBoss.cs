@@ -380,7 +380,7 @@ public class VoidPriestBoss : EnemyAI
             // 레이저 1회 끝날 때까지 대기
             while (!resolved && !isDie) yield return null;
 
-            if (!hitPillar) allSuccess = false;
+            // ⭐ 명중 여부 무관 — 최종은 기둥 생존 여부로 판정
             yield return new WaitForSeconds(0.5f);
         }
 
