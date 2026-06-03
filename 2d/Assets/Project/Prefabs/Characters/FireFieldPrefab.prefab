@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6539881104332953873}
   - component: {fileID: -7947520346727169252}
   - component: {fileID: 5404079138360114858}
-  - component: {fileID: 2686635472174335000}
+  - component: {fileID: 8430534216705289249}
   m_Layer: 0
   m_Name: FireFieldPrefab
   m_TagString: Effect
@@ -130,7 +130,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.18
+  m_Radius: 1
 --- !u!50 &-7947520346727169252
 Rigidbody2D:
   serializedVersion: 5
@@ -170,25 +170,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c0913d41deafac4aaf38ed1070b242f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireField
---- !u!95 &2686635472174335000
-Animator:
-  serializedVersion: 7
+--- !u!114 &8430534216705289249
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2493754749878858455}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 088d5f561c92048dea6a2102a251c558, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661873a1b1cceb541abf6c5039d27363, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LavaPatchFill
+  lavaSprites:
+  - {fileID: 3645366424149248498, guid: c23ec0dc6634b4c45b7caae0a97d43cb, type: 3}
+  - {fileID: -9001079687888472589, guid: 54c4c487e0a95624fb9406c2bafe7fc0, type: 3}
+  - {fileID: 2148076233983309726, guid: 76237a30610ddb14bbd3ad786975a38c, type: 3}
+  spacing: 0.32
+  positionJitter: 0.18
+  spriteScale: 1.4
+  scaleVariance: {x: 0.7, y: 1.3}
+  tint: {r: 1, g: 0.85, b: 0.4, a: 0.95}
+  sortingOrder: 5
+  sortingLayer: Default
+  fadeInDuration: 0
+  fadeOutDuration: 0

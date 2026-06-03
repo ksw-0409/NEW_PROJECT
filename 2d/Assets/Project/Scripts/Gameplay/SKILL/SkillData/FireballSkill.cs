@@ -124,7 +124,7 @@ public class FireballSkill : SkillBase
 
         Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
         Vector2 finalDir = mouseDir;
-
+        // ⭐ 자동 호밍은 Fireball_1_2 specialty 활성 시에만 (기본은 마우스 커서 방향)
         if (PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("Fireball_1_2"))
         {
             Transform target = FindNearestEnemy(player.position, 15f);
@@ -137,7 +137,7 @@ public class FireballSkill : SkillBase
         }
 
         float angleDeg = Mathf.Atan2(finalDir.y, finalDir.x) * Mathf.Rad2Deg;
-        obj.transform.rotation = Quaternion.Euler(0, 0, angleDeg);
+        obj.transform.rotation = Quaternion.Euler(0, 0, angleDeg + 180f); // ⭐ sprite 머리/꼬리 보정
 
         FireballProjectile proj = obj.GetComponent<FireballProjectile>();
         if (proj != null)

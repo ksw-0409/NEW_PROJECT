@@ -167,6 +167,10 @@ public class BossStageManager : MonoBehaviour
     private IEnumerator BossDeathSequence(Vector3 bossPos)
     {
         CameraShake.ShakePreset(CameraShake.Preset.Epic);
+
+        // ⭐ 보스 사망 시 화면 분위기 밝게 (파칭코 등 후속 연출 잘 보이게)
+        var atmos = UnityEngine.Object.FindFirstObjectByType<DungeonAtmosphereController>();
+        if (atmos != null) atmos.ApplyFloorEffects(1); // floor=1 = 최소 효과 = 밝음
         Time.timeScale = 0.25f;
         VFXManager.SpawnBossDeath(bossPos);
         ExplodeGold(bossPos, 500);
@@ -188,6 +192,9 @@ public class BossStageManager : MonoBehaviour
             GameDataManager.Instance.AddBossToken(1);
 
         yield return new WaitForSecondsRealtime(0.4f);
+
+        // ⭐ 보스 GameObject 명시적 제거 (파칭코 위에 남는 문제 방지)
+        if (spawnedBoss != null) Destroy(spawnedBoss);
     }
 
     private void ExplodeGold(Vector3 center, int totalGold)

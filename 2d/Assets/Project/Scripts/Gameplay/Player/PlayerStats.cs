@@ -81,7 +81,7 @@ public class PlayerStats : MonoBehaviour
     public float MaxHealth => (data.maxHealth + GetEquipSum(item => item.maxHealth)) * PassiveMul(PassiveSystem.ID_HP);
 
     // 이동 속도: data + 장비 합산, ×(1 + 패시브 이속 보너스), ×채무자 페널티(있으면 0.85)
-    public float MoveSpeed => (data.moveSpeed + GetEquipSum(item => item.moveSpeed)) * PassiveMul(PassiveSystem.ID_SPEED) * DebtSpdMul * GetTalariaSpeedBoost();
+    public float MoveSpeed => data.moveSpeed * (1f + GetEquipSum(item => item.moveSpeed) + (PassiveMul(PassiveSystem.ID_SPEED) - 1f) + (GetTalariaSpeedBoost() - 1f)) * DebtSpdMul; // ⭐ 가산 보너스 — 곱셈 누적 제거
 
     // 물리 데미지: data + 장비 합산, ×(1 + 패시브 물리 데미지 보너스), ×채무자 페널티(0.7)
     public float PhysicalDamage => (data.physicalDamage + GetEquipSum(item => item.physicalDamage)) * PassiveMul(PassiveSystem.ID_PHYS_DMG) * DebtDmgMul * GetFrenzyDamageMultiplier();
@@ -107,23 +107,8 @@ public class PlayerStats : MonoBehaviour
         if (Instance == null) Instance = this;
         currentHealth = data.maxHealth;
 
-#if UNITY_EDITOR
-        // 에디터 테스트: 쉴드 자동 부여 (방어 패시브 레벨 0이어도 쉴드 작동 확인 가능)
-        // PassiveSystem이 아직 없을 수 있으므로 다음 프레임에 처리
-        Invoke("GiveTestShield", 0.5f);
-#endif
     }
 
-    void GiveTestShield()
-    {
-        // 패시브 방어 레벨이 0이면 자동으로 1개 쉴드 부여 (테스트 편의)
-        if (PassiveSystem.Instance != null && PassiveSystem.Instance.GetLevel(PassiveSystem.ID_SHIELD) == 0)
-        {
-            currentShield = 1;
-            OnShieldChanged?.Invoke(currentShield);
-            Debug.Log($"<color=#88ccff>[Shield Test]</color> 에디터 테스트용 쉴드 1개 자동 부여");
-        }
-    }
 
     void Start()
     {

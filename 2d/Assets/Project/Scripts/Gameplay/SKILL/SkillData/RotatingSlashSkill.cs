@@ -62,7 +62,8 @@ public class RotatingSlashSkill : SkillBase
     {
         // CameraShake 제거 — 사용자 요청 (화면 흔들림 줄이기)
 
-        float range = GetRange() * 1.5f; // ⭐ 반지름 1.5배 + 트리 보너스(GetRange는 bonus.rng 적용)
+        float range = GetRange() * 1.5f; // 이펙트 범위 (그대로)
+        float hitRange = range * 1.4f; // ⭐ 피격 범위 40% 더 크게 (이펙트 끝에 닿아도 데미지)
         float dmg = GetDamage(); // SkillBase에서 bonus.dmg 자동 적용
 
         bool hasCrush = PlayerStats.Instance != null && PlayerStats.Instance.HasSpecialty("RotSlash_crush");
@@ -73,7 +74,7 @@ public class RotatingSlashSkill : SkillBase
         float crushBonus = hasCrush ? Mathf.Min(crushStackCount * 0.05f, CrushStackMaxBonus) : 0f;
         float finalDmg = dmg * (1f + crushBonus);
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, range);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, hitRange);
         int enemyHitCount = 0;
         foreach (var hit in hits)
         {

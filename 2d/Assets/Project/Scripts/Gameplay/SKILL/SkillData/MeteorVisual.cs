@@ -125,20 +125,44 @@ public class MeteorVisual : MonoBehaviour
             transform.position,
             effectiveRadius,
             new Color(1f, 0.3f, 0.05f, 0.95f),
-            0.7f,
+            duration, // ⭐ 화염장판 duration과 동기화 (같이 사라짐)
             SkillRangeIndicator.Shape.Circle
         );
 
-        // 2. 불 장판 생성 — SkillRangeMatcher로 자동 동기화
+        // ⭐ 2. 불 장판 생성 — LavaField specialty 분기
         if (fireFieldPrefab != null)
         {
             GameObject fieldGo = Instantiate(fireFieldPrefab, transform.position, Quaternion.identity);
 
-            // FireField sprite의 시각적 불꽃 활성 비율은 약 32% (이전에 측정)
-            var matcher = fieldGo.GetComponent<SkillRangeMatcher>();
-            if (matcher == null) matcher = fieldGo.AddComponent<SkillRangeMatcher>();
-            matcher.activeRatio = 0.32f;
-            matcher.ApplyRadius(effectiveRadius * 0.8f); // ⭐ 시각만 1.25배 축소 (피격 범위는 effectiveRadius 그대로)
+            // 콜라이더 반경 직접 설정 (데미지 판정)
+            var col = fieldGo.GetComponent<CircleCollider2D>();
+            if (col != null) col.radius = effectiveRadius;
+            fieldGo.transform.localScale = UnityEngine.Vector3.one;
+
+            var sr = fieldGo.GetComponent<SpriteRenderer>();
+            var lpf = fieldGo.GetComponent<LavaPatchFill>();
+
+            if (lavaFieldEnabled)
+            {
+                // ⭐ LavaField specialty 활성: 도트 sprite 격자 (메인 시각)
+                if (sr != null) sr.enabled = false;
+                if (lpf != null)
+                {
+                    lpf.fadeOutDuration = duration; // 빨간 원이 사라질 때 같이 페이드 아웃
+                    lpf.Fill(effectiveRadius);
+                }
+            }
+            else
+            {
+                // ⭐ 기본 메테오: 원래 sprite (aura_effect_10_orange_1) 사용
+                if (sr != null)
+                {
+                    sr.enabled = true;
+                    // 원래 sprite를 effectiveRadius 크기에 맞춤
+                    fieldGo.transform.localScale = UnityEngine.Vector3.one * (effectiveRadius * 2f);
+                }
+                if (lpf != null) lpf.enabled = false; // LavaPatchFill 비활성
+            }
 
             FireField field = fieldGo.GetComponent<FireField>();
             if (field != null)

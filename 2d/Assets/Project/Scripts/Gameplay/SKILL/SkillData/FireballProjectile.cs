@@ -38,6 +38,14 @@ public class FireballProjectile : MonoBehaviour
 
     void Update()
     {
+        // ⭐ 매 프레임 velocity 방향으로 sprite 회전 강제 (어떤 이유로 회전이 풀려도 복원)
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb != null && rb.linearVelocity.sqrMagnitude > 0.01f)
+        {
+            float ang = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, ang + 180f); // ⭐ sprite 머리/꼬리 보정
+        }
+
         if (!exploded && Vector3.Distance(startPos, transform.position) > maxDistance)
         {
             Explode();

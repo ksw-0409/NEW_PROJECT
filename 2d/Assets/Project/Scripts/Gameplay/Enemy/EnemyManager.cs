@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -171,6 +171,11 @@ public class EnemyManager : MonoBehaviour
                 if (poolDict.TryGetValue(enemy.GetID(), out var enemyPool))
                 {
                     enemyPool.Release(enemy);
+                }
+                else
+                {
+                    // ⭐ 풀에 없으면 그냥 파괴 (보스 등)
+                    Destroy(enemy.gameObject);
                 }
             }
             else

@@ -8,6 +8,9 @@ using UnityEngine;
 /// </summary>
 public class SwordWaveProjectile : MonoBehaviour
 {
+    [Header("✨ 화염지대 sprite (도트이펙트 3651~3653 권장)")]
+    [SerializeField] private Sprite[] lavaSprites;
+
     [Header("이동 설정")]
     public float speed = 18f;
     public float maxRange = 6f;
@@ -192,35 +195,21 @@ public class SwordWaveProjectile : MonoBehaviour
         patchGo.transform.position = pos;
         patchGo.transform.rotation = transform.rotation;
 
-        // 시각: 단색 디스크 (LineRenderer로 원 그리기) + 살짝 빛나는 코어
+        // 시각: 도트 sprite 격자형 — LavaPatchFill로 피격범위 채우기 (메테오와 동일 방식)
         float patchRadius = thickness * firezoneThicknessRatio * 0.5f;
 
-        // 외곽선 — 청색 (마나 불꽃)
-        var lrOuter = patchGo.AddComponent<LineRenderer>();
-        lrOuter.useWorldSpace = false;
-        lrOuter.loop = true;
-        lrOuter.positionCount = 16;
-        lrOuter.startWidth = 0.06f;
-        lrOuter.endWidth = 0.06f;
-        lrOuter.material = new Material(Shader.Find("Sprites/Default"));
-        lrOuter.startColor = new Color(0.4f, 0.7f, 1f, 0.9f);
-        lrOuter.endColor = new Color(0.3f, 0.5f, 1f, 0.9f);
-        lrOuter.sortingOrder = 50;
-        for (int i = 0; i < lrOuter.positionCount; i++)
-        {
-            float a = i * Mathf.PI * 2f / lrOuter.positionCount;
-            lrOuter.SetPosition(i, new Vector3(Mathf.Cos(a) * patchRadius, Mathf.Sin(a) * patchRadius, 0));
-        }
-
-        // 내부 코어 (작은 채워진 원 — SpriteRenderer + 흰 픽셀)
-        var coreGo = new GameObject("Core");
-        coreGo.transform.SetParent(patchGo.transform, false);
-        var coreSr = coreGo.AddComponent<SpriteRenderer>();
-        coreSr.sprite = GetWhitePixelSprite();
-        coreSr.color = new Color(0.6f, 0.85f, 1f, 0.45f);
-        coreSr.sortingOrder = 49;
-        float coreSize = patchRadius * 1.7f;
-        coreGo.transform.localScale = new Vector3(coreSize, coreSize, 1f);
+        // LavaPatchFill 컴포넌트 추가 → sprite 자동 채우기
+        var lpf = patchGo.AddComponent<LavaPatchFill>();
+        // 화염지대 — 주황/노랑 톤 (메테오 용암지대와 일관성)
+        lpf.tint = new Color(0.55f, 0.3f, 1f, 0.6f); // ⭐ 보라색 마나불꽃
+        lpf.spacing = 0.28f;
+        lpf.positionJitter = 0.12f;
+        lpf.spriteScale = 1.2f;
+        lpf.sortingOrder = 50;
+        lpf.fadeInDuration = 0.4f; // ⭐ 검기 지나간 후 0.4초에 걸쳐 점차 나타남
+        lpf.fadeOutDuration = firezoneDuration * 0.6f; // 후반 60% 동안 페이드 아웃
+        lpf.lavaSprites = LoadSharedLavaSprites();
+        lpf.Fill(patchRadius);
 
         // 콜라이더 + DOT 효과
         var col = patchGo.AddComponent<CircleCollider2D>();
@@ -256,5 +245,11 @@ public class SwordWaveProjectile : MonoBehaviour
         float h = hitHeight > 0f ? hitHeight : nativeSpriteHeight * hitboxFitRatio;
         Gizmos.DrawWireCube(Vector3.zero, new Vector3(w, h, 0.1f));
         Gizmos.matrix = Matrix4x4.identity;
+    }
+
+    /// <summary>화염지대 sprite 풀 — 인스펙터 할당 우선, 없으면 빈 배열</summary>
+    private Sprite[] LoadSharedLavaSprites()
+    {
+        return lavaSprites != null ? lavaSprites : new Sprite[0];
     }
 }

@@ -182,6 +182,19 @@ public class GameDataManager : MonoBehaviour
         persistentData.savedSkillLevels.Clear();
     }
 
+    // ⭐ 창고 (stash) API
+    public void SaveStash(System.Collections.Generic.IList<InventoryItem> items)
+    {
+        persistentData.stashItems.Clear();
+        if (items == null) return;
+        foreach (var it in items) if (it != null) persistentData.stashItems.Add(it);
+    }
+
+    public System.Collections.Generic.List<InventoryItem> LoadStash()
+    {
+        return persistentData.stashItems ?? new System.Collections.Generic.List<InventoryItem>();
+    }
+
     public void AddSpecialCurrency(int amount)
     {
         if (amount <= 0) return;

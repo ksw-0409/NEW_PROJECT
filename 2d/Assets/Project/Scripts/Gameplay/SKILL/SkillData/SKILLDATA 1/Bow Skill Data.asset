@@ -19,7 +19,7 @@ MonoBehaviour:
   levels:
   - cooldown: 3
     count: 1
-    damage: 1.8000001
+    damage: 6
     multiplier: 1
     range: 0
     angle: 0
@@ -30,9 +30,9 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  - cooldown: 3
+  - cooldown: 2.7
     count: 1
-    damage: 3.2
+    damage: 10.8
     multiplier: 1
     range: 0
     angle: 0
@@ -43,9 +43,9 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  - cooldown: 2.5
+  - cooldown: 2.4
     count: 1
-    damage: 3.2
+    damage: 15.6
     multiplier: 1
     range: 0
     angle: 0
@@ -56,9 +56,9 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  - cooldown: 2.5
+  - cooldown: 2.1
     count: 2
-    damage: 5
+    damage: 20.400002
     multiplier: 1
     range: 0
     angle: 0
@@ -69,9 +69,9 @@ MonoBehaviour:
     duration: 0
     tickInterval: 0
     pierce: 0
-  - cooldown: 2
+  - cooldown: 1.8
     count: 2
-    damage: 5
+    damage: 25.2
     multiplier: 1
     range: 0
     angle: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
     pierce: 0
   - cooldown: 1.5
     count: 2
-    damage: 8.400001
+    damage: 30
     multiplier: 1
     range: 0
     angle: 0
