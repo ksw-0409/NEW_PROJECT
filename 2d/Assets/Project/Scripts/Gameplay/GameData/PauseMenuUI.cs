@@ -102,7 +102,10 @@ public class PauseMenuUI : MonoBehaviour
         }
 
         if (GameOverManager.Instance != null)
+        {
             GameOverManager.Instance.TriggerGameOver();
+            BGMManager.Instance.SetMusic(1);
+        }
     }
 
     public void OnClickPauseButton()
