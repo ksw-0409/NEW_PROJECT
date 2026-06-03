@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 // 역할: 인벤토리 UI (Tab 키 열고 닫기, 슬롯 표시)
@@ -35,6 +35,13 @@ public class InventoryUI : MonoBehaviour
     {
         if (Keyboard.current.tabKey.wasPressedThisFrame)
         {
+            // ⭐ 창고 열린 상태에서 Tab → 창고 + 인벤토리 모두 닫기
+            if (StashUI.Instance != null && StashUI.Instance.IsOpen)
+            {
+                StashUI.Instance.Close();
+                return;
+            }
+
             if (inventoryPanel.activeSelf)
             {
                 CloseAll();

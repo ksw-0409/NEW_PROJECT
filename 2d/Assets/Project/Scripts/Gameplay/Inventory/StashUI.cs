@@ -1,18 +1,24 @@
 using UnityEngine;
-using System.Collections.Generic;
+using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
-/// 창고 UI — OnGUI 기반의 단순한 양방향 transfer 패널.
-/// 베이스 씬에서 trigger 접촉 시 또는 'B' 키로 토글.
-/// 좌: 인벤토리 / 우: 창고. 슬롯 클릭 시 반대편으로 이동.
+/// 창고 UI — 인벤토리는 화면 왼쪽 끝, 창고는 오른쪽 끝, 중앙에 큰 ➤ 화살표.
+/// 베이스 씬에서 B 키로 토글. ESC로 닫기.
 /// </summary>
 public class StashUI : MonoBehaviour
 {
     public static StashUI Instance { get; private set; }
+    public bool IsOpen { get; private set; } = false;
 
-    private bool isOpen = false;
-    private Vector2 invScroll;
-    private Vector2 stashScroll;
+    private GameObject stashPanel;
+    private StashSlot[] stashSlots;
+    private GameObject inventoryPanelRef;
+    private GameObject arrowGo;
+
+    // 원래 인벤토리 anchor/pivot/pos 저장 (Close 시 복원)
+    private Vector2 origAnchorMin, origAnchorMax, origPivot, origAnchoredPos;
+    private bool savedOrig = false;
 
     void Awake()
     {
@@ -23,139 +29,160 @@ public class StashUI : MonoBehaviour
 
     void Update()
     {
-        // 베이스 씬에서만 B 키로 토글 가능 (안전)
-        if (Input.GetKeyDown(KeyCode.B) && IsInBaseScene())
-        {
-            Toggle();
-        }
-        // ESC로 닫기
-        if (isOpen && Input.GetKeyDown(KeyCode.Escape))
-        {
-            Close();
-        }
+        // ⭐ B 키 토글 제거 — StashInteractable trigger + F 키로 Open() 호출됨
+        if (IsOpen && Input.GetKeyDown(KeyCode.Escape)) Close();
     }
 
     bool IsInBaseScene()
     {
-        var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        return scene == "base" || scene == "Base";
+        var s = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        return s == "base" || s == "Base";
     }
+
+    public void Toggle() { if (IsOpen) Close(); else Open(); }
 
     public void Open()
     {
-        if (!IsInBaseScene())
+        if (!IsInBaseScene()) return;
+
+        var iuType = System.Type.GetType("InventoryUI, Assembly-CSharp");
+        var iu = UnityEngine.Object.FindFirstObjectByType(iuType, FindObjectsInactive.Include) as MonoBehaviour;
+        if (iu != null)
         {
-            Debug.Log("[StashUI] 창고는 베이스에서만 열 수 있습니다");
-            return;
+            var hack = new UnityEditor_StashUIHack();
+            inventoryPanelRef = hack.GetField(iu, "inventoryPanel") as GameObject;
+            if (inventoryPanelRef != null)
+            {
+                inventoryPanelRef.SetActive(true);
+                var equip = hack.GetField(iu, "equipmentPanel") as GameObject;
+                if (equip != null) equip.SetActive(false);
+                iu.GetType().GetMethod("ForceRefresh")?.Invoke(iu, null);
+            }
         }
-        isOpen = true;
-        // 게임 일시정지 효과 (시간만 멈춤)
-        Time.timeScale = 0f;
+        if (inventoryPanelRef == null) return;
+
+        // 원래 anchor/pivot/pos 저장 (최초 1회)
+        var invRt = inventoryPanelRef.GetComponent<RectTransform>();
+        if (!savedOrig)
+        {
+            origAnchorMin = invRt.anchorMin;
+            origAnchorMax = invRt.anchorMax;
+            origPivot = invRt.pivot;
+            origAnchoredPos = invRt.anchoredPosition;
+            savedOrig = true;
+        }
+
+        // ⭐ 좌측 끝에 배치: anchor (0, 0.5), pivot (0, 0.5), anchoredPos = (20, 0)
+        invRt.anchorMin = new Vector2(0f, 0.5f);
+        invRt.anchorMax = new Vector2(0f, 0.5f);
+        invRt.pivot = new Vector2(0f, 0.5f);
+        invRt.anchoredPosition = new Vector2(20f, 0f); // 화면 왼쪽 가장자리 + 약간 여백
+
+        // 창고 패널 생성 (최초 1회)
+        if (stashPanel == null) CreateStashPanel();
+
+        // ⭐ 우측 끝에 배치: anchor (1, 0.5), pivot (1, 0.5), anchoredPos = (-20, 0)
+        var stRt = stashPanel.GetComponent<RectTransform>();
+        stRt.anchorMin = new Vector2(1f, 0.5f);
+        stRt.anchorMax = new Vector2(1f, 0.5f);
+        stRt.pivot = new Vector2(1f, 0.5f);
+        stRt.anchoredPosition = new Vector2(-20f, 0f); // 화면 오른쪽 가장자리
+
+        stashPanel.SetActive(true);
+        RefreshStashSlots();
+
+        // 중앙 화살표
+        if (arrowGo == null) CreateArrow();
+        arrowGo.SetActive(true);
+        var arRt = arrowGo.GetComponent<RectTransform>();
+        arRt.anchorMin = new Vector2(0.5f, 0.5f);
+        arRt.anchorMax = new Vector2(0.5f, 0.5f);
+        arRt.pivot = new Vector2(0.5f, 0.5f);
+        arRt.anchoredPosition = Vector2.zero;
+
+        BaseInteractable.IsUIOpen = true;
+        IsOpen = true;
+        Stash.OnStashChanged += RefreshStashSlots;
     }
 
     public void Close()
     {
-        isOpen = false;
-        Time.timeScale = 1f;
-    }
+        if (stashPanel != null) stashPanel.SetActive(false);
+        if (arrowGo != null) arrowGo.SetActive(false);
 
-    public void Toggle() { if (isOpen) Close(); else Open(); }
-
-    void OnGUI()
-    {
-        if (!isOpen) return;
-
-        // 큰 박스 배경
-        float w = 700, h = 500;
-        float x = (Screen.width - w) / 2f;
-        float y = (Screen.height - h) / 2f;
-
-        // 배경 어둡게
-        GUI.color = new Color(0, 0, 0, 0.7f);
-        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Texture2D.whiteTexture);
-        GUI.color = Color.white;
-
-        GUI.Box(new Rect(x, y, w, h), "");
-        // 제목
-        var titleStyle = new GUIStyle(GUI.skin.label);
-        titleStyle.fontSize = 22;
-        titleStyle.fontStyle = FontStyle.Bold;
-        titleStyle.alignment = TextAnchor.MiddleCenter;
-        GUI.Label(new Rect(x, y + 10, w, 30), "📦 창고 (Stash)  —  ESC로 닫기 / B로 토글", titleStyle);
-
-        // 패널 폭
-        float panelW = (w - 30) / 2f;
-        float panelH = h - 60;
-
-        // 인벤토리 패널 (좌)
-        DrawInventoryPanel(new Rect(x + 10, y + 50, panelW, panelH));
-        // 창고 패널 (우)
-        DrawStashPanel(new Rect(x + 20 + panelW, y + 50, panelW, panelH));
-    }
-
-    void DrawInventoryPanel(Rect rect)
-    {
-        GUI.Box(rect, "");
-        GUI.Label(new Rect(rect.x + 10, rect.y + 5, rect.width, 24), "인벤토리 (→ 클릭해서 창고로 이동)");
-
-        if (Inventory.Instance == null) return;
-        var items = Inventory.Instance.Items;
-        var area = new Rect(rect.x + 5, rect.y + 30, rect.width - 10, rect.height - 35);
-
-        GUILayout.BeginArea(area);
-        invScroll = GUILayout.BeginScrollView(invScroll);
-        InventoryItem toTransfer = null;
-        foreach (var item in items)
+        // 인벤토리 패널 원래 위치 복원 + 비활성
+        if (inventoryPanelRef != null)
         {
-            if (GUILayout.Button(FormatItem(item), GUILayout.Height(30)))
+            if (savedOrig)
             {
-                toTransfer = item;
+                var rt = inventoryPanelRef.GetComponent<RectTransform>();
+                rt.anchorMin = origAnchorMin;
+                rt.anchorMax = origAnchorMax;
+                rt.pivot = origPivot;
+                rt.anchoredPosition = origAnchoredPos;
             }
+            inventoryPanelRef.SetActive(false);
         }
-        GUILayout.EndScrollView();
-        GUILayout.EndArea();
 
-        if (toTransfer != null && Stash.Instance != null)
-        {
-            Stash.Instance.TransferFromInventory(toTransfer);
-        }
+        Stash.OnStashChanged -= RefreshStashSlots;
+        InventoryTooltip.Instance?.Hide();
+        BaseInteractable.IsUIOpen = false;
+        IsOpen = false;
     }
 
-    void DrawStashPanel(Rect rect)
+    void CreateStashPanel()
     {
-        GUI.Box(rect, "");
-        string title = Stash.Instance != null
-            ? $"창고 {Stash.Instance.Items.Count}/{Stash.Instance.Capacity} (→ 클릭해서 인벤토리로)"
-            : "창고 (미초기화)";
-        GUI.Label(new Rect(rect.x + 10, rect.y + 5, rect.width, 24), title);
+        stashPanel = UnityEngine.Object.Instantiate(inventoryPanelRef, inventoryPanelRef.transform.parent);
+        stashPanel.name = "StashPanel";
+        var rt = stashPanel.GetComponent<RectTransform>();
+        var src = inventoryPanelRef.GetComponent<RectTransform>();
+        if (rt != null && src != null) rt.sizeDelta = src.sizeDelta;
 
-        if (Stash.Instance == null) return;
+        var oldSlots = stashPanel.GetComponentsInChildren<InventorySlot>(true);
+        var newSlots = new System.Collections.Generic.List<StashSlot>();
+        foreach (var s in oldSlots)
+        {
+            var go = s.gameObject;
+            UnityEngine.Object.DestroyImmediate(s);
+            var stashSlot = go.AddComponent<StashSlot>();
+            newSlots.Add(stashSlot);
+        }
+        stashSlots = newSlots.ToArray();
+    }
+
+    void CreateArrow()
+    {
+        arrowGo = new GameObject("StashArrow");
+        arrowGo.transform.SetParent(inventoryPanelRef.transform.parent, false);
+        var rt = arrowGo.AddComponent<RectTransform>();
+        rt.sizeDelta = new Vector2(200f, 200f);
+        var tmp = arrowGo.AddComponent<TextMeshProUGUI>();
+        tmp.text = "→";
+        tmp.fontSize = 150f;
+        tmp.color = new Color(1f, 0.85f, 0.3f, 1f);
+        tmp.alignment = TextAlignmentOptions.Center;
+        tmp.fontStyle = FontStyles.Bold;
+    }
+
+    void RefreshStashSlots()
+    {
+        if (stashSlots == null || Stash.Instance == null) return;
         var items = Stash.Instance.Items;
-        var area = new Rect(rect.x + 5, rect.y + 30, rect.width - 10, rect.height - 35);
-
-        GUILayout.BeginArea(area);
-        stashScroll = GUILayout.BeginScrollView(stashScroll);
-        InventoryItem toTransfer = null;
-        foreach (var item in items)
+        for (int i = 0; i < stashSlots.Length; i++)
         {
-            if (GUILayout.Button(FormatItem(item), GUILayout.Height(30)))
-            {
-                toTransfer = item;
-            }
-        }
-        GUILayout.EndScrollView();
-        GUILayout.EndArea();
-
-        if (toTransfer != null)
-        {
-            Stash.Instance.TransferToInventory(toTransfer);
+            InventoryItem it = (i < items.Count) ? items[i] : null;
+            stashSlots[i].Setup(it);
         }
     }
+}
 
-    string FormatItem(InventoryItem item)
+internal class UnityEditor_StashUIHack
+{
+    public object GetField(object target, string fieldName)
     {
-        if (item == null) return "(빈 아이템)";
-        string grade = item.Grade.ToString();
-        return $"[{grade}] {item.itemName}";
+        if (target == null) return null;
+        var fi = target.GetType().GetField(fieldName,
+            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        return fi?.GetValue(target);
     }
 }

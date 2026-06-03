@@ -3,9 +3,6 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-// 역할: Tab 인벤토리 슬롯
-// 호버 툴팁 + 좌클릭 장착
-
 public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private Image iconImage;
@@ -21,20 +18,14 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void Setup(InventoryItem item)
     {
         slotItem = item;
-
-        if (item == null)
-        {
-            ClearSlot();
-            return;
-        }
+        if (item == null) { ClearSlot(); return; }
 
         if (iconImage != null)
         {
             iconImage.sprite = item.iconSprite;
-            iconImage.color = item.iconSprite != null
-                ? new Color(1f, 1f, 1f, 1f)
-                : new Color(1f, 1f, 1f, 0f);
+            iconImage.color = item.iconSprite != null ? new Color(1f,1f,1f,1f) : new Color(1f,1f,1f,0f);
         }
+        ApplyGradeBorder(item.Grade);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -53,12 +44,23 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (slotItem == null) return;
         if (eventData.button != PointerEventData.InputButton.Left) return;
 
+        // ⭐ 창고 열린 상태 → 인벤토리 → 창고로 이동 (장착 X)
+        if (StashUI.Instance != null && StashUI.Instance.IsOpen)
+        {
+            if (Stash.Instance != null)
+            {
+                Debug.Log($"[InventorySlot→Stash] {slotItem.itemName} 창고로 이동 시도");
+                Stash.Instance.TransferFromInventory(slotItem);
+                InventoryTooltip.Instance?.Hide();
+            }
+            return;
+        }
+
         if (CharacterEquipmentUI.Instance == null)
         {
             Debug.LogWarning("[InventorySlot] CharacterEquipmentUI.Instance가 없습니다.");
             return;
         }
-
         CharacterEquipmentUI.Instance.TryEquip(slotItem);
     }
 
@@ -68,7 +70,6 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         string hexColor = ColorUtility.ToHtmlStringRGB(GetGradeColor(item.Grade));
         sb.AppendLine($"<color=#{hexColor}>{item.itemName}</color>");
 
-        // 기본 능력치는 감정 전후 항상 표시
         sb.AppendLine("[ 기본 능력치 ]");
         if (item.basePhysicalDamage > 0) sb.AppendLine($"물리 공격력: {item.basePhysicalDamage:F1}");
         if (item.baseMagicDamage > 0) sb.AppendLine($"마법 공격력: {item.baseMagicDamage:F1}");
@@ -95,7 +96,6 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             float addDef = item.physicalDefense - item.basePhysicalDefense;
             float addSpeed = item.moveSpeed - item.baseMoveSpeed;
 
-            // minAdd/maxAdd 범위가 있는 스탯만 추가 옵션으로 표시
             bool hasOptions = ((item.minAddPhys != 0 || item.maxAddPhys != 0) && addPhys != 0)
                            || ((item.minAddMagic != 0 || item.maxAddMagic != 0) && addMagic != 0)
                            || ((item.minAddCrit != 0 || item.maxAddCrit != 0) && addCrit != 0)
@@ -116,9 +116,12 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 if ((item.minAddSpeed != 0 || item.maxAddSpeed != 0) && addSpeed != 0) sb.AppendLine($"이동속도:    {addSpeed:+0.00;-0.00}");
             }
 
-            sb.Append("\n<color=#aaa>클릭: 장착</color>");
+            // 창고 모드에서는 다른 안내
+            if (StashUI.Instance != null && StashUI.Instance.IsOpen)
+                sb.Append("\n<color=#aaa>클릭: 창고로 이동</color>");
+            else
+                sb.Append("\n<color=#aaa>클릭: 장착</color>");
         }
-
         return sb.ToString();
     }
 
@@ -126,9 +129,40 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if (iconImage != null)
             iconImage.color = new Color(1f, 1f, 1f, 0f);
+        ApplyGradeBorder(null);
     }
 
-    private Color GetGradeColor(ItemGrade grade)
+    private void ApplyGradeBorder(ItemGrade? grade)
+    {
+        Transform borderT = transform.Find("GradeBorder");
+        Image borderImg;
+        if (borderT == null)
+        {
+            var go = new GameObject("GradeBorder");
+            go.transform.SetParent(transform, false);
+            var rt = go.AddComponent<RectTransform>();
+            rt.anchorMin = Vector2.zero;
+            rt.anchorMax = Vector2.one;
+            rt.sizeDelta = Vector2.zero;
+            rt.offsetMin = Vector2.zero;
+            rt.offsetMax = Vector2.zero;
+            borderImg = go.AddComponent<Image>();
+            borderImg.raycastTarget = false;
+            borderImg.sprite = null;
+            go.transform.SetAsFirstSibling();
+        }
+        else borderImg = borderT.GetComponent<Image>();
+        if (borderImg == null) return;
+        if (grade.HasValue)
+        {
+            Color c = GetGradeColor(grade.Value);
+            c.a = 0.45f;
+            borderImg.color = c;
+        }
+        else borderImg.color = new Color(0f, 0f, 0f, 0f);
+    }
+
+    public static Color GetGradeColor(ItemGrade grade)
     {
         switch (grade)
         {
