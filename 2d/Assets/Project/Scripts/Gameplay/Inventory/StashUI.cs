@@ -148,6 +148,9 @@ public class StashUI : MonoBehaviour
             newSlots.Add(stashSlot);
         }
         stashSlots = newSlots.ToArray();
+
+        // ✨ 창고 용량을 실제 보이는 칸 수에 맞춤 (보이는 칸이 꿉 차면 입고 차단)
+        if (Stash.Instance != null) Stash.Instance.Capacity = stashSlots.Length;
     }
 
     void CreateArrow()

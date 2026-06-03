@@ -14,7 +14,7 @@ public class Stash : MonoBehaviour
     private List<InventoryItem> items = new List<InventoryItem>();
     public IReadOnlyList<InventoryItem> Items => items;
 
-    public int Capacity = 50;
+        public int Capacity = 28; // 창고 용량 (StashUI가 실제 보이는 칸 수로 덮어씀)
 
     void Awake()
     {

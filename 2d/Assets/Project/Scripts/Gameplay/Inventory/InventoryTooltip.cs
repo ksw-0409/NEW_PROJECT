@@ -19,8 +19,14 @@ public class InventoryTooltip : MonoBehaviour
     {
         Instance = this;
         tooltipRect = GetComponent<RectTransform>();
-        rootCanvas = GetComponentInParent<Canvas>();
+        rootCanvas = GetComponentInParent<Canvas>(); // 위치 계산용 부모 캠버스 (자체 캠버스 추가 전에 캐쳐)
         canvasGroup = GetComponent<CanvasGroup>();
+
+        // ✨ 툴팁을 항상 최상위로 렌더 (창고 등 다른 UI 위에 표시)
+        var ownCanvas = GetComponent<Canvas>();
+        if (ownCanvas == null) ownCanvas = gameObject.AddComponent<Canvas>();
+        ownCanvas.overrideSorting = true;
+        ownCanvas.sortingOrder = 1000;
 
         tooltipRect.pivot = new Vector2(1f, 1f); // 오른쪽 상단 기준
 
