@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +14,9 @@ public class Inventory : MonoBehaviour
     private List<InventoryItem> items = new List<InventoryItem>();
 
     public IReadOnlyList<InventoryItem> Items => items;
+
+    public const int MaxSlots = 28; // 4x7 인벤토리 UI 슬롯 수
+    public bool IsFull => items.Count >= MaxSlots;
 
     void Awake()
     {

@@ -42,6 +42,19 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerClick(PointerEventData eventData)
     {
         if (slotItem == null) return;
+
+        // 우클릭 → 아이템 삭제
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            if (Inventory.Instance != null)
+            {
+                Debug.Log($"[InventorySlot] {slotItem.itemName} 삭제(우클릭)");
+                Inventory.Instance.RemoveItem(slotItem);
+                InventoryTooltip.Instance?.Hide();
+            }
+            return;
+        }
+
         if (eventData.button != PointerEventData.InputButton.Left) return;
 
         // ⭐ 창고 열린 상태 → 인벤토리 → 창고로 이동 (장착 X)

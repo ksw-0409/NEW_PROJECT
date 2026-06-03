@@ -74,6 +74,7 @@ public class InventoryUI : MonoBehaviour
         inventoryPanel.SetActive(false);
         if (equipmentPanel != null) equipmentPanel.SetActive(false);
         BaseInteractable.IsUIOpen = false;
+        InventoryTooltip.Instance?.Hide(); // 탭키로 닫을 때 남은 툴팁 제거
     }
 
     // ✨ CharacterEquipmentUI에서 장착/해제 후 슬롯 갱신 요청 시 사용

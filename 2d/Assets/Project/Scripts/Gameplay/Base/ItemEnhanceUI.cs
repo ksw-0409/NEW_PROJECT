@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -84,6 +84,18 @@ public class ItemEnhanceUI : BaseCanvasUI
 
     public void OnItemSelected(InventoryItem item)
     {
+        // 레전더리 장비는 옵션 변경 불가 — 패널에 올리지 않고 선택 상태 초기화(stale 방지)
+        if (item != null && item.Grade == ItemGrade.Legendary)
+        {
+            ClearSelection();
+            ClearOptionTexts();
+            HideAllLockButtons();
+            if (costText != null && enhanceManager != null)
+                costText.text = $"{enhanceManager.GetEnhanceCost()}G";
+            Debug.Log("[ItemEnhanceUI] 레전더리 장비는 옵션을 변경할 수 없습니다.");
+            return;
+        }
+
         selectedItem = item;
 
         if (selectedItemName != null)

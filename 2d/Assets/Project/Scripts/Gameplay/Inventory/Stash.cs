@@ -63,6 +63,11 @@ public class Stash : MonoBehaviour
     public bool TransferToInventory(InventoryItem item)
     {
         if (item == null || Inventory.Instance == null) return false;
+        if (Inventory.Instance.IsFull)
+        {
+            Debug.Log("[Stash] 인벤토리가 가득 차 창고에서 꺼낼 수 없습니다.");
+            return false;
+        }
         Inventory.Instance.AddItem(item);
         RemoveItem(item);
         return true;

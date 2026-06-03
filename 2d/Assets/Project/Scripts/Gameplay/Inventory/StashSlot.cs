@@ -99,6 +99,10 @@ public class StashSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (slotItem == null) return;
         if (eventData.button != PointerEventData.InputButton.Left) return;
         if (Stash.Instance == null) return;
+
+        // 인벤토리가 꽉 차 있으면(28/28) 클릭 무시
+        if (Inventory.Instance != null && Inventory.Instance.IsFull) return;
+
         Stash.Instance.TransferToInventory(slotItem);
     }
 
