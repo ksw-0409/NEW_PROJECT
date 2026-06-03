@@ -10,41 +10,41 @@ public class BettingManager : MonoBehaviour
     private bool isPaused = false;
     private bool isPlusMode = true; 
 
-    [Header("UI ¿¬°á")]
+    [Header("UI ï¿½ï¿½ï¿½ï¿½")]
     public TMP_Text currentBetText;
     public Button goButton;
     public Button PButton;
     public Button MButton;
 
-    [Header("½ºÇÁ¶óÀÌÆ® ¹è¿­ (0: ºñÈ°¼º/±âº», 1: È°¼º/´­¸²)")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½è¿­ (0: ï¿½ï¿½È°ï¿½ï¿½/ï¿½âº», 1: È°ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½)")]
     public Sprite[] Pbs;
     public Sprite[] Mbs;
 
-    // ³»ºÎ º¯¼ö
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private int playerTotalGold = 0;
     private int currentBetAmount = 0;
 
-    [Header("ÆÄÄªÄÚ ½Ã½ºÅÛ ¿¬°á")]
+    [Header("ï¿½ï¿½Äªï¿½ï¿½ ï¿½Ã½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public GameObject Pachinko;
     public Pachinko pachinko;
 
-    // ÆÄÄªÄÚ ¹èÆÃ Ã¢ÀÌ ÄÑÁú ¶§
+    // ï¿½ï¿½Äªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     void OnEnable()
     {
         setUp();
         GameDataManager.Instance.isPachinkoActive = true;
 
-        // º¸À¯ °ñµå ÃÖ½ÅÈ­
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½È­
         playerTotalGold = GameDataManager.Instance.Gold;
 
-        // ÃÊ±âÈ­
+        // ï¿½Ê±ï¿½È­
         ResetBet();
     }
 
-    // +100, -100(ÀÎ½ºÆåÅÍ¿¡´Â ¾ç¼ö 100, 1000 ÀÔ·Â ±ÇÀå) ¹öÆ° Å¬¸¯ ½Ã È£Ãâ
+    // +100, -100(ï¿½Î½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 100, 1000 ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½
     public void ChangeBetAmount(int amount)
     {
-        // Ç×»ó ¸Å°³º¯¼ö´Â ¾ç¼ö·Î ¹Þ°í, ¸¶ÀÌ³Ê½º ¸ðµåÀÏ ¶§¸¸ À½¼ö·Î º¯È¯ÇÏ´Â °ÍÀÌ ¾ÈÀüÇÔ
+        // ï¿½×»ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ°ï¿½, ï¿½ï¿½ï¿½Ì³Ê½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         int finalAmount = Mathf.Abs(amount);
 
         if (!isPlusMode)
@@ -54,27 +54,27 @@ public class BettingManager : MonoBehaviour
 
         currentBetAmount += finalAmount;
 
-        // ¹èÆÃ ±Ý¾× ÇÑ°è Á¦ÇÑ (0 ~ º¸À¯ °ñµå)
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¾ï¿½ ï¿½Ñ°ï¿½ ï¿½ï¿½ï¿½ï¿½ (0 ~ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½)
         currentBetAmount = Mathf.Clamp(currentBetAmount, 0, playerTotalGold);
 
         UpdateUI();
     }
 
-    // ¿ÃÀÎ (All-In)
+    // ï¿½ï¿½ï¿½ï¿½ (All-In)
     public void SetAllIn()
     {
         currentBetAmount = playerTotalGold;
         UpdateUI();
     }
 
-    // ¸®¼Â (Reset)
+    // ï¿½ï¿½ï¿½ï¿½ (Reset)
     public void ResetBet()
     {
         currentBetAmount = 0;
         UpdateUI();
     }
 
-    // ÇÃ·¯½º ¸ðµå ¼³Á¤
+    // ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void setUp()
     {
         isPlusMode = true;
@@ -82,7 +82,7 @@ public class BettingManager : MonoBehaviour
         if (MButton != null && Mbs.Length > 0) MButton.image.sprite = Mbs[0];
     }
 
-    // ¸¶ÀÌ³Ê½º ¸ðµå ¼³Á¤
+    // ï¿½ï¿½ï¿½Ì³Ê½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void setM()
     {
         isPlusMode = false;
@@ -90,21 +90,21 @@ public class BettingManager : MonoBehaviour
         if (MButton != null && Mbs.Length > 1) MButton.image.sprite = Mbs[1];
     }
 
-    // ¹èÆÃ ½ÃÀÛ (Go) ¹öÆ°
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (Go) ï¿½ï¿½Æ°
     public void StartPachinko()
     {
-        // [¼öÁ¤] Á¶°Ç °Ë»ç¸¦ ¸ÕÀú ÇÑ µÚ¿¡ Ã¢À» ²¨¾ß ¹ö±×°¡ ¾È »ý±é´Ï´Ù.
+        // [ï¿½ï¿½ï¿½ï¿½] ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ç¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ú¿ï¿½ Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×°ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
         if (currentBetAmount > 0 && currentBetAmount <= playerTotalGold)
         {
-            Debug.Log($"ÆÄÄªÄÚ ½ÃÀÛ! ¹èÆÃµÈ ±Ý¾×: {currentBetAmount}");
+            Debug.Log($"ï¿½ï¿½Äªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½ï¿½Ãµï¿½ ï¿½Ý¾ï¿½: {currentBetAmount}");
 
-            this.gameObject.SetActive(false); // ¼º°øÇßÀ» ¶§¸¸ ¹èÆÃÃ¢ ²ô±â
+            this.gameObject.SetActive(false); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½
             Pachinko.SetActive(true);
             pachinko.SetupBetAmount(currentBetAmount);
         }
         else
         {
-            Debug.LogError("¹èÆÃ ±Ý¾×ÀÌ 0¿øÀÌ°Å³ª º¸À¯ °ñµå°¡ ºÎÁ·ÇÕ´Ï´Ù.");
+            Debug.LogError("ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¾ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½Ì°Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.");
         }
     }
 
@@ -114,7 +114,7 @@ public class BettingManager : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    // UI °»½Å
+    // UI ï¿½ï¿½ï¿½ï¿½
     private void UpdateUI()
     {
         if (currentBetText != null)
@@ -122,12 +122,12 @@ public class BettingManager : MonoBehaviour
 
         if (goButton != null)
         {
-            // 0¿øÀÏ ¶§´Â ¹öÆ° Å¬¸¯ ºÒ°¡´ÉÇÏ°Ô ¹æ¾î ÄÚµå
+            // 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½Ò°ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ ï¿½Úµï¿½
             goButton.interactable = currentBetAmount > 0;
         }
     }
 
-    // ¹èÆÃÃ¢ Åä±Û ÄÑ°í ²ô±â
+    // ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½ ï¿½ï¿½ï¿½
     public void Gobetting()
     {
         isPaused = !isPaused;

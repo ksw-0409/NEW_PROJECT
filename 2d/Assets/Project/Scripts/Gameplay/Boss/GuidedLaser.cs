@@ -125,16 +125,19 @@ public class GuidedLaser : MonoBehaviour
         UpdateBeamVisual();
         if (CameraShake.Instance != null) CameraShake.ShakePreset(CameraShake.Preset.Heavy);
 
-        // 발사 직선상 모든 충돌 검사 (보스 위치에서 Dir 방향 빔)
+        // 발사 직선상 충돌 검사 (보스 위치에서 Dir 방향 빔)
         Vector2 start = origin != null ? (Vector2)origin.position : (Vector2)transform.position;
         Vector2 dir = Dir;
-        RaycastHit2D[] hits = Physics2D.RaycastAll(start, dir, beamLength);
 
+        // ⭐ 한 번에 raycast — 기둥 검사
+        RaycastHit2D[] hits = Physics2D.RaycastAll(start, dir, beamLength);
         bool hitPillar = false;
         bool hitPlayer = false;
+        Debug.Log($"[GuidedLaser] Fire! start={start} dir={dir} length={beamLength} hits={hits.Length}");
         foreach (var h in hits)
         {
             if (h.collider == null) continue;
+            Debug.Log($"  → 충돌: {h.collider.gameObject.name} tag={h.collider.tag} layer={LayerMask.LayerToName(h.collider.gameObject.layer)} isTrigger={h.collider.isTrigger}");
             var pillar = h.collider.GetComponent<SealPillar>();
             if (pillar == null) pillar = h.collider.GetComponentInParent<SealPillar>();
             if (pillar != null && !pillar.IsDestroyed)
@@ -142,24 +145,44 @@ public class GuidedLaser : MonoBehaviour
                 pillar.OnHitByLaser();
                 hitPillar = true;
             }
-            if (h.collider.CompareTag("Player"))
-                hitPlayer = true;
+            if (h.collider.CompareTag("Player")) hitPlayer = true;
         }
 
-        // 기둥에 안 맞았고 플레이어가 맞았으면 데미지 (유도 실패 패널티)
-        if (!hitPillar && hitPlayer)
+        // ⭐ 빔이 보이는 0.25초 동안 매 프레임 플레이어 충돌 재체크 (지속 데미지 판정)
+        float remaining = 0.25f;
+        float dmgInterval = 0f;
+        while (remaining > 0f)
         {
-            var pgo = GameObject.FindGameObjectWithTag("Player");
-            if (pgo != null)
+            var hits2 = Physics2D.RaycastAll(start, dir, beamLength);
+            foreach (var h in hits2)
             {
-                var pc = pgo.GetComponent<PlayerController>();
-                if (pc == null) pc = pgo.GetComponentInParent<PlayerController>();
-                if (pc != null) pc.TakeDamage(damage);
+                if (h.collider != null && h.collider.CompareTag("Player"))
+                {
+                    hitPlayer = true;
+                    break;
+                }
             }
+            // ⭐ 빔에 닿은 플레이어는 항상 데미지 (기둥 명중 여부 무관)
+            if (dmgInterval >= 0.05f && hitPlayer)
+            {
+                var pgo = GameObject.FindGameObjectWithTag("Player");
+                if (pgo != null)
+                {
+                    var pc = pgo.GetComponent<PlayerController>();
+                    if (pc == null) pc = pgo.GetComponentInParent<PlayerController>();
+                    if (pc != null)
+                    {
+                        Debug.Log($"[GuidedLaser] 플레이어 피격 → 데미지 {damage}");
+                        pc.TakeDamage(damage);
+                        hitPlayer = false; // 한 번만 데미지
+                        dmgInterval = -999f; // 더 이상 적용 X
+                    }
+                }
+            }
+            dmgInterval += Time.deltaTime;
+            remaining -= Time.deltaTime;
+            yield return null;
         }
-
-        // 빔 잔상 잠깐 유지
-        yield return new WaitForSeconds(0.25f);
 
         onResolved?.Invoke(hitPillar);
     }

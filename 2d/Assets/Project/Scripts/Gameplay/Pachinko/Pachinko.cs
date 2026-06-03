@@ -1,4 +1,4 @@
-﻿using DG.Tweening; // DOTween 사용
+using DG.Tweening; // DOTween 사용
 using UnityEngine;
 using System.Collections; 
 
@@ -30,9 +30,20 @@ public class Pachinko : MonoBehaviour
 
     void OnEnable()
     {
+        // ⭐ 파칭코 활성 시 플레이어 쉴드 비주얼 가림 (UI 위에 그려지지 않게)
+        var sv = UnityEngine.Object.FindFirstObjectByType<PlayerShieldVisual>(FindObjectsInactive.Include);
+        if (sv != null) sv.SetVisible(false);
+
         value = 0;
         MouseManager.Instance.OpenPachinko();
         for (int i = 0; i < 3; i++) values[i] = 0;
+    }
+
+    void OnDisable()
+    {
+        // ⭐ 파칭코 종료 시 쉴드 비주얼 복원 (실제 쉴드 상태에 따라 OnShieldChanged 재호출됨)
+        var sv = UnityEngine.Object.FindFirstObjectByType<PlayerShieldVisual>(FindObjectsInactive.Include);
+        if (sv != null) sv.SetVisible(true);
     }
 
     public void SetupBetAmount(int betAmount)
