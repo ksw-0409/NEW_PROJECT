@@ -8,6 +8,7 @@ public class PauseMenuUI : MonoBehaviour
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private Button continueButton;
     [SerializeField] private Button quitButton;
+    [SerializeField] private GameObject levelUpUI; // ✨ 레벨업 UI 참조
 
     [SerializeField] private Animator pauseAnimator;
     [SerializeField] private Button[] buttonsToShowAfterAnim;
@@ -38,6 +39,7 @@ public class PauseMenuUI : MonoBehaviour
     private void TogglePause()
     {
         if (GameDataManager.Instance.isPachinkoActive) return;
+        if (levelUpUI != null && levelUpUI.activeSelf) return; // ✨ 레벨업 UI 열려있으면 퍼즈 차단
         isPaused = !isPaused;
         pausePanel.SetActive(isPaused);
         Time.timeScale = isPaused ? 0f : 1f;

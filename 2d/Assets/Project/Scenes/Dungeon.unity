@@ -2523,6 +2523,7 @@ MonoBehaviour:
   pausePanel: {fileID: 1681976484}
   continueButton: {fileID: 671554278}
   quitButton: {fileID: 718888908}
+  levelUpUI: {fileID: 1350143454}
   pauseAnimator: {fileID: 1681976485}
   buttonsToShowAfterAnim:
   - {fileID: 671554278}
