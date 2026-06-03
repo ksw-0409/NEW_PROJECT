@@ -88,10 +88,18 @@ public class PassiveSystem : MonoBehaviour
     public void SetLevel(string passiveID, int level)
     {
         level = Mathf.Clamp(level, 0, 6);
+
+        // ✨ HP 패시브 변경 시 현재 체력에도 증가분 반영 (라이브)
+        bool affectsHp = (passiveID == ID_HP && PlayerStats.Instance != null);
+        float oldMax = affectsHp ? PlayerStats.Instance.MaxHealth : 0f;
+
         levels[passiveID] = level;
         // 영구 저장 안 함 (런 한정 패시브)
 
         SaveToPersistent(); // ⭐ 씬 전환 대비
+
+        if (affectsHp) PlayerStats.Instance.RefreshMaxHealth(oldMax);
+
         Debug.Log($"<color=lime>[Passive]</color> {passiveID} → Lv.{level}");
     }
 

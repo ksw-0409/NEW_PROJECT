@@ -2,6 +2,8 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using UnityEngine.Experimental.GlobalIllumination;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class PlayerStats : MonoBehaviour
     /// <summary>치트: true면 TakeExp가 무시됨 (레벨업 잠금)</summary>
     public static bool LevelLocked = false;
     private bool isDead = false;
+    private bool isBaseScene = false; // 현재 거점 씬 여부 (스폰 시 1회 판정)
 
     // 장비 시스템
     private Dictionary<EquipmentSlot, EquipmentData> equippedItems = new Dictionary<EquipmentSlot, EquipmentData>();
@@ -112,6 +115,7 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
+        isBaseScene = SceneManager.GetActiveScene().name == SceneController.SceneName.Base;
         RestoreUnlockedEffectsFromSave();
 
         // ⭐ 던전 씬 전환 시 GameDataManager에서 장비 자동 복원
@@ -122,6 +126,9 @@ public class PlayerStats : MonoBehaviour
         {
             gameObject.AddComponent<PassiveSystem>();
         }
+
+        // ✨ 스폰 체력 확정 (다음 프레임 1회 적용 — 복원/초기화 순서 안정화)
+        StartCoroutine(ApplySpawnHealthNextFrame());
     }
 
     /// <summary>
@@ -520,5 +527,34 @@ public class PlayerStats : MonoBehaviour
     void Update()
     {
         TickKineeSlow();
+        if (isBaseScene) currentHealth = MaxHealth; // 거점: 최대 체력 변화를 현재 체력에 즉시 반영(항상 풀피)
+    }
+
+    void OnDestroy()
+    {
+        // ✨ 씬을 떠날 때 현재 체력 캐리 저장 (사망 시엔 저장 안 함 → 다음 진입 시 풀피 갱신)
+        if (!isDead)
+            GameDataManager.Instance?.SavePlayerHealth(currentHealth);
+    }
+
+    // ✨ 스폰 시 체력 확정 (1프레임 대기 후 모든 복원 완료 상태에서 계산)
+    //   - 거점: 풀피
+    //   - 던전/보스(스테이지 진입): 직전 체력 유지 + 최대 체력의 20% 회복 (최대 초과분 버림)
+    private IEnumerator ApplySpawnHealthNextFrame()
+    {
+        yield return null;
+
+        bool isBase = SceneManager.GetActiveScene().name == SceneController.SceneName.Base;
+        if (isBase)
+        {
+            currentHealth = MaxHealth;
+        }
+        else
+        {
+            float carried = (GameDataManager.Instance != null && GameDataManager.Instance.HasSavedHealth)
+                ? GameDataManager.Instance.SavedCurrentHealth
+                : MaxHealth;
+            currentHealth = Mathf.Min(MaxHealth, carried + MaxHealth * 0.2f);
+        }
     }
 }

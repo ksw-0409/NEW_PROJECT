@@ -56,6 +56,13 @@ public class GameDataManager : MonoBehaviour
     // 튜토리얼 표시 여부 (0=미표시, 1=표시완료)
     public int tr = 0;
 
+    // ✨ 현재 체력 캐리 (씬 전환 간 유지) — 스테이지 진입 시 회복 계산에 사용
+    private float savedCurrentHealth = -1f;
+    public bool HasSavedHealth => savedCurrentHealth >= 0f;
+    public float SavedCurrentHealth => savedCurrentHealth;
+    public void SavePlayerHealth(float cur) { savedCurrentHealth = cur; }
+    public void ClearSavedHealth() { savedCurrentHealth = -1f; }
+
     public void SetHardPenalty(bool active)
     {
         isHardPenalty = active;
