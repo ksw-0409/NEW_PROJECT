@@ -32,6 +32,7 @@ public class FireballSkill : SkillBase
         for (int i = 0; i < totalShootCount; i++)
         {
             Shoot(player, mouseDir, bonus);
+            print("123");
         }
     }
 
@@ -111,8 +112,7 @@ public class FireballSkill : SkillBase
     {
         if (fireData.projectilePrefab == null)
         {
-            if (LOG_VERBOSE) print("[Fireball] projectilePrefab이 null");
-            return;
+            print("[Fireball] projectilePrefab이 null");
         }
         print("파이어볼 발사!");
 
